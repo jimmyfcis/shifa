@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shifa/core/widgtes/appbar_widget.dart';
+import 'package:shifa/features/Profile/widgets/profile_app_bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -8,15 +8,11 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: HexColor("FAFAFAF"),
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          CommonAppBar(
-            backGroundColor: HexColor("4270b7"),
-            hasBorderRadius: true,
-            height: 148,
-          ),
+          const ProfileAppBar(),
         ],
       ),
     );

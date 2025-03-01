@@ -23,4 +23,13 @@ class SVGAssets {
   static const String profileSelectedIcon =
       "assets/svg/icons/profile_selected.svg";
   static const String appBarLogo = "assets/svg/icons/appbarlogo.svg";
+  static const String leksellText = "assets/svg/icons/leksell_home_text.svg";
+  static const String leksellDivider = "assets/svg/icons/leksell_divider.svg";
+  static const String leksellTranspernt =
+      "assets/svg/icons/leksell_transparent.svg";
+
+  static const String leksellHomeWhiteIcon =
+      "assets/svg/icons/leksell_icon_home.svg";
+
+  static const String notificationIcon = "assets/svg/icons/notification.svg";
 }
