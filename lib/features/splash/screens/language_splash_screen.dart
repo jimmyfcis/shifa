@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/fonts/fonts_manager.dart';
-import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/language_button.dart';

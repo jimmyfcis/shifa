@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/theme.dart';
-import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import 'package:flutter_svg/svg.dart';
 
