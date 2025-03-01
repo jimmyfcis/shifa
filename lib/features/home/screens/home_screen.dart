@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/features/Profile/view/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Center(child: Text("Search Page")),
     Center(child: Text("Notifications Page")),
     Center(child: Text("Messages Page")),
-    Center(child: Text("Profile Page")),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -32,43 +36,73 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        children: _pages,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            Brightness.dark, // This makes status bar icons dark
+        statusBarBrightness: Brightness.dark, // This is for iOS
+        systemNavigationBarColor: Colors.white, // Bottom navigation bar color
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // To allow more than 3 items
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+      child: Scaffold(
+        backgroundColor: Colors.white, // Add this to ensure white background
+        body: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          children: _pages,
+        ),
+        bottomNavigationBar: Theme(
+          data: ThemeData(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            enableFeedback: false,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SVGAssets.homeIcon),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SVGAssets.bookingIcon),
+                label: 'Bookings',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SVGAssets.clientsIcon),
+                label: 'Clinics',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SVGAssets.myCareIcon),
+                label: 'My Care',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SVGAssets.profileIcon),
+                label: 'Profile',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        ),
       ),
     );
   }
