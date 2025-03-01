@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shifa/core/widgets/custom_green_button.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/fonts/fonts_manager.dart';
+import '../../../core/widgtes/custom_green_button.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -44,21 +44,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPageChanged: _onPageChanged,
             itemCount: images.length,
             itemBuilder: (context, index) {
-              double opacity = 1.0;
-
-              if (_pageController.hasClients) {
-                // Compute the fade effect based on the page position
-                final pageOffset = _pageController.page ?? _currentPage.toDouble();
-                opacity = (1 - (pageOffset - index).abs()).clamp(0.0, 1.0);
-              }
-
-              return Opacity(
-                opacity: opacity,
-                child: _buildPage(
-                  image: images[index],
-                  title: "Your Health, Our Priority",
-                  content: "Quickly find the right doctor and book your appointment in seconds.",
-                ),
+              return _buildPage(
+                image: images[index],
+                title: "Your Health, Our Priority",
+                content: "Quickly find the right doctor and book your appointment in seconds.",
               );
             },
           ),
@@ -67,16 +56,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             right: 20,
             child: _currentPage < 2
                 ? TextButton(
-              onPressed: _skip,
-              child: const Text(
-                "Skip",
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontFamily: FontsAssets.Nexa,
-                    color: AppTheme.grey4Color,
-                    fontSize: 14),
-              ),
-            )
+                    onPressed: _skip,
+                    child: const Text(
+                      "Skip",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontFamily: FontsAssets.Nexa,
+                          color: AppTheme.primaryColor,
+                          fontSize: 14),
+                    ),
+                  )
                 : const SizedBox.shrink(),
           ),
           if (_currentPage == 2) // Show "Get Started" button only on the last page
@@ -109,14 +98,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Text(
               title,
               style: const TextStyle(
-                  fontWeight: FontWeight.w400, fontFamily: FontsAssets.Nexa, color: AppTheme.grey3color, fontSize: 24),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: FontsAssets.Nexa,
+                  color: AppTheme.primaryColor,
+                  fontSize: 24),
             ),
             const SizedBox(height: 12),
             Text(
               content,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  fontWeight: FontWeight.w400, fontFamily: FontsAssets.Nexa, color: AppTheme.grey2Color, fontSize: 14),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: FontsAssets.Nexa,
+                  color: AppTheme.primaryColor,
+                  fontSize: 14),
             ),
             const SizedBox(height: 24),
             Row(
@@ -132,21 +127,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildStepIndicator(int index) {
     return _currentPage == index
         ? Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: 24,
-      height: 6,
-      decoration: const BoxDecoration(
-        color: AppTheme.green2Color,
-      ),
-    )
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            width: 24,
+            height: 6,
+            decoration: const BoxDecoration(
+              color: AppTheme.primaryColor,
+            ),
+          )
         : Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: 6,
-      height: 6,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppTheme.green3Color,
-      ),
-    );
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            width: 6,
+            height: 6,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppTheme.primaryColor,
+            ),
+          );
   }
 }

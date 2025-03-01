@@ -4,7 +4,9 @@ class Assets{
 }
 
 class SVGAssets{
-  static const String onBoardingFirst="";
-  static const String onBoardingSecond="";
-  static const String onBoardingThird="";
+  static const String onBoardingFirst="assets/svg/icons/onboarding_first.svg";
+  static const String splashIcon="assets/svg/icons/splash_icon.svg";
+  static const String splashTexts="assets/svg/icons/splash_texts.svg";
+  static const String onBoardingSecond="assets/svg/icons/onboarding_second.svg";
+  static const String onBoardingThird="assets/svg/icons/onboarding_third.svg";
 }

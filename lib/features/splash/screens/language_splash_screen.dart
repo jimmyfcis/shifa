@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../core/assets/svg/svg_assests.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/fonts/fonts_manager.dart';
-import '../../../core/theme/theme.dart';
+import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/routes/app_routes.dart';
+import '../../../core/widgtes/custom_green_button.dart';
+import '../../../core/widgtes/language_button.dart';
 
 class LanguageSplashScreen extends StatefulWidget {
   const LanguageSplashScreen({super.key});
@@ -54,13 +56,9 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                 Hero(
                   tag: "logo",
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 200,
-                        height: 200,
-                        child: SvgPicture.asset(SVGAssets.splashIcon),
-                      ),
-                      const SizedBox(height: 10),
+                      SvgPicture.asset(SVGAssets.splashIcon),
                       SvgPicture.asset(SVGAssets.splashTexts),
                     ],
                   ),
@@ -83,12 +81,12 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                       topLeft: Radius.circular(40.0),
                     ),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(24.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
+                        const Text(
                           "Please, Select your preferred language",
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
@@ -96,12 +94,16 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                               color: AppTheme.blackColor,
                               fontSize: 16),
                         ),
-                        SizedBox(height: 21),
-                        LanguageButton(language: "English"),
-                        SizedBox(height: 16),
-                        LanguageButton(language: "العربية"),
-                        SizedBox(height: 32),
-                        CustomGreenButton(),
+                        const SizedBox(height: 21),
+                        const LanguageButton(language: "English"),
+                        const SizedBox(height: 16),
+                        const LanguageButton(language: "العربية"),
+                        const SizedBox(height: 32),
+                        CustomGreenButton(
+                          onPressed: (){
+                            Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
+                          },
+                        ),
                       ],
                     ),
                   ),

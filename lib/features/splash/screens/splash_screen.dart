@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/routes/app_routes.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_svg/svg.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _fadeController.forward();
 
     // Delay for 5 seconds, then navigate to the next screen
-    Future.delayed(const Duration(seconds: 5)).then((val) {
+    Future.delayed(const Duration(seconds: 3)).then((val) {
       Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
     });
   }
@@ -50,16 +51,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         opacity: _fadeAnimation,
         child: Container(
           decoration: const BoxDecoration(color: AppTheme.primaryColor),
-          child: Center(
-            child: Hero(
-              tag: "logo",
-              child: SizedBox(
-                width: 200,
-                height: 200,
-                child: Lottie.asset(
-                  Assets.logoAnimation,
-                  fit: BoxFit.fill,
-                ),
+          child: Hero(
+            tag: "logo",
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(SVGAssets.splashIcon),
+                  SvgPicture.asset(SVGAssets.splashTexts),
+                ],
               ),
             ),
           ),
