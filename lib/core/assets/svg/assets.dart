@@ -32,4 +32,12 @@ class SVGAssets {
       "assets/svg/icons/leksell_icon_home.svg";
 
   static const String notificationIcon = "assets/svg/icons/notification.svg";
+  static const String arrowRight = "assets/svg/icons/arrow_right.svg";
+  static const String medicalInsuranceIcon = "assets/svg/icons/medical.svg";
+  static const String myFavoriteIcon = "assets/svg/icons/favourites.svg";
+  static const String blogsIcon = "assets/svg/icons/blogs.svg";
+  static const String settingsIcon = "assets/svg/icons/settings.svg";
+  static const String termsAndConditionsIcon = "assets/svg/icons/terms.svg";
+  static const String privacyPolicyIcon = "assets/svg/icons/privacy.svg";
+  static const String contactUsIcon = "assets/svg/icons/call.svg";
 }

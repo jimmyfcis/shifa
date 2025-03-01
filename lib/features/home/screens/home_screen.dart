@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
       systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness:
-            Brightness.dark, // This makes status bar icons dark
-        statusBarBrightness: Brightness.dark, // This is for iOS
+            Brightness.light, // This makes status bar icons dark
+        statusBarBrightness: Brightness.light, // This is for iOS
         systemNavigationBarColor: Colors.white, // Bottom navigation bar color
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
