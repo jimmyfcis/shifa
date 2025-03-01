@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/routes/app_routes.dart';
+
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/fonts/fonts_manager.dart';
@@ -47,7 +49,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               return _buildPage(
                 image: images[index],
                 title: "Your Health, Our Priority",
-                content: "Quickly find the right doctor and book your appointment in seconds.",
+                content:
+                    "Quickly find the right doctor and book your appointment in seconds.",
               );
             },
           ),
@@ -68,7 +71,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   )
                 : const SizedBox.shrink(),
           ),
-          if (_currentPage == 2) // Show "Get Started" button only on the last page
+          if (_currentPage ==
+              2) // Show "Get Started" button only on the last page
             Positioned(
               bottom: 40,
               left: 0,
@@ -78,6 +82,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Center(
                   child: CustomGreenButton(
                     title: "Get Started",
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                    },
                   ),
                 ),
               ),
@@ -87,7 +94,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage({required String title, required String content, required String image}) {
+  Widget _buildPage(
+      {required String title, required String content, required String image}) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
