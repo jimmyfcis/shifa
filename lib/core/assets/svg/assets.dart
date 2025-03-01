@@ -10,9 +10,17 @@ class SVGAssets {
       "assets/svg/icons/onboarding_second.svg";
   static const String onBoardingThird = "assets/svg/icons/onboarding_third.svg";
   static const String homeIcon = "assets/svg/icons/home.svg";
+  static const String homeSelectedIcon = "assets/svg/icons/home_selected.svg";
   static const String bookingIcon = "assets/svg/icons/bookings.svg";
-  static const String clientsIcon = "assets/svg/icons/search.svg";
+  static const String bookingSelectedIcon =
+      "assets/svg/icons/bookings_selected.svg";
+  static const String clinicsIcon = "assets/svg/icons/search.svg";
+  static const String clincssSelectedIcon =
+      "assets/svg/icons/search_selected.svg";
   static const String myCareIcon = "assets/svg/icons/care.svg";
+  static const String myCareSelectedIcon = "assets/svg/icons/care_selected.svg";
   static const String profileIcon = "assets/svg/icons/profile.svg";
+  static const String profileSelectedIcon =
+      "assets/svg/icons/profile_selected.svg";
   static const String appBarLogo = "assets/svg/icons/appbarlogo.svg";
 }

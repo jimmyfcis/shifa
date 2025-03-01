@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/features/Profile/view/profile_screen.dart';
 
@@ -59,51 +61,100 @@ class _HomeScreenState extends State<HomeScreen> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: Colors.white, // Add this to ensure white background
-        body: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          children: _pages,
-        ),
-        bottomNavigationBar: Theme(
-          data: ThemeData(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+          backgroundColor: Colors.white, // Add this to ensure white background
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: _pages,
           ),
-          child: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            enableFeedback: false,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(SVGAssets.homeIcon),
-                label: 'Home',
+          bottomNavigationBar: Container(
+            padding: EdgeInsets.only(top: 8.h),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(SVGAssets.bookingIcon),
-                label: 'Bookings',
+            ),
+            child: Theme(
+              data: ThemeData(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
               ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(SVGAssets.clientsIcon),
-                label: 'Clinics',
+              child: BottomNavigationBar(
+                selectedItemColor: HexColor("#4270B7"),
+                type: BottomNavigationBarType.fixed,
+                enableFeedback: false,
+                elevation: 0, // Remove default shadow
+                backgroundColor: Colors.white,
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(SVGAssets.homeIcon),
+                    activeIcon: SvgPicture.asset(
+                      SVGAssets.homeSelectedIcon,
+                      colorFilter: ColorFilter.mode(
+                        HexColor("#4270B7"),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(SVGAssets.bookingIcon),
+                    activeIcon: SvgPicture.asset(
+                      SVGAssets.bookingSelectedIcon,
+                      colorFilter: ColorFilter.mode(
+                        HexColor("#4270B7"),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    label: 'Bookings',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(SVGAssets.clinicsIcon),
+                    activeIcon: SvgPicture.asset(
+                      SVGAssets.clincssSelectedIcon,
+                      colorFilter: ColorFilter.mode(
+                        HexColor("#4270B7"),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    label: 'Clinics',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(SVGAssets.myCareIcon),
+                    activeIcon: SvgPicture.asset(
+                      SVGAssets.myCareSelectedIcon,
+                      colorFilter: ColorFilter.mode(
+                        HexColor("#4270B7"),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    label: 'My Care',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: SvgPicture.asset(SVGAssets.profileIcon),
+                    activeIcon: SvgPicture.asset(
+                      SVGAssets.profileSelectedIcon,
+                      colorFilter: ColorFilter.mode(
+                        HexColor("#4270B7"),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    label: 'Profile',
+                  ),
+                ],
+                currentIndex: _selectedIndex,
+                onTap: _onItemTapped,
               ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(SVGAssets.myCareIcon),
-                label: 'My Care',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(SVGAssets.profileIcon),
-                label: 'Profile',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-          ),
-        ),
-      ),
+            ),
+          )),
     );
   }
 }
