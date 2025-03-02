@@ -80,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: CustomGreenButton(
                     title: "Get Started",
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                      Navigator.pushReplacementNamed(context, AppRoutes.login);
                     },
                   ),
                 ),
@@ -100,7 +100,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             InkWell(
               onTap: (){
-                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                Navigator.pushReplacementNamed(context, AppRoutes.login);
               },
               child: Container(
                 decoration:
@@ -125,7 +125,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             SizedBox(height: 40.h),
             InkWell(
               onTap: (){
-                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                Navigator.pushReplacementNamed(context, AppRoutes.login);
               },
               child: Container(
                 decoration:
