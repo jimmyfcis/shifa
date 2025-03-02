@@ -6,4 +6,6 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String privacyPolicy = '/privacyPolicy';
   static const String termsAndConditions = '/termsAndConditions';
+  static const String settings = '/settings';
+  static const String contactUs = '/contactUs';
 }

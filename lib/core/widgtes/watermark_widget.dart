@@ -31,6 +31,7 @@ class WaterMark extends StatelessWidget {
             child: SvgPicture.asset(SVGAssets.leksellTranspernt),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CommonAppBar(
                 backGroundColor: backGroundColor,

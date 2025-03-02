@@ -44,4 +44,7 @@ class SVGAssets {
   static const String privacyPolicyIcon = "assets/svg/icons/privacy.svg";
   static const String contactUsIcon = "assets/svg/icons/call.svg";
   static const String logoutIcon = "assets/svg/icons/logout.svg";
+  static const String location = "assets/svg/icons/location.svg";
+  static const String email = "assets/svg/icons/email.svg";
+  static const String call = "assets/svg/icons/call.svg";
 }

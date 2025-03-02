@@ -17,128 +17,137 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.profileBGColor,
       extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ProfileAppBar(),
-            SizedBox(
-              height: 24.h,
-            ),
-            const UserNameAndPhoneNumber(),
-            SizedBox(
-              height: 24.h,
-            ),
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.only(
-                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+      body: Column(
+        children: [
+          const ProfileAppBar(),
+          SizedBox(
+            height: 24.h,
+          ),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("Profile Page");
-                    },
-                    svgIcon: SVGAssets.profileIcon,
-                    title: 'Profile',
+                  const UserNameAndPhoneNumber(),
+                  SizedBox(
+                    height: 24.h,
                   ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("Medical Insurance Page");
-                    },
-                    svgIcon: SVGAssets.medicalInsuranceIcon,
-                    title: 'Medical Insurance',
+                  Container(
+                    color: Colors.white,
+                    padding: EdgeInsets.only(
+                        left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+                    child: Column(
+                      children: [
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("Profile Page");
+                          },
+                          svgIcon: SVGAssets.profileIcon,
+                          title: 'Profile',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("Medical Insurance Page");
+                          },
+                          svgIcon: SVGAssets.medicalInsuranceIcon,
+                          title: 'Medical Insurance',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("My Favorite Page");
+                          },
+                          svgIcon: SVGAssets.myFavoriteIcon,
+                          title: 'My Favorite',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: false,
+                          onTap: () {
+                            log("Blogs Page");
+                          },
+                          svgIcon: SVGAssets.blogsIcon,
+                          title: 'Blogs',
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("My Favorite Page");
-                    },
-                    svgIcon: SVGAssets.myFavoriteIcon,
-                    title: 'My Favorite',
+                  SizedBox(
+                    height: 8.h,
                   ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: false,
-                    onTap: () {
-                      log("Blogs Page");
-                    },
-                    svgIcon: SVGAssets.blogsIcon,
-                    title: 'Blogs',
+                  Container(
+                    color: Colors.white,
+                    padding: EdgeInsets.only(
+                        left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+                    child: Column(
+                      children: [
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("Settings Page");
+                            Navigator.pushNamed(context, AppRoutes.settings);
+                          },
+                          svgIcon: SVGAssets.settingsIcon,
+                          title: 'Settings',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("Terms and Conditions Page");
+                            Navigator.pushNamed(
+                                context, AppRoutes.termsAndConditions);
+                          },
+                          svgIcon: SVGAssets.termsAndConditionsIcon,
+                          title: 'Terms and Conditions',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
+                            log("Privacy Policy Page");
+                            Navigator.pushNamed(
+                                context, AppRoutes.privacyPolicy);
+                          },
+                          svgIcon: SVGAssets.privacyPolicyIcon,
+                          title: 'Privacy Policy',
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: false,
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.contactUs);
+                            log("Contact Us Page");
+                          },
+                          svgIcon: SVGAssets.contactUsIcon,
+                          title: 'Contact Us',
+                        ),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: 8.h),
+                  Container(
+                    color: Colors.white,
+                    padding: EdgeInsets.only(
+                        left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+                    child: ProfileWidget(
+                      hasDivider: false,
+                      onTap: () {
+                        log("logout");
+                      },
+                      svgIcon: SVGAssets.logoutIcon,
+                      title: 'Logout',
+                    ),
+                  ),
+                  SizedBox(height: 32.h),
                 ],
               ),
             ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.only(
-                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
-              child: Column(
-                children: [
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("Settings Page");
-                    },
-                    svgIcon: SVGAssets.settingsIcon,
-                    title: 'Settings',
-                  ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("Terms and Conditions Page");
-                      Navigator.pushNamed(
-                          context, AppRoutes.termsAndConditions);
-                    },
-                    svgIcon: SVGAssets.termsAndConditionsIcon,
-                    title: 'Terms and Conditions',
-                  ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: true,
-                    onTap: () {
-                      log("Privacy Policy Page");
-                      Navigator.pushNamed(context, AppRoutes.privacyPolicy);
-                    },
-                    svgIcon: SVGAssets.privacyPolicyIcon,
-                    title: 'Privacy Policy',
-                  ),
-                  SizedBox(height: 16.h),
-                  ProfileWidget(
-                    hasDivider: false,
-                    onTap: () {
-                      log("Contact Us Page");
-                    },
-                    svgIcon: SVGAssets.contactUsIcon,
-                    title: 'Contact Us',
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 8.h),
-            Container(
-              color: Colors.white,
-              padding: EdgeInsets.only(
-                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
-              child: ProfileWidget(
-                hasDivider: false,
-                onTap: () {
-                  log("logout");
-                },
-                svgIcon: SVGAssets.logoutIcon,
-                title: 'Logout',
-              ),
-            ),
-            SizedBox(height: 32.h),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

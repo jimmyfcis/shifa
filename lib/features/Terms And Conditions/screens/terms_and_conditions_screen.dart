@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
+import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
@@ -17,38 +15,8 @@ class TermsAndConditionsScreen extends StatelessWidget {
       hasBorderRadius: false,
       alignment: Alignment.bottomCenter,
       height: 105,
-      appBarChild: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: 16.h,
-          horizontal: 24.w,
-        ),
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: SvgPicture.asset(
-                SVGAssets.arrowBack,
-                colorFilter: const ColorFilter.mode(
-                  AppTheme.whiteColor,
-                  BlendMode.srcIn,
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  'Terms and Conditions',
-                  style: TextStyles.nexaBold.copyWith(
-                    color: AppTheme.whiteColor,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      appBarChild: const CommonAppBarTitle(
+        title: 'Terms And Conditions',
       ),
       contentChild: Expanded(
         child: SingleChildScrollView(
