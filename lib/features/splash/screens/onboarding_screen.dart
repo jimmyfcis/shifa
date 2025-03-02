@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 
@@ -49,8 +50,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               return _buildPage(
                 image: images[index],
                 title: "Your Health, Our Priority",
-                content:
-                    "Quickly find the right doctor and book your appointment in seconds.",
+                content: "Quickly find the right doctor and book your appointment in seconds.",
               );
             },
           ),
@@ -65,20 +65,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontFamily: FontsAssets.Nexa,
-                          color: AppTheme.primaryColor,
+                          color: AppTheme.darkGreyColor,
                           fontSize: 14),
                     ),
                   )
                 : const SizedBox.shrink(),
           ),
-          if (_currentPage ==
-              2) // Show "Get Started" button only on the last page
+          if (_currentPage == 2) // Show "Get Started" button only on the last page
             Positioned(
-              bottom: 40,
+              bottom: 40.h,
               left: 0,
               right: 0,
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24),
                 child: Center(
                   child: CustomGreenButton(
                     title: "Get Started",
@@ -94,8 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage(
-      {required String title, required String content, required String image}) {
+  Widget _buildPage({required String title, required String content, required String image}) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -108,20 +106,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontFamily: FontsAssets.Nexa,
-                  color: AppTheme.primaryColor,
+                  color: AppTheme.primaryTextColor,
                   fontSize: 24),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Text(
               content,
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontFamily: FontsAssets.Nexa,
-                  color: AppTheme.primaryColor,
+                  color: AppTheme.secondaryTextColor,
                   fontSize: 14),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(3, (index) => _buildStepIndicator(index)),
@@ -136,19 +134,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return _currentPage == index
         ? Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
-            width: 24,
-            height: 6,
-            decoration: const BoxDecoration(
+            width: 24.w,
+            height: 6.h,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0.r),
               color: AppTheme.primaryColor,
             ),
           )
         : Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
-            width: 6,
-            height: 6,
+            width: 6.w,
+            height: 6.h,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: AppTheme.primaryColor,
+              color: AppTheme.leksellSecondaryColor,
             ),
           );
   }
