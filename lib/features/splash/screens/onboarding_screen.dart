@@ -20,6 +20,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     SVGAssets.onBoardingFirst,
     SVGAssets.onBoardingSecond,
     SVGAssets.onBoardingThird,
+    SVGAssets.onBoardingThird,
   ];
 
   void _onPageChanged(int index) {
@@ -29,11 +30,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _skip() {
-    _pageController.jumpToPage(2);
-  }
-
-  void _getStarted() {
-    Navigator.pushReplacementNamed(context, AppRoutes.home);
+    _pageController.animateToPage(2, curve: Curves.easeIn, duration: Duration(seconds: 1)); // Jump to the last page
   }
 
   @override
@@ -48,6 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemCount: images.length,
             itemBuilder: (context, index) {
               return _buildPage(
+                index: index,
                 image: images[index],
                 title: "Your Health, Our Priority",
                 content: "Quickly find the right doctor and book your appointment in seconds.",
@@ -81,7 +79,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Center(
                   child: CustomGreenButton(
                     title: "Get Started",
-                    onPressed: _getStarted,
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                    },
                   ),
                 ),
               ),
@@ -91,41 +91,101 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage({required String title, required String content, required String image}) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+  Widget _buildPage({required String title, required String content, required String image, required int index}) {
+    if (index == 3) {
+      return Padding(
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(image),
-            Text(
-              title,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontFamily: FontsAssets.Nexa,
-                  color: AppTheme.primaryTextColor,
-                  fontSize: 24),
+            InkWell(
+              onTap: (){
+                Navigator.pushReplacementNamed(context, AppRoutes.home);
+              },
+              child: Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: AppTheme.greyColor), borderRadius: BorderRadius.circular(12.r)),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 24.0.w),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SVGAssets.splashIcon,
+                        color: AppTheme.primaryColor,
+                        width: 90.w,
+                        height: 90.h,
+                      ),
+                      SizedBox(width: 12.w),
+                      SvgPicture.asset(SVGAssets.shifaText),
+                    ],
+                  ),
+                ),
+              ),
             ),
-            SizedBox(height: 12.h),
-            Text(
-              content,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontFamily: FontsAssets.Nexa,
-                  color: AppTheme.secondaryTextColor,
-                  fontSize: 14),
-            ),
-            SizedBox(height: 24.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(3, (index) => _buildStepIndicator(index)),
+            SizedBox(height: 40.h),
+            InkWell(
+              onTap: (){
+                Navigator.pushReplacementNamed(context, AppRoutes.home);
+              },
+              child: Container(
+                decoration:
+                BoxDecoration(border: Border.all(color: AppTheme.greyColor), borderRadius: BorderRadius.circular(12.r)),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 24.0.w),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SVGAssets.splashIcon,
+                        color: AppTheme.primaryColor,
+                        width: 90.w,
+                        height: 90.h,
+                      ),
+                      SizedBox(width: 12.w),
+                      SvgPicture.asset(SVGAssets.shifaText),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ),
-      ),
-    );
+      );
+    } else {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(image),
+              Text(
+                title,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontFamily: FontsAssets.Nexa,
+                    color: AppTheme.primaryTextColor,
+                    fontSize: 24),
+              ),
+              SizedBox(height: 12.h),
+              Text(
+                content,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontFamily: FontsAssets.Nexa,
+                    color: AppTheme.secondaryTextColor,
+                    fontSize: 14),
+              ),
+              SizedBox(height: 24.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(3, (index) => _buildStepIndicator(index)),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 
   Widget _buildStepIndicator(int index) {
@@ -135,7 +195,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             width: 24.w,
             height: 6.h,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0.r),
+              borderRadius: BorderRadius.circular(25.0.r),
               color: AppTheme.primaryColor,
             ),
           )
