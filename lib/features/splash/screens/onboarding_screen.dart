@@ -135,13 +135,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        SVGAssets.splashIcon,
-                        color: AppTheme.primaryColor,
-                        width: 90.w,
-                        height: 90.h,
+                        SVGAssets.leksellIcon,
                       ),
+                      SizedBox(width: 10.w),
+                      Container(width: 1.w,height:73.h,color: AppTheme.primaryColorLeksell,),
                       SizedBox(width: 12.w),
-                      SvgPicture.asset(SVGAssets.shifaText),
+                      SvgPicture.asset(SVGAssets.leksellSplashText,width: 137.45.w,height: 66.48.h,),
                     ],
                   ),
                 ),

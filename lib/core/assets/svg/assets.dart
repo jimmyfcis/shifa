@@ -8,6 +8,7 @@ class SVGAssets {
   static const String splashTexts = "assets/svg/icons/splash_texts.svg";
   static const String shifaText = "assets/svg/icons/shifa_text.svg";
   static const String leksellIcon = "assets/svg/icons/leksell_icon.svg";
+  static const String leksellSplashText = "assets/svg/icons/leksell_text.svg";
   static const String onBoardingSecond =
       "assets/svg/icons/onboarding_second.svg";
   static const String onBoardingThird = "assets/svg/icons/onboarding_third.svg";
