@@ -29,11 +29,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _skip() {
-    _pageController.jumpToPage(2); // Jump to the last page
+    _pageController.jumpToPage(2);
   }
 
   void _getStarted() {
-    Navigator.pushReplacementNamed(context, '/home'); // Example route
+    Navigator.pushReplacementNamed(context, AppRoutes.home);
   }
 
   @override
@@ -81,9 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Center(
                   child: CustomGreenButton(
                     title: "Get Started",
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRoutes.home);
-                    },
+                    onPressed: _getStarted,
                   ),
                 ),
               ),
