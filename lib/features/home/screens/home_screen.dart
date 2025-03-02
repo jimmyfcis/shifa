@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/view/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,11 +17,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // List of pages for each tab
   final List<Widget> _pages = [
-    Center(child: Text("Home Page")),
-    Center(child: Text("Search Page")),
-    Center(child: Text("Notifications Page")),
-    Center(child: Text("Messages Page")),
-    ProfileScreen(),
+    const Center(child: Text("Home Page")),
+    const Center(child: Text("Search Page")),
+    const Center(child: Text("Notifications Page")),
+    const Center(child: Text("Messages Page")),
+    const ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 highlightColor: Colors.transparent,
               ),
               child: BottomNavigationBar(
-                selectedItemColor: HexColor("#4270B7"),
+                selectedItemColor: AppTheme.primaryColorLeksell,
                 type: BottomNavigationBarType.fixed,
                 enableFeedback: false,
                 elevation: 0, // Remove default shadow
@@ -98,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.homeIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.homeSelectedIcon,
-                      colorFilter: ColorFilter.mode(
-                        HexColor("#4270B7"),
+                      colorFilter: const ColorFilter.mode(
+                        AppTheme.primaryColorLeksell,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -109,8 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.bookingIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.bookingSelectedIcon,
-                      colorFilter: ColorFilter.mode(
-                        HexColor("#4270B7"),
+                      colorFilter: const ColorFilter.mode(
+                        AppTheme.primaryColorLeksell,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -120,8 +120,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.clinicsIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.clincssSelectedIcon,
-                      colorFilter: ColorFilter.mode(
-                        HexColor("#4270B7"),
+                      colorFilter: const ColorFilter.mode(
+                        AppTheme.primaryColorLeksell,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -131,8 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.myCareIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.myCareSelectedIcon,
-                      colorFilter: ColorFilter.mode(
-                        HexColor("#4270B7"),
+                      colorFilter: const ColorFilter.mode(
+                        AppTheme.primaryColorLeksell,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -142,8 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.profileIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.profileSelectedIcon,
-                      colorFilter: ColorFilter.mode(
-                        HexColor("#4270B7"),
+                      colorFilter: const ColorFilter.mode(
+                        AppTheme.primaryColorLeksell,
                         BlendMode.srcIn,
                       ),
                     ),

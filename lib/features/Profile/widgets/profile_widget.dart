@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/theme/theme.dart';
 
 class ProfileWidget extends StatelessWidget {
   final bool hasDivider;
@@ -27,11 +27,11 @@ class ProfileWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                spacing: 8.w,
                 children: [
                   SvgPicture.asset(
                     svgIcon,
                   ),
+                  SizedBox(width: 8.w),
                   Text(
                     title,
                     style: TextStyle(
@@ -51,7 +51,7 @@ class ProfileWidget extends StatelessWidget {
             height: 16.h,
           ),
           Divider(
-            color: HexColor("#E8E8E8"),
+            color: AppTheme.greyColor,
             height: 1.h,
           ),
         ]
