@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/utils/disk_repo.dart';
 import 'package:shifa/core/widgets/auth_appbar.dart';
-import 'package:shifa/core/widgets/custom_green_button.dart';
-import '../../../../core/assets/svg/svg_assests.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/utils/fonts/fonts_manager.dart';
 import '../../../core/utils/theme_notifier.dart';
 import '../../../core/utils/validators.dart';
-import '../../../core/widgets/form_fields/custom_password_field.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import '../../../core/widgets/form_fields/phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 
-import '../models/register_model.dart';
+import '../../../core/widgtes/custom_green_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -32,19 +29,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    fetchAndUseRegisterData();
+    //fetchAndUseRegisterData();
     super.initState();
   }
-  Future<void> fetchAndUseRegisterData() async {
-    RegisterModel? registerModel = await DiskRepo().getRegisterData();
-    if (registerModel != null) {
-      print("Name: ${registerModel.name}");
-      print("Email: ${registerModel.email}");
-      // Use this data as needed.
-    } else {
-      print("No data found in SharedPreferences.");
-    }
-  }
+  // Future<void> fetchAndUseRegisterData() async {
+  //   //RegisterModel? registerModel = await DiskRepo().getRegisterData();
+  //   if (registerModel != null) {
+  //     print("Name: ${registerModel.name}");
+  //     print("Email: ${registerModel.email}");
+  //     // Use this data as needed.
+  //   } else {
+  //     print("No data found in SharedPreferences.");
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -53,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             SvgPicture.asset(themeProvider.currentTheme==ThemeEnum.Shifa?SVGAssets.shifaIconText:SVGAssets.leksellAuth),
-            const SizedBox(height: 42),
+             SizedBox(height: 42.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
@@ -67,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppTheme.blackColor,
                         fontSize: 24),
                   ),
-                  const SizedBox(height: 8),
+                   SizedBox(height: 8.h),
                   const Text(
                     "Please login to your account to access your account details .",
                     softWrap: true,
@@ -77,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: AppTheme.grey5Color,
                         fontSize: 12),
                   ),
-                  const SizedBox(height: 32),
+                   SizedBox(height: 32.h),
                   PhoneNumberField(
                     controller: phoneController,
                     isValid: isValid,
@@ -94,14 +91,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const SizedBox(height: 24),
+                         SizedBox(height: 24.h),
                         PasswordTextField(
                           labelText: 'Password',
                           name: 'password',
                           controller: controller,
                           hintText: 'Enter your password',
                         ),
-                        const SizedBox(height: 16),
+                         SizedBox(height: 16.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -118,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 34),
+                         SizedBox(height: 34.h),
                         CustomGreenButton(
                           title: "Login",
                           onPressed: () {
@@ -136,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                         ),
-                        const SizedBox(height: 24),
+                         SizedBox(height: 24.h),
                         const Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -156,25 +153,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             Expanded(child: Divider()),
                           ],
                         ),
-                        const SizedBox(height: 24),
+                         SizedBox(height: 24.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SvgPicture.asset(SVGAssets.google),
-                            const SizedBox(width: 24),
+                             SizedBox(width: 24.w),
                             SvgPicture.asset(SVGAssets.facebook),
-                            const SizedBox(width: 24),
+                             SizedBox(width: 24.w),
                             SvgPicture.asset(SVGAssets.apple),
                           ],
                         ),
-                        const SizedBox(height: 24),
+                         SizedBox(height: 24.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
+                             Text(
                               'Don’t have an account?',
                               style: TextStyle(
-                                color: AppTheme.primaryText,
+                                color: AppTheme.primaryTextColor,
                                 fontSize: 12,
                                 fontFamily: FontsAssets.Nexa,
                                 fontWeight: FontWeight.w400,
@@ -202,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 42),
+             SizedBox(height: 42.h),
           ],
         ),
       ),
