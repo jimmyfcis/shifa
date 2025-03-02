@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifa/features/Profile/view/profile_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
@@ -17,6 +18,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LanguageSplashScreen());
       case AppRoutes.onboardingScreen:
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
+        case AppRoutes.profile:
+        return MaterialPageRoute(builder: (_) => ProfileScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

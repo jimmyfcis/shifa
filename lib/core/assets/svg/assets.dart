@@ -40,4 +40,5 @@ class SVGAssets {
   static const String termsAndConditionsIcon = "assets/svg/icons/terms.svg";
   static const String privacyPolicyIcon = "assets/svg/icons/privacy.svg";
   static const String contactUsIcon = "assets/svg/icons/call.svg";
+  static const String logoutIcon = "assets/svg/icons/logout.svg";
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hexcolor/hexcolor.dart';
+import '../../../core/theme/theme.dart';
 
 class UserNameAndPhoneNumber extends StatelessWidget {
   const UserNameAndPhoneNumber({super.key});
@@ -10,7 +10,7 @@ class UserNameAndPhoneNumber extends StatelessWidget {
     return Container(
       width: 327.w,
       decoration: BoxDecoration(
-        color: HexColor("ECF1F8"),
+        color: AppTheme.secondaryColorLeksell,
         borderRadius: BorderRadius.circular(8.r),
       ),
       padding: const EdgeInsets.all(16),
@@ -29,7 +29,7 @@ class UserNameAndPhoneNumber extends StatelessWidget {
           Text(
             '+201098362091',
             style: TextStyle(
-              color: HexColor("4270B7"),
+              color: AppTheme.primaryColorLeksell,
               fontSize: 16.sp,
             ),
           )
