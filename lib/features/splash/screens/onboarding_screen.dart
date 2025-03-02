@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/routes/app_routes.dart';
+import 'package:shifa/core/theme/styles.dart';
 
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/theme/theme.dart';
@@ -58,11 +59,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: _currentPage < 2
                 ? TextButton(
                     onPressed: _skip,
-                    child: const Text(
+                    child:  Text(
                       "Skip",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontFamily: FontsAssets.Nexa,
+                      style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.darkGreyColor,
                           fontSize: 14),
                     ),
@@ -160,9 +159,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SvgPicture.asset(image),
               Text(
                 title,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontFamily: FontsAssets.Nexa,
+                style: TextStyles.nexaRegular.copyWith(
                     color: AppTheme.primaryTextColor,
                     fontSize: 24),
               ),
@@ -170,9 +167,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Text(
                 content,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontFamily: FontsAssets.Nexa,
+                style:  TextStyles.nexaRegular.copyWith(
                     color: AppTheme.secondaryTextColor,
                     fontSize: 14),
               ),

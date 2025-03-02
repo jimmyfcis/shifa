@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/theme/styles.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/fonts/fonts_manager.dart';
 import '../../../core/assets/svg/assets.dart';
@@ -64,11 +65,9 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                   ),
                 ),
                 const SizedBox(height: 29.59),
-                const Text(
+                 Text(
                   "WELCOME TO SHIFA HOSPITAL",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: FontsAssets.Nexa,
+                  style: TextStyles.nexaRegular.copyWith(
                       color: AppTheme.whiteColor,
                       fontSize: 16),
                 ),
@@ -86,13 +85,12 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
+                         Text(
                           "Please, Select your preferred language",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: FontsAssets.Nexa,
-                              color: AppTheme.blackColor,
-                              fontSize: 16),
+                          style:TextStyles.nexaRegular.copyWith(
+                            fontSize: 16,
+                            color: AppTheme.blackColor,
+                          ),
                         ),
                         const SizedBox(height: 21),
                         const LanguageButton(language: "English"),

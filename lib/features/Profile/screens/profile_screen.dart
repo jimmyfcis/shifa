@@ -1,7 +1,9 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/widgets/profile_app_bar.dart';
 import 'package:shifa/features/Profile/widgets/profile_widget.dart';
@@ -28,7 +30,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+              padding: EdgeInsets.only(
+                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
               child: Column(
                 children: [
                   ProfileWidget(
@@ -74,7 +77,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+              padding: EdgeInsets.only(
+                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
               child: Column(
                 children: [
                   ProfileWidget(
@@ -90,6 +94,8 @@ class ProfileScreen extends StatelessWidget {
                     hasDivider: true,
                     onTap: () {
                       log("Terms and Conditions Page");
+                      Navigator.pushNamed(
+                          context, AppRoutes.termsAndConditions);
                     },
                     svgIcon: SVGAssets.termsAndConditionsIcon,
                     title: 'Terms and Conditions',
@@ -99,6 +105,7 @@ class ProfileScreen extends StatelessWidget {
                     hasDivider: true,
                     onTap: () {
                       log("Privacy Policy Page");
+                      Navigator.pushNamed(context, AppRoutes.privacyPolicy);
                     },
                     svgIcon: SVGAssets.privacyPolicyIcon,
                     title: 'Privacy Policy',
@@ -118,7 +125,8 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 8.h),
             Container(
               color: Colors.white,
-              padding: EdgeInsets.only(left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
+              padding: EdgeInsets.only(
+                  left: 24.w, right: 16.w, top: 16.w, bottom: 16.w),
               child: ProfileWidget(
                 hasDivider: false,
                 onTap: () {

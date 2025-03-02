@@ -4,4 +4,6 @@ class AppRoutes {
   static const String onboardingScreen = '/onboardingScreen';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String privacyPolicy = '/privacyPolicy';
+  static const String termsAndConditions = '/termsAndConditions';
 }
