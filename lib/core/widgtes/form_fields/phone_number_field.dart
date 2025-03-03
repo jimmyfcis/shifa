@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../assets/svg/assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../theme/styles.dart';
 import '../../theme/theme.dart';
-import '../../utils/fonts/fonts_manager.dart';
 
 class PhoneNumberField extends StatefulWidget {
   const PhoneNumberField({
@@ -58,10 +58,10 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
       children: [
         Text(
           widget.isRequired ? "${widget.labelText}*" : widget.labelText,
-          style:  TextStyle(
+          style:  TextStyles.nexaRegular.copyWith(
             color: AppTheme.blackColor,
             fontSize: 14,
-            fontFamily: FontsAssets.Nexa,
+           // fontFamily: FontsAssets.Nexa,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -100,9 +100,8 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
             },
             decoration: InputDecoration(
               hintText: "Phone number",
-              hintStyle:  TextStyle(
+              hintStyle:  TextStyles.nexaRegular.copyWith(
                 fontWeight: FontWeight.w400,
-                fontFamily: FontsAssets.Nexa,
                 color: AppTheme.hintColor,
                 fontSize: 14,
               ),

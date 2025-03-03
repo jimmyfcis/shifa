@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/features/Profile/view/profile_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../../Profile/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

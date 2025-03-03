@@ -3,14 +3,15 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/settings/widgets/settings_language.dart';
-
+import 'package:provider/provider.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const WaterMark(
-      backGroundColor: AppTheme.primaryColorLeksell,
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    return WaterMark(
+      backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
       contentChild: SettingsLanguage(),
       appBarChild: CommonAppBarTitle(

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/routes/app_routes.dart';
-
 import 'package:provider/provider.dart';
 import '../../../core/assets/svg/assets.dart';
+import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
-import '../../../core/utils/fonts/fonts_manager.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 
 class OnboardingScreen extends StatefulWidget {

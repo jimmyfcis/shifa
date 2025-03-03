@@ -4,14 +4,15 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
-
+import 'package:provider/provider.dart';
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      backGroundColor: AppTheme.primaryColorLeksell,
+      backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
       alignment: Alignment.bottomCenter,
       height: 105,

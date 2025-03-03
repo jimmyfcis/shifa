@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
-
-import 'package:shifa/features/Profile/view/profile_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
@@ -9,6 +7,7 @@ import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
 
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
+import '../../features/Profile/screens/profile_screen.dart';
 import '../../features/Terms And Conditions/screens/terms_and_conditions_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';

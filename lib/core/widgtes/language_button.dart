@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shifa/core/theme/theme.dart';
-
-
-import '../routes/app_routes.dart';
+import '../theme/styles.dart';
 
 class LanguageButton extends StatefulWidget {
 
   final String language;
-  final VoidCallback onTap;
+  final void Function()? onTap;
 
   const LanguageButton({
     super.key,
@@ -37,12 +35,12 @@ class _LanguageButtonState extends State<LanguageButton> {
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       side: const BorderSide(color: AppTheme.greyColor)))),
-          onPressed: onTap,
+          onPressed: widget.onTap,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               widget.language,
-              style: TextStyle(
+              style: TextStyles.nexaRegular.copyWith(
                 color: AppTheme.blackColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w300,

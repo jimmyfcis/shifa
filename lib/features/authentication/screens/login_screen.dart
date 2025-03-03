@@ -4,7 +4,7 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
-import '../../../core/utils/fonts/fonts_manager.dart';
+import '../../../core/theme/styles.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:provider/provider.dart';
 import '../../../core/widgtes/auth_appbar.dart';
@@ -57,17 +57,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Welcome Back!",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontFamily: FontsAssets.Nexa,
+                        //fontFamily: FontsAssets.Nexa,
                         color: themeProvider.currentThemeData!.primaryColor,
                         fontSize: 24),
                   ),
                    SizedBox(height: 8.h),
-                  const Text(
+                   Text(
                     "Please login to your account to access your account details .",
                     softWrap: true,
-                    style: TextStyle(
+                    style: TextStyles.nexaRegular.copyWith(
                         fontWeight: FontWeight.w400,
-                        fontFamily: FontsAssets.Nexa,
+                       // fontFamily: FontsAssets.Nexa,
                         color: AppTheme.grey5Color,
                         fontSize: 12),
                   ),
@@ -104,10 +104,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.pushNamed(context, AppRoutes.home);
                               },
                               child: Text('Forgot Password?',
-                                  style: TextStyle(
+                                  style: TextStyles.nexaRegular.copyWith(
                                       color: themeProvider.currentThemeData!.primaryColor,
                                       fontSize: 12,
-                                      fontFamily: FontsAssets.Nexa,
+                                      //fontFamily: FontsAssets.Nexa,
                                       fontWeight: FontWeight.w400)),
                             ),
                           ],
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                          SizedBox(height: 24.h),
-                         const Row(
+                          Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(child: Divider()),
@@ -139,10 +139,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               padding: EdgeInsets.symmetric(horizontal: 6.0),
                               child: Text(
                                 'or sign up with',
-                                style: TextStyle(
+                                style: TextStyles.nexaRegular.copyWith(
                                   color: AppTheme.blackColor,
                                   fontSize: 12,
-                                  fontFamily: FontsAssets.Nexa,
+                                  //fontFamily: FontsAssets.Nexa,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -165,12 +165,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                             const Text(
+                              Text(
                               'Don’t have an account?',
-                              style: TextStyle(
+                              style: TextStyles.nexaRegular.copyWith(
                                 color: AppTheme.primaryTextColor,
                                 fontSize: 12,
-                                fontFamily: FontsAssets.Nexa,
+                               // fontFamily: FontsAssets.Nexa,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -180,10 +180,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: Text(
                                 ' Create account',
-                                style: TextStyle(
+                                style: TextStyles.nexaRegular.copyWith(
                                   color:themeProvider.currentThemeData!.primaryColor,
                                   fontSize: 12,
-                                  fontFamily: FontsAssets.Nexa,
+                                  //fontFamily: FontsAssets.Nexa,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
