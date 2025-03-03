@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/routes/app_routes.dart';
-import 'package:shifa/core/theme/styles.dart';
 
+import 'package:provider/provider.dart';
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/fonts/fonts_manager.dart';
@@ -79,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: CustomGreenButton(
                     title: "Get Started",
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                      Navigator.pushReplacementNamed(context, AppRoutes.login);
                     },
                   ),
                 ),
@@ -91,15 +91,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildPage({required String title, required String content, required String image, required int index}) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     if (index == 3) {
       return Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
+            GestureDetector(
               onTap: (){
-                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                themeProvider.changeTheme(ThemeEnum.shifa);
+                Navigator.pushNamed(context, AppRoutes.login);
               },
               child: Container(
                 decoration:
@@ -110,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: [
                       SvgPicture.asset(
                         SVGAssets.splashIcon,
-                        color: AppTheme.primaryColor,
+                        color: AppTheme.shifaPrimaryColor,
                         width: 90.w,
                         height: 90.h,
                       ),
@@ -122,9 +124,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             SizedBox(height: 40.h),
-            InkWell(
+            GestureDetector(
               onTap: (){
-                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                  themeProvider.changeTheme(ThemeEnum.leksell);
+                Navigator.pushNamed(context, AppRoutes.login);
               },
               child: Container(
                 decoration:
@@ -134,13 +137,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Row(
                     children: [
                       SvgPicture.asset(
-                        SVGAssets.splashIcon,
-                        color: AppTheme.primaryColor,
-                        width: 90.w,
-                        height: 90.h,
+                        SVGAssets.leksellIcon,
                       ),
+                      SizedBox(width: 10.w),
+                      Container(width: 1.w,height:73.h,color: AppTheme.shifaPrimaryColor,),
                       SizedBox(width: 12.w),
-                      SvgPicture.asset(SVGAssets.shifaText),
+                      SvgPicture.asset(SVGAssets.leksellSplashText,width: 137.45.w,height: 66.48.h,),
                     ],
                   ),
                 ),
@@ -191,7 +193,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             height: 6.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0.r),
-              color: AppTheme.primaryColor,
+              color: AppTheme.shifaPrimaryColor,
             ),
           )
         : Container(

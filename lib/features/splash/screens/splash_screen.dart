@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: Container(
-          decoration: const BoxDecoration(color: AppTheme.primaryColor),
+          decoration: const BoxDecoration(color: AppTheme.shifaPrimaryColor),
           child: Hero(
             tag: "logo",
             child: Center(

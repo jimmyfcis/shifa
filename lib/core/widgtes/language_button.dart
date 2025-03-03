@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shifa/core/theme/theme.dart';
 
-class LanguageButton extends StatelessWidget {
+
+import '../routes/app_routes.dart';
+
+class LanguageButton extends StatefulWidget {
+
   final String language;
   final VoidCallback onTap;
 
@@ -11,6 +15,11 @@ class LanguageButton extends StatelessWidget {
     required this.onTap,
   });
 
+  @override
+  State<LanguageButton> createState() => _LanguageButtonState();
+}
+
+class _LanguageButtonState extends State<LanguageButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,7 +41,7 @@ class LanguageButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              language,
+              widget.language,
               style: TextStyle(
                 color: AppTheme.blackColor,
                 fontSize: 16,

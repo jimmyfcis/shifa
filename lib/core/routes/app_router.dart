@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
-import 'package:shifa/features/Profile/screens/profile_screen.dart';
+
+import 'package:shifa/features/Profile/view/profile_screen.dart';
+import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
@@ -24,6 +26,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
+
       case AppRoutes.privacyPolicy:
         return MaterialPageRoute(builder: (_) => PrivacyPolicyScreen());
       case AppRoutes.termsAndConditions:
@@ -32,6 +35,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => SettingsScreen());
       case AppRoutes.contactUs:
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
+
+        case AppRoutes.login:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -7,7 +7,6 @@ import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/language_button.dart';
-
 class LanguageSplashScreen extends StatefulWidget {
   const LanguageSplashScreen({super.key});
 
@@ -50,7 +49,7 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: Container(
-          decoration: const BoxDecoration(color: AppTheme.primaryColor),
+          decoration: const BoxDecoration(color: AppTheme.shifaPrimaryColor),
           child: Center(
             child: Column(
               children: [
