@@ -7,10 +7,13 @@ class SVGAssets {
   static const String onBoardingFirst = "assets/svg/icons/onboarding_first.svg";
   static const String line = "assets/svg/icons/line.svg";
   static const String leksellAuth = "assets/svg/icons/leksell_auth.svg";
+  static const String leksellHome = "assets/svg/icons/leksell_home.svg";
   static const String shifaIconText = "assets/svg/icons/shifa_icon_text.svg";
+  static const String shifaIcon = "assets/svg/icons/shifa_icon.svg";
   static const String splashIcon = "assets/svg/icons/splash_icon.svg";
   static const String splashTexts = "assets/svg/icons/splash_texts.svg";
   static const String shifaText = "assets/svg/icons/shifa_text.svg";
+  static const String shifaHome = "assets/svg/icons/shifa_home.svg";
   static const String leksellIcon = "assets/svg/icons/leksell_icon.svg";
   static const String leksellSplashText = "assets/svg/icons/leksell_text.svg";
   static const String onBoardingSecond =
