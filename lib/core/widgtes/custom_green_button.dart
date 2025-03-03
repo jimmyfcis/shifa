@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/styles.dart';
 import '../theme/theme.dart';
 import 'package:provider/provider.dart';
 class CustomGreenButton extends StatefulWidget {
@@ -29,7 +30,7 @@ class _CustomGreenButtonState extends State<CustomGreenButton> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               widget.title??"Next",
-              style: TextStyle(
+              style: TextStyles.nexaRegular.copyWith(
                 color: AppTheme.whiteColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
