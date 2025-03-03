@@ -4,5 +4,12 @@ class AppRoutes {
   static const String onboardingScreen = '/onboardingScreen';
   static const String home = '/home';
   static const String profile = '/profile';
+
+  static const String privacyPolicy = '/privacyPolicy';
+  static const String termsAndConditions = '/termsAndConditions';
+  static const String settings = '/settings';
+  static const String contactUs = '/contactUs';
+
   static const String login = '/login';
+
 }

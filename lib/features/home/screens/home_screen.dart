@@ -6,6 +6,7 @@ import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/view/profile_screen.dart';
 import 'package:provider/provider.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();

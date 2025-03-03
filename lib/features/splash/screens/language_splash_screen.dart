@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/theme/styles.dart';
+
 import '../../../../core/theme/theme.dart';
-import '../../../../core/utils/fonts/fonts_manager.dart';
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/widgtes/custom_green_button.dart';
@@ -13,7 +14,8 @@ class LanguageSplashScreen extends StatefulWidget {
   State<LanguageSplashScreen> createState() => _LanguageSplashScreenState();
 }
 
-class _LanguageSplashScreenState extends State<LanguageSplashScreen> with SingleTickerProviderStateMixin {
+class _LanguageSplashScreenState extends State<LanguageSplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
 
@@ -63,13 +65,10 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                   ),
                 ),
                 const SizedBox(height: 29.59),
-                const Text(
+                Text(
                   "WELCOME TO SHIFA HOSPITAL",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: FontsAssets.Nexa,
-                      color: AppTheme.whiteColor,
-                      fontSize: 16),
+                  style: TextStyles.nexaRegular
+                      .copyWith(color: AppTheme.whiteColor, fontSize: 16),
                 ),
                 const Spacer(),
                 Container(
@@ -85,22 +84,34 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen> with Single
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
+                        Text(
                           "Please, Select your preferred language",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontFamily: FontsAssets.Nexa,
-                              color: AppTheme.blackColor,
-                              fontSize: 16),
+                          style: TextStyles.nexaRegular.copyWith(
+                            fontSize: 16,
+                            color: AppTheme.blackColor,
+                          ),
                         ),
                         const SizedBox(height: 21),
-                        const LanguageButton(language: "English"),
+                        LanguageButton(
+                          language: "English",
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, AppRoutes.onboardingScreen);
+                          },
+                        ),
                         const SizedBox(height: 16),
-                        const LanguageButton(language: "العربية"),
+                        LanguageButton(
+                          language: "العربية",
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, AppRoutes.onboardingScreen);
+                          },
+                        ),
                         const SizedBox(height: 32),
                         CustomGreenButton(
-                          onPressed: (){
-                            Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(
+                                context, AppRoutes.onboardingScreen);
                           },
                         ),
                       ],
