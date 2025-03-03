@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/view/profile_screen.dart';
-
+import 'package:provider/provider.dart';
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -51,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 highlightColor: Colors.transparent,
               ),
               child: BottomNavigationBar(
-                selectedItemColor: AppTheme.primaryColorLeksell,
+                selectedItemColor: themeProvider.currentThemeData!.primaryColor,
                 type: BottomNavigationBarType.fixed,
                 enableFeedback: false,
                 elevation: 0, // Remove default shadow
@@ -98,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.homeIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.homeSelectedIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppTheme.primaryColorLeksell,
+                      colorFilter:  ColorFilter.mode(
+                        themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -109,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.bookingIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.bookingSelectedIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppTheme.primaryColorLeksell,
+                      colorFilter:  ColorFilter.mode(
+                        themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -120,8 +121,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.clinicsIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.clincssSelectedIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppTheme.primaryColorLeksell,
+                      colorFilter:  ColorFilter.mode(
+                        themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -131,8 +132,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.myCareIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.myCareSelectedIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppTheme.primaryColorLeksell,
+                      colorFilter:  ColorFilter.mode(
+                        themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),
@@ -142,8 +143,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.profileIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.profileSelectedIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppTheme.primaryColorLeksell,
+                      colorFilter:  ColorFilter.mode(
+                        themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
                     ),

@@ -4,17 +4,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/appbar_widget.dart';
-
+import 'package:provider/provider.dart';
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Stack(
       alignment: Alignment.center,
       children: [
         CommonAppBar(
-          backGroundColor: AppTheme.primaryColorLeksell,
+          backGroundColor:themeProvider.currentThemeData!.primaryColor,
           hasBorderRadius: true,
           height: 148,
         ),

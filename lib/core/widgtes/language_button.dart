@@ -3,11 +3,16 @@ import 'package:shifa/core/theme/theme.dart';
 
 import '../routes/app_routes.dart';
 
-class LanguageButton extends StatelessWidget {
+class LanguageButton extends StatefulWidget {
   final String language;
 
   const LanguageButton({super.key, required this.language});
 
+  @override
+  State<LanguageButton> createState() => _LanguageButtonState();
+}
+
+class _LanguageButtonState extends State<LanguageButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -27,7 +32,7 @@ class LanguageButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
-              language,
+              widget.language,
               style: TextStyle(
                 color: AppTheme.blackColor,
                 fontSize: 16,

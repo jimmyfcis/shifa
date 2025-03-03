@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/widgets/auth_appbar.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/assets/svg/assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/utils/fonts/fonts_manager.dart';
-import '../../../core/utils/theme_notifier.dart';
-import '../../../core/utils/validators.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
-
+import '../../../core/widgtes/auth_appbar.dart';
 import '../../../core/widgtes/custom_green_button.dart';
+import '../../../core/widgtes/form_fields/phone_number_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,19 +46,19 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SvgPicture.asset(themeProvider.currentTheme==ThemeEnum.Shifa?SVGAssets.shifaIconText:SVGAssets.leksellAuth),
+           SvgPicture.asset(themeProvider.currentTheme==ThemeEnum.shifa?SVGAssets.shifaIconText:SVGAssets.leksellAuth),
              SizedBox(height: 42.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Welcome Back!",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: FontsAssets.Nexa,
-                        color: AppTheme.blackColor,
+                        color: themeProvider.currentThemeData!.primaryColor,
                         fontSize: 24),
                   ),
                    SizedBox(height: 8.h),
@@ -78,13 +75,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   PhoneNumberField(
                     controller: phoneController,
                     isValid: isValid,
-                    onInputChanged: (PhoneNumber number) {
-                      print(number.phoneNumber);
-                      setState(() {
-                        isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
-                      });
-                      return;
-                    },
+                    // onInputChanged: (PhoneNumber number) {
+                    //   print(number.phoneNumber);
+                    //   setState(() {
+                    //     isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
+                    //   });
+                    //   return;
+                    // },
                   ),
                   FormBuilder(
                     key: _formKey,
@@ -92,19 +89,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                          SizedBox(height: 24.h),
-                        PasswordTextField(
-                          labelText: 'Password',
-                          name: 'password',
-                          controller: controller,
-                          hintText: 'Enter your password',
-                        ),
+                        // PasswordTextField(
+                        //   labelText: 'Password',
+                        //   name: 'password',
+                        //   controller: controller,
+                        //   hintText: 'Enter your password',
+                        // ),
                          SizedBox(height: 16.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                                Navigator.pushNamed(context, AppRoutes.home);
                               },
                               child: Text('Forgot Password?',
                                   style: TextStyle(
@@ -134,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                          SizedBox(height: 24.h),
-                        const Row(
+                         const Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(child: Divider()),
@@ -168,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                             Text(
+                             const Text(
                               'Don’t have an account?',
                               style: TextStyle(
                                 color: AppTheme.primaryTextColor,
@@ -179,12 +176,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushReplacementNamed(context, AppRoutes.register);
+                                Navigator.pushReplacementNamed(context, AppRoutes.home);
                               },
                               child: Text(
                                 ' Create account',
                                 style: TextStyle(
-                                  color: themeProvider.currentThemeData!.primaryColor,
+                                  color:themeProvider.currentThemeData!.primaryColor,
                                   fontSize: 12,
                                   fontFamily: FontsAssets.Nexa,
                                   fontWeight: FontWeight.w400,
@@ -203,7 +200,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      showSkip: true,
     );
   }
 
