@@ -9,6 +9,7 @@ class AppRoutes {
   static const String termsAndConditions = '/termsAndConditions';
   static const String settings = '/settings';
   static const String contactUs = '/contactUs';
+  static const String blogs = '/blogs';
 
   static const String login = '/login';
 

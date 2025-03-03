@@ -35,8 +35,8 @@ class ProfileAppBar extends StatelessWidget {
                           SvgPicture.asset(
                             SVGAssets.shifaIcon,
                             color: Colors.white,
-                            width: 1.w,
-                            height: 36.h,
+                            width: 32.w,
+                            height: 32.h,
                           ),
                           SizedBox(width: 8.w),
                           SvgPicture.asset(

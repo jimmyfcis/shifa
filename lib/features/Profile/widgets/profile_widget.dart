@@ -9,6 +9,7 @@ class ProfileWidget extends StatelessWidget {
   final String svgIcon;
   final String title;
   final VoidCallback onTap;
+
   const ProfileWidget({
     super.key,
     required this.hasDivider,
@@ -23,6 +24,7 @@ class ProfileWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onTap,
+          behavior: HitTestBehavior.translucent,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
