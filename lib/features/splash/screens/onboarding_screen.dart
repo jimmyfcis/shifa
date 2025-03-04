@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shifa/core/routes/app_routes.dart';
 import 'package:provider/provider.dart';
-import '../../../core/assets/svg/assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
+
+import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/widgtes/custom_green_button.dart';
@@ -30,7 +31,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _skip() {
-    _pageController.animateToPage(2, curve: Curves.easeIn, duration: Duration(seconds: 1)); // Jump to the last page
+    _pageController.animateToPage(2,
+        curve: Curves.easeIn,
+        duration: Duration(seconds: 1)); // Jump to the last page
   }
 
   @override
@@ -48,7 +51,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 index: index,
                 image: images[index],
                 title: "Your Health, Our Priority",
-                content: "Quickly find the right doctor and book your appointment in seconds.",
+                content:
+                    "Quickly find the right doctor and book your appointment in seconds.",
               );
             },
           ),
@@ -58,16 +62,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: _currentPage < 2
                 ? TextButton(
                     onPressed: _skip,
-                    child:  Text(
+                    child: Text(
                       "Skip",
                       style: TextStyles.nexaRegular.copyWith(
-                          color: AppTheme.darkGreyColor,
-                          fontSize: 14),
+                          color: AppTheme.darkGreyColor, fontSize: 14),
                     ),
                   )
                 : const SizedBox.shrink(),
           ),
-          if (_currentPage == 2) // Show "Get Started" button only on the last page
+          if (_currentPage ==
+              2) // Show "Get Started" button only on the last page
             Positioned(
               bottom: 40.h,
               left: 0,
@@ -89,7 +93,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildPage({required String title, required String content, required String image, required int index}) {
+  Widget _buildPage(
+      {required String title,
+      required String content,
+      required String image,
+      required int index}) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     if (index == 3) {
       return Padding(
@@ -98,15 +106,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 themeProvider.changeTheme(ThemeEnum.shifa);
                 Navigator.pushNamed(context, AppRoutes.login);
               },
               child: Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: AppTheme.greyColor), borderRadius: BorderRadius.circular(12.r)),
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppTheme.greyColor),
+                    borderRadius: BorderRadius.circular(12.r)),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 24.0.w),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 16.0.h, horizontal: 24.0.w),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -124,24 +134,34 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             SizedBox(height: 40.h),
             GestureDetector(
-              onTap: (){
-                  themeProvider.changeTheme(ThemeEnum.leksell);
+              onTap: () {
+                themeProvider.changeTheme(ThemeEnum.leksell);
                 Navigator.pushNamed(context, AppRoutes.login);
               },
               child: Container(
-                decoration:
-                BoxDecoration(border: Border.all(color: AppTheme.greyColor), borderRadius: BorderRadius.circular(12.r)),
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppTheme.greyColor),
+                    borderRadius: BorderRadius.circular(12.r)),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 24.0.w),
+                  padding: EdgeInsets.symmetric(
+                      vertical: 16.0.h, horizontal: 24.0.w),
                   child: Row(
                     children: [
                       SvgPicture.asset(
                         SVGAssets.leksellIcon,
                       ),
                       SizedBox(width: 10.w),
-                      Container(width: 1.w,height:73.h,color: AppTheme.shifaPrimaryColor,),
+                      Container(
+                        width: 1.w,
+                        height: 73.h,
+                        color: AppTheme.shifaPrimaryColor,
+                      ),
                       SizedBox(width: 12.w),
-                      SvgPicture.asset(SVGAssets.leksellSplashText,width: 137.45.w,height: 66.48.h,),
+                      SvgPicture.asset(
+                        SVGAssets.leksellSplashText,
+                        width: 137.45.w,
+                        height: 66.48.h,
+                      ),
                     ],
                   ),
                 ),
@@ -160,22 +180,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SvgPicture.asset(image),
               Text(
                 title,
-                style: TextStyles.nexaRegular.copyWith(
-                    color: AppTheme.primaryTextColor,
-                    fontSize: 24),
+                style: TextStyles.nexaRegular
+                    .copyWith(color: AppTheme.primaryTextColor, fontSize: 24),
               ),
               SizedBox(height: 12.h),
               Text(
                 content,
                 textAlign: TextAlign.center,
-                style:  TextStyles.nexaRegular.copyWith(
-                    color: AppTheme.secondaryTextColor,
-                    fontSize: 14),
+                style: TextStyles.nexaRegular
+                    .copyWith(color: AppTheme.secondaryTextColor, fontSize: 14),
               ),
               SizedBox(height: 24.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(3, (index) => _buildStepIndicator(index)),
+                children:
+                    List.generate(3, (index) => _buildStepIndicator(index)),
               ),
             ],
           ),

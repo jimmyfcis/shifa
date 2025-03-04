@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
@@ -55,7 +55,7 @@ class MyProfie extends StatelessWidget {
                     ),
                   ),
                   child: Image.asset(
-                    ImgaeAssets.myProfileImg,
+                    ImageAssets.myProfileImg,
                   ),
                 ),
               ),

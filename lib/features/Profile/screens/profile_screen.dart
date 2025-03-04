@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/widgets/profile_app_bar.dart';

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shifa/core/assets/svg/assets.dart';
-import 'package:shifa/core/theme/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/features/Booking/screens/booking_screen.dart';
 
 import '../../Profile/screens/profile_screen.dart';
 
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // List of pages for each tab
   final List<Widget> _pages = [
     const Center(child: Text("Home Page")),
-    const Center(child: Text("Search Page")),
+    const BookingScreen(),
     const Center(child: Text("Notifications Page")),
     const Center(child: Text("Messages Page")),
     const ProfileScreen(),
@@ -57,10 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness:
-            Brightness.light, // This makes status bar icons dark
-        statusBarBrightness: Brightness.light, // This is for iOS
-        systemNavigationBarColor: Colors.white, // Bottom navigation bar color
+        statusBarIconBrightness: Brightness.light,
+        // This makes status bar icons dark
+        statusBarBrightness: Brightness.light,
+        // This is for iOS
+        systemNavigationBarColor: Colors.white,
+        // Bottom navigation bar color
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
@@ -94,14 +97,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 selectedItemColor: themeProvider.currentThemeData!.primaryColor,
                 type: BottomNavigationBarType.fixed,
                 enableFeedback: false,
-                elevation: 0, // Remove default shadow
+                elevation: 0,
+                // Remove default shadow
                 backgroundColor: Colors.white,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(SVGAssets.homeIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.homeSelectedIcon,
-                      colorFilter:  ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                         themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
@@ -112,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.bookingIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.bookingSelectedIcon,
-                      colorFilter:  ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                         themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
@@ -123,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.clinicsIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.clincssSelectedIcon,
-                      colorFilter:  ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                         themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
@@ -134,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.myCareIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.myCareSelectedIcon,
-                      colorFilter:  ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                         themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),
@@ -145,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: SvgPicture.asset(SVGAssets.profileIcon),
                     activeIcon: SvgPicture.asset(
                       SVGAssets.profileSelectedIcon,
-                      colorFilter:  ColorFilter.mode(
+                      colorFilter: ColorFilter.mode(
                         themeProvider.currentThemeData!.primaryColor,
                         BlendMode.srcIn,
                       ),

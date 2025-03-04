@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../assets/svg/assets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
 
@@ -11,7 +12,8 @@ class PhoneNumberField extends StatefulWidget {
     required this.controller,
     this.isRequired = true,
     this.labelText = "Phone Number",
-    this.onInputChanged,  this.isValid=true,
+    this.onInputChanged,
+    this.isValid = true,
   });
 
   final TextEditingController controller;
@@ -29,7 +31,8 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
   bool isValid = true;
 
   bool isValidEgyptianPhoneNumber(String input) {
-    final RegExp egyptianPhoneRegex = RegExp(r'^\+20(1[0|1|2|5])\d{8}$|^\+200\d{8}$');
+    final RegExp egyptianPhoneRegex =
+        RegExp(r'^\+20(1[0|1|2|5])\d{8}$|^\+200\d{8}$');
     return egyptianPhoneRegex.hasMatch(input);
   }
 
@@ -58,10 +61,10 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
       children: [
         Text(
           widget.isRequired ? "${widget.labelText}*" : widget.labelText,
-          style:  TextStyles.nexaRegular.copyWith(
+          style: TextStyles.nexaRegular.copyWith(
             color: AppTheme.blackColor,
             fontSize: 14,
-           // fontFamily: FontsAssets.Nexa,
+            // fontFamily: FontsAssets.Nexa,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -100,7 +103,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
             },
             decoration: InputDecoration(
               hintText: "Phone number",
-              hintStyle:  TextStyles.nexaRegular.copyWith(
+              hintStyle: TextStyles.nexaRegular.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppTheme.hintColor,
                 fontSize: 14,
