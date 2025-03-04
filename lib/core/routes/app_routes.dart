@@ -10,7 +10,7 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String contactUs = '/contactUs';
   static const String blogs = '/blogs';
+  static const String blogDetails = '/blogDetails';
 
   static const String login = '/login';
-
 }
