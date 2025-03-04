@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/features/Blogs/widgets/blog_card.dart';
 
@@ -16,8 +17,14 @@ class BlogsList extends StatelessWidget {
         separatorBuilder: (context, index) => SizedBox(
           height: 16.h,
         ),
-        itemBuilder: (context, index) => BlogCard(
-          blog: AppConstants().blogsList[index],
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.blogDetails,
+                arguments: AppConstants().blogsList[index]);
+          },
+          child: BlogCard(
+            blog: AppConstants().blogsList[index],
+          ),
         ),
       ),
     );
