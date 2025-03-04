@@ -7,10 +7,12 @@ import 'package:shifa/core/theme/theme.dart';
 
 class CommonAppBarTitle extends StatelessWidget {
   final String title;
+  final Widget? actionButton;
 
   const CommonAppBarTitle({
     super.key,
     required this.title,
+    this.actionButton,
   });
 
   @override
@@ -21,6 +23,7 @@ class CommonAppBarTitle extends StatelessWidget {
         horizontal: 24.w,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: () {
@@ -34,17 +37,16 @@ class CommonAppBarTitle extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            child: Center(
-              child: Text(
-                title,
-                style: TextStyles.nexaBold.copyWith(
-                  color: AppTheme.whiteColor,
-                  fontSize: 18,
-                ),
+          Center(
+            child: Text(
+              title,
+              style: TextStyles.nexaBold.copyWith(
+                color: AppTheme.whiteColor,
+                fontSize: 18,
               ),
             ),
           ),
+          actionButton ?? const SizedBox(),
         ],
       ),
     );

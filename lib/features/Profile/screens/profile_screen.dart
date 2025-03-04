@@ -41,6 +41,7 @@ class ProfileScreen extends StatelessWidget {
                           hasDivider: true,
                           onTap: () {
                             log("Profile Page");
+                            Navigator.pushNamed(context, AppRoutes.myProfile);
                           },
                           svgIcon: SVGAssets.profileIcon,
                           title: 'Profile',
