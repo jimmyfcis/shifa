@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/assets.dart';
+import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/appbar_widget.dart';
 
 class WaterMark extends StatelessWidget {
@@ -24,11 +26,15 @@ class WaterMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: Stack(
         children: [
           Center(
-            child: SvgPicture.asset(SVGAssets.leksellTranspernt),
+            child: SvgPicture.asset(
+                themeProvider.currentTheme == ThemeEnum.shifa
+                    ? SVGAssets.shifaLogoTransperant
+                    : SVGAssets.leksellTransperant),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

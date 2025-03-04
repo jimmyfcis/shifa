@@ -35,8 +35,10 @@ class SVGAssets {
   static const String appBarLogo = "assets/svg/icons/appbarlogo.svg";
   static const String leksellText = "assets/svg/icons/leksell_home_text.svg";
   static const String leksellDivider = "assets/svg/icons/leksell_divider.svg";
-  static const String leksellTranspernt =
+  static const String leksellTransperant =
       "assets/svg/icons/leksell_transparent.svg";
+  static const String shifaLogoTransperant =
+      "assets/svg/icons/logo_transparent.svg";
 
   static const String leksellHomeWhiteIcon =
       "assets/svg/icons/leksell_icon_home.svg";
