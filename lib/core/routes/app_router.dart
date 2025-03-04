@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
@@ -35,8 +36,10 @@ class AppRouter {
       case AppRoutes.contactUs:
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
 
-        case AppRoutes.login:
+      case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case AppRoutes.blogs:
+        return MaterialPageRoute(builder: (_) => BlogsScreen());
 
       default:
         return MaterialPageRoute(
