@@ -3,10 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/theme/styles.dart';
 
 import '../../../../core/theme/theme.dart';
-import '../../../core/assets/svg/assets.dart';
+import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/language_button.dart';
+
 class LanguageSplashScreen extends StatefulWidget {
   const LanguageSplashScreen({super.key});
 

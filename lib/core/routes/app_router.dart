@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
+import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
@@ -43,6 +44,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
+      case AppRoutes.booking:
+        return MaterialPageRoute(builder: (_) => BookingScreen());
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;
         return MaterialPageRoute(
