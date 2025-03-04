@@ -23,7 +23,6 @@ class AppTheme {
   static const Color grey5Color = Color(0xFF4F4F4F);
   static const Color blackColor = Color(0xFF000000);
   static const Color whiteColor = Color(0xFFffffff);
-  static const Color offWhiteColor = Color(0xFFE8E8E8);
 }
 
 ThemeData shifaThemeData = ThemeData(
@@ -83,7 +82,8 @@ ThemeData shifaThemeData = ThemeData(
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -92,8 +92,10 @@ ThemeData shifaThemeData = ThemeData(
             ////fontFamily: FontsAssets.Nexa,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor), // No ripple effect
-        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        backgroundColor: MaterialStateProperty.all(
+            AppTheme.shifaPrimaryColor), // No ripple effect
+        foregroundColor:
+            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
       dayStyle: const TextStyle(
@@ -152,7 +154,8 @@ ThemeData leksellThemeData = ThemeData(
         ),
       ),
       cancelButtonStyle: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        foregroundColor:
+            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -180,7 +183,8 @@ ThemeData leksellThemeData = ThemeData(
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -189,8 +193,10 @@ ThemeData leksellThemeData = ThemeData(
             ////fontFamily: FontsAssets.Nexa,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor), // No ripple effect
-        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        backgroundColor: MaterialStateProperty.all(
+            AppTheme.leksellPrimaryColor), // No ripple effect
+        foregroundColor:
+            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
       dayStyle: const TextStyle(

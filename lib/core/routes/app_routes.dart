@@ -11,6 +11,7 @@ class AppRoutes {
   static const String contactUs = '/contactUs';
   static const String blogs = '/blogs';
   static const String blogDetails = '/blogDetails';
+  static const String myProfile = '/myProfile';
 
   static const String login = '/login';
 }

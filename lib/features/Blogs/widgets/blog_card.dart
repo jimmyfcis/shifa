@@ -19,7 +19,7 @@ class BlogCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
         side: const BorderSide(
           width: 1,
-          color: AppTheme.offWhiteColor,
+          color: AppTheme.greyColor,
         ),
       ),
       elevation: 0,
@@ -50,7 +50,7 @@ class BlogCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 12 .h,
+                    height: 12.h,
                   ),
                   Text(
                     blog.subTitle,
