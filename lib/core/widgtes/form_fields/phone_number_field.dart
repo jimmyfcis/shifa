@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PhoneNumberField extends StatefulWidget {
   const PhoneNumberField({
@@ -12,14 +11,13 @@ class PhoneNumberField extends StatefulWidget {
     required this.controller,
     this.isRequired = true,
     this.labelText = "Phone Number",
-    this.onInputChanged,
-    this.isValid = true,
+    this.onInputChanged, this.isValid = true,
   });
 
   final TextEditingController controller;
   final bool isRequired;
   final bool isValid;
-  final void Function(String)? onInputChanged;
+  final void Function(PhoneNumber)? onInputChanged;
   final String labelText;
 
   @override
@@ -27,25 +25,27 @@ class PhoneNumberField extends StatefulWidget {
 }
 
 class _PhoneNumberFieldState extends State<PhoneNumberField> {
+  String initialCountry = 'EG';
+  PhoneNumber number = PhoneNumber(isoCode: 'EG');
   final FocusNode _focusNode = FocusNode();
-  bool isValid = true;
 
   bool isValidEgyptianPhoneNumber(String input) {
-    final RegExp egyptianPhoneRegex =
-        RegExp(r'^\+20(1[0|1|2|5])\d{8}$|^\+200\d{8}$');
+    final RegExp egyptianPhoneRegex = RegExp(
+      r'^(\+20(1[0125]\d{8})|\+200\d{8})$',
+    );
     return egyptianPhoneRegex.hasMatch(input);
   }
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      if (!_focusNode.hasFocus) {
-        setState(() {
-          isValid = isValidEgyptianPhoneNumber(widget.controller.text);
-        });
-      }
-    });
+    // _focusNode.addListener(() {
+    //   if (!_focusNode.hasFocus) {
+    //     setState(() {
+    //       isValid = isValidEgyptianPhoneNumber(widget.controller.text);
+    //     });
+    //   }
+    // });
   }
 
   @override
@@ -64,7 +64,6 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           style: TextStyles.nexaRegular.copyWith(
             color: AppTheme.blackColor,
             fontSize: 14,
-            // fontFamily: FontsAssets.Nexa,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -74,40 +73,47 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           decoration: BoxDecoration(
             color: AppTheme.whiteColor,
             border: Border.all(
-              color: !isValid && widget.controller.text.isNotEmpty
-                  ? Colors.red
-                  : AppTheme.greyColor,
+              color:  !widget.isValid ? AppTheme.errorColor : AppTheme.greyColor,
               width: 2,
             ),
             borderRadius: const BorderRadius.all(Radius.circular(12.0)),
           ),
-          child: TextField(
+          child: InternationalPhoneNumberInput(
             focusNode: _focusNode,
-            controller: widget.controller,
-            keyboardType: TextInputType.phone,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly, // Allow only numbers
-            ],
-            onChanged: (value) {
-              if (widget.onInputChanged != null) {
-                widget.onInputChanged!(value);
-              }
-              setState(() {
-                isValid = isValidEgyptianPhoneNumber(value);
-              });
-            },
-            onSubmitted: (value) {
-              setState(() {
-                isValid = isValidEgyptianPhoneNumber(value);
-              });
-            },
-            decoration: InputDecoration(
-              hintText: "Phone number",
+            autoFocusSearch: true,
+            spaceBetweenSelectorAndTextField: 0,
+            onInputChanged: widget.onInputChanged,
+            selectorConfig: const SelectorConfig(
+              selectorType: PhoneInputSelectorType.DIALOG,
+            ),
+            ignoreBlank: true,
+            autoValidateMode: AutovalidateMode.disabled,
+            selectorTextStyle: TextStyles.nexaRegular.copyWith(color: Colors.black),
+            initialValue: number,
+            textFieldController: widget.controller,
+            formatInput: true,
+            searchBoxDecoration: InputDecoration(
+              fillColor: AppTheme.whiteColor,
+              filled: true,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  SVGAssets.search,
+                  width: 24,
+                  height: 24,
+                ),
+              ),
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              border: InputBorder.none,
+              hintText: "Search for country",
               hintStyle: TextStyles.nexaRegular.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppTheme.hintColor,
                 fontSize: 14,
               ),
+            ),
+            inputDecoration: InputDecoration(
               fillColor: AppTheme.whiteColor,
               filled: true,
               prefixIcon: Padding(
@@ -116,12 +122,30 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               ),
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
-              errorText: !isValid && widget.controller.text.isNotEmpty
-                  ? "Invalid phone number"
-                  : null,
+              border: InputBorder.none,
+              hintText: "Phone number",
+              hintStyle: TextStyles.nexaRegular.copyWith(
+                fontWeight: FontWeight.w400,
+                color: AppTheme.hintColor,
+                fontSize: 14,
+              ),
             ),
+            inputBorder: InputBorder.none,
+            cursorColor: AppTheme.blackColor,
+            keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true),
           ),
         ),
+        if (!widget.isValid)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              "Invalid phone number",
+              style: TextStyles.nexaBold.copyWith(
+                color: Colors.red,
+                fontSize: 14,
+              ),
+            ),
+          ),
       ],
     );
   }

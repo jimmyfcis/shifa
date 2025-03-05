@@ -6,6 +6,7 @@ class Assets {
 class SVGAssets {
   static const String onBoardingFirst = "assets/svg/icons/onboarding_first.svg";
   static const String line = "assets/svg/icons/line.svg";
+  static const String search = "assets/svg/icons/search.svg";
   static const String leksellAuth = "assets/svg/icons/leksell_auth.svg";
   static const String leksellHome = "assets/svg/icons/leksell_home.svg";
   static const String shifaIconText = "assets/svg/icons/shifa_icon_text.svg";

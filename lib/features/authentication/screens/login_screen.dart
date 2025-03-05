@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/theme/styles.dart';
+import '../../../core/utils/validators.dart';
 import '../../../core/widgtes/auth_appbar.dart';
 import '../../../core/widgtes/custom_green_button.dart';
+import '../../../core/widgtes/form_fields/password_text_field.dart';
 import '../../../core/widgtes/form_fields/phone_number_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -48,9 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SvgPicture.asset(themeProvider.currentTheme == ThemeEnum.shifa
-                ? SVGAssets.shifaIconText
-                : SVGAssets.leksellAuth),
+            SvgPicture.asset(
+                themeProvider.currentTheme == ThemeEnum.shifa ? SVGAssets.shifaIconText : SVGAssets.leksellAuth),
             SizedBox(height: 42.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Welcome Back!",
-                    style: TextStyle(
+                    style: TextStyles.nexaRegular.copyWith(
                         fontWeight: FontWeight.bold,
                         //fontFamily: FontsAssets.Nexa,
                         color: themeProvider.currentThemeData!.primaryColor,
@@ -79,13 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   PhoneNumberField(
                     controller: phoneController,
                     isValid: isValid,
-                    // onInputChanged: (PhoneNumber number) {
-                    //   print(number.phoneNumber);
-                    //   setState(() {
-                    //     isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
-                    //   });
-                    //   return;
-                    // },
+                    onInputChanged: (PhoneNumber number) {
+                      setState(() {
+                        isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
+                      });
+                      return;
+                    },
                   ),
                   FormBuilder(
                     key: _formKey,
@@ -93,12 +94,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         SizedBox(height: 24.h),
-                        // PasswordTextField(
-                        //   labelText: 'Password',
-                        //   name: 'password',
-                        //   controller: controller,
-                        //   hintText: 'Enter your password',
-                        // ),
+                        PasswordTextField(
+                          labelText: 'Password',
+                          name: 'password',
+                          controller: controller,
+                          isRequired: true,
+                          hintText: 'Enter your password',
+                        ),
                         SizedBox(height: 16.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -109,8 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               },
                               child: Text('Forgot Password?',
                                   style: TextStyles.nexaRegular.copyWith(
-                                      color: themeProvider
-                                          .currentThemeData!.primaryColor,
+                                      color: themeProvider.currentThemeData!.primaryColor,
                                       fontSize: 12,
                                       //fontFamily: FontsAssets.Nexa,
                                       fontWeight: FontWeight.w400)),
@@ -126,13 +127,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (!formState.saveAndValidate()) {
                               return;
                             }
-                            if (isValid && phoneController.text.isNotEmpty) {
-                              Navigator.pushReplacementNamed(
-                                  context, AppRoutes.home);
-                            } else {
+                            if (phoneController.text.isEmpty) {
                               setState(() {
                                 isValid = false;
                               });
+                            } else if (isValid && phoneController.text.isNotEmpty) {
+                              Navigator.pushReplacementNamed(context, AppRoutes.home);
                             }
                           },
                         ),
@@ -182,16 +182,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, AppRoutes.home);
+                                Navigator.pushReplacementNamed(context, AppRoutes.home);
                               },
                               child: Text(
                                 ' Create account',
                                 style: TextStyles.nexaRegular.copyWith(
-                                  color: themeProvider
-                                      .currentThemeData!.primaryColor,
+                                  color: themeProvider.currentThemeData!.primaryColor,
                                   fontSize: 12,
-                                  //fontFamily: FontsAssets.Nexa,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
