@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_button.dart';
@@ -143,6 +144,12 @@ class AppointmentCard extends StatelessWidget {
                   title: tabSelectedIndex == 0
                       ? "Cancel Your Visit"
                       : "Rate Your Visit",
+                  onpress: () {
+                    if (tabSelectedIndex == 0) {
+                    } else {
+                      Navigator.pushNamed(context, AppRoutes.rateYourVisit);
+                    }
+                  },
                 ),
                 CustomButton(
                   width: 143.w,
