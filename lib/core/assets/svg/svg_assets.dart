@@ -65,4 +65,5 @@ class SVGAssets {
   static const String location = "assets/svg/icons/location.svg";
   static const String email = "assets/svg/icons/email.svg";
   static const String call = "assets/svg/icons/call.svg";
+  static const String star = "assets/svg/icons/star.svg";
 }

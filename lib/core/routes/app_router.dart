@@ -5,6 +5,7 @@ import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
+import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
@@ -43,12 +44,14 @@ class AppRouter {
 
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-        case AppRoutes.verifyOTP:
+      case AppRoutes.verifyOTP:
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
       case AppRoutes.booking:
         return MaterialPageRoute(builder: (_) => BookingScreen());
+      case AppRoutes.rateYourVisit:
+        return MaterialPageRoute(builder: (_) => RateYourVisitScreen());
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;
         return MaterialPageRoute(
