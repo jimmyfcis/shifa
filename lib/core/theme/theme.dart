@@ -18,12 +18,12 @@ class AppTheme {
   static const Color green2Color = Color(0xFF);
   static const Color shifaPrimaryColor = Color(0xFF008D5C);
   static const Color green4Color = Color(0xFFEEF7F4);
-  static const Color green3Color = Color(0xFF);
-  static const Color grey2Color = Color(0xFF);
   static const Color grey5Color = Color(0xFF4F4F4F);
+  static const Color grey6Color = Color(0xFF454545);
   static const Color blackColor = Color(0xFF000000);
   static const Color textBlackColor = Color(0xFF101623);
   static const Color whiteColor = Color(0xFFffffff);
+  static const Color errorColor = Color(0xFFE53935);
 }
 
 ThemeData shifaThemeData = ThemeData(

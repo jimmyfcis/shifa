@@ -28,6 +28,7 @@ class WaterMark extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      backgroundColor: AppTheme.onBoardingBG,
       body: Stack(
         children: [
           Center(
