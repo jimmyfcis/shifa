@@ -66,4 +66,20 @@ class SVGAssets {
   static const String email = "assets/svg/icons/email.svg";
   static const String call = "assets/svg/icons/call.svg";
   static const String star = "assets/svg/icons/star.svg";
+  static const String clincsLeksellIcon =
+      "assets/svg/icons/clinics_leksell.svg";
+  static const String clincsShifaIcon = "assets/svg/icons/service1.svg";
+  static const String medicineLeksellIcon =
+      "assets/svg/icons/medicine_leksell.svg";
+  static const String medicineShifaIcon =
+      "assets/svg/icons/medicine_reminder.svg";
+  static const String vaccineLeksellIcon =
+      "assets/svg/icons/vaccine_leksell.svg";
+  static const String vaccineShifaIcon =
+      "assets/svg/icons/vaccine_reminder.svg";
+  static const String careLeksellIcon = "assets/svg/icons/care_leksell.svg";
+  static const String careShifaIcon = "assets/svg/icons/care_reminder.svg";
+  static const String labsLeksellIcon = "assets/svg/icons/labs_leksell.svg";
+  static const String labShifaIcon = "assets/svg/icons/lab_test.svg";
+  static const String radiologyIcon = "assets/svg/icons/radio_icon.svg";
 }
