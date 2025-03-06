@@ -4,6 +4,7 @@ import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
+import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
@@ -32,6 +33,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
+      case AppRoutes.myCare:
+        return MaterialPageRoute(builder: (_) => MyCareScreen());
 
       case AppRoutes.privacyPolicy:
         return MaterialPageRoute(builder: (_) => PrivacyPolicyScreen());

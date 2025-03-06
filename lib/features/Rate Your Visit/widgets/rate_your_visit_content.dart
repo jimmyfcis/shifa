@@ -73,14 +73,14 @@ class RateYourVisitContent extends StatelessWidget {
                         fillColor: Colors.white,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: AppTheme.greyColor,
                             width: 1.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: AppTheme.greyColor,
                             width: 1.0,
                           ),
