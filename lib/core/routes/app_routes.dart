@@ -15,6 +15,8 @@ class AppRoutes {
   static const String blogs = '/blogs';
   static const String blogDetails = '/blogDetails';
   static const String myProfile = '/myProfile';
+  static const String radiology = '/radiology';
+  static const String radiologyDetail = '/radiologyDetail';
 
   static const String login = '/login';
   static const String verifyOTP = '/verifyOTP';

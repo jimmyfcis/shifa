@@ -1,5 +1,6 @@
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/models/blog_model.dart';
+import 'package:shifa/core/models/radiolog_model.dart';
 
 class AppConstants {
   static const String lognText =
@@ -39,6 +40,33 @@ class AppConstants {
           "is simply dummy text of the printing and typesetting industry.",
       title:
           "The 25 Healthiest Fruits You Can Eat, According to a Nutritionist",
+    ),
+  ];
+
+  List<RadiologyModel> radiologyList = [
+    RadiologyModel(
+      date: "21 Oct, 2024",
+      status: "Completed",
+      title: "MRI for Brain",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+    RadiologyModel(
+      date: "21 Aug, 2024",
+      status: "Completed",
+      title: "MRI for Brain",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+    RadiologyModel(
+      status: "Completed",
+      title: "MRI for Brain",
+      date: "21 Sep, 2024",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+    RadiologyModel(
+      status: "Completed",
+      title: "MRI for Brain",
+      date: "21 Jun, 2024",
+      doctorName: "Dr.Fady Mohamed Nabil",
     ),
   ];
 }
