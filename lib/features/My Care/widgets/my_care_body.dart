@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/My%20Care/widgets/my_care_card.dart';
 
@@ -23,6 +26,9 @@ class MyCareBody extends StatelessWidget {
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.clincsLeksellIcon
                   : SVGAssets.clincsShifaIcon,
+              onTap: () {
+                log("My Records");
+              },
             ),
             SizedBox(
               height: 16.h,
@@ -32,6 +38,9 @@ class MyCareBody extends StatelessWidget {
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.medicineLeksellIcon
                   : SVGAssets.medicineShifaIcon,
+              onTap: () {
+                log("Medication Reminder");
+              },
             ),
             SizedBox(
               height: 16.h,
@@ -41,6 +50,9 @@ class MyCareBody extends StatelessWidget {
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.vaccineLeksellIcon
                   : SVGAssets.vaccineShifaIcon,
+              onTap: () {
+                log("Vaccine Reminder");
+              },
             ),
             SizedBox(
               height: 16.h,
@@ -50,6 +62,9 @@ class MyCareBody extends StatelessWidget {
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.careLeksellIcon
                   : SVGAssets.careShifaIcon,
+              onTap: () {
+                log("Care Reminder");
+              },
             ),
             SizedBox(
               height: 16.h,
@@ -59,12 +74,21 @@ class MyCareBody extends StatelessWidget {
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.labsLeksellIcon
                   : SVGAssets.labShifaIcon,
+              onTap: () {
+                log("Lab Tests");
+              },
             ),
             SizedBox(
               height: 16.h,
             ),
-            const MyCareCard(
-                title: "Radiology", svgIcon: SVGAssets.radiologyIcon),
+            MyCareCard(
+              title: "Radiology",
+              svgIcon: SVGAssets.radiologyIcon,
+              onTap: () {
+                log("Radiology");
+                Navigator.pushNamed(context, AppRoutes.radiology);
+              },
+            ),
             SizedBox(
               height: 16.h,
             ),

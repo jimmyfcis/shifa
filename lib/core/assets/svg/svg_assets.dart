@@ -83,4 +83,6 @@ class SVGAssets {
   static const String labsLeksellIcon = "assets/svg/icons/labs_leksell.svg";
   static const String labShifaIcon = "assets/svg/icons/lab_test.svg";
   static const String radiologyIcon = "assets/svg/icons/radio_icon.svg";
+  static const String stethoscopeIcon = "assets/svg/icons/Stethoscope.svg";
+  static const String downloadIcon = "assets/svg/icons/download.svg";
 }
