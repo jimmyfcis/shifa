@@ -18,22 +18,26 @@ class _AuthAppbarState extends State<AuthAppbar> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppTheme.onBoardingBG,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            height: 44.h,
-            width: 44.w,
-            decoration: BoxDecoration(
-              color: AppTheme.whiteColor,
-              border: Border.all(color: AppTheme.greyColor),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Image.asset(
-              Assets.arrowLeft,
-              width: 24.w,
-              height: 24.h,
+        leadingWidth: 100.w,
+        leading: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+          child: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              height: 44.h,
+              width: 44.w,
+              decoration: BoxDecoration(
+                color: AppTheme.whiteColor,
+                border: Border.all(color: AppTheme.greyColor),
+                borderRadius: BorderRadius.circular(16.r),
+              ),
+              child: Image.asset(
+                Assets.arrowLeft,
+                width: 24.w,
+                height: 24.h,
+              ),
             ),
           ),
         ),
