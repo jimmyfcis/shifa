@@ -17,5 +17,6 @@ class AppRoutes {
   static const String myProfile = '/myProfile';
 
   static const String login = '/login';
+  static const String register = '/register';
   static const String verifyOTP = '/verifyOTP';
 }
