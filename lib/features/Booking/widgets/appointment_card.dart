@@ -7,7 +7,8 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/widgtes/custom_button.dart';
+import 'package:shifa/core/widgtes/custom_green_button.dart';
+import 'package:shifa/core/widgtes/custom_white_button.dart';
 
 class AppointmentCard extends StatelessWidget {
   final int tabSelectedIndex;
@@ -129,41 +130,24 @@ class AppointmentCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomButton(
-                  width: 143.w,
-                  buttonColor: Colors.transparent,
-                  borderColor: themeProvider.currentTheme == ThemeEnum.shifa
-                      ? AppTheme.shifaPrimaryColor
-                      : AppTheme.leksellPrimaryColor,
-                  height: 42.h,
-                  borderRadius: 8.r,
-                  fontSize: 14.sp,
-                  textColor: themeProvider.currentTheme == ThemeEnum.shifa
-                      ? AppTheme.shifaPrimaryColor
-                      : AppTheme.leksellPrimaryColor,
-                  title: tabSelectedIndex == 0
-                      ? "Cancel Your Visit"
-                      : "Rate Your Visit",
-                  onpress: () {
-                    if (tabSelectedIndex == 0) {
-                    } else {
+                Expanded(
+                  child: CustomWhiteButton(
+                    title: tabSelectedIndex == 0
+                        ? "Cancel Your Visit"
+                        : "Rate Your Visit",
+                    onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.rateYourVisit);
-                    }
-                  },
+                    },
+                  ),
                 ),
-                CustomButton(
-                  width: 143.w,
-                  buttonColor: themeProvider.currentTheme == ThemeEnum.shifa
-                      ? AppTheme.shifaPrimaryColor
-                      : AppTheme.leksellPrimaryColor,
-                  borderColor: themeProvider.currentTheme == ThemeEnum.shifa
-                      ? AppTheme.shifaPrimaryColor
-                      : AppTheme.leksellPrimaryColor,
-                  height: 42.h,
-                  borderRadius: 8.r,
-                  fontSize: 14.sp,
-                  textColor: AppTheme.whiteColor,
-                  title: tabSelectedIndex == 0 ? "Reschedule" : "Book Again",
+                SizedBox(
+                  width: 16.w,
+                ),
+                Expanded(
+                  child: CustomGreenButton(
+                    title: tabSelectedIndex == 0 ? "Reschedule" : "Book Again",
+                    fontSize: 14,
+                  ),
                 )
               ],
             )
