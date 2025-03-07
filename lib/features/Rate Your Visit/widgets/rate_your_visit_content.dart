@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_button.dart';
+import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/widgets/doctor_card.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/widgets/rating_title_bar.dart';
 
@@ -49,44 +49,11 @@ class RateYourVisitContent extends StatelessWidget {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text(
-                    "Write Your Notes",
-                    style: TextStyles.nexaRegular.copyWith(
-                      fontSize: 14.sp,
-                      color: AppTheme.primaryTextColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  SizedBox(
-                    height: 77.h,
-                    child: TextField(
-                      keyboardType: TextInputType.multiline,
-                      minLines: null,
-                      // Normal textInputField will be displayed
-                      maxLines: 5,
-                      // When user presses enter it will adapt to it
-                      decoration: InputDecoration(
-                        hintText: 'Enter your notes',
-                        filled: true,
-                        fillColor: Colors.white,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: const BorderSide(
-                            color: AppTheme.greyColor,
-                            width: 1.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: const BorderSide(
-                            color: AppTheme.greyColor,
-                            width: 1.0,
-                          ),
-                        ),
-                      ),
-                    ),
+                  const CustomTextField(
+                    name: "Write Your Notes",
+                    labelText: "Write Your Notes",
+                    maxLines: 3,
+                    hintText: "Enter Your Notes",
                   ),
                 ],
               ),
