@@ -4,6 +4,7 @@ import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
+import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
@@ -51,7 +52,7 @@ class AppRouter {
 
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-        case AppRoutes.register:
+      case AppRoutes.register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case AppRoutes.verifyOTP:
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
@@ -63,6 +64,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RateYourVisitScreen());
       case AppRoutes.radiology:
         return MaterialPageRoute(builder: (_) => RadiologyScreen());
+      case AppRoutes.clinics:
+        return MaterialPageRoute(builder: (_) => ClinicsScreen());
       case AppRoutes.radiologyDetail:
         return MaterialPageRoute(
             builder: (_) => RadiologyDetailsScreen(

@@ -8,11 +8,13 @@ import 'package:shifa/core/theme/theme.dart';
 class CommonAppBarTitle extends StatelessWidget {
   final String title;
   final Widget? actionButton;
+  final bool? hasBackButton;
 
   const CommonAppBarTitle({
     super.key,
     required this.title,
     this.actionButton,
+    this.hasBackButton = true,
   });
 
   @override
@@ -23,20 +25,23 @@ class CommonAppBarTitle extends StatelessWidget {
         horizontal: 24.w,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: (hasBackButton ?? true)
+            ? MainAxisAlignment.spaceBetween
+            : MainAxisAlignment.center,
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: SvgPicture.asset(
-              SVGAssets.arrowBack,
-              colorFilter: const ColorFilter.mode(
-                AppTheme.whiteColor,
-                BlendMode.srcIn,
+          if (hasBackButton ?? true)
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SvgPicture.asset(
+                SVGAssets.arrowBack,
+                colorFilter: const ColorFilter.mode(
+                  AppTheme.whiteColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
-          ),
           Center(
             child: Text(
               title,
@@ -46,7 +51,7 @@ class CommonAppBarTitle extends StatelessWidget {
               ),
             ),
           ),
-          actionButton ?? const SizedBox(),
+          if (hasBackButton ?? true) actionButton ?? const SizedBox(),
         ],
       ),
     );
