@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushReplacementNamed(context, AppRoutes.home);
+                                Navigator.pushReplacementNamed(context, AppRoutes.register);
                               },
                               child: Text(
                                 ' Create account',
@@ -207,15 +207,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  // void getPhoneNumber(String phoneNumber) async {
-  //   PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'EG');
-  //
-  //   setState(() {
-  //     this.number = number;
-  //   });
-  // }
-
   @override
   void dispose() {
     super.dispose();

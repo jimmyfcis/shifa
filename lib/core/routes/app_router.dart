@@ -19,6 +19,7 @@ import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
 import '../../features/Terms And Conditions/screens/terms_and_conditions_screen.dart';
+import '../../features/authentication/screens/register_screen.dart';
 import '../../features/authentication/screens/verify_code_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';
@@ -50,6 +51,8 @@ class AppRouter {
 
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+        case AppRoutes.register:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
       case AppRoutes.verifyOTP:
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
       case AppRoutes.blogs:
