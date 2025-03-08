@@ -61,10 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Welcome Back!",
-                    style: TextStyles.nexaRegular.copyWith(
+                    style: TextStyles.nexaBold.copyWith(
                         fontWeight: FontWeight.bold,
-                        //fontFamily: FontsAssets.Nexa,
-                        color: themeProvider.currentThemeData!.primaryColor,
+                        color: AppTheme.primaryTextColor,
                         fontSize: 24),
                   ),
                   SizedBox(height: 8.h),
@@ -107,13 +106,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.home);
+                                Navigator.pushNamed(context, AppRoutes.forgetPassword);
                               },
                               child: Text('Forgot Password?',
                                   style: TextStyles.nexaRegular.copyWith(
                                       color: themeProvider.currentThemeData!.primaryColor,
                                       fontSize: 12,
-                                      //fontFamily: FontsAssets.Nexa,
                                       fontWeight: FontWeight.w400)),
                             ),
                           ],

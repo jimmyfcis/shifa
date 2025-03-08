@@ -20,6 +20,7 @@ import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
 import '../../features/Terms And Conditions/screens/terms_and_conditions_screen.dart';
+import '../../features/authentication/screens/forget_password_screen.dart';
 import '../../features/authentication/screens/register_screen.dart';
 import '../../features/authentication/screens/verify_code_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
@@ -47,6 +48,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => TermsAndConditionsScreen());
       case AppRoutes.settings:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
+        case AppRoutes.forgetPassword:
+        return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
       case AppRoutes.contactUs:
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
 
