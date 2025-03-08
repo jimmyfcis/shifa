@@ -4,6 +4,7 @@ import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
+import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
@@ -48,7 +49,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => TermsAndConditionsScreen());
       case AppRoutes.settings:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
-        case AppRoutes.forgetPassword:
+      case AppRoutes.forgetPassword:
         return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
       case AppRoutes.contactUs:
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
@@ -69,6 +70,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RadiologyScreen());
       case AppRoutes.clinics:
         return MaterialPageRoute(builder: (_) => ClinicsScreen());
+      case AppRoutes.clinicDoctors:
+        var clinicName = settings.arguments as String;
+        return MaterialPageRoute(
+            builder: (_) => ClinicDoctorsScreen(
+                  clinicName: clinicName,
+                ));
       case AppRoutes.radiologyDetail:
         return MaterialPageRoute(
             builder: (_) => RadiologyDetailsScreen(
