@@ -1,6 +1,7 @@
 // core/theme/theme.dart
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shifa/core/theme/styles.dart';
 
 class AppTheme {
   static const Color leksellPrimaryColor = Color(0xFF4270B7);
@@ -30,22 +31,32 @@ class AppTheme {
 
 ThemeData shifaThemeData = ThemeData(
     primaryColor: AppTheme.shifaPrimaryColor,
+    primaryColorLight: AppTheme.shifaPrimaryColor,
+    primaryColorDark: AppTheme.shifaPrimaryColor,
     //fontFamily: "Nexa",
     datePickerTheme: DatePickerThemeData(
-      inputDecorationTheme: const InputDecorationTheme(
-        labelStyle: TextStyle(
+      dividerColor: AppTheme.shifaPrimaryColor,
+
+      rangeSelectionBackgroundColor:AppTheme.shifaPrimaryColor ,
+      // todayBackgroundColor: MaterialStateProperty.all(AppTheme.whiteColor),
+      todayForegroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+      // Text color for selected day
+      // dayForegroundColor:MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+      //  dayBackgroundColor:MaterialStateProperty.all(AppTheme.whiteColor) ,
+      dayOverlayColor: MaterialStateProperty.all(AppTheme.whiteColor),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyles.nexaRegular.copyWith(
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          color: AppTheme.shifaPrimaryColor,
+        ),
+        helperStyle: TextStyles.nexaRegular.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppTheme.shifaPrimaryColor,
           //fontFamily: FontsAssets.Nexa,
         ),
-        helperStyle: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w400,
-          color: AppTheme.shifaPrimaryColor,
-          //fontFamily: FontsAssets.Nexa,
-        ),
-        hintStyle: TextStyle(
+        hintStyle: TextStyles.nexaRegular.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppTheme.shifaPrimaryColor,
@@ -59,7 +70,7 @@ ThemeData shifaThemeData = ThemeData(
       cancelButtonStyle: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
         textStyle: MaterialStateProperty.all(
-          const TextStyle(
+          TextStyles.nexaRegular.copyWith(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: AppTheme.shifaPrimaryColor,
@@ -69,7 +80,7 @@ ThemeData shifaThemeData = ThemeData(
       ),
 
       //todayBackgroundColor: MaterialStateProperty.all(whiteColor),
-      yearStyle: const TextStyle(
+      yearStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: Colors.blueAccent,
@@ -78,15 +89,14 @@ ThemeData shifaThemeData = ThemeData(
       // todayBorder: const BorderSide(
       //   color: Colors.brown,
       // ),
-      headerHeadlineStyle: const TextStyle(
+      headerHeadlineStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Colors.yellow,
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -95,33 +105,28 @@ ThemeData shifaThemeData = ThemeData(
             ////fontFamily: FontsAssets.Nexa,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(
-            AppTheme.shifaPrimaryColor), // No ripple effect
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        backgroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor), // No ripple effect
+        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
-      dayStyle: const TextStyle(
+      dayStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: Colors.red,
-        ////fontFamily: FontsAssets.Nexa,
       ),
-      headerHelpStyle: const TextStyle(
+      headerHelpStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Colors.pinkAccent,
-        //fontFamily: FontsAssets.Nexa,
       ),
       dayShape: MaterialStateProperty.all(RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       )),
       // todayForegroundColor: MaterialStateProperty.all(primaryColor),
-      weekdayStyle: const TextStyle(
+      weekdayStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppTheme.primaryTextColor,
-        //fontFamily: FontsAssets.Nexa,
       ),
     ),
     buttonTheme: ButtonThemeData(
@@ -132,24 +137,23 @@ ThemeData leksellThemeData = ThemeData(
     primaryColor: AppTheme.leksellPrimaryColor,
     //fontFamily: "Nexa",
     datePickerTheme: DatePickerThemeData(
-      inputDecorationTheme: const InputDecorationTheme(
-        labelStyle: TextStyle(
+      todayBackgroundColor: MaterialStateProperty.all(AppTheme.whiteColor),
+      todayForegroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: TextStyles.nexaRegular.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppTheme.leksellPrimaryColor,
-          //fontFamily: FontsAssets.Nexa,
         ),
-        helperStyle: TextStyle(
+        helperStyle: TextStyles.nexaRegular.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppTheme.leksellPrimaryColor,
-          //fontFamily: FontsAssets.Nexa,
         ),
-        hintStyle: TextStyle(
+        hintStyle: TextStyles.nexaRegular.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.w400,
           color: AppTheme.leksellPrimaryColor,
-          // //fontFamily: FontsAssets.Nexa,
         ),
         constraints: BoxConstraints(
           minWidth: 0,
@@ -157,20 +161,18 @@ ThemeData leksellThemeData = ThemeData(
         ),
       ),
       cancelButtonStyle: ButtonStyle(
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
         textStyle: MaterialStateProperty.all(
-          const TextStyle(
+          TextStyles.nexaRegular.copyWith(
             fontSize: 12,
             fontWeight: FontWeight.w400,
             color: AppTheme.leksellPrimaryColor,
-            // //fontFamily: FontsAssets.Nexa,
           ),
         ), // No ripple effect
       ),
 
       //todayBackgroundColor: MaterialStateProperty.all(whiteColor),
-      yearStyle: const TextStyle(
+      yearStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: Colors.blueAccent,
@@ -179,15 +181,14 @@ ThemeData leksellThemeData = ThemeData(
       // todayBorder: const BorderSide(
       //   color: Colors.brown,
       // ),
-      headerHeadlineStyle: const TextStyle(
+      headerHeadlineStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Colors.yellow,
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -196,19 +197,17 @@ ThemeData leksellThemeData = ThemeData(
             ////fontFamily: FontsAssets.Nexa,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(
-            AppTheme.leksellPrimaryColor), // No ripple effect
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        backgroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor), // No ripple effect
+        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
-      dayStyle: const TextStyle(
+      dayStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: Colors.red,
         ////fontFamily: FontsAssets.Nexa,
       ),
-      headerHelpStyle: const TextStyle(
+      headerHelpStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: Colors.pinkAccent,
@@ -218,7 +217,7 @@ ThemeData leksellThemeData = ThemeData(
         borderRadius: BorderRadius.circular(8),
       )),
       // todayForegroundColor: MaterialStateProperty.all(primaryColor),
-      weekdayStyle: const TextStyle(
+      weekdayStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppTheme.primaryTextColor,

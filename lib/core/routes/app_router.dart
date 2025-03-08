@@ -17,6 +17,7 @@ import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
 
+import '../../features/My Profile/screens/edit_profile_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
 import '../../features/Terms And Conditions/screens/terms_and_conditions_screen.dart';
@@ -39,6 +40,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
+        case AppRoutes.editProfile:
+        return MaterialPageRoute(builder: (_) => EditMyProfileScreen());
       case AppRoutes.myCare:
         return MaterialPageRoute(builder: (_) => MyCareScreen());
 
@@ -81,7 +84,7 @@ class AppRouter {
                   blog: blog,
                 ));
       case AppRoutes.myProfile:
-        return MaterialPageRoute(builder: (_) => MyProfie());
+        return MaterialPageRoute(builder: (_) => MyProfile());
 
       default:
         return MaterialPageRoute(

@@ -4,6 +4,7 @@ class AppRoutes {
   static const String onboardingScreen = '/onboardingScreen';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String editProfile = '/editProfile';
   static const String booking = '/booking';
   static const String rateYourVisit = '/rateYourVisit';
   static const String myCare = '/myCare';

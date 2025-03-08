@@ -11,7 +11,7 @@ class UserNameAndPhoneNumber extends StatelessWidget {
     return Container(
       width: 327.w,
       decoration: BoxDecoration(
-        color: AppTheme.secondaryColorLeksell,
+        color: themeProvider.currentTheme==ThemeEnum.shifa?AppTheme.billColor:AppTheme.secondaryColorLeksell,
         borderRadius: BorderRadius.circular(8.r),
       ),
       padding: const EdgeInsets.all(16),
