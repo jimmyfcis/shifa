@@ -4,19 +4,17 @@ import 'package:provider/provider.dart';
 import '../theme/styles.dart';
 import '../theme/theme.dart';
 
-class CustomGreenButton extends StatefulWidget {
+class CustomWhiteButton extends StatefulWidget {
   final String? title;
-  final double? fontSize;
   final void Function()? onPressed;
 
-  const CustomGreenButton(
-      {super.key, this.title, this.onPressed, this.fontSize});
+  const CustomWhiteButton({super.key, this.title, this.onPressed});
 
   @override
-  State<CustomGreenButton> createState() => _CustomGreenButtonState();
+  State<CustomWhiteButton> createState() => _CustomWhiteButtonState();
 }
 
-class _CustomGreenButtonState extends State<CustomGreenButton> {
+class _CustomWhiteButtonState extends State<CustomWhiteButton> {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -25,8 +23,8 @@ class _CustomGreenButtonState extends State<CustomGreenButton> {
       child: ElevatedButton(
           style: ButtonStyle(
             elevation: MaterialStateProperty.all<double>(0),
-            backgroundColor: MaterialStateProperty.all<Color>(
-                themeProvider.currentThemeData!.primaryColor),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.transparent),
             shadowColor: MaterialStateProperty.all<Color>(AppTheme.green4Color),
             overlayColor:
                 MaterialStateProperty.all<Color>(AppTheme.green4Color),
@@ -44,8 +42,8 @@ class _CustomGreenButtonState extends State<CustomGreenButton> {
             child: Text(
               widget.title ?? "Next",
               style: TextStyles.nexaRegular.copyWith(
-                color: AppTheme.whiteColor,
-                fontSize: widget.fontSize ?? 16,
+                color: themeProvider.currentThemeData!.primaryColor,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
             ),

@@ -1,5 +1,7 @@
 import 'package:shifa/core/assets/images/image_assets.dart';
+import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/models/blog_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 import 'package:shifa/core/models/radiolog_model.dart';
 
 class AppConstants {
@@ -67,6 +69,72 @@ class AppConstants {
       title: "MRI for Brain",
       date: "21 Jun, 2024",
       doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+  ];
+  List<ClinicModel> clinics = [
+    ClinicModel(
+      clinicName: "Internal Medicine",
+      clinicIcon: SVGAssets.internalMedicineIcon,
+    ),
+    ClinicModel(
+      clinicName: "Chest Diseases",
+      clinicIcon: SVGAssets.chestIcon,
+    ),
+    ClinicModel(
+      clinicName: "Ear, Nose & Throat",
+      clinicIcon: SVGAssets.earIcon,
+    ),
+    ClinicModel(
+      clinicName: "Cardiology",
+      clinicIcon: SVGAssets.cardioIcon,
+    ),
+    ClinicModel(
+      clinicName: "Neurology",
+      clinicIcon: SVGAssets.neurologyIcon,
+    ),
+    ClinicModel(
+      clinicName: "Neurosurgery",
+      clinicIcon: SVGAssets.neurosurgeryIcon,
+    ),
+    ClinicModel(
+      clinicName: "Diabetes and Endocrinology",
+      clinicIcon: SVGAssets.diabitesIcon,
+    ),
+    ClinicModel(
+      clinicName: "General Surgery",
+      clinicIcon: SVGAssets.generalSurgeryIcon,
+    ),
+    ClinicModel(
+      clinicName: "Obstetrics & Gynecology",
+      clinicIcon: SVGAssets.obstetricsIcon,
+    ),
+    ClinicModel(
+      clinicName: "Orthopedic",
+      clinicIcon: SVGAssets.orthopedicIcon,
+    ),
+    ClinicModel(
+      clinicName: "Ophthalmology",
+      clinicIcon: SVGAssets.opthIcon,
+    ),
+    ClinicModel(
+      clinicName: "Nephrology",
+      clinicIcon: SVGAssets.nephroIcon,
+    ),
+    ClinicModel(
+      clinicName: "Pediatrics",
+      clinicIcon: SVGAssets.pediatricsIcon,
+    ),
+    ClinicModel(
+      clinicName: "Immunology & Allergy",
+      clinicIcon: SVGAssets.imuunologyIcon,
+    ),
+    ClinicModel(
+      clinicName: "Geriatrics",
+      clinicIcon: SVGAssets.geriaticsIcon,
+    ),
+    ClinicModel(
+      clinicName: "Pain Management",
+      clinicIcon: SVGAssets.painIcon,
     ),
   ];
 }

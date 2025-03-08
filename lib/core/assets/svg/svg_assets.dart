@@ -85,4 +85,32 @@ class SVGAssets {
   static const String radiologyIcon = "assets/svg/icons/radio_icon.svg";
   static const String stethoscopeIcon = "assets/svg/icons/Stethoscope.svg";
   static const String downloadIcon = "assets/svg/icons/download.svg";
+  static const String audiologyIcon = "assets/svg/icons/audiology.svg";
+  static const String brestCancerIcon = "assets/svg/icons/brest.svg";
+  static const String chestIcon = "assets/svg/icons/chest.svg";
+  static const String dentalIcon = "assets/svg/icons/dental.svg";
+  static const String dermatoIcon = "assets/svg/icons/dermato.svg";
+  static const String earIcon = "assets/svg/icons/ear.svg";
+  static const String generalSurgeryIcon = "assets/svg/icons/general.svg";
+  static const String cardioIcon = "assets/svg/icons/cardio.svg";
+  static const String diabitesIcon = "assets/svg/icons/diabites.svg";
+  static const String geriaticsIcon = "assets/svg/icons/geriatics.svg";
+  static const String hematologyIcon = "assets/svg/icons/hematology.svg";
+  static const String imuunologyIcon = "assets/svg/icons/imuunology.svg";
+  static const String internalMedicineIcon =
+      "assets/svg/icons/internal_medicine.svg";
+  static const String jointsIcon = "assets/svg/icons/joints.svg";
+  static const String neurosurgeryIcon = "assets/svg/icons/neurosurgery.svg";
+  static const String neurologyIcon = "assets/svg/icons/neuro.svg";
+  static const String nuritionIcon = "assets/svg/icons/nurition.svg";
+  static const String obstetricsIcon = "assets/svg/icons/obstetrics.svg";
+  static const String oncologyIcon = "assets/svg/icons/oncology.svg";
+  static const String opthIcon = "assets/svg/icons/opth.svg";
+  static const String orthopedicIcon = "assets/svg/icons/orthopedic.svg";
+  static const String painIcon = "assets/svg/icons/pain.svg";
+  static const String pediatricsIcon = "assets/svg/icons/pediatrics.svg";
+  static const String radiologyClinicIcon = "assets/svg/icons/radiology.svg";
+  static const String urologyIcon = "assets/svg/icons/urology.svg";
+  static const String vascularIcon = "assets/svg/icons/vascular.svg";
+  static const String nephroIcon = "assets/svg/icons/nephro.svg";
 }

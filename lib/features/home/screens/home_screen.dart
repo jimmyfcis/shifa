@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
+import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 
 import '../../Profile/screens/profile_screen.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     const Center(child: Text("Home Page")),
     const BookingScreen(),
-    const Center(child: Text("Notifications Page")),
+    const ClinicsScreen(),
     const MyCareScreen(),
     const ProfileScreen(),
   ];

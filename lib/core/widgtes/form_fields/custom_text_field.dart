@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
 import '../../utils/validators.dart';
@@ -17,6 +18,8 @@ class CustomTextField extends StatelessWidget {
   final ValueChanged<String?>? onChanged;
   final int maxLines;
   final TextInputType textInputType;
+  final Widget? prefixIcon;
+  final bool? hasName;
 
   const CustomTextField({
     Key? key,
@@ -29,6 +32,8 @@ class CustomTextField extends StatelessWidget {
     this.isRequired = false,
     this.onChanged,
     this.textInputType = TextInputType.text,
+    this.hasName,
+    this.prefixIcon,
     this.maxLines = 1,
   }) : super(key: key);
 
@@ -37,15 +42,17 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          isRequired ? "$labelText*" : labelText,
-          style: TextStyles.nexaRegular.copyWith(
-            fontWeight: FontWeight.w400,
-            color: AppTheme.primaryTextColor,
-            fontSize: 14,
+        if (hasName ?? true) ...[
+          Text(
+            isRequired ? "$labelText*" : labelText,
+            style: TextStyles.nexaRegular.copyWith(
+              fontWeight: FontWeight.w400,
+              color: AppTheme.primaryTextColor,
+              fontSize: 14,
+            ),
           ),
-        ),
-        SizedBox(height: 10.h),
+          SizedBox(height: 10.h),
+        ],
         FormBuilderTextField(
           initialValue: initialValue,
           enabled: enabled,
@@ -57,6 +64,7 @@ class CustomTextField extends StatelessWidget {
           keyboardType: textInputType,
           decoration: InputDecoration(
             fillColor: AppTheme.whiteColor,
+            prefixIcon: prefixIcon,
             filled: true,
             errorStyle: TextStyles.nexaRegular.copyWith(
               fontWeight: FontWeight.w400,
@@ -65,7 +73,7 @@ class CustomTextField extends StatelessWidget {
             ),
             errorBorder: UnderlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide:  BorderSide(color: AppTheme.errorColor, width: 1),
+              borderSide: BorderSide(color: AppTheme.errorColor, width: 1),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
@@ -90,8 +98,10 @@ class CustomTextField extends StatelessWidget {
           // valueTransformer: (text) => num.tryParse(text),
           validator: FormBuilderValidators.compose(
             <String? Function(String?)>[
-              if (isRequired) (value) => Validators.isNotNullNorEmpty(value, labelText),
-              for (final validator in validators) (value) => validator(value, labelText),
+              if (isRequired)
+                (value) => Validators.isNotNullNorEmpty(value, labelText),
+              for (final validator in validators)
+                (value) => validator(value, labelText),
             ],
           ),
           onChanged: onChanged,
