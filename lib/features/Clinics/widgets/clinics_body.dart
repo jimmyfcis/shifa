@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
@@ -37,12 +38,21 @@ class ClinicsBody extends StatelessWidget {
               child: GridView.builder(
                 itemCount: AppConstants().clinics.length,
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   childAspectRatio: 0.75,
                 ),
-                itemBuilder: (context, index) => ClinicItem(
-                  clinic: AppConstants().clinics[index],
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.clinicDoctors,
+                      arguments: AppConstants().clinics[index].clinicName,
+                    );
+                  },
+                  child: ClinicItem(
+                    clinic: AppConstants().clinics[index],
+                  ),
                 ),
               ),
             ),

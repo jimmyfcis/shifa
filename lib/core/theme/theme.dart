@@ -24,6 +24,7 @@ class AppTheme {
   static const Color grey6Color = Color(0xFF454545);
   static const Color grey7Color = Color(0xFF939F9B);
   static const Color blackColor = Color(0xFF000000);
+  static const Color black2Color = Color(0xFF292D32);
   static const Color textBlackColor = Color(0xFF101623);
   static const Color whiteColor = Color(0xFFffffff);
   static const Color errorColor = Color(0xFFE53935);
@@ -34,6 +35,9 @@ ThemeData shifaThemeData = ThemeData(
     primaryColorLight: AppTheme.shifaPrimaryColor,
     primaryColorDark: AppTheme.shifaPrimaryColor,
     //fontFamily: "Nexa",
+    listTileTheme: const ListTileThemeData(
+      horizontalTitleGap: 4,
+    ),
     datePickerTheme: DatePickerThemeData(
       dividerColor: AppTheme.shifaPrimaryColor,
 
@@ -123,6 +127,12 @@ ThemeData shifaThemeData = ThemeData(
         borderRadius: BorderRadius.circular(8),
       )),
       // todayForegroundColor: MaterialStateProperty.all(primaryColor),
+
+      todayBackgroundColor:
+          MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+
+      weekdayStyle: const TextStyle(
+
       weekdayStyle: TextStyles.nexaRegular.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w400,
@@ -136,6 +146,9 @@ ThemeData shifaThemeData = ThemeData(
 ThemeData leksellThemeData = ThemeData(
     primaryColor: AppTheme.leksellPrimaryColor,
     //fontFamily: "Nexa",
+    listTileTheme: const ListTileThemeData(
+      horizontalTitleGap: 4,
+    ),
     datePickerTheme: DatePickerThemeData(
       todayBackgroundColor: MaterialStateProperty.all(AppTheme.whiteColor),
       todayForegroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
@@ -172,7 +185,13 @@ ThemeData leksellThemeData = ThemeData(
       ),
 
       //todayBackgroundColor: MaterialStateProperty.all(whiteColor),
+
+      todayBackgroundColor:
+          MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+      yearStyle: const TextStyle(
+
       yearStyle: TextStyles.nexaRegular.copyWith(
+
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: Colors.blueAccent,

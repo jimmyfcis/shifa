@@ -9,12 +9,16 @@ class CommonAppBarTitle extends StatelessWidget {
   final String title;
   final Widget? actionButton;
   final bool? hasBackButton;
+  final Color? textColor;
+  final Color? iconColor;
 
   const CommonAppBarTitle({
     super.key,
     required this.title,
     this.actionButton,
     this.hasBackButton = true,
+    this.textColor,
+    this.iconColor,
   });
 
   @override
@@ -36,8 +40,8 @@ class CommonAppBarTitle extends StatelessWidget {
               },
               child: SvgPicture.asset(
                 SVGAssets.arrowBack,
-                colorFilter: const ColorFilter.mode(
-                  AppTheme.whiteColor,
+                colorFilter: ColorFilter.mode(
+                  iconColor ?? AppTheme.whiteColor,
                   BlendMode.srcIn,
                 ),
               ),
@@ -46,7 +50,7 @@ class CommonAppBarTitle extends StatelessWidget {
             child: Text(
               title,
               style: TextStyles.nexaBold.copyWith(
-                color: AppTheme.whiteColor,
+                color: textColor ?? AppTheme.whiteColor,
                 fontSize: 18,
               ),
             ),

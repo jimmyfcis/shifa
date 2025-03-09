@@ -55,6 +55,9 @@ class SVGAssets {
   static const String facebook = "assets/svg/icons/facebook.svg";
   static const String apple = "assets/svg/icons/apple.svg";
   static const String clock = "assets/svg/icons/clock.svg";
+  static const String filterIcon = "assets/svg/icons/filter.svg";
+  static const String sortIcon = "assets/svg/icons/sort.svg";
+  static const String calendarIcon = "assets/svg/icons/calendar.svg";
 
   static const String medicalInsuranceIcon = "assets/svg/icons/medical.svg";
   static const String myFavoriteIcon = "assets/svg/icons/favourites.svg";
@@ -68,6 +71,7 @@ class SVGAssets {
   static const String email = "assets/svg/icons/email.svg";
   static const String call = "assets/svg/icons/call.svg";
   static const String star = "assets/svg/icons/star.svg";
+  static const String money = "assets/svg/icons/money.svg";
   static const String clincsLeksellIcon =
       "assets/svg/icons/clinics_leksell.svg";
   static const String clincsShifaIcon = "assets/svg/icons/service1.svg";

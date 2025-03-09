@@ -9,6 +9,7 @@ class AppRoutes {
   static const String rateYourVisit = '/rateYourVisit';
   static const String myCare = '/myCare';
   static const String clinics = '/clinics';
+  static const String clinicDoctors = '/clinicDoctors';
 
   static const String privacyPolicy = '/privacyPolicy';
   static const String termsAndConditions = '/termsAndConditions';
