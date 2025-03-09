@@ -1,6 +1,7 @@
 class Assets {
   static const String logoAnimation = "assets/logo_animation.json";
   static const String arrowLeft = "assets/arrow-left.png";
+  static const String calendarForm= "assets/calendar_form.png";
 }
 
 class SVGAssets {
