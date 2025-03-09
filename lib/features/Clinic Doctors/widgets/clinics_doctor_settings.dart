@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
+import 'package:shifa/features/Clinic%20Doctors/widgets/filter_by_bottom_sheet.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/sort_by_bottom_sheet.dart';
 
 import 'custom_icon_container.dart';
@@ -58,7 +59,9 @@ class ClinicsDoctorSettings extends StatelessWidget {
             CustomIconContainer(
               icon: SVGAssets.filterIcon,
               label: "Filter by",
-              onTap: () {},
+              onTap: () {
+                showFilterByBottomSheet(context);
+              },
             ),
             SizedBox(
               width: 8.w,

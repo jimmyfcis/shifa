@@ -7,8 +7,10 @@ import '../theme/theme.dart';
 class CustomWhiteButton extends StatefulWidget {
   final String? title;
   final void Function()? onPressed;
+  final double? fontSize;
 
-  const CustomWhiteButton({super.key, this.title, this.onPressed});
+  const CustomWhiteButton(
+      {super.key, this.title, this.onPressed, this.fontSize});
 
   @override
   State<CustomWhiteButton> createState() => _CustomWhiteButtonState();
@@ -41,9 +43,9 @@ class _CustomWhiteButtonState extends State<CustomWhiteButton> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               widget.title ?? "Next",
-              style: TextStyles.nexaRegular.copyWith(
+              style: TextStyles.nexaBold.copyWith(
                 color: themeProvider.currentThemeData!.primaryColor,
-                fontSize: 14,
+                fontSize: widget.fontSize ?? 14,
                 fontWeight: FontWeight.w400,
               ),
             ),

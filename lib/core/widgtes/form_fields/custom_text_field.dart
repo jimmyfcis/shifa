@@ -10,6 +10,7 @@ import '../../utils/validators.dart';
 class CustomTextField extends StatelessWidget {
   final String? initialValue;
   final bool enabled;
+  final bool? readOnly;
   final String name;
   final String labelText;
   final String? hintText;
@@ -19,8 +20,10 @@ class CustomTextField extends StatelessWidget {
   final int maxLines;
   final TextInputType textInputType;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final bool? hasName;
   final double? textFieldHeight;
+  final VoidCallback? onTap;
 
   const CustomTextField({
     Key? key,
@@ -29,13 +32,16 @@ class CustomTextField extends StatelessWidget {
     required this.name,
     required this.labelText,
     this.hintText,
+    this.readOnly,
     this.validators = const [],
     this.isRequired = false,
     this.onChanged,
     this.textInputType = TextInputType.text,
     this.hasName,
     this.prefixIcon,
+    this.suffixIcon,
     this.textFieldHeight,
+    this.onTap,
     this.maxLines = 1,
   }) : super(key: key);
 
@@ -59,7 +65,9 @@ class CustomTextField extends StatelessWidget {
           height: textFieldHeight ?? 40.h,
           child: FormBuilderTextField(
             initialValue: initialValue,
+            onTap: onTap,
             enabled: enabled,
+            readOnly: readOnly ?? false,
             name: name,
             maxLines: maxLines,
             style: TextStyle(
@@ -68,6 +76,7 @@ class CustomTextField extends StatelessWidget {
             keyboardType: textInputType,
             decoration: InputDecoration(
               fillColor: AppTheme.whiteColor,
+              suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               filled: true,
               errorStyle: TextStyles.nexaRegular.copyWith(

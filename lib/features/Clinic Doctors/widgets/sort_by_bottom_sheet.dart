@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/widgtes/custom_green_button.dart';
 
 void showSortByBottomSheet(BuildContext context) {
   showModalBottomSheet(
@@ -56,6 +55,9 @@ void showSortByBottomSheet(BuildContext context) {
                           setState(() {
                             _selectedOption = value;
                           });
+                          Future.delayed(const Duration(seconds: 1), () {
+                            Navigator.pop(context);
+                          });
                         },
                       ),
                       RadioListTile<String>(
@@ -68,6 +70,9 @@ void showSortByBottomSheet(BuildContext context) {
                         onChanged: (String? value) {
                           setState(() {
                             _selectedOption = value;
+                          });
+                          Future.delayed(const Duration(seconds: 1), () {
+                            Navigator.pop(context);
                           });
                         },
                       ),
@@ -82,6 +87,9 @@ void showSortByBottomSheet(BuildContext context) {
                           setState(() {
                             _selectedOption = value;
                           });
+                          Future.delayed(const Duration(seconds: 1), () {
+                            Navigator.pop(context);
+                          });
                         },
                       ),
                       RadioListTile<String>(
@@ -95,16 +103,13 @@ void showSortByBottomSheet(BuildContext context) {
                           setState(() {
                             _selectedOption = value;
                           });
+                          Future.delayed(const Duration(seconds: 1), () {
+                            Navigator.pop(context);
+                          });
                         },
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.h),
-                  if (_selectedOption != null)
-                    CustomGreenButton(
-                      title: 'Sort',
-                      fontSize: 16.sp,
-                    ),
                 ],
               ),
             ),

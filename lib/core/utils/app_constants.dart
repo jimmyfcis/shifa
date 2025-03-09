@@ -137,4 +137,30 @@ class AppConstants {
       clinicIcon: SVGAssets.painIcon,
     ),
   ];
+  List<String> specialities = [
+    "Internal Medicine",
+    "Chest Diseases",
+    "Ear, Nose & Throat",
+    "Cardiology",
+    "Neurology",
+    "Neurosurgery",
+    "Diabetes and Endocrinology",
+    "General Surgery",
+    "Obstetrics & Gynecology",
+    "Orthopedic",
+    "Ophthalmology",
+    "Nephrology",
+    "Pediatrics",
+    "Immunology & Allergy",
+    "Geriatrics",
+    "Pain Management",
+  ];
+
+  List<String> doctorsJobTitle = [
+    "Doctor",
+    "Professor Doctor",
+    "Assistant Professor",
+    "Consultant Physician",
+    "Specialist Doctor",
+  ];
 }
