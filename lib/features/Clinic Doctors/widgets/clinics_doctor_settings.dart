@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
+import 'package:shifa/features/Clinic%20Doctors/widgets/sort_by_bottom_sheet.dart';
 
 import 'custom_icon_container.dart';
 
@@ -12,6 +14,7 @@ class ClinicsDoctorSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         CustomTextField(
@@ -34,23 +37,38 @@ class ClinicsDoctorSettings extends StatelessWidget {
         ),
         Row(
           children: [
-            const CustomIconContainer(
+            CustomIconContainer(
               icon: SVGAssets.calendarIcon,
-              label: null,
+              onTap: () async {
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2101),
+                );
+                if (pickedDate != null) {
+                  // Handle the selected date
+                  print(pickedDate.toString());
+                }
+              },
             ),
             SizedBox(
               width: 8.w,
             ),
-            const CustomIconContainer(
+            CustomIconContainer(
               icon: SVGAssets.filterIcon,
               label: "Filter by",
+              onTap: () {},
             ),
             SizedBox(
               width: 8.w,
             ),
-            const CustomIconContainer(
+            CustomIconContainer(
               icon: SVGAssets.sortIcon,
               label: "Sort by",
+              onTap: () {
+                showSortByBottomSheet(context);
+              },
             ),
           ],
         )

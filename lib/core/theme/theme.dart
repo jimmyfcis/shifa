@@ -1,5 +1,6 @@
 // core/theme/theme.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
@@ -31,6 +32,9 @@ class AppTheme {
 ThemeData shifaThemeData = ThemeData(
     primaryColor: AppTheme.shifaPrimaryColor,
     //fontFamily: "Nexa",
+    listTileTheme: ListTileThemeData(
+      horizontalTitleGap: 8.w,
+    ),
     datePickerTheme: DatePickerThemeData(
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(
@@ -117,6 +121,9 @@ ThemeData shifaThemeData = ThemeData(
         borderRadius: BorderRadius.circular(8),
       )),
       // todayForegroundColor: MaterialStateProperty.all(primaryColor),
+      todayBackgroundColor:
+          MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+
       weekdayStyle: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
@@ -131,6 +138,9 @@ ThemeData shifaThemeData = ThemeData(
 ThemeData leksellThemeData = ThemeData(
     primaryColor: AppTheme.leksellPrimaryColor,
     //fontFamily: "Nexa",
+    listTileTheme: ListTileThemeData(
+      horizontalTitleGap: 8.w,
+    ),
     datePickerTheme: DatePickerThemeData(
       inputDecorationTheme: const InputDecorationTheme(
         labelStyle: TextStyle(
@@ -170,6 +180,8 @@ ThemeData leksellThemeData = ThemeData(
       ),
 
       //todayBackgroundColor: MaterialStateProperty.all(whiteColor),
+      todayBackgroundColor:
+          MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
       yearStyle: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w400,
