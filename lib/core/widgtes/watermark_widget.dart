@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
@@ -33,9 +34,11 @@ class WaterMark extends StatelessWidget {
         children: [
           Center(
             child: SvgPicture.asset(
-                themeProvider.currentTheme == ThemeEnum.shifa
-                    ? SVGAssets.shifaLogoTransperant
-                    : SVGAssets.leksellTransperant),
+              themeProvider.currentTheme == ThemeEnum.shifa
+                  ? SVGAssets.shifaLogoTransperant
+                  : SVGAssets.leksellTransperant,
+              width: 1.sw,
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

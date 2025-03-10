@@ -1,17 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:shifa/core/models/blog_model.dart';
-import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
+import 'package:shifa/features/Lab%20Tests/screens/lab_tests_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
+import 'package:shifa/features/My%20Favorite/screens/my_favorite_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
-import 'package:shifa/features/Radiology%20Detail/screens/radiology_details_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
+import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
@@ -41,7 +44,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
-        case AppRoutes.editProfile:
+      case AppRoutes.editProfile:
         return MaterialPageRoute(builder: (_) => EditMyProfileScreen());
       case AppRoutes.myCare:
         return MaterialPageRoute(builder: (_) => MyCareScreen());
@@ -65,6 +68,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
+      case AppRoutes.myFavorite:
+        return MaterialPageRoute(builder: (_) => MyFavoriteScreen());
+      case AppRoutes.labTests:
+        return MaterialPageRoute(builder: (_) => LabTestsScreen());
       case AppRoutes.booking:
         return MaterialPageRoute(builder: (_) => BookingScreen());
       case AppRoutes.rateYourVisit:
@@ -79,10 +86,14 @@ class AppRouter {
             builder: (_) => ClinicDoctorsScreen(
                   clinicName: clinicName,
                 ));
-      case AppRoutes.radiologyDetail:
+      case AppRoutes.recordsDetails:
+        var arguments = settings.arguments as Map<String, dynamic>;
+        log(arguments.toString());
         return MaterialPageRoute(
-            builder: (_) => RadiologyDetailsScreen(
-                  radiologyReport: settings.arguments as RadiologyModel,
+            builder: (_) => RecordsDetailsScreen(
+                  radiologyReport: arguments['record'],
+                  title: arguments['title'],
+                  recordType: arguments['recordType'],
                 ));
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;

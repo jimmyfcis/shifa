@@ -1,10 +1,10 @@
-class RadiologyModel {
+class RecordsModel {
   final String date;
   final String doctorName;
   final String title;
   final String status;
 
-  RadiologyModel({
+  RecordsModel({
     required this.date,
     required this.doctorName,
     required this.title,

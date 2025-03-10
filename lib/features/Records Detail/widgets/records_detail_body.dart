@@ -6,12 +6,15 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/enums.dart';
 import 'package:shifa/core/widgtes/custom_button.dart';
 
-class RadiologyDetailBody extends StatelessWidget {
-  final RadiologyModel radiologyReport;
+class RecordsDetailBody extends StatelessWidget {
+  final RecordType recordType;
+  final RecordsModel radiologyReport;
 
-  const RadiologyDetailBody({super.key, required this.radiologyReport});
+  const RecordsDetailBody(
+      {super.key, required this.radiologyReport, required this.recordType});
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +115,9 @@ class RadiologyDetailBody extends StatelessWidget {
                     width: 10.w,
                   ),
                   Text(
-                    "Download Report",
+                    recordType == RecordType.radiology
+                        ? "Download Report"
+                        : "Download Results",
                     style: TextStyles.nexaBold.copyWith(
                       fontSize: 16.sp,
                       color: AppTheme.whiteColor,
