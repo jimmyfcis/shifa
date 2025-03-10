@@ -33,10 +33,9 @@ class WaterMark extends StatelessWidget {
         children: [
           Center(
             child: SvgPicture.asset(
-              themeProvider.currentTheme == ThemeEnum.shifa
-                  ? SVGAssets.shifaLogoTransperant
-                  : SVGAssets.leksellTransperant,
-            ),
+                themeProvider.currentTheme == ThemeEnum.shifa
+                    ? SVGAssets.shifaLogoTransperant
+                    : SVGAssets.leksellTransperant),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
