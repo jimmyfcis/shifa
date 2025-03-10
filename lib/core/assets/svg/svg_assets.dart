@@ -1,7 +1,7 @@
 class Assets {
   static const String logoAnimation = "assets/logo_animation.json";
   static const String arrowLeft = "assets/arrow-left.png";
-  static const String calendarForm= "assets/calendar_form.png";
+  static const String calendarForm = "assets/calendar_form.png";
 }
 
 class SVGAssets {
@@ -60,7 +60,11 @@ class SVGAssets {
   static const String calendarIcon = "assets/svg/icons/calendar.svg";
 
   static const String medicalInsuranceIcon = "assets/svg/icons/medical.svg";
-  static const String myFavoriteIcon = "assets/svg/icons/favourites.svg";
+  static const String myFavoriteSolidIcon = "assets/svg/icons/favourites.svg";
+  static const String myFavoriteFillLeksellIcon =
+      "assets/svg/icons/favourite_leksell.svg";
+  static const String myFavoriteFillShifaIcon =
+      "assets/svg/icons/favorite_shifa.svg";
   static const String blogsIcon = "assets/svg/icons/blogs.svg";
   static const String settingsIcon = "assets/svg/icons/settings.svg";
   static const String termsAndConditionsIcon = "assets/svg/icons/terms.svg";

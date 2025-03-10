@@ -60,8 +60,9 @@ class ProfileScreen extends StatelessWidget {
                           hasDivider: true,
                           onTap: () {
                             log("My Favorite Page");
+                            Navigator.pushNamed(context, AppRoutes.myFavorite);
                           },
-                          svgIcon: SVGAssets.myFavoriteIcon,
+                          svgIcon: SVGAssets.myFavoriteSolidIcon,
                           title: 'My Favorite',
                         ),
                         SizedBox(height: 16.h),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
@@ -8,10 +9,13 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 
 class ClinicDoctorCard extends StatelessWidget {
-  const ClinicDoctorCard({super.key});
+  final bool isFavorite;
+
+  const ClinicDoctorCard({super.key, required this.isFavorite});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Card(
       color: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
@@ -114,7 +118,11 @@ class ClinicDoctorCard extends StatelessWidget {
                   width: 16.w,
                 ),
                 SvgPicture.asset(
-                  SVGAssets.myFavoriteIcon,
+                  isFavorite
+                      ? (themeProvider.currentTheme == ThemeEnum.shifa
+                          ? SVGAssets.myFavoriteFillShifaIcon
+                          : SVGAssets.myFavoriteFillLeksellIcon)
+                      : SVGAssets.myFavoriteSolidIcon,
                   width: 20.w,
                   height: 20.h,
                 ),
