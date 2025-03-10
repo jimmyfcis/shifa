@@ -45,29 +45,49 @@ class AppConstants {
     ),
   ];
 
-  List<RadiologyModel> radiologyList = [
-    RadiologyModel(
+  List<RecordsModel> recordsList = [
+    RecordsModel(
       date: "21 Oct, 2024",
       status: "Completed",
       title: "MRI for Brain",
       doctorName: "Dr.Fady Mohamed Nabil",
     ),
-    RadiologyModel(
+    RecordsModel(
       date: "21 Aug, 2024",
       status: "Completed",
       title: "MRI for Brain",
       doctorName: "Dr.Fady Mohamed Nabil",
     ),
-    RadiologyModel(
+    RecordsModel(
       status: "Completed",
       title: "MRI for Brain",
       date: "21 Sep, 2024",
       doctorName: "Dr.Fady Mohamed Nabil",
     ),
-    RadiologyModel(
+    RecordsModel(
       status: "Completed",
       title: "MRI for Brain",
       date: "21 Jun, 2024",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+  ];
+  List<RecordsModel> labTestsList = [
+    RecordsModel(
+      date: "21 Oct, 2024",
+      status: "Completed",
+      title: "Complete Blood Test",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+    RecordsModel(
+      date: "21 Aug, 2024",
+      status: "Completed",
+      title: "Complete Blood Test",
+      doctorName: "Dr.Fady Mohamed Nabil",
+    ),
+    RecordsModel(
+      status: "Completed",
+      title: "Complete Blood Test",
+      date: "21 Sep, 2024",
       doctorName: "Dr.Fady Mohamed Nabil",
     ),
   ];

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/features/Clinic%20Doctors/widgets/clinic_doctor_card.dart';
+import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/clinics_doctor_settings.dart';
 
 class ClinicDoctorsBody extends StatelessWidget {

@@ -76,6 +76,7 @@ class MyCareBody extends StatelessWidget {
                   : SVGAssets.labShifaIcon,
               onTap: () {
                 log("Lab Tests");
+                Navigator.pushNamed(context, AppRoutes.labTests);
               },
             ),
             SizedBox(

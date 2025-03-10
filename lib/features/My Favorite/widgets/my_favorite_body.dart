@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shifa/features/Clinic%20Doctors/widgets/clinic_doctor_card.dart';
+import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
 
 class MyFavoriteBody extends StatelessWidget {
   const MyFavoriteBody({super.key});

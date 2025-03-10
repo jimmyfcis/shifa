@@ -10,6 +10,7 @@ class AppRoutes {
   static const String myCare = '/myCare';
   static const String clinics = '/clinics';
   static const String clinicDoctors = '/clinicDoctors';
+  static const String labTests = '/labTests';
 
   static const String privacyPolicy = '/privacyPolicy';
   static const String termsAndConditions = '/termsAndConditions';
@@ -19,7 +20,7 @@ class AppRoutes {
   static const String blogDetails = '/blogDetails';
   static const String myProfile = '/myProfile';
   static const String radiology = '/radiology';
-  static const String radiologyDetail = '/radiologyDetail';
+  static const String recordsDetails = '/recordsDetails';
 
   static const String login = '/login';
   static const String forgetPassword = '/forgetPassword';

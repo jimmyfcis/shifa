@@ -9,11 +9,20 @@ import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/enums.dart';
 
-class RadiologyCard extends StatelessWidget {
-  final RadiologyModel radiologyReport;
+class RecordCard extends StatelessWidget {
+  final String icon;
+  final RecordsModel recordReport;
+  final String title;
+  final RecordType recordType;
 
-  const RadiologyCard({super.key, required this.radiologyReport});
+  const RecordCard(
+      {super.key,
+      required this.recordReport,
+      required this.recordType,
+      required this.icon,
+      this.title = "Radiology"});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +31,7 @@ class RadiologyCard extends StatelessWidget {
       children: [
         Text(
           DateFormat('MMM, yyyy').format(
-            DateFormat('dd MMM, yyyy').parse(radiologyReport.date),
+            DateFormat('dd MMM, yyyy').parse(recordReport.date),
           ),
           style: TextStyles.nexaBold.copyWith(
             fontSize: 16.sp,
@@ -35,8 +44,11 @@ class RadiologyCard extends StatelessWidget {
         GestureDetector(
           onTap: () {
             log("Radiology Report");
-            Navigator.pushNamed(context, AppRoutes.radiologyDetail,
-                arguments: radiologyReport);
+            Navigator.pushNamed(context, AppRoutes.recordsDetails, arguments: {
+              "record": recordReport,
+              "title": title,
+              "recordType": recordType
+            });
           },
           child: Container(
             padding: const EdgeInsets.all(16),
@@ -51,7 +63,7 @@ class RadiologyCard extends StatelessWidget {
                 Row(
                   children: [
                     SvgPicture.asset(
-                      SVGAssets.radiologyIcon,
+                      icon,
                       width: 22.w,
                       height: 22.h,
                     ),
@@ -59,7 +71,7 @@ class RadiologyCard extends StatelessWidget {
                       width: 8.w,
                     ),
                     Text(
-                      "Radiology",
+                      title,
                       style: TextStyles.nexaBold.copyWith(
                         fontSize: 14.sp,
                         color: AppTheme.primaryTextColor,
@@ -81,7 +93,7 @@ class RadiologyCard extends StatelessWidget {
                       width: 8.w,
                     ),
                     Text(
-                      radiologyReport.date,
+                      recordReport.date,
                       style: TextStyles.nexaRegular.copyWith(
                         fontSize: 14.sp,
                         color: AppTheme.secondaryTextColor,
@@ -103,7 +115,7 @@ class RadiologyCard extends StatelessWidget {
                       width: 8.w,
                     ),
                     Text(
-                      radiologyReport.doctorName,
+                      recordReport.doctorName,
                       style: TextStyles.nexaRegular.copyWith(
                         fontSize: 14.sp,
                         color: AppTheme.secondaryTextColor,
