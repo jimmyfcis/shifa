@@ -22,7 +22,6 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool? hasName;
-  final double? textFieldHeight;
   final VoidCallback? onTap;
 
   const CustomTextField({
@@ -40,7 +39,6 @@ class CustomTextField extends StatelessWidget {
     this.hasName,
     this.prefixIcon,
     this.suffixIcon,
-    this.textFieldHeight,
     this.onTap,
     this.maxLines,
   }) : super(key: key);

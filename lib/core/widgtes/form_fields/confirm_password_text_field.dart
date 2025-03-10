@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
 import '../../utils/validators.dart';
@@ -81,6 +82,7 @@ class _ConfirmPasswordTextFieldState extends State<ConfirmPasswordTextField> {
               color: AppTheme.hintColor,
               fontSize: 14,
             ),
+            suffixIcon: obscureText?Image.asset(Assets.eyeClose):Image.asset(Assets.eyeOpen),
           ),
           cursorColor: AppTheme.blackColor,
             obscureText: obscureText,
