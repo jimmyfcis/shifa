@@ -1,6 +1,7 @@
 class AppRoutes {
   static const String splash = '/';
   static const String languageSplash = '/languageSplash';
+  static const String doctorProfile = '/doctorProfile';
   static const String onboardingScreen = '/onboardingScreen';
   static const String home = '/home';
   static const String profile = '/profile';
