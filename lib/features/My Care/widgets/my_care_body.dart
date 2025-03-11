@@ -40,6 +40,7 @@ class MyCareBody extends StatelessWidget {
                   : SVGAssets.medicineShifaIcon,
               onTap: () {
                 log("Medication Reminder");
+                Navigator.pushNamed(context, AppRoutes.medicalReminder);
               },
             ),
             SizedBox(
@@ -52,6 +53,7 @@ class MyCareBody extends StatelessWidget {
                   : SVGAssets.vaccineShifaIcon,
               onTap: () {
                 log("Vaccine Reminder");
+                Navigator.pushNamed(context, AppRoutes.vaccineReminder);
               },
             ),
             SizedBox(
@@ -64,6 +66,7 @@ class MyCareBody extends StatelessWidget {
                   : SVGAssets.careShifaIcon,
               onTap: () {
                 log("Care Reminder");
+                Navigator.pushNamed(context, AppRoutes.careReminder);
               },
             ),
             SizedBox(

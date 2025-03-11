@@ -4,10 +4,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 
-class NorRecordWidget extends StatelessWidget {
+class NoRecordWidget extends StatelessWidget {
   final String icon;
+  final String? title;
 
-  const NorRecordWidget({super.key, required this.icon});
+  const NoRecordWidget({super.key, required this.icon, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,8 @@ class NorRecordWidget extends StatelessWidget {
             height: 24.h,
           ),
           Text(
-            'you didn’t have any records yet.',
+            title ?? 'you didn’t have any records yet.',
+            textAlign: TextAlign.center,
             style: TextStyles.nexaRegular.copyWith(
               fontSize: 14.sp,
               color: AppTheme.secondaryTextColor,
