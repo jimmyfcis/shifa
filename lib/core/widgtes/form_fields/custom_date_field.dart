@@ -14,6 +14,7 @@ class CustomDateField extends StatelessWidget {
   final String labelText;
   final String? hintText;
   final bool isRequired;
+  final InputType inputType;
 
   final DateTime? firstDate, lastDate;
   final bool Function(DateTime)? selectableDayPredicate;
@@ -33,7 +34,7 @@ class CustomDateField extends StatelessWidget {
     this.initialValue,
     this.validators = const [],
     this.isRequired = false,
-    this.onChanged,
+    this.onChanged, this.inputType=InputType.date,
   });
 
   @override
@@ -84,10 +85,10 @@ class CustomDateField extends StatelessWidget {
                 fontSize: 14,
               ),
               hintText: hintText,
-              suffixIcon: Image.asset(Assets.calendarForm),
+              suffixIcon: inputType==InputType.date?Image.asset(Assets.calendarForm):Image.asset(Assets.clockForm),
             ),
             format: DateFormat("${DateFormat.WEEKDAY} ${DateFormat.DAY} ${DateFormat.ABBR_MONTH}"),
-            inputType: InputType.date,
+            inputType: inputType,
             firstDate: firstDate,
             lastDate: lastDate,
             selectableDayPredicate: selectableDayPredicate,

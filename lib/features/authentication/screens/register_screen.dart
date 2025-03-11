@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../../core/widgtes/auth_appbar.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/form_fields/confirm_password_text_field.dart';
+import '../../../core/widgtes/form_fields/custom_date_field.dart';
 import '../../../core/widgtes/form_fields/custom_drop_down_field.dart';
 import '../../../core/widgtes/form_fields/custom_text_field.dart';
 import '../../../core/widgtes/form_fields/email_text_field.dart';
@@ -95,6 +96,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           });
                           return;
                         },
+                      ),
+                       SizedBox(height: 16.h),
+                      CustomDateField(
+                        name: 'date',
+                        inputType: InputType.date,
+                        labelText: 'Date of birth',
                       ),
                        SizedBox(height: 16.h),
                       const CustomTextField(

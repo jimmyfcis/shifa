@@ -17,12 +17,11 @@ class CustomTextField extends StatelessWidget {
   final bool isRequired;
   final List<String? Function(String?, String?)> validators;
   final ValueChanged<String?>? onChanged;
-  final int maxLines;
+  final int? maxLines;
   final TextInputType textInputType;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool? hasName;
-  final double? textFieldHeight;
   final VoidCallback? onTap;
 
   const CustomTextField({
@@ -40,9 +39,8 @@ class CustomTextField extends StatelessWidget {
     this.hasName,
     this.prefixIcon,
     this.suffixIcon,
-    this.textFieldHeight,
     this.onTap,
-    this.maxLines = 1,
+    this.maxLines,
   }) : super(key: key);
 
   @override
@@ -61,67 +59,64 @@ class CustomTextField extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
         ],
-        SizedBox(
-          height: textFieldHeight ?? 40.h,
-          child: FormBuilderTextField(
-            initialValue: initialValue,
-            onTap: onTap,
-            enabled: enabled,
-            readOnly: readOnly ?? false,
-            name: name,
-            maxLines: maxLines,
-            style: TextStyle(
-              color: enabled ? Colors.black : Colors.grey,
-            ),
-            keyboardType: textInputType,
-            decoration: InputDecoration(
-              fillColor: AppTheme.whiteColor,
-              suffixIcon: suffixIcon,
-              prefixIcon: prefixIcon,
-              filled: true,
-              errorStyle: TextStyles.nexaRegular.copyWith(
-                fontWeight: FontWeight.w400,
-                color: AppTheme.errorColor,
-                fontSize: 13,
-              ),
-              errorBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.circular(8.r),
-                borderSide: BorderSide(color: AppTheme.errorColor, width: 1),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.r),
-                borderSide:
-                    const BorderSide(color: AppTheme.greyColor, width: 1),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.r),
-                borderSide:
-                    const BorderSide(color: AppTheme.greyColor, width: 1),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.r),
-                borderSide:
-                    const BorderSide(color: AppTheme.greyColor, width: 1),
-              ),
-              hintText: hintText,
-              hintStyle: TextStyles.nexaRegular.copyWith(
-                fontWeight: FontWeight.w400,
-                color: AppTheme.hintColor,
-                fontSize: 14,
-              ),
-            ),
-            cursorColor: AppTheme.blackColor,
-            // valueTransformer: (text) => num.tryParse(text),
-            validator: FormBuilderValidators.compose(
-              <String? Function(String?)>[
-                if (isRequired)
-                  (value) => Validators.isNotNullNorEmpty(value, labelText),
-                for (final validator in validators)
-                  (value) => validator(value, labelText),
-              ],
-            ),
-            onChanged: onChanged,
+        FormBuilderTextField(
+          initialValue: initialValue,
+          onTap: onTap,
+          enabled: enabled,
+          readOnly: readOnly ?? false,
+          name: name,
+          maxLines: maxLines,
+          style: TextStyle(
+            color: enabled ? Colors.black : Colors.grey,
           ),
+          keyboardType: textInputType,
+          decoration: InputDecoration(
+            fillColor: AppTheme.whiteColor,
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon,
+            filled: true,
+            errorStyle: TextStyles.nexaRegular.copyWith(
+              fontWeight: FontWeight.w400,
+              color: AppTheme.errorColor,
+              fontSize: 13,
+            ),
+            errorBorder: UnderlineInputBorder(
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide: BorderSide(color: AppTheme.errorColor, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide:
+                  const BorderSide(color: AppTheme.greyColor, width: 1),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide:
+                  const BorderSide(color: AppTheme.greyColor, width: 1),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide:
+                  const BorderSide(color: AppTheme.greyColor, width: 1),
+            ),
+            hintText: hintText,
+            hintStyle: TextStyles.nexaRegular.copyWith(
+              fontWeight: FontWeight.w400,
+              color: AppTheme.hintColor,
+              fontSize: 14,
+            ),
+          ),
+          cursorColor: AppTheme.blackColor,
+          // valueTransformer: (text) => num.tryParse(text),
+          validator: FormBuilderValidators.compose(
+            <String? Function(String?)>[
+              if (isRequired)
+                (value) => Validators.isNotNullNorEmpty(value, labelText),
+              for (final validator in validators)
+                (value) => validator(value, labelText),
+            ],
+          ),
+          onChanged: onChanged,
         ),
       ],
     );
