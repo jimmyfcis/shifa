@@ -21,6 +21,9 @@ class AppRoutes {
   static const String myProfile = '/myProfile';
   static const String radiology = '/radiology';
   static const String recordsDetails = '/recordsDetails';
+  static const String medicalReminder = '/medicalReminder';
+  static const String vaccineReminder = '/vaccineReminder';
+  static const String careReminder = '/careReminder';
 
   static const String login = '/login';
   static const String forgetPassword = '/forgetPassword';

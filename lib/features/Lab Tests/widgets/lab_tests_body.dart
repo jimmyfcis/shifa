@@ -18,7 +18,7 @@ class LabTestsBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: AppConstants().recordsList.isEmpty
-            ? NorRecordWidget(
+            ? NoRecordWidget(
                 icon: themeProvider.currentTheme == ThemeEnum.shifa
                     ? SVGAssets.labShifaIcon
                     : SVGAssets.labsLeksellIcon,

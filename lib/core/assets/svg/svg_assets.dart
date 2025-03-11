@@ -5,13 +5,14 @@ class Assets {
   static const String clockForm = "assets/clock_form.svg";
   static const String eyeOpen = "assets/eye.png";
   static const String eyeClose = "assets/eye_closed.png";
-
 }
 
 class SVGAssets {
   static const String onBoardingFirst = "assets/svg/icons/onboarding_first.svg";
   static const String line = "assets/svg/icons/line.svg";
   static const String search = "assets/svg/icons/search.svg";
+  static const String trash = "assets/svg/icons/trash.svg";
+  static const String pill = "assets/svg/icons/pill.svg";
   static const String arrowDown = "assets/svg/icons/arrow-down.svg";
   static const String leksellAuth = "assets/svg/icons/leksell_auth.svg";
   static const String leksellHome = "assets/svg/icons/leksell_home.svg";

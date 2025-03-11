@@ -15,7 +15,7 @@ class RadiologyBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: AppConstants().recordsList.isEmpty
-            ? const NorRecordWidget(
+            ? const NoRecordWidget(
                 icon: SVGAssets.radiologyIcon,
               )
             : ListView.separated(
