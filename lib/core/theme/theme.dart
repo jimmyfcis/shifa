@@ -16,7 +16,7 @@ class AppTheme {
   static const Color secondaryColorShifa = Color(0xFFEBFEF4);
   static const Color hintColor = Color(0xFFB0B0B0);
   static const Color darkGreyColor = Color(0xFF3D3D3D);
-  static const Color grey3color = Color(0xFF);
+  static const Color grey3color = Color(0xFF6D6D6D);
   static const Color green2Color = Color(0xFF);
   static const Color shifaPrimaryColor = Color(0xFF008D5C);
   static const Color green4Color = Color(0xFFEEF7F4);

@@ -9,6 +9,8 @@ import 'package:shifa/features/Care%20Reminder/screens/care_reminder_screen.dart
 import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
+import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';
+import 'package:shifa/features/Doctors/screens/first_booking_screen.dart';
 import 'package:shifa/features/Lab%20Tests/screens/lab_tests_screen.dart';
 import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
@@ -89,6 +91,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
       case AppRoutes.careReminder:
         return MaterialPageRoute(builder: (_) => CareReminderScreen());
+        case AppRoutes.firstBookAppointment:
+        return MaterialPageRoute(builder: (_) => FirstBookingScreen());
       case AppRoutes.clinicDoctors:
         var clinicName = settings.arguments as String;
         return MaterialPageRoute(
@@ -104,6 +108,13 @@ class AppRouter {
                   title: arguments['title'],
                   recordType: arguments['recordType'],
                 ));
+      case AppRoutes.doctorProfile:
+      //  var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => DoctorProfileScreen(
+         //   fromBookings: arguments['fromBookings'],
+          ),
+        );
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;
         return MaterialPageRoute(
