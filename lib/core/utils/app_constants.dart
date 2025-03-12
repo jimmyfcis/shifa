@@ -3,6 +3,7 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/core/models/clinic_model.dart';
 import 'package:shifa/core/models/radiolog_model.dart';
+import 'package:shifa/core/models/service_model.dart';
 
 class AppConstants {
   static const String lognText =
@@ -44,7 +45,20 @@ class AppConstants {
           "The 25 Healthiest Fruits You Can Eat, According to a Nutritionist",
     ),
   ];
-
+  List<ServiceModel> shifaServiceModel = [
+    ServiceModel(title: "Discover Clinic", icon: SVGAssets.clincsShifaIcon),
+    ServiceModel(title: "Monitor Queue", icon: SVGAssets.monitorQueueShifaIcon),
+    ServiceModel(
+        title: "Physical Therapy", icon: SVGAssets.physicalTherapyShifaIcon),
+    ServiceModel(title: "Ambulance", icon: SVGAssets.ambulanceShifa),
+  ];
+  List<ServiceModel> leksellServiceModel = [
+    ServiceModel(title: "Clinics", icon: SVGAssets.clincsLeksellIcon),
+    ServiceModel(title: "Queue", icon: SVGAssets.queueLeksell),
+    ServiceModel(title: "Ambulance", icon: SVGAssets.ambulanceLeksell),
+    ServiceModel(title: "Chemotherapy", icon: SVGAssets.chemoLeksellIcon),
+    ServiceModel(title: "Radiotherapy", icon: SVGAssets.radioTherapyLeksell),
+  ];
   List<RecordsModel> recordsList = [
     RecordsModel(
       date: "21 Oct, 2024",

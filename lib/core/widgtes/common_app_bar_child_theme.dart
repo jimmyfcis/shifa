@@ -6,9 +6,10 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 
 class CommonAppBarChildTheme extends StatelessWidget {
-  final String title;
+  final String? title;
+  final Widget? child;
 
-  const CommonAppBarChildTheme({super.key, required this.title});
+  const CommonAppBarChildTheme({super.key, this.title, this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -82,13 +83,14 @@ class CommonAppBarChildTheme extends StatelessWidget {
             ],
           ),
           SizedBox(height: 8.h),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 24.sp,
-              color: Colors.white,
-            ),
-          )
+          child ??
+              Text(
+                title ?? "",
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  color: Colors.white,
+                ),
+              )
         ],
       ),
     );
