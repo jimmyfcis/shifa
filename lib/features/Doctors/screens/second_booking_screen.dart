@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/assets/svg/svg_assets.dart';
-import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
 import 'package:shifa/features/Doctors/widgets/payment_radio_group.dart';
@@ -12,6 +9,9 @@ import '../../../core/widgtes/common_app_bar_title.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/watermark_widget.dart';
 import '../widgets/booking_step_indicator.dart';
+import '../widgets/confirm_booking_dialogue.dart';
+import '../widgets/doctor_second_booking_card.dart';
+import '../widgets/payment_value.dart';
 
 class SecondBookingScreen extends StatefulWidget {
   const SecondBookingScreen({super.key});
@@ -58,123 +58,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 24.h),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: themeProvider.currentTheme == ThemeEnum.shifa
-                            ? AppTheme.billColor
-                            : AppTheme.secondaryColorLeksell,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Doctor",
-                              style: TextStyles.nexaBold.copyWith(
-                                color: AppTheme.blackColor,
-                                fontSize: 16.sp,
-                              ),
-                            ),
-                            SizedBox(height: 16.h),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.asset("assets/svg/icons/docpng.png"),
-                                const SizedBox(width: 8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Dr.Fady Mohamed Nabil",
-                                      style: TextStyles.nexaBold.copyWith(
-                                        fontWeight: FontWeight.w800,
-                                        color: AppTheme.primaryTextColor,
-                                        fontSize: 18.sp,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      "Obstetrics and Gynecology Dep",
-                                      style: TextStyles.nexaRegular.copyWith(
-                                        color: AppTheme.secondaryTextColor,
-                                        fontSize: 14.sp,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(SVGAssets.money),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          "750 EGP",
-                                          style: TextStyles.nexaRegular.copyWith(
-                                            color: AppTheme.grey7Color,
-                                            fontSize: 12.sp,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 24.h),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Divider(
-                              color: AppTheme.greyColor,
-                              thickness: 1,
-                            ),
-                            SizedBox(height: 24.h),
-                            IntrinsicHeight(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        SVGAssets.bookingIcon,
-                                        width: 24.w,
-                                        height: 24.h,
-                                      ),
-                                      SizedBox(
-                                        width: 8.w,
-                                      ),
-                                      Text(
-                                        'Jun 10, 2021 ',
-                                        style: TextStyles.nexaRegular.copyWith(
-                                          fontSize: 12.sp,
-                                          color: AppTheme.primaryTextColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        SVGAssets.clock,
-                                        width: 24.w,
-                                        height: 24.h,
-                                      ),
-                                      SizedBox(
-                                        width: 8.w,
-                                      ),
-                                      Text(
-                                        '09:00 - 11:30 PM',
-                                        style: TextStyles.nexaRegular.copyWith(
-                                          fontSize: 12.sp,
-                                          color: AppTheme.primaryTextColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    DoctorSecondBookingCard(themeProvider: themeProvider),
                     SizedBox(height: 30.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -225,19 +109,20 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                               title: "Total due",
                               value: "750 EGP",
                             ),
-                           if(switchValue)...[
-                             SizedBox(height: 16.h),
-                             const PaymentValue(
-                              title: "Medical percentage",
-                              value: "450 EGP",
-                            ),
-                            SizedBox(height: 16.h),
-                            const Divider(color: AppTheme.greyColor),
-                            SizedBox(height: 16.h),
-                            const PaymentValue(
-                              title: "Total Payment",
-                              value: "300 EGP",
-                            ),]
+                            if (switchValue) ...[
+                              SizedBox(height: 16.h),
+                              const PaymentValue(
+                                title: "Medical percentage",
+                                value: "450 EGP",
+                              ),
+                              SizedBox(height: 16.h),
+                              const Divider(color: AppTheme.greyColor),
+                              SizedBox(height: 16.h),
+                              const PaymentValue(
+                                title: "Total Payment",
+                                value: "300 EGP",
+                              ),
+                            ]
                           ],
                         ),
                       ),
@@ -285,7 +170,13 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                         title: "Confirm",
                         fontSize: 14,
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, AppRoutes.home);
+                          showDialog(
+                            barrierDismissible: true, // Allows dismissing by tapping outside
+                            context: context,
+                            builder: (BuildContext context) {
+                              return ConfirmBookingDialogue(themeProvider: themeProvider);
+                            },
+                          );
                         },
                       ),
                     )
@@ -296,40 +187,6 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class PaymentValue extends StatelessWidget {
-  final String title;
-  final String value;
-
-  const PaymentValue({
-    super.key,
-    required this.title,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyles.nexaRegular.copyWith(
-            color: AppTheme.primaryTextColor,
-            fontSize: 16.sp,
-          ),
-        ),
-        Text(
-          value,
-          style: TextStyles.nexaRegular.copyWith(
-            color: AppTheme.primaryTextColor,
-            fontSize: 16.sp,
-          ),
-        ),
-      ],
     );
   }
 }
