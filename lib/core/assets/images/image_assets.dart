@@ -5,5 +5,9 @@ class ImageAssets {
   static const String blogImg4 = "assets/blog_img4.png";
   static const String blogImg5 = "assets/blog_img5.png";
   static const String myProfileImg = "assets/my_profile.png";
+  static const String articleImg = "assets/article.png";
   static const String drWaleedImg = "assets/dr_waleed.png";
+  static const String roundedWhiteCircle = "assets/rounded_white_circle.png";
+  static const String homeFemaleDoctor = "assets/doctor.png";
+  static const String doctorAvatar = "assets/Avatar.png";
 }

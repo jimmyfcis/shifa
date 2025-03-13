@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Home/widgets/home_app_bar.dart';
 import 'package:shifa/features/Home/widgets/home_screen_body.dart';
@@ -12,14 +11,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.profileBGColor,
       extendBodyBehindAppBar: true,
-      body: Column(
+      body: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const HomeAppBar(),
-          SizedBox(
-            height: 24.h,
-          ),
-          const Expanded(
+          HomeAppBar(),
+          Expanded(
             child: HomeScreenBody(),
           ),
         ],

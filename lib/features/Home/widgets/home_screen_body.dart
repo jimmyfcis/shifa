@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/features/Home/widgets/home_available_service_widget.dart';
+import 'package:shifa/features/Home/widgets/home_early_protection_card.dart';
+import 'package:shifa/features/Home/widgets/upcoming_appointment.dart';
+
+import 'home_health_article.dart';
+import 'home_top_doctor.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -16,7 +21,29 @@ class HomeScreenBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeAvailableService(),
+            SizedBox(
+              height: 24.h,
+            ),
+            const HomeAvailableService(),
+            SizedBox(
+              height: 24.h,
+            ),
+            const HomeEarlyProtectionCard(),
+            SizedBox(
+              height: 24.h,
+            ),
+            const UpcomingAppointment(),
+            SizedBox(
+              height: 24.h,
+            ),
+            const HomeTopDoctor(),
+            SizedBox(
+              height: 24.h,
+            ),
+            const HomeHealthArticle(),
+            SizedBox(
+              height: 64.h,
+            ),
           ],
         ),
       ),

@@ -20,13 +20,13 @@ class ProfileScreen extends StatelessWidget {
       body: Column(
         children: [
           const ProfileAppBar(),
-          SizedBox(
-            height: 24.h,
-          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 24.h,
+                  ),
                   const UserNameAndPhoneNumber(),
                   SizedBox(
                     height: 24.h,
