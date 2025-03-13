@@ -5,12 +5,14 @@ import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
+import 'package:shifa/features/Bottom%20Bar/screens/bottom_bar_screen.dart';
 import 'package:shifa/features/Care%20Reminder/screens/care_reminder_screen.dart';
 import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';
 import 'package:shifa/features/Doctors/screens/first_booking_screen.dart';
+import 'package:shifa/features/Home/screens/home_screen.dart';
 import 'package:shifa/features/Lab%20Tests/screens/lab_tests_screen.dart';
 import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
@@ -21,7 +23,6 @@ import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_scree
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
-import 'package:shifa/features/home/screens/home_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
@@ -42,8 +43,11 @@ class AppRouter {
     switch (settings.name) {
       case AppRoutes.splash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
+      case AppRoutes.bottomBar:
+        return MaterialPageRoute(builder: (_) => BottomBarScreen());
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+
       case AppRoutes.languageSplash:
         return MaterialPageRoute(builder: (_) => LanguageSplashScreen());
       case AppRoutes.onboardingScreen:
@@ -94,7 +98,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
       case AppRoutes.careReminder:
         return MaterialPageRoute(builder: (_) => CareReminderScreen());
-        case AppRoutes.firstBookAppointment:
+      case AppRoutes.firstBookAppointment:
         return MaterialPageRoute(builder: (_) => FirstBookingScreen());
       case AppRoutes.clinicDoctors:
         var clinicName = settings.arguments as String;
@@ -112,11 +116,11 @@ class AppRouter {
                   recordType: arguments['recordType'],
                 ));
       case AppRoutes.doctorProfile:
-      //  var arguments = settings.arguments as Map<String, dynamic>;
+        //  var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => DoctorProfileScreen(
-         //   fromBookings: arguments['fromBookings'],
-          ),
+              //   fromBookings: arguments['fromBookings'],
+              ),
         );
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;

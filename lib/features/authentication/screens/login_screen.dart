@@ -51,8 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SvgPicture.asset(
-                themeProvider.currentTheme == ThemeEnum.shifa ? SVGAssets.shifaIconText : SVGAssets.leksellAuth),
+            SvgPicture.asset(themeProvider.currentTheme == ThemeEnum.shifa
+                ? SVGAssets.shifaIconText
+                : SVGAssets.leksellAuth),
             SizedBox(height: 42.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -82,7 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     isValid: isValid,
                     onInputChanged: (PhoneNumber number) {
                       setState(() {
-                        isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
+                        isValid = Validators().isValidEgyptianPhoneNumber(
+                            number.phoneNumber ?? "");
                       });
                       return;
                     },
@@ -106,11 +108,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.forgetPassword);
+                                Navigator.pushNamed(
+                                    context, AppRoutes.forgetPassword);
                               },
                               child: Text('Forgot Password?',
                                   style: TextStyles.nexaRegular.copyWith(
-                                      color: themeProvider.currentThemeData!.primaryColor,
+                                      color: themeProvider
+                                          .currentThemeData!.primaryColor,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400)),
                             ),
@@ -129,8 +133,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               setState(() {
                                 isValid = false;
                               });
-                            } else if (isValid && phoneController.text.isNotEmpty) {
-                              Navigator.pushReplacementNamed(context, AppRoutes.home);
+                            } else if (isValid &&
+                                phoneController.text.isNotEmpty) {
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoutes.bottomBar);
                             }
                           },
                         ),
@@ -180,12 +186,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pushReplacementNamed(context, AppRoutes.register);
+                                Navigator.pushReplacementNamed(
+                                    context, AppRoutes.register);
                               },
                               child: Text(
                                 ' Create account',
                                 style: TextStyles.nexaRegular.copyWith(
-                                  color: themeProvider.currentThemeData!.primaryColor,
+                                  color: themeProvider
+                                      .currentThemeData!.primaryColor,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -205,6 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();

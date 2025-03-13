@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
+import 'package:shifa/core/widgtes/doctor_card.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
-import 'package:shifa/features/Rate%20Your%20Visit/widgets/doctor_card.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/widgets/rating_title_bar.dart';
 
 class RateYourVisitContent extends StatelessWidget {

@@ -87,7 +87,18 @@ class SVGAssets {
   static const String money = "assets/svg/icons/money.svg";
   static const String clincsLeksellIcon =
       "assets/svg/icons/clinics_leksell.svg";
+  static const String queueLeksell = "assets/svg/icons/queue_leksell.svg";
+  static const String chemoLeksellIcon = "assets/svg/icons/chemo_leksell.svg";
+  static const String radioTherapyLeksell =
+      "assets/svg/icons/radio_leksell.svg";
+
   static const String clincsShifaIcon = "assets/svg/icons/service1.svg";
+  static const String monitorQueueShifaIcon = "assets/svg/icons/service2.svg";
+  static const String physicalTherapyShifaIcon =
+      "assets/svg/icons/service3.svg";
+  static const String ambulanceShifa = "assets/svg/icons/ambulance.svg";
+  static const String ambulanceLeksell =
+      "assets/svg/icons/ambulance_leksell.svg";
   static const String medicineLeksellIcon =
       "assets/svg/icons/medicine_leksell.svg";
   static const String medicineShifaIcon =

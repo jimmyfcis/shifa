@@ -7,22 +7,23 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
+import 'package:shifa/features/Home/screens/home_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 
 import '../../Profile/screens/profile_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class BottomBarScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BottomBarScreenState createState() => _BottomBarScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BottomBarScreenState extends State<BottomBarScreen> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
   // List of pages for each tab
   final List<Widget> _pages = [
-    const Center(child: Text("Home Page")),
+    const HomeScreen(),
     const BookingScreen(),
     const ClinicsScreen(),
     const MyCareScreen(),

@@ -23,6 +23,8 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? hasName;
   final VoidCallback? onTap;
+  final Color? fillColor;
+  final Color? hintTextColor;
 
   const CustomTextField({
     Key? key,
@@ -39,8 +41,10 @@ class CustomTextField extends StatelessWidget {
     this.hasName,
     this.prefixIcon,
     this.suffixIcon,
+    this.fillColor,
     this.onTap,
     this.maxLines,
+    this.hintTextColor,
   }) : super(key: key);
 
   @override
@@ -71,7 +75,7 @@ class CustomTextField extends StatelessWidget {
           ),
           keyboardType: textInputType,
           decoration: InputDecoration(
-            fillColor: AppTheme.whiteColor,
+            fillColor: fillColor ?? AppTheme.whiteColor,
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             filled: true,
@@ -86,24 +90,21 @@ class CustomTextField extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide:
-                  const BorderSide(color: AppTheme.greyColor, width: 1),
+              borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide:
-                  const BorderSide(color: AppTheme.greyColor, width: 1),
+              borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide:
-                  const BorderSide(color: AppTheme.greyColor, width: 1),
+              borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
             hintText: hintText,
             hintStyle: TextStyles.nexaRegular.copyWith(
               fontWeight: FontWeight.w400,
-              color: AppTheme.hintColor,
-              fontSize: 14,
+              color: hintTextColor ?? AppTheme.hintColor,
+              fontSize: 14.sp,
             ),
           ),
           cursorColor: AppTheme.blackColor,

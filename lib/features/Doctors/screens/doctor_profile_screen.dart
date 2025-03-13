@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shifa/core/routes/app_routes.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:shifa/core/routes/app_routes.dart';
+
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
@@ -8,8 +11,6 @@ import '../../../core/widgtes/common_app_bar_title.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/watermark_widget.dart';
 import '../widgets/doctor_profile_title.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class DoctorProfileScreen extends StatefulWidget {
   final bool? fromBookings;
@@ -26,7 +27,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
 
   // Generate a list of dates around the selected date
   List<DateTime> _generateDates(DateTime selectedDate) {
-    return List.generate(7, (index) => selectedDate.subtract(Duration(days: 3 - index)));
+    return List.generate(
+        7, (index) => selectedDate.subtract(Duration(days: 3 - index)));
   }
 
   final List<String> _timeSlots = [
@@ -65,7 +67,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
       appBarChild: const CommonAppBarTitle(
         title: 'Doctor Profile',
       ),
-      contentChild:Expanded(
+      contentChild: Expanded(
         child: Column(
           children: [
             Expanded(
@@ -83,7 +85,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                               Text(
+                              Text(
                                 "Dr.Fady Mohamed Nabil",
                                 style: TextStyles.nexaBold.copyWith(
                                   fontWeight: FontWeight.w900,
@@ -92,7 +94,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                               Text(
+                              Text(
                                 "Obstetrics and Gynecology Dep",
                                 style: TextStyles.nexaRegular.copyWith(
                                   color: AppTheme.secondaryTextColor,
@@ -118,7 +120,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 children: [
                                   SvgPicture.asset(SVGAssets.money),
                                   const SizedBox(width: 4),
-                                   Text(
+                                  Text(
                                     "750 EGP",
                                     style: TextStyles.nexaRegular.copyWith(
                                       color: AppTheme.grey7Color,
@@ -142,7 +144,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                       const SizedBox(height: 24.0),
                       const DoctorProfileTitle(title: "Doctor Biography"),
                       const SizedBox(height: 8.0),
-                       Text(
+                      Text(
                         "Specialist and A. Lecturer of Gynecology and Obstetrics - Faculty of Medicine - Ain Shams University.",
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
@@ -175,10 +177,12 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 8.5, horizontal: 11.5),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.5, horizontal: 11.5),
                                     child: Text(
-                                      DateFormat("MMM, yyyy").format(_selectedDate),
-                                      style:  TextStyles.nexaRegular.copyWith(
+                                      DateFormat("MMM, yyyy")
+                                          .format(_selectedDate),
+                                      style: TextStyles.nexaRegular.copyWith(
                                         color: AppTheme.primaryTextColor,
                                         fontSize: 12,
                                       ),
@@ -186,8 +190,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                   ),
                                 ),
                                 Container(
-                                  decoration:  BoxDecoration(
-                                    color: themeProvider.currentThemeData!.primaryColor,
+                                  decoration: BoxDecoration(
+                                    color: themeProvider
+                                        .currentThemeData!.primaryColor,
                                     borderRadius: BorderRadius.only(
                                       bottomRight: Radius.circular(4),
                                       topRight: Radius.circular(4),
@@ -195,7 +200,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(4.0),
-                                    child: SvgPicture.asset(SVGAssets.calendarWhite),
+                                    child: SvgPicture.asset(
+                                        SVGAssets.calendarWhite),
                                   ),
                                 ),
                               ],
@@ -209,24 +215,34 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                         runSpacing: 16,
                         alignment: WrapAlignment.center,
                         children: days.map((day) {
-                          final isSelected = day.isAtSameMomentAs(_selectedDate);
-                          final isDisabled =
-                          day.isBefore(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+                          final isSelected =
+                              day.isAtSameMomentAs(_selectedDate);
+                          final isDisabled = day.isBefore(DateTime(
+                              DateTime.now().year,
+                              DateTime.now().month,
+                              DateTime.now().day));
                           return GestureDetector(
                             onTap: isDisabled
                                 ? null
                                 : () {
-                              setState(() {
-                                _selectedDate = day;
-                              });
-                            },
+                                    setState(() {
+                                      _selectedDate = day;
+                                    });
+                                  },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: isSelected ? themeProvider.currentThemeData!.primaryColor : AppTheme.whiteColor,
+                                color: isSelected
+                                    ? themeProvider
+                                        .currentThemeData!.primaryColor
+                                    : AppTheme.whiteColor,
                                 border: Border.all(
-                                  color: isSelected ? themeProvider.currentThemeData!.primaryColor : AppTheme.greyColor,
+                                  color: isSelected
+                                      ? themeProvider
+                                          .currentThemeData!.primaryColor
+                                      : AppTheme.greyColor,
                                 ),
-                                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(8.0)),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -236,25 +252,27 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 child: Column(
                                   children: [
                                     Text(
-                                      DateFormat("EEE").format(day), // "Mon", "Tue"
+                                      DateFormat("EEE").format(day),
+                                      // "Mon", "Tue"
                                       style: TextStyles.nexaRegular.copyWith(
                                         color: isDisabled
                                             ? AppTheme.hintColor
                                             : isSelected
-                                            ? AppTheme.whiteColor
-                                            : AppTheme.secondaryTextColor,
+                                                ? AppTheme.whiteColor
+                                                : AppTheme.secondaryTextColor,
                                         fontSize: 10,
                                       ),
                                     ),
                                     Text(
-                                      DateFormat("d").format(day), // Day of the month
+                                      DateFormat("d").format(day),
+                                      // Day of the month
                                       style: TextStyles.nexaBold.copyWith(
                                         fontWeight: FontWeight.w600,
                                         color: isDisabled
                                             ? AppTheme.hintColor
                                             : isSelected
-                                            ? AppTheme.whiteColor
-                                            : AppTheme.primaryTextColor,
+                                                ? AppTheme.whiteColor
+                                                : AppTheme.primaryTextColor,
                                         fontSize: 18,
                                       ),
                                     ),
@@ -282,7 +300,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                         alignment: WrapAlignment.spaceEvenly,
                         children: List.generate(
                           _timeSlots.length,
-                              (index) => GestureDetector(
+                          (index) => GestureDetector(
                             onTap: () {
                               setState(() {
                                 _selectedTimeSlotIndex = index;
@@ -307,9 +325,13 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
               ),
               color: AppTheme.whiteColor,
               child: Padding(
-                padding: const EdgeInsets.only(top: 10.0, left: 24, right: 24, bottom: 20),
+                padding: const EdgeInsets.only(
+                    top: 10.0, left: 24, right: 24, bottom: 20),
                 child: CustomGreenButton(
-                  title: widget.fromBookings!=null&&widget.fromBookings==true?"Save Changes":"Book appointment",
+                  title:
+                      widget.fromBookings != null && widget.fromBookings == true
+                          ? "Save Changes"
+                          : "Book appointment",
                   onPressed: () {
                     if (_selectedTimeSlotIndex != null) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -337,25 +359,30 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 ),
                                 padding: const EdgeInsets.all(32),
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.min, // Ensures dialog size adjusts to content
+                                  mainAxisSize: MainAxisSize.min,
+                                  // Ensures dialog size adjusts to content
                                   children: [
                                     Container(
-                                      decoration:  BoxDecoration(
+                                      decoration: BoxDecoration(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(50.0),
                                         ),
-                                        color: themeProvider.currentTheme==ThemeEnum.shifa?AppTheme.green4Color:AppTheme.secondaryColorLeksell,
+                                        color: themeProvider.currentTheme ==
+                                                ThemeEnum.shifa
+                                            ? AppTheme.green4Color
+                                            : AppTheme.secondaryColorLeksell,
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(30.0),
                                         child: SvgPicture.asset(
                                           SVGAssets.success,
-                                          color: themeProvider.currentThemeData!.primaryColor,
+                                          color: themeProvider
+                                              .currentThemeData!.primaryColor,
                                         ),
                                       ),
                                     ),
                                     const SizedBox(height: 24),
-                                     Text(
+                                    Text(
                                       "Reschedule appointment",
                                       style: TextStyles.nexaBold.copyWith(
                                         color: AppTheme.primaryTextColor,
@@ -364,7 +391,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                       ),
                                     ),
                                     const SizedBox(height: 8),
-                                     Text(
+                                    Text(
                                       "Your Reschedule has been updated successful.",
                                       style: TextStyles.nexaRegular.copyWith(
                                         color: AppTheme.secondaryTextColor,
@@ -374,14 +401,17 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                     const SizedBox(height: 24),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.pushReplacementNamed(context, AppRoutes.home);
+                                        Navigator.pushReplacementNamed(
+                                            context, AppRoutes.bottomBar);
                                       },
-                                      child:  Text(
+                                      child: Text(
                                         "My Appointments",
                                         style: TextStyles.nexaRegular.copyWith(
                                           decoration: TextDecoration.underline,
-                                          color: themeProvider.currentThemeData!.primaryColor,
-                                          decorationColor: themeProvider.currentThemeData!.primaryColor,
+                                          color: themeProvider
+                                              .currentThemeData!.primaryColor,
+                                          decorationColor: themeProvider
+                                              .currentThemeData!.primaryColor,
                                           fontSize: 16,
                                         ),
                                       ),
@@ -393,7 +423,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                           },
                         );
                       } else {
-                        Navigator.pushNamed(context, AppRoutes.firstBookAppointment);
+                        Navigator.pushNamed(
+                            context, AppRoutes.firstBookAppointment);
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -428,7 +459,9 @@ class TimeSlot extends StatelessWidget {
       width: 156,
       height: 38,
       decoration: BoxDecoration(
-        color: isSelected ? themeProvider.currentThemeData!.primaryColor : AppTheme.whiteColor,
+        color: isSelected
+            ? themeProvider.currentThemeData!.primaryColor
+            : AppTheme.whiteColor,
         border: Border.all(color: AppTheme.greyColor),
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       ),

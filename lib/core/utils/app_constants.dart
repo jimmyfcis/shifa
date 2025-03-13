@@ -2,7 +2,9 @@ import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/core/models/clinic_model.dart';
+import 'package:shifa/core/models/doctor_model.dart';
 import 'package:shifa/core/models/radiolog_model.dart';
+import 'package:shifa/core/models/service_model.dart';
 
 class AppConstants {
   static const String lognText =
@@ -44,7 +46,25 @@ class AppConstants {
           "The 25 Healthiest Fruits You Can Eat, According to a Nutritionist",
     ),
   ];
-
+  List<ServiceModel> shifaServiceModel = [
+    ServiceModel(title: "Discover Clinic", icon: SVGAssets.clincsShifaIcon),
+    ServiceModel(title: "Monitor Queue", icon: SVGAssets.monitorQueueShifaIcon),
+    ServiceModel(
+        title: "Physical Therapy", icon: SVGAssets.physicalTherapyShifaIcon),
+    ServiceModel(title: "Ambulance", icon: SVGAssets.ambulanceShifa),
+  ];
+  List<ServiceModel> leksellServiceModel = [
+    ServiceModel(title: "Clinics", icon: SVGAssets.clincsLeksellIcon),
+    ServiceModel(title: "Queue", icon: SVGAssets.queueLeksell),
+    ServiceModel(title: "Ambulance", icon: SVGAssets.ambulanceLeksell),
+    ServiceModel(title: "Chemotherapy", icon: SVGAssets.chemoLeksellIcon),
+    ServiceModel(title: "Radiotherapy", icon: SVGAssets.radioTherapyLeksell),
+  ];
+  static TopRateDoctorModel topRateDoctorModel = TopRateDoctorModel(
+    name: "Dr.Rasha Medhat",
+    speciality: "Obstetrics and Gynecology Dep",
+    rate: "4.5",
+  );
   List<RecordsModel> recordsList = [
     RecordsModel(
       date: "21 Oct, 2024",
