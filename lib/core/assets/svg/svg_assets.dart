@@ -11,6 +11,8 @@ class SVGAssets {
   static const String onBoardingFirst = "assets/svg/icons/onboarding_first.svg";
   static const String success = "assets/svg/icons/success.svg";
   static const String line = "assets/svg/icons/line.svg";
+  static const String creditCard = "assets/svg/icons/credit_card.svg";
+  static const String cash = "assets/svg/icons/cash.svg";
   static const String calendarWhite = "assets/svg/icons/calendarWhite.svg";
   static const String search = "assets/svg/icons/search.svg";
   static const String trash = "assets/svg/icons/trash.svg";

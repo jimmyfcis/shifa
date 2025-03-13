@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/features/Doctors/widgets/booking_radio_steps.dart';
 import '../../../core/theme/theme.dart';
@@ -68,7 +69,9 @@ class _FirstBookingScreenState extends State<FirstBookingScreen> {
               child: Padding(
                 padding:  EdgeInsets.symmetric(horizontal: 24.w,vertical: 10.h),
                 child: CustomGreenButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushNamed(context, AppRoutes.secondBookingScreen);
+                  },
                 ),
               ),
             ),
