@@ -2,6 +2,7 @@ class AppRoutes {
   static const String splash = '/';
   static const String languageSplash = '/languageSplash';
   static const String firstBookAppointment = '/firstBookAppointment';
+  static const String secondBookingScreen = '/secondBookingScreen';
   static const String doctorProfile = '/doctorProfile';
   static const String onboardingScreen = '/onboardingScreen';
   static const String bottomBar = '/Bottom Bar';
