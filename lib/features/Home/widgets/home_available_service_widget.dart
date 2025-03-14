@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
@@ -35,6 +36,12 @@ class HomeAvailableService extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return HomeServiceCard(
+                      onTap: (){
+                        if(AppConstants().shifaServiceModel[index].title=="Ambulance")
+                          {
+                            Navigator.pushNamed(context, AppRoutes.ambulance);
+                          }
+                      },
                       title: AppConstants().shifaServiceModel[index].title,
                       icon: AppConstants().shifaServiceModel[index].icon,
                     );
@@ -54,6 +61,13 @@ class HomeAvailableService extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return HomeServiceCard(
+                    onTap: (){
+                      if(AppConstants().leksellServiceModel[index].title=="Ambulance")
+                      {
+                        Navigator.pushNamed(context, AppRoutes.ambulance);
+
+                      }
+                    },
                     title: AppConstants().leksellServiceModel[index].title,
                     icon: AppConstants().leksellServiceModel[index].icon,
                   );

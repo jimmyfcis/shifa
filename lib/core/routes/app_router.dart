@@ -12,6 +12,7 @@ import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';
 import 'package:shifa/features/Doctors/screens/first_booking_screen.dart';
+import 'package:shifa/features/Home/screens/ambulance_screen.dart';
 import 'package:shifa/features/Home/screens/home_screen.dart';
 import 'package:shifa/features/Lab%20Tests/screens/lab_tests_screen.dart';
 import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_screen.dart';
@@ -76,6 +77,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case AppRoutes.verifyOTP:
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
+        case AppRoutes.ambulance:
+        return MaterialPageRoute(builder: (_) => AmbulanceScreen());
         case AppRoutes.secondBookingScreen:
         return MaterialPageRoute(builder: (_) => SecondBookingScreen());
       case AppRoutes.blogs:
