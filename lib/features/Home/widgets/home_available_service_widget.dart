@@ -41,6 +41,11 @@ class HomeAvailableService extends StatelessWidget {
                           {
                             Navigator.pushNamed(context, AppRoutes.ambulance);
                           }
+                        else if(AppConstants().shifaServiceModel[index].title=="Monitor Queue")
+                          {
+                            Navigator.pushNamed(context, AppRoutes.firstQueueScreen);
+
+                          }
                       },
                       title: AppConstants().shifaServiceModel[index].title,
                       icon: AppConstants().shifaServiceModel[index].icon,
@@ -65,6 +70,11 @@ class HomeAvailableService extends StatelessWidget {
                       if(AppConstants().leksellServiceModel[index].title=="Ambulance")
                       {
                         Navigator.pushNamed(context, AppRoutes.ambulance);
+
+                      }
+                      else if(AppConstants().leksellServiceModel[index].title=="Monitor Queue")
+                      {
+                        Navigator.pushNamed(context, AppRoutes.firstQueueScreen);
 
                       }
                     },

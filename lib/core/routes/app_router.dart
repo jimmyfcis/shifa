@@ -29,6 +29,8 @@ import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
 
 import '../../features/Doctors/screens/second_booking_screen.dart';
+import '../../features/Home/screens/first_queue_screen.dart';
+import '../../features/Home/screens/second_queue_screen.dart';
 import '../../features/My Profile/screens/edit_profile_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
@@ -73,6 +75,10 @@ class AppRouter {
 
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+        case AppRoutes.firstQueueScreen:
+        return MaterialPageRoute(builder: (_) => FirstQueueScreen());
+        case AppRoutes.secondQueueScreen:
+        return MaterialPageRoute(builder: (_) => SecondQueueScreen());
       case AppRoutes.register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case AppRoutes.verifyOTP:
