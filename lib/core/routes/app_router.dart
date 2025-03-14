@@ -19,6 +19,7 @@ import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_scree
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Favorite/screens/my_favorite_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
+import 'package:shifa/features/My%20Records/screens/my_records_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
@@ -78,17 +79,17 @@ class AppRouter {
 
       case AppRoutes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-        case AppRoutes.firstQueueScreen:
+      case AppRoutes.firstQueueScreen:
         return MaterialPageRoute(builder: (_) => FirstQueueScreen());
-        case AppRoutes.secondQueueScreen:
+      case AppRoutes.secondQueueScreen:
         return MaterialPageRoute(builder: (_) => SecondQueueScreen());
       case AppRoutes.register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case AppRoutes.verifyOTP:
         return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
-        case AppRoutes.ambulance:
+      case AppRoutes.ambulance:
         return MaterialPageRoute(builder: (_) => AmbulanceScreen());
-        case AppRoutes.secondBookingScreen:
+      case AppRoutes.secondBookingScreen:
         return MaterialPageRoute(builder: (_) => SecondBookingScreen());
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
@@ -108,11 +109,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => MedicalReminderScreen());
       case AppRoutes.vaccineReminder:
         return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
-        case AppRoutes.newVaccineReminder:
+      case AppRoutes.myRecords:
+        return MaterialPageRoute(builder: (_) => MyRecordsScreen());
+      case AppRoutes.newVaccineReminder:
         return MaterialPageRoute(builder: (_) => NewVaccineReminderScreen());
-        case AppRoutes.newCareReminder:
+      case AppRoutes.newCareReminder:
         return MaterialPageRoute(builder: (_) => NewCareReminderScreen());
-        case AppRoutes.newMedicineReminderScreen:
+      case AppRoutes.newMedicineReminderScreen:
         return MaterialPageRoute(builder: (_) => NewMedicineReminderScreen());
       case AppRoutes.careReminder:
         return MaterialPageRoute(builder: (_) => CareReminderScreen());
