@@ -27,7 +27,7 @@ class HomeTopDoctor extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         SizedBox(
-          height: 230.h,
+          height: 235.h,
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -79,7 +79,7 @@ class HomeTopDoctor extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 8.h,
+                    height: 10.h,
                   ),
                   Container(
                     width: 40.w,

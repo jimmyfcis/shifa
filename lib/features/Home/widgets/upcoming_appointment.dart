@@ -38,7 +38,15 @@ class UpcomingAppointment extends StatelessWidget {
           ),
         ),
         SizedBox(height: 16.h),
-        const DoctorCard()
+        SizedBox(
+          height: 145.h,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: 5,
+            itemBuilder: (context, index) => const DoctorCard(),
+          ),
+        ),
       ],
     );
   }
