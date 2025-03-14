@@ -84,7 +84,7 @@ class CustomDateField extends StatelessWidget {
                 color: AppTheme.hintColor,
                 fontSize: 14,
               ),
-              hintText: hintText,
+              hintText: hintText??"dd/mm/yyyy",
               suffixIcon: inputType==InputType.date?Image.asset(Assets.calendarForm):Image.asset(Assets.clockForm),
             ),
             format: DateFormat("${DateFormat.WEEKDAY} ${DateFormat.DAY} ${DateFormat.ABBR_MONTH}"),

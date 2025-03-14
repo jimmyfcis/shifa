@@ -1,6 +1,9 @@
 class AppRoutes {
   static const String splash = '/';
   static const String languageSplash = '/languageSplash';
+  static const String ambulance = '/ambulance';
+  static const String firstQueueScreen = '/firstQueueScreen';
+  static const String secondQueueScreen = '/secondQueueScreen';
   static const String firstBookAppointment = '/firstBookAppointment';
   static const String secondBookingScreen = '/secondBookingScreen';
   static const String doctorProfile = '/doctorProfile';
@@ -27,6 +30,9 @@ class AppRoutes {
   static const String recordsDetails = '/recordsDetails';
   static const String medicalReminder = '/medicalReminder';
   static const String vaccineReminder = '/vaccineReminder';
+  static const String newVaccineReminder = '/newVaccineReminder';
+  static const String newMedicineReminderScreen = '/newMedicineReminderScreen';
+  static const String newCareReminder = '/newCareReminder';
   static const String careReminder = '/careReminder';
 
   static const String login = '/login';

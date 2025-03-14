@@ -2,7 +2,7 @@ class Assets {
   static const String logoAnimation = "assets/logo_animation.json";
   static const String arrowLeft = "assets/arrow-left.png";
   static const String calendarForm = "assets/calendar_form.png";
-  static const String clockForm = "assets/clock_form.svg";
+  static const String clockForm = "assets/clock_form.png";
   static const String eyeOpen = "assets/eye.png";
   static const String eyeClose = "assets/eye_closed.png";
 }

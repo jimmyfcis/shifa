@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/enums.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
@@ -16,6 +17,10 @@ class CareReminderScreen extends StatelessWidget {
     return WaterMark(
       appBarChild: const CommonAppBarTitle(title: "Care Reminder"),
       height: 105,
+      onFABPressed: (){
+        Navigator.pushNamed(context, AppRoutes.newCareReminder);
+      },
+      showFABButton: true,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
