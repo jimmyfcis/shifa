@@ -22,15 +22,18 @@ import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
+import 'package:shifa/features/Vaccine%20Reminder/screens/new_vaccine_reminder.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
 import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
 
+import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Doctors/screens/second_booking_screen.dart';
 import '../../features/Home/screens/first_queue_screen.dart';
 import '../../features/Home/screens/second_queue_screen.dart';
+import '../../features/Medical Reminder/screens/new_medicine_reminder_screen.dart';
 import '../../features/My Profile/screens/edit_profile_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
@@ -105,6 +108,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => MedicalReminderScreen());
       case AppRoutes.vaccineReminder:
         return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
+        case AppRoutes.newVaccineReminder:
+        return MaterialPageRoute(builder: (_) => NewVaccineReminderScreen());
+        case AppRoutes.newCareReminder:
+        return MaterialPageRoute(builder: (_) => NewCareReminderScreen());
+        case AppRoutes.newMedicineReminderScreen:
+        return MaterialPageRoute(builder: (_) => NewMedicineReminderScreen());
       case AppRoutes.careReminder:
         return MaterialPageRoute(builder: (_) => CareReminderScreen());
       case AppRoutes.firstBookAppointment:

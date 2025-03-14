@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/enums.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
@@ -14,6 +15,10 @@ class VaccineReminderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
+      showFABButton: true,
+      onFABPressed: (){
+        Navigator.pushNamed(context, AppRoutes.newVaccineReminder);
+      },
       appBarChild: const CommonAppBarTitle(title: "Vaccine Reminder"),
       height: 105,
       alignment: Alignment.bottomCenter,

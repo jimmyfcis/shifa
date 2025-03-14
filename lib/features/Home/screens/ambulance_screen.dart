@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
-
-import '../../../core/routes/app_routes.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/utils/validators.dart';
 import '../../../core/widgtes/common_app_bar_title.dart';
@@ -128,7 +126,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                 child: CustomGreenButton(
                   title: "Send Request",
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, AppRoutes.home);
+                    Navigator.pop(context);
                   },
                 ),
               ),

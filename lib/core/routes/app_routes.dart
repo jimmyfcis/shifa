@@ -30,6 +30,9 @@ class AppRoutes {
   static const String recordsDetails = '/recordsDetails';
   static const String medicalReminder = '/medicalReminder';
   static const String vaccineReminder = '/vaccineReminder';
+  static const String newVaccineReminder = '/newVaccineReminder';
+  static const String newMedicineReminderScreen = '/newMedicineReminderScreen';
+  static const String newCareReminder = '/newCareReminder';
   static const String careReminder = '/careReminder';
 
   static const String login = '/login';
