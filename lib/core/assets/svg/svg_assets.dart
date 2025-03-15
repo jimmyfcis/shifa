@@ -87,6 +87,8 @@ class SVGAssets {
   static const String money = "assets/svg/icons/money.svg";
   static const String clincsLeksellIcon =
       "assets/svg/icons/clinics_leksell.svg";
+  static const String diagnoseShifa = "assets/svg/icons/diagnose.svg";
+  static const String diagnoseLeksell = "assets/svg/icons/diagnose_leksell.svg";
   static const String queueLeksell = "assets/svg/icons/queue_leksell.svg";
   static const String chemoLeksellIcon = "assets/svg/icons/chemo_leksell.svg";
   static const String radioTherapyLeksell =

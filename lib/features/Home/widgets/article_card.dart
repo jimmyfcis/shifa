@@ -11,6 +11,8 @@ class ArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
+      width: 327.w,
+      height: 94.h,
       decoration: BoxDecoration(
         color: AppTheme.whiteColor,
         borderRadius: BorderRadius.circular(8.0),
@@ -20,6 +22,8 @@ class ArticleCard extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4.0),

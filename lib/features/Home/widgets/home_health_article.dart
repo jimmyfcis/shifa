@@ -39,7 +39,16 @@ class HomeHealthArticle extends StatelessWidget {
           ),
         ),
         SizedBox(height: 16.h),
-        const ArticleCard(),
+        SizedBox(
+          height: 125.h,
+          child: ListView.separated(
+            separatorBuilder: (context, index) => SizedBox(width: 16.w),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: 5,
+            itemBuilder: (context, index) => const ArticleCard(),
+          ),
+        ),
       ],
     );
   }
