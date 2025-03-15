@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shifa/core/theme/styles.dart';
+import 'package:shifa/core/utils/fonts/fonts_manager.dart';
 
 class AppTheme {
   static const Color leksellPrimaryColor = Color(0xFF4270B7);
@@ -38,6 +39,123 @@ ThemeData shifaThemeData = ThemeData(
     //fontFamily: "Nexa",
     listTileTheme: const ListTileThemeData(
       horizontalTitleGap: 4,
+    ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: Colors.white,
+      // White background
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+
+      /// AM/PM Section
+      dayPeriodColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme
+              .shifaPrimaryColor; // Selected background color (green)
+        }
+        return AppTheme.whiteColor; // Unselected background color (light green)
+      }),
+      dayPeriodTextColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme.whiteColor; // Selected text color (white)
+        }
+        return AppTheme.primaryTextColor; // Unselected text color (black)
+      }),
+      dayPeriodTextStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaBold,
+      ),
+      dayPeriodBorderSide: BorderSide(color: Colors.transparent),
+      dayPeriodShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+
+      /// Hour & Minute Display
+      hourMinuteColor: MaterialStateColor.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.selected)) {
+            return AppTheme
+                .shifaPrimaryColor; // Selected background color (green)
+          }
+          return AppTheme
+              .whiteColor; // Unselected background color (light green)
+        },
+      ),
+      hourMinuteTextColor: MaterialStateColor.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.selected)) {
+            return AppTheme.whiteColor; // Selected text color (white)
+          }
+          return AppTheme.primaryTextColor; // Unselected text color (black)
+        },
+      ),
+      hourMinuteTextStyle: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Dial Settings
+      dialBackgroundColor: Colors.white,
+      dialTextColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme.whiteColor; // Selected text color (green)
+        }
+        return AppTheme.primaryTextColor; // Unselected text color (black)
+      }),
+      dialHandColor: AppTheme.shifaPrimaryColor,
+      dialTextStyle: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Time Separator
+      entryModeIconColor: AppTheme.shifaPrimaryColor,
+      timeSelectorSeparatorTextStyle: MaterialStateProperty.all(
+        TextStyle(
+          fontSize: 24,
+          color: AppTheme.primaryTextColor,
+          fontWeight: FontWeight.bold,
+          height: 3.0,
+          fontFamily: FontsAssets.nexaRegular,
+        ),
+      ),
+      helpTextStyle: TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Buttons
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            fontFamily: FontsAssets.nexaRegular,
+          ),
+        ),
+      ),
+
+      confirmButtonStyle: ButtonStyle(
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: FontsAssets.nexaRegular,
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+      ),
     ),
     datePickerTheme: DatePickerThemeData(
       dividerColor: AppTheme.shifaPrimaryColor,
@@ -279,6 +397,125 @@ ThemeData leksellThemeData = ThemeData(
         fontWeight: FontWeight.w400,
         color: AppTheme.primaryTextColor,
         //fontFamily: FontsAssets.Nexa,
+      ),
+    ),
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: Colors.white,
+      // White background
+
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+
+      /// AM/PM Section
+      dayPeriodColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme
+              .leksellPrimaryColor; // Selected background color (green)
+        }
+        return AppTheme.whiteColor; // Unselected background color (light green)
+      }),
+      dayPeriodTextColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme.whiteColor; // Selected text color (white)
+        }
+        return AppTheme.primaryTextColor; // Unselected text color (black)
+      }),
+      dayPeriodTextStyle: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaBold,
+      ),
+      dayPeriodBorderSide: BorderSide(color: Colors.transparent),
+      dayPeriodShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+
+      /// Hour & Minute Display
+      hourMinuteColor: MaterialStateColor.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.selected)) {
+            return AppTheme
+                .leksellPrimaryColor; // Selected background color (green)
+          }
+          return AppTheme
+              .whiteColor; // Unselected background color (light green)
+        },
+      ),
+      hourMinuteTextColor: MaterialStateColor.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.selected)) {
+            return AppTheme.whiteColor; // Selected text color (white)
+          }
+          return AppTheme.primaryTextColor; // Unselected text color (black)
+        },
+      ),
+      hourMinuteTextStyle: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Dial Settings
+      dialBackgroundColor: Colors.white,
+      dialTextColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return AppTheme.whiteColor; // Selected text color (green)
+        }
+        return AppTheme.primaryTextColor; // Unselected text color (black)
+      }),
+      dialHandColor: AppTheme.leksellPrimaryColor,
+      dialTextStyle: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Time Separator
+      entryModeIconColor: AppTheme.leksellPrimaryColor,
+      timeSelectorSeparatorTextStyle: MaterialStateProperty.all(
+        TextStyle(
+          fontSize: 24,
+          color: AppTheme.primaryTextColor,
+          fontWeight: FontWeight.bold,
+          height: 3.0,
+          fontFamily: FontsAssets.nexaRegular,
+        ),
+      ),
+      helpTextStyle: TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontsAssets.nexaRegular,
+      ),
+
+      /// Buttons
+      cancelButtonStyle: ButtonStyle(
+        foregroundColor:
+            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            fontFamily: FontsAssets.nexaRegular,
+          ),
+        ),
+      ),
+
+      confirmButtonStyle: ButtonStyle(
+        shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        textStyle: MaterialStateProperty.all(
+          TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontFamily: FontsAssets.nexaRegular,
+          ),
+        ),
+        backgroundColor:
+            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(Colors.white),
       ),
     ),
     buttonTheme: ButtonThemeData(
