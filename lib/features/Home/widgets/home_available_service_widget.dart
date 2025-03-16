@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
+import 'package:shifa/features/Bottom%20Bar/cubit/bottom_bar_cubit.dart';
 import 'package:shifa/features/Home/widgets/home_service_card.dart';
 
 class HomeAvailableService extends StatelessWidget {
@@ -36,16 +40,30 @@ class HomeAvailableService extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return HomeServiceCard(
-                      onTap: (){
-                        if(AppConstants().shifaServiceModel[index].title=="Ambulance")
-                          {
-                            Navigator.pushNamed(context, AppRoutes.ambulance);
-                          }
-                        else if(AppConstants().shifaServiceModel[index].title=="Monitor Queue")
-                          {
-                            Navigator.pushNamed(context, AppRoutes.firstQueueScreen);
-
-                          }
+                      onTap: () {
+                        log("title: ${AppConstants().shifaServiceModel[index].title}");
+                        if (AppConstants().shifaServiceModel[index].title ==
+                            "Ambulance") {
+                          Navigator.pushNamed(context, AppRoutes.ambulance);
+                        } else if (AppConstants()
+                                .shifaServiceModel[index]
+                                .title ==
+                            "Discover Clinic") {
+                          BlocProvider.of<BottomBarCubit>(context)
+                              .updateIndex(2);
+                        } else if (AppConstants()
+                                .shifaServiceModel[index]
+                                .title ==
+                            "Monitor Queue") {
+                          Navigator.pushNamed(
+                              context, AppRoutes.firstQueueScreen);
+                        } else if (AppConstants()
+                                .shifaServiceModel[index]
+                                .title ==
+                            "Physical Therapy") {
+                          Navigator.pushNamed(context, AppRoutes.clinicDoctors,
+                              arguments: "Physical Therapy");
+                        }
                       },
                       title: AppConstants().shifaServiceModel[index].title,
                       icon: AppConstants().shifaServiceModel[index].icon,
@@ -66,16 +84,27 @@ class HomeAvailableService extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return HomeServiceCard(
-                    onTap: (){
-                      if(AppConstants().leksellServiceModel[index].title=="Ambulance")
-                      {
+                    onTap: () {
+                      log("title: ${AppConstants().leksellServiceModel[index].title}");
+                      if (AppConstants().leksellServiceModel[index].title ==
+                          "Ambulance") {
                         Navigator.pushNamed(context, AppRoutes.ambulance);
-
-                      }
-                      else if(AppConstants().leksellServiceModel[index].title=="Monitor Queue")
-                      {
-                        Navigator.pushNamed(context, AppRoutes.firstQueueScreen);
-
+                      } else if (AppConstants()
+                              .leksellServiceModel[index]
+                              .title ==
+                          "Clinics") {
+                        BlocProvider.of<BottomBarCubit>(context).updateIndex(2);
+                      } else if (AppConstants()
+                              .leksellServiceModel[index]
+                              .title ==
+                          "Queue") {
+                        Navigator.pushNamed(
+                            context, AppRoutes.firstQueueScreen);
+                      } else {
+                        Navigator.pushNamed(context, AppRoutes.clinicDoctors,
+                            arguments: AppConstants()
+                                .leksellServiceModel[index]
+                                .title);
                       }
                     },
                     title: AppConstants().leksellServiceModel[index].title,

@@ -56,22 +56,26 @@ class ClinicsDoctorSettings extends StatelessWidget {
             SizedBox(
               width: 8.w,
             ),
-            CustomIconContainer(
-              icon: SVGAssets.filterIcon,
-              label: "Filter by",
-              onTap: () {
-                showFilterByBottomSheet(context);
-              },
+            Expanded(
+              child: CustomIconContainer(
+                icon: SVGAssets.filterIcon,
+                label: "Filter by",
+                onTap: () {
+                  showFilterByBottomSheet(context);
+                },
+              ),
             ),
             SizedBox(
               width: 8.w,
             ),
-            CustomIconContainer(
-              icon: SVGAssets.sortIcon,
-              label: "Sort by",
-              onTap: () {
-                showSortByBottomSheet(context);
-              },
+            Expanded(
+              child: CustomIconContainer(
+                icon: SVGAssets.sortIcon,
+                label: "Sort by",
+                onTap: () {
+                  showSortByBottomSheet(context);
+                },
+              ),
             ),
           ],
         )

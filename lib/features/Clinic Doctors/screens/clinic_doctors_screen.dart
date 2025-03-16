@@ -14,12 +14,12 @@ class ClinicDoctorsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild: CommonAppBarTitle(title: '$clinicName Doctors'),
+      appBarChild: CommonAppBarTitle(title: '$clinicName'),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
-      contentChild: Expanded(child: ClinicDoctorsBody()),
+      contentChild: const Expanded(child: ClinicDoctorsBody()),
     );
   }
 }

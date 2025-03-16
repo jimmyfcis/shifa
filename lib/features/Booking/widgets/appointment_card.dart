@@ -9,6 +9,7 @@ import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
+import 'package:shifa/features/Booking/widgets/cancel_your_visit_dialogue.dart';
 
 class AppointmentCard extends StatelessWidget {
   final int tabSelectedIndex;
@@ -136,7 +137,19 @@ class AppointmentCard extends StatelessWidget {
                         ? "Cancel Your Visit"
                         : "Rate Your Visit",
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.rateYourVisit);
+                      if (tabSelectedIndex == 0) {
+                        showDialog(
+                          barrierDismissible: true,
+                          // Allows dismissing by tapping outside
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CancelYourVisitDialogue(
+                                themeProvider: themeProvider);
+                          },
+                        );
+                      } else {
+                        Navigator.pushNamed(context, AppRoutes.rateYourVisit);
+                      }
                     },
                   ),
                 ),
@@ -147,6 +160,9 @@ class AppointmentCard extends StatelessWidget {
                   child: CustomGreenButton(
                     title: tabSelectedIndex == 0 ? "Reschedule" : "Book Again",
                     fontSize: 14,
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.doctorProfile);
+                    },
                   ),
                 )
               ],

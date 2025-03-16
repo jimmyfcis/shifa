@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
+import 'package:shifa/features/Bottom%20Bar/cubit/bottom_bar_cubit.dart';
 import 'package:shifa/features/Bottom%20Bar/screens/bottom_bar_screen.dart';
 import 'package:shifa/features/Care%20Reminder/screens/care_reminder_screen.dart';
 import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
@@ -51,7 +53,12 @@ class AppRouter {
       case AppRoutes.splash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case AppRoutes.bottomBar:
-        return MaterialPageRoute(builder: (_) => BottomBarScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => BottomBarCubit(),
+            child: BottomBarScreen(),
+          ),
+        );
       case AppRoutes.home:
         return MaterialPageRoute(builder: (_) => HomeScreen());
 

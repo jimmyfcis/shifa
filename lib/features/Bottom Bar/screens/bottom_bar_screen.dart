@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +11,8 @@ import 'package:shifa/features/Home/screens/home_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 
 import '../../Profile/screens/profile_screen.dart';
+import '../cubit/bottom_bar_cubit.dart';
+import '../cubit/bottom_bar_state.dart';
 
 class BottomBarScreen extends StatefulWidget {
   @override
@@ -18,67 +20,54 @@ class BottomBarScreen extends StatefulWidget {
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  int _selectedIndex = 0;
   final PageController _pageController = PageController();
-
-  // List of pages for each tab
-  final List<Widget> _pages = [
-    const HomeScreen(),
-    const BookingScreen(),
-    const ClinicsScreen(),
-    const MyCareScreen(),
-    const ProfileScreen(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    _pageController.jumpToPage(index); // Navigate to the selected page
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   void initState() {
     super.initState();
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ));
+    // Listen for state changes and update the PageController
+    _pageController.addListener(_onPageChanged);
+  }
+
+  @override
+  void dispose() {
+    _pageController.removeListener(_onPageChanged);
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged() {
+    // Update the Cubit state when the page changes
+    final currentPage = _pageController.page?.round() ?? 0;
+    context.read<BottomBarCubit>().updateIndex(currentPage);
   }
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-        // This makes status bar icons dark
-        statusBarBrightness: Brightness.light,
-        // This is for iOS
-        systemNavigationBarColor: Colors.white,
-        // Bottom navigation bar color
-        systemNavigationBarIconBrightness: Brightness.dark,
-      ),
-      child: Scaffold(
-          backgroundColor: Colors.white, // Add this to ensure white background
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return BlocBuilder<BottomBarCubit, BottomBarState>(
+      builder: (context, state) {
+        // Sync the PageController with the Cubit state
+        if (_pageController.hasClients &&
+            state.selectedIndex != _pageController.page?.round()) {
+          _pageController.jumpToPage(state.selectedIndex);
+        }
+
+        return Scaffold(
+          backgroundColor: Colors.white,
           body: PageView(
             controller: _pageController,
             onPageChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
+              // This is handled by the listener
             },
-            children: _pages,
+            children: const [
+              HomeScreen(),
+              BookingScreen(),
+              ClinicsScreen(),
+              MyCareScreen(),
+              ProfileScreen(),
+            ],
           ),
           bottomNavigationBar: Container(
             padding: EdgeInsets.only(top: 8.h),
@@ -101,7 +90,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 type: BottomNavigationBarType.fixed,
                 enableFeedback: false,
                 elevation: 0,
-                // Remove default shadow
                 backgroundColor: Colors.white,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
@@ -160,11 +148,17 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                     label: 'Profile',
                   ),
                 ],
-                currentIndex: _selectedIndex,
-                onTap: _onItemTapped,
+                currentIndex: state.selectedIndex,
+                // Use state.selectedIndex
+                onTap: (index) {
+                  context.read<BottomBarCubit>().updateIndex(index);
+                  _pageController.jumpToPage(index);
+                },
               ),
             ),
-          )),
+          ),
+        );
+      },
     );
   }
 }
