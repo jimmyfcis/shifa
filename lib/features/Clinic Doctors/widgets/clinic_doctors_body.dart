@@ -37,7 +37,7 @@ class ClinicDoctorsBody extends StatelessWidget {
               height: 16.h,
             ),
             itemCount: 10,
-            itemBuilder: (context, index) => ClinicDoctorCard(
+            itemBuilder: (context, index) => const ClinicDoctorCard(
               isFavorite: false,
             ),
           ),

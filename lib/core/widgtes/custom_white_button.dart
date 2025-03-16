@@ -8,9 +8,17 @@ class CustomWhiteButton extends StatefulWidget {
   final String? title;
   final void Function()? onPressed;
   final double? fontSize;
+  final Color? borderColor;
+  final Color? textColor;
 
-  const CustomWhiteButton(
-      {super.key, this.title, this.onPressed, this.fontSize});
+  const CustomWhiteButton({
+    super.key,
+    this.title,
+    this.onPressed,
+    this.fontSize,
+    this.borderColor,
+    this.textColor,
+  });
 
   @override
   State<CustomWhiteButton> createState() => _CustomWhiteButtonState();
@@ -34,7 +42,8 @@ class _CustomWhiteButtonState extends State<CustomWhiteButton> {
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
                 side: BorderSide(
-                    color: themeProvider.currentThemeData!.primaryColor),
+                    color: widget.borderColor ??
+                        themeProvider.currentThemeData!.primaryColor),
               ),
             ),
           ),
@@ -44,7 +53,8 @@ class _CustomWhiteButtonState extends State<CustomWhiteButton> {
             child: Text(
               widget.title ?? "Next",
               style: TextStyles.nexaBold.copyWith(
-                color: themeProvider.currentThemeData!.primaryColor,
+                color: widget.textColor ??
+                    themeProvider.currentThemeData!.primaryColor,
                 fontSize: widget.fontSize ?? 14,
                 fontWeight: FontWeight.w400,
               ),

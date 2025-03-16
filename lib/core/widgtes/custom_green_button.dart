@@ -10,6 +10,8 @@ class CustomGreenButton extends StatefulWidget {
   final double? width;
   final double? height;
   final double? borderRadius;
+  final Color? backGroundColor;
+  final Color? borderColor;
   final EdgeInsets? padding;
   final void Function()? onPressed;
 
@@ -21,6 +23,8 @@ class CustomGreenButton extends StatefulWidget {
       this.borderRadius,
       this.padding,
       this.width,
+      this.backGroundColor,
+      this.borderColor,
       this.height});
 
   @override
@@ -40,7 +44,8 @@ class _CustomGreenButtonState extends State<CustomGreenButton> {
             padding:
                 MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.zero),
             backgroundColor: MaterialStateProperty.all<Color>(
-                themeProvider.currentThemeData!.primaryColor),
+                widget.backGroundColor ??
+                    themeProvider.currentThemeData!.primaryColor),
             shadowColor: MaterialStateProperty.all<Color>(AppTheme.green4Color),
             overlayColor:
                 MaterialStateProperty.all<Color>(AppTheme.green4Color),
@@ -48,7 +53,8 @@ class _CustomGreenButtonState extends State<CustomGreenButton> {
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 8.0),
                 side: BorderSide(
-                    color: themeProvider.currentThemeData!.primaryColor),
+                    color: widget.borderColor ??
+                        themeProvider.currentThemeData!.primaryColor),
               ),
             ),
           ),

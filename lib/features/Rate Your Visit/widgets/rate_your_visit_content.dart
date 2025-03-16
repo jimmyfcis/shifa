@@ -75,7 +75,7 @@ class RateYourVisitContent extends StatelessWidget {
                 )
               ],
             ),
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

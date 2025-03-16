@@ -14,6 +14,7 @@ class AppTheme {
   static const Color billColor = Color(0xFFEEF7F4);
   static Color profileBGColor = HexColor("FAFAFAF");
   static const Color secondaryColorLeksell = Color(0xFFECF1F8);
+  static const Color redColor = Color(0xFFFF3B30);
   static const Color secondaryColorShifa = Color(0xFFEBFEF4);
   static const Color hintColor = Color(0xFFB0B0B0);
   static const Color darkGreyColor = Color(0xFF3D3D3D);
