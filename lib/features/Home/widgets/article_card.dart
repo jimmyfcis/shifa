@@ -48,13 +48,15 @@ class ArticleCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 16.h,
+                  height: 8.h,
                 ),
-                Text(
-                  " is simply dummy text of the printing and typesetting industry.",
-                  style: TextStyles.nexaRegular.copyWith(
-                    fontSize: 11.sp,
-                    color: AppTheme.secondaryTextColor,
+                Expanded(
+                  child: Text(
+                    " is simply dummy text of the printing and typesetting industry.",
+                    style: TextStyles.nexaRegular.copyWith(
+                      fontSize: 11.sp,
+                      color: AppTheme.secondaryTextColor,
+                    ),
                   ),
                 ),
               ],
