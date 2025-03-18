@@ -82,7 +82,7 @@ class HomeTopDoctor extends StatelessWidget {
                     height: 10.h,
                   ),
                   Container(
-                    width: 40.w,
+                    width: 45.w,
                     padding:
                         EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
                     decoration: BoxDecoration(
