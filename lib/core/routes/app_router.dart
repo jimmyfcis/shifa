@@ -27,11 +27,9 @@ import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_scree
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/new_vaccine_reminder.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
-import 'package:shifa/features/authentication/screens/login_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
-
 import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Doctors/screens/second_booking_screen.dart';
 import '../../features/Home/screens/first_queue_screen.dart';
@@ -41,9 +39,10 @@ import '../../features/My Profile/screens/edit_profile_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
 import '../../features/Profile/screens/profile_screen.dart';
 import '../../features/Terms And Conditions/screens/terms_and_conditions_screen.dart';
-import '../../features/authentication/screens/forget_password_screen.dart';
-import '../../features/authentication/screens/register_screen.dart';
-import '../../features/authentication/screens/verify_code_screen.dart';
+import '../../features/authentication/presentation/screens/forget_password_screen.dart';
+import '../../features/authentication/presentation/screens/login_screen.dart';
+import '../../features/authentication/presentation/screens/register_screen.dart';
+import '../../features/authentication/presentation/screens/verify_code_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';
 

@@ -4,10 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shifa/core/theme/theme.dart';
-import '../../../core/theme/styles.dart';
-import '../../../core/widgtes/auth_appbar.dart';
-import '../../../core/widgtes/custom_green_button.dart';
-import '../../../core/widgtes/form_fields/otp_text_field.dart';
+
+import '../../../../core/theme/styles.dart';
+import '../../../../core/widgtes/auth_appbar.dart';
+import '../../../../core/widgtes/custom_green_button.dart';
+import '../../../../core/widgtes/form_fields/otp_text_field.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});

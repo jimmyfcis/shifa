@@ -8,18 +8,18 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/validators.dart';
 
-import '../../../core/assets/svg/svg_assets.dart';
-import '../../../core/routes/app_routes.dart';
-import '../../../core/theme/styles.dart';
-import '../../../core/widgtes/auth_appbar.dart';
-import '../../../core/widgtes/custom_green_button.dart';
-import '../../../core/widgtes/form_fields/confirm_password_text_field.dart';
-import '../../../core/widgtes/form_fields/custom_date_field.dart';
-import '../../../core/widgtes/form_fields/custom_drop_down_field.dart';
-import '../../../core/widgtes/form_fields/custom_text_field.dart';
-import '../../../core/widgtes/form_fields/email_text_field.dart';
-import '../../../core/widgtes/form_fields/password_text_field.dart';
-import '../../../core/widgtes/form_fields/phone_number_field.dart';
+import '../../../../core/assets/svg/svg_assets.dart';
+import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/styles.dart';
+import '../../../../core/widgtes/auth_appbar.dart';
+import '../../../../core/widgtes/custom_green_button.dart';
+import '../../../../core/widgtes/form_fields/confirm_password_text_field.dart';
+import '../../../../core/widgtes/form_fields/custom_date_field.dart';
+import '../../../../core/widgtes/form_fields/custom_drop_down_field.dart';
+import '../../../../core/widgtes/form_fields/custom_text_field.dart';
+import '../../../../core/widgtes/form_fields/email_text_field.dart';
+import '../../../../core/widgtes/form_fields/password_text_field.dart';
+import '../../../../core/widgtes/form_fields/phone_number_field.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

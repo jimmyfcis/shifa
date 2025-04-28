@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shifa/core/theme/theme.dart';
-import '../../../core/routes/app_routes.dart';
-import '../../../core/theme/styles.dart';
-import '../../../core/utils/validators.dart';
-import '../../../core/widgtes/auth_appbar.dart';
-import '../../../core/widgtes/custom_green_button.dart';
-import '../../../core/widgtes/form_fields/phone_number_field.dart';
+
+import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/styles.dart';
+import '../../../../core/utils/validators.dart';
+import '../../../../core/widgtes/auth_appbar.dart';
+import '../../../../core/widgtes/custom_green_button.dart';
+import '../../../../core/widgtes/form_fields/phone_number_field.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
