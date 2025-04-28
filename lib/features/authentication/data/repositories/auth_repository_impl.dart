@@ -15,7 +15,6 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<LoginResponse> login({required String phoneNumber, required String password}) async {
     final loginResponse = await remoteDatasource.login(phoneNumber: phoneNumber, password: password);
-    await tokenStorage.saveToken(loginResponse.token);
     return loginResponse;
   }
 }

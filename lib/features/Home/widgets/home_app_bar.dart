@@ -9,9 +9,32 @@ import 'package:shifa/core/widgtes/appbar_widget.dart';
 import 'package:shifa/core/widgtes/common_app_bar_child_theme.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 
-class HomeAppBar extends StatelessWidget {
+import '../../../core/storage/token_storage.dart';
+
+class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
 
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  String _userName = '';
+
+@override
+  void initState() {
+    super.initState();
+    _loadUserName();
+}
+  Future<void> _loadUserName() async {
+    final storage = TokenStorage();
+    final user = await storage.getUser();
+    if (mounted && user != null) {
+      setState(() {
+        _userName = user.firstName;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -25,7 +48,7 @@ class HomeAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello, Ahmed",
+              "Hello, $_userName",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 24.sp,
                 color: AppTheme.whiteColor,
