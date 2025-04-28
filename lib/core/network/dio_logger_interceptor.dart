@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:shifa/core/routes/app_routes.dart'; // Make sure to import your routes
+import 'package:shifa/core/routes/app_routes.dart'; // Ensure your routes are imported
 
 class DioLoggerInterceptor extends Interceptor {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -9,7 +9,7 @@ class DioLoggerInterceptor extends Interceptor {
   void _printPrettyJson(dynamic data) {
     const encoder = JsonEncoder.withIndent('  ');
     final prettyJson = encoder.convert(data);
-    print(prettyJson);
+    print(prettyJson); // This ensures the pretty JSON is printed to the console.
   }
 
   @override
