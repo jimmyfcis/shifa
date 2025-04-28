@@ -1,31 +1,37 @@
 import 'package:get_it/get_it.dart';
 import 'package:shifa/core/storage/token_storage.dart';
-
 import '../../features/authentication/data/datasources/auth_remote_datasource.dart';
 import '../../features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../features/authentication/domain/repositories/auth_repository.dart';
 import '../../features/authentication/domain/use_cases/login_usecase.dart';
 import '../../features/authentication/presentation/cubit/login_cubit.dart';
 
-
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Cubit
-  sl.registerFactory(() => LoginCubit(loginUseCase: sl()));
+  // Core
+  sl.registerLazySingleton<TokenStorage>(() => TokenStorage());
 
-  // Usecases
-  sl.registerLazySingleton(() => LoginUseCase(sl()));
+  // Data sources
+  sl.registerLazySingleton<AuthRemoteDatasource>(
+        () => AuthRemoteDatasourceImpl(),
+  );
 
   // Repositories
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-    remoteDatasource: sl(),
-    tokenStorage: sl(),
-  ));
+  sl.registerLazySingleton<AuthRepository>(
+        () => AuthRepositoryImpl(
+      remoteDatasource: sl<AuthRemoteDatasource>(),
+      tokenStorage: sl<TokenStorage>(),
+    ),
+  );
 
-  // Datasources
-  sl.registerLazySingleton(() => AuthRemoteDatasource());
+  // Use cases
+  sl.registerLazySingleton<LoginUseCase>(
+        () => LoginUseCase(sl<AuthRepository>()),
+  );
 
-  // Core
-  sl.registerLazySingleton(() => TokenStorage());
+  // Presentation (Cubit)
+  sl.registerFactory<LoginCubit>(
+        () => LoginCubit(loginUseCase: sl<LoginUseCase>()),
+  );
 }
