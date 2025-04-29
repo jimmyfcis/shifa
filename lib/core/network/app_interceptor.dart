@@ -20,12 +20,14 @@ class AppInterceptors extends Interceptor {
     final data = response.data;
     if (data is Map<String, dynamic>) {
       if (data['status'] == 0) {
+        final errorMessage = data['error'] ?? "Server error occurred";
+        // Throwing a DioException for business error handling
         handler.reject(
           DioException(
             requestOptions: response.requestOptions,
             response: response,
             type: DioExceptionType.badResponse,
-            error: data['error'] ?? 'Unknown error occurred',
+            error: errorMessage,
           ),
           true,
         );
