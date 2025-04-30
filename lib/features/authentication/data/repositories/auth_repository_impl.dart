@@ -17,4 +17,9 @@ class AuthRepositoryImpl implements AuthRepository {
     final loginResponse = await remoteDatasource.login(phoneNumber: phoneNumber, password: password);
     return loginResponse;
   }
+  @override
+  Future<void> logout() async {
+    return await remoteDatasource.logout();
+  }
+
 }

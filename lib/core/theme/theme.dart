@@ -41,6 +41,7 @@ ThemeData shifaThemeData = ThemeData(
     listTileTheme: const ListTileThemeData(
       horizontalTitleGap: 4,
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: AppTheme.shifaPrimaryColor),
     timePickerTheme: TimePickerThemeData(
       backgroundColor: Colors.white,
       // White background
@@ -281,6 +282,8 @@ ThemeData shifaThemeData = ThemeData(
     ));
 ThemeData leksellThemeData = ThemeData(
     primaryColor: AppTheme.leksellPrimaryColor,
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: AppTheme.leksellPrimaryColor),
+
     //fontFamily: "Nexa",
     listTileTheme: const ListTileThemeData(
       horizontalTitleGap: 4,

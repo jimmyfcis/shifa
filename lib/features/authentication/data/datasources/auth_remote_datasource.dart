@@ -8,6 +8,8 @@ abstract class AuthRemoteDatasource {
     required String phoneNumber,
     required String password,
   });
+
+  Future<void> logout();
 }
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
@@ -32,5 +34,24 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     await storage.saveUser(loginResp.user);
 
     return loginResp;
+  }
+
+  @override
+  Future<void> logout() async {
+    try {
+      final response = await dio.post(ApiEndpoints.logout); // No need to pass token manually
+
+      if (response.statusCode == 200 && response.data['success'] == true) {
+        await storage.clearToken();
+      } else {
+        throw Exception(response.data['message'] ?? 'Logout failed');
+      }
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        // Token expired or invalid — handled in interceptor, but still clear token locally
+        await storage.clearToken();
+      }
+      rethrow; // Let interceptor handle UI
+    }
   }
 }

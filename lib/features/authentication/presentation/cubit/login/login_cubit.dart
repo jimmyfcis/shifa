@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/error/error_handler.dart';
-import '../../domain/use_cases/login_usecase.dart';
+import '../../../../../core/error/error_handler.dart';
+import '../../../domain/use_cases/login_usecase.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {

@@ -16,8 +16,8 @@ import '../../../../core/widgtes/custom_green_button.dart';
 import '../../../../core/widgtes/custom_snackbar.dart';
 import '../../../../core/widgtes/form_fields/password_text_field.dart';
 import '../../../../core/widgtes/form_fields/phone_number_field.dart';
-import '../cubit/login_cubit.dart';
-import '../cubit/login_state.dart';
+import '../cubit/login/login_cubit.dart';
+import '../cubit/login/login_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

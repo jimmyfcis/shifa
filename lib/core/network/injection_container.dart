@@ -4,7 +4,9 @@ import '../../features/authentication/data/datasources/auth_remote_datasource.da
 import '../../features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../features/authentication/domain/repositories/auth_repository.dart';
 import '../../features/authentication/domain/use_cases/login_usecase.dart';
-import '../../features/authentication/presentation/cubit/login_cubit.dart';
+import '../../features/authentication/domain/use_cases/logout_use_case.dart';
+import '../../features/authentication/presentation/cubit/login/login_cubit.dart';
+import '../../features/authentication/presentation/cubit/logout/logout_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -29,9 +31,15 @@ Future<void> init() async {
   sl.registerLazySingleton<LoginUseCase>(
         () => LoginUseCase(sl<AuthRepository>()),
   );
+  sl.registerLazySingleton<LogoutUseCase>(
+        () => LogoutUseCase(sl<AuthRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<LoginCubit>(
         () => LoginCubit(loginUseCase: sl<LoginUseCase>()),
+  );
+  sl.registerFactory<LogoutCubit>(
+        () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),
   );
 }
