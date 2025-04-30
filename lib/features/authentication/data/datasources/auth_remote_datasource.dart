@@ -3,10 +3,13 @@ import 'package:shifa/core/network/api_endpoints.dart';
 import 'package:shifa/core/network/dio_client.dart';
 import 'package:shifa/core/storage/token_storage.dart';
 import 'package:shifa/features/authentication/data/models/login_response.dart';
+import 'package:shifa/features/authentication/data/models/user.dart';
 abstract class AuthRemoteDatasource {
   Future<LoginResponse> login({
     required String phoneNumber,
     required String password,
+  });  Future<LoginResponse> register({
+    required User user
   });
 
   Future<void> logout();
@@ -53,5 +56,19 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       }
       rethrow; // Let interceptor handle UI
     }
+  }
+
+  @override
+  Future<LoginResponse> register({required User user})
+    async {
+      final response = await dio.post(
+        ApiEndpoints.register,
+        data:user.toJson(),
+      );
+      final loginResp = LoginResponse.fromJson(response.data);
+      await storage.saveToken(loginResp.token);
+      await storage.saveUser(loginResp.user);
+
+      return loginResp;
   }
 }

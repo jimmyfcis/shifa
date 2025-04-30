@@ -36,17 +36,17 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return BlocProvider(
-      create: (context) => sl<LoginCubit>(),
-      child: BlocConsumer<LoginCubit, LoginState>(
+      create: (context) => sl<AuthCubit>(),
+      child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is LoginFailure) {
+          if (state is AuthFailure) {
             showCustomSnackBar(context, state.message, isError: true);
-          } else if (state is LoginSuccess) {
+          } else if (state is AuthSuccess) {
             Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
           }
         },
         builder: (context, state) {
-          final loginCubit = context.read<LoginCubit>();
+          final loginCubit = context.read<AuthCubit>();
 
           return AuthAppbar(
             body: SingleChildScrollView(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 42.h),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: state is LoginLoading
+                    child: state is AuthLoading
                         ? Center(child: CircularProgressIndicator(color: themeProvider.currentThemeData!.primaryColor,))
                         : Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

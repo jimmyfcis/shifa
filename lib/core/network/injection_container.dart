@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
 import '../../features/authentication/data/datasources/auth_remote_datasource.dart';
 import '../../features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../features/authentication/domain/repositories/auth_repository.dart';
@@ -31,13 +32,16 @@ Future<void> init() async {
   sl.registerLazySingleton<LoginUseCase>(
         () => LoginUseCase(sl<AuthRepository>()),
   );
+  sl.registerLazySingleton<RegisterUseCase>(
+        () => RegisterUseCase(sl<AuthRepository>()),
+  );
   sl.registerLazySingleton<LogoutUseCase>(
         () => LogoutUseCase(sl<AuthRepository>()),
   );
 
   // Presentation (Cubit)
-  sl.registerFactory<LoginCubit>(
-        () => LoginCubit(loginUseCase: sl<LoginUseCase>()),
+  sl.registerFactory<AuthCubit>(
+        () => AuthCubit(loginUseCase: sl<LoginUseCase>(),registerUseCase: sl<RegisterUseCase>() ),
   );
   sl.registerFactory<LogoutCubit>(
         () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),

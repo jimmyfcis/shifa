@@ -1,4 +1,5 @@
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/authentication/data/models/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
 import '../models/login_response.dart';
@@ -20,6 +21,12 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> logout() async {
     return await remoteDatasource.logout();
+  }
+
+  @override
+  Future<LoginResponse> register({required User user}) async{
+    final loginResponse = await remoteDatasource.register(user: user);
+    return loginResponse;
   }
 
 }
