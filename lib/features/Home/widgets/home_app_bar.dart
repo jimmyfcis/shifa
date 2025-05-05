@@ -31,7 +31,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
     final user = await storage.getUser();
     if (mounted && user != null) {
       setState(() {
-        _userName = user.firstName;
+        _userName = user.firstName??"";
       });
     }
   }

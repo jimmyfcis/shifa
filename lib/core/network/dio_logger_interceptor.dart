@@ -1,11 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:shifa/core/routes/app_routes.dart'; // Ensure your routes are imported
 
 class DioLoggerInterceptor extends Interceptor {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
   void _printPrettyJson(dynamic data) {
     const encoder = JsonEncoder.withIndent('  ');
     final prettyJson = encoder.convert(data);
@@ -61,35 +57,7 @@ class DioLoggerInterceptor extends Interceptor {
         print("RAW ERROR RESPONSE: ${err.response?.data.toString()}");
       }
     }
-
-    // Handle 401 Unauthorized error and show a dialog
-    if (err.response?.statusCode == 401) {
-      _showSessionExpiredDialog(navigatorKey.currentContext!);
-    }
-
     print("====================================================");
     super.onError(err, handler);
-  }
-
-  // Show a dialog with message "Your session expired. Please login to continue"
-  void _showSessionExpiredDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Session Expired"),
-          content: Text("Your session expired. Please login to continue."),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoutes.login, (route) => false);
-              },
-              child: Text("Login"),
-            ),
-          ],
-        );
-      },
-    );
   }
 }

@@ -17,23 +17,6 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    final data = response.data;
-    if (data is Map<String, dynamic>) {
-      if (data['status'] == 0) {
-        final errorMessage = data['error'] ?? "Server error occurred";
-        // Throwing a DioException for business error handling
-        handler.reject(
-          DioException(
-            requestOptions: response.requestOptions,
-            response: response,
-            type: DioExceptionType.badResponse,
-            error: errorMessage,
-          ),
-          true,
-        );
-        return;
-      }
-    }
     return handler.next(response);
   }
 

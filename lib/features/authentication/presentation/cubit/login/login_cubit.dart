@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(loginResponse));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
-      emit(AuthFailure(failure.message));
+      emit(AuthFailure(failure.message,failure.statusCode??0));
     }
   }
   Future<void> register({required User user}) async {
@@ -30,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(loginResponse));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
-      emit(AuthFailure(failure.message));
+      emit(AuthFailure(failure.message,failure.statusCode??0));
     }
   }
 }

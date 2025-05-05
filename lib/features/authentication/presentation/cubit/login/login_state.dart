@@ -13,5 +13,6 @@ class AuthSuccess extends AuthState {
 
 class AuthFailure extends AuthState {
   final String message;
-  AuthFailure(this.message);
+  final int statusCode;
+  AuthFailure(this.message, this.statusCode);
 }

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -40,6 +41,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  String formatDate(DateTime? date) {
+    if (date == null) return '';
+    return DateFormat('dd/MM/yyyy HH:mm:ss').format(date);
+  }
+
+  String formatGender(String? gender) {
+    if (gender == null) return '';
+    return gender.toLowerCase() == 'male' ? 'M' : 'F';
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -47,11 +58,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       create: (context) => sl<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthFailure) {
-            showCustomSnackBar(context, state.message, isError: true);
-          } else if (state is AuthSuccess) {
+           if (state is AuthSuccess) {
             Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
           }
+           else if (state is AuthFailure) {
+             if(state.message.isEmpty)
+               {
+                 Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+               }
+             else {
+               showCustomSnackBar(context, state.message, isError: true);
+             }
+           }
         },
         builder: (context, state) {
           final loginCubit = context.read<AuthCubit>();
@@ -71,19 +89,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBox(height: 42.h),
                         Text(
                           "Create Account",
-                          style: TextStyles.nexaRegular.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.blackColor,
-                              fontSize: 24),
+                          style: TextStyles.nexaRegular
+                              .copyWith(fontWeight: FontWeight.bold, color: AppTheme.blackColor, fontSize: 24),
                         ),
                         SizedBox(height: 8.h),
                         Text(
                           "Sign up now and start exploring what our app has to offer. We are excited to welcome you to our community.",
                           softWrap: true,
-                          style: TextStyles.nexaRegular.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: AppTheme.grey5Color,
-                              fontSize: 12),
+                          style: TextStyles.nexaRegular
+                              .copyWith(fontWeight: FontWeight.w400, color: AppTheme.grey5Color, fontSize: 12),
                         ),
                       ],
                     ),
@@ -114,8 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onInputChanged: (PhoneNumber number) {
                                 print(number.phoneNumber);
                                 setState(() {
-                                  isValid = Validators().isValidEgyptianPhoneNumber(
-                                      number.phoneNumber ?? "");
+                                  isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
                                 });
                                 return;
                               },
@@ -123,6 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(height: 16.h),
                             CustomDateField(
                               name: 'date',
+                              isRequired: false,
                               inputType: InputType.date,
                               labelText: 'Date of birth',
                             ),
@@ -130,13 +144,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             const CustomTextField(
                               labelText: 'Your Martial Status',
                               name: 'martial',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: 'Enter your martial status',
                             ),
                             SizedBox(height: 16.h),
                             CustomDropdownField(
                               name: 'religion',
-                              isRequired: true,
+                              isRequired: false,
                               labelText: 'Your Religion',
                               items: ["Muslim", "Christian", "Jewish"],
                               itemBuilder: (context, data) {
@@ -164,7 +178,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             SizedBox(height: 16.h),
                             CustomDropdownField(
                               name: 'gender',
-                              isRequired: true,
+                              isRequired: false,
                               labelText: 'Your Gender',
                               items: ["Male", "Female"],
                               itemBuilder: (context, data) {
@@ -193,7 +207,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             const CustomTextField(
                               labelText: 'Your Age',
                               name: 'age',
-                              isRequired: true,
+                              isRequired: false,
                               textInputType: TextInputType.number,
                               hintText: 'Enter your age',
                             ),
@@ -201,6 +215,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             const CustomTextField(
                               labelText: 'Your Medical Company',
                               name: 'company',
+                              isRequired: false,
                               hintText: 'Enter your medical company',
                             ),
                             SizedBox(height: 16.h),
@@ -242,35 +257,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             const CustomTextField(
                               labelText: 'Your Address',
                               name: 'address',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: 'Enter your address',
                             ),
                             SizedBox(height: 16.h),
                             const CustomTextField(
                               labelText: 'Your City',
                               name: 'city',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: 'Enter your city',
                             ),
                             SizedBox(height: 16.h),
                             const CustomTextField(
                               labelText: 'Your Area',
                               name: 'area',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: 'Enter your area',
                             ),
                             SizedBox(height: 16.h),
                             const CustomTextField(
                               labelText: 'Your Street',
                               name: 'street',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: 'Enter your street',
                             ),
                             SizedBox(height: 16.h),
                             const CustomTextField(
                               labelText: 'Your Building number',
                               name: 'building',
-                              isRequired: true,
+                              isRequired: false,
                               textInputType: TextInputType.number,
                               hintText: 'Enter your Building number',
                             ),
@@ -302,28 +317,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   setState(() {
                                     isValid = false;
                                   });
-                                } else if (isValid &&
-                                    phoneController.text.isNotEmpty) {
-                                  // loginCubit.register(
-                                  //     user: User(firstName: firstName,
-                                  //         secondName: secondName,
-                                  //         userId: userId,
-                                  //         email: email,
-                                  //         phoneNumber: phoneNumber,
-                                  //         maritalStatus: maritalStatus,
-                                  //         birthdate: birthdate,
-                                  //         religion: religion,
-                                  //         gender: gender,
-                                  //         age: age,
-                                  //         medicalCompany: medicalCompany,
-                                  //         id: id,
-                                  //         idType: idType,
-                                  //         address: address,
-                                  //         city: city,
-                                  //         area: area,
-                                  //         street: street,
-                                  //         buildingNumber: buildingNumber);
-                                  // );
+                                } else if (isValid && phoneController.text.isNotEmpty) {
+                                  final formValues = formState.value;
+                                  final birthdate = formatDate(formValues['date']);
+                                  final gender = formatGender(formValues['gender']);
+                                  final user = User(
+                                    name: formValues['name'] ?? '',
+                                    nationalId: formValues['id'] ?? '',
+                                    email: formValues['email'] ?? '',
+                                    password: formValues['password'] ?? '',
+                                    confirmPassword: formValues['confirm'] ?? '',
+                                    phone: phoneController.text.replaceAll(" ", ""),
+                                    maritalStatus: formValues['martial'] ?? '',
+                                    birthdate: birthdate,
+                                    religion: formValues['religion'] ?? '',
+                                    gender: gender,
+                                    age: int.parse(formValues['age'] ?? 0),
+                                    medicalCompany: formValues['company'] ?? '',
+                                    idType: formValues['id_type'] ?? '',
+                                    address: formValues['address'] ?? '',
+                                    city: formValues['city'] ?? '',
+                                    area: formValues['area'] ?? '',
+                                    street: formValues['street'] ?? '',
+                                    buildingNumber: formValues['building']?.toString() ?? '',
+                                  );
+                                  loginCubit.register(user: user);
                                 }
                               },
                             ),
@@ -378,8 +396,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           text: 'Terms & Conditions ',
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
-                                              Navigator.pushNamed(context,
-                                                  AppRoutes.termsAndConditions);
+                                              Navigator.pushNamed(context, AppRoutes.termsAndConditions);
                                             },
                                           style: TextStyles.nexaRegular.copyWith(
                                             color: AppTheme.primaryTextColor,
@@ -402,8 +419,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           text: 'Privacy Policy',
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
-                                              Navigator.pushNamed(
-                                                  context, AppRoutes.privacyPolicy);
+                                              Navigator.pushNamed(context, AppRoutes.privacyPolicy);
                                             },
                                           style: TextStyles.nexaRegular.copyWith(
                                             color: AppTheme.primaryTextColor,
@@ -438,12 +454,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         text: ' Sign in',
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
-                                            Navigator.pushReplacementNamed(
-                                                context, AppRoutes.login);
+                                            Navigator.pushReplacementNamed(context, AppRoutes.login);
                                           },
                                         style: TextStyles.nexaRegular.copyWith(
-                                          color: themeProvider
-                                              .currentThemeData!.primaryColor,
+                                          color: themeProvider.currentThemeData!.primaryColor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,
                                         ),
