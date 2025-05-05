@@ -1,5 +1,5 @@
-import '../../data/models/doctor_model.dart';
+import '../../data/models/top_doctors_response.dart';
 
 abstract class HomeRepository {
-  Future<List<Doctor>> fetchTopDoctors();
+  Future<TopDoctorsResponse> fetchTopDoctors();
 }

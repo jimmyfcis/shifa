@@ -3,62 +3,62 @@ import 'package:shifa/features/Home/data/models/specialist_model.dart';
 import 'clinic_model.dart';
 
 class Doctor {
-  final int id;
-  final String physicianID;
-  final String contractType;
-  final String firstName;
-  final String secondName;
-  final String thirdName;
-  final String fourthName;
-  final String firstNameAR;
-  final String secondNameAR;
-  final String thirdNameAR;
-  final String fourthNameAR;
-  final String gender;
-  final String dateOfBirth;
-  final String nationality;
-  final int specialtyID;
-  final String availabilityStatus;
-  final String descriptionAr;
-  final String descriptionEn;
-  final String status;
-  final String createdAt;
-  final String updatedAt;
-  final String rate;
-  final String description;
-  final String name;
-  final String schedule;
-  final List<Clinic> clinics;
-  final Specialist specialist;
+  final int? id;
+  final String? physicianID;
+  final String? contractType;
+  final String? firstName;
+  final String? secondName;
+  final String? thirdName;
+  final String? fourthName;
+  final String? firstNameAR;
+  final String? secondNameAR;
+  final String? thirdNameAR;
+  final String? fourthNameAR;
+  final String? gender;
+  final String? dateOfBirth;
+  final String? nationality;
+  final int? specialtyID;
+  final String? availabilityStatus;
+  final String? descriptionAr;
+  final String? descriptionEn;
+  final String? status;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? rate;
+  final String? description;
+  final String? name;
+  final String? schedule;
+  final List<Clinic>? clinics;
+  final Specialist? specialist;
 
   Doctor({
-    required this.id,
-    required this.physicianID,
-    required this.contractType,
-    required this.firstName,
-    required this.secondName,
-    required this.thirdName,
-    required this.fourthName,
-    required this.firstNameAR,
-    required this.secondNameAR,
-    required this.thirdNameAR,
-    required this.fourthNameAR,
-    required this.gender,
-    required this.dateOfBirth,
-    required this.nationality,
-    required this.specialtyID,
-    required this.availabilityStatus,
-    required this.descriptionAr,
-    required this.descriptionEn,
-    required this.status,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.rate,
-    required this.description,
-    required this.name,
-    required this.schedule,
-    required this.clinics,
-    required this.specialist,
+    this.id,
+    this.physicianID,
+    this.contractType,
+    this.firstName,
+    this.secondName,
+    this.thirdName,
+    this.fourthName,
+    this.firstNameAR,
+    this.secondNameAR,
+    this.thirdNameAR,
+    this.fourthNameAR,
+    this.gender,
+    this.dateOfBirth,
+    this.nationality,
+    this.specialtyID,
+    this.availabilityStatus,
+    this.descriptionAr,
+    this.descriptionEn,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.rate,
+    this.description,
+    this.name,
+    this.schedule,
+    this.clinics,
+    this.specialist,
   });
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
@@ -88,10 +88,10 @@ class Doctor {
       description: json['description'] ?? '',
       name: json['name'] ?? '',
       schedule: json['schedule'] ?? '',
-      clinics: (json['clinics'] as List<dynamic>)
-          .map((e) => Clinic.fromJson(e))
-          .toList(),
-      specialist: Specialist.fromJson(json['specialist']),
+      clinics: (json['clinics'] as List?)?.map((e) => Clinic.fromJson(e)).toList(),
+      specialist: json['specialist'] != null
+          ? Specialist.fromJson(json['specialist'])
+          : null,
     );
   }
 }

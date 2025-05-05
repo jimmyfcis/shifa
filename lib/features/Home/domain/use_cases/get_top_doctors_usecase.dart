@@ -1,4 +1,4 @@
-import '../../data/models/doctor_model.dart';
+import '../../data/models/top_doctors_response.dart';
 import '../repositories/home_repository.dart';
 
 class GetTopDoctorsUseCase {
@@ -6,7 +6,7 @@ class GetTopDoctorsUseCase {
 
   GetTopDoctorsUseCase(this.repository);
 
-  Future<List<Doctor>> call() async {
+  Future<TopDoctorsResponse> call() async {
     return await repository.fetchTopDoctors();
   }
 }

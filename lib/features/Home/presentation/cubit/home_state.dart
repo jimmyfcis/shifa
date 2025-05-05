@@ -1,4 +1,4 @@
-import '../../data/models/doctor_model.dart';
+import 'package:shifa/features/Home/data/models/top_doctors_response.dart';
 
 abstract class HomeState {}
 
@@ -7,9 +7,9 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final List<Doctor> doctors;
+  final TopDoctorsResponse topDoctorsResponse;
 
-  HomeLoaded(this.doctors);
+  HomeLoaded(this.topDoctorsResponse);
 }
 
 class HomeFailure extends HomeState {

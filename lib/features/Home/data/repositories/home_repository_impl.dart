@@ -1,6 +1,6 @@
 import '../../domain/repositories/home_repository.dart';
 import '../data_source/home_remote_data_source.dart';
-import '../models/doctor_model.dart';
+import '../models/top_doctors_response.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
   final HomeRemoteDataSource homeRemoteDataSource;
@@ -8,8 +8,8 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl({required this.homeRemoteDataSource});
 
   @override
-  Future<List<Doctor>> fetchTopDoctors() async {
+  Future<TopDoctorsResponse> fetchTopDoctors() async {
     final response = await homeRemoteDataSource.getTopDoctors();
-    return response.doctors;
+    return response;
   }
 }

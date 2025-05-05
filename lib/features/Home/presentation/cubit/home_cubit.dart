@@ -11,8 +11,8 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> fetchTopDoctors() async {
     try {
       emit(HomeLoading());
-      final doctors = await getTopDoctorsUseCase();
-      emit(HomeLoaded(doctors));
+      final response = await getTopDoctorsUseCase();
+      emit(HomeLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
       emit(HomeFailure(failure.message,failure.statusCode??0));
