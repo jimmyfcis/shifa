@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/features/Home/widgets/article_card.dart';
+
+import 'article_card.dart';
 
 class HomeHealthArticle extends StatelessWidget {
   const HomeHealthArticle({super.key});

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shifa/features/Home/widgets/home_available_service_widget.dart';
-import 'package:shifa/features/Home/widgets/home_early_protection_card.dart';
-import 'package:shifa/features/Home/widgets/upcoming_appointment.dart';
-
+import 'package:shifa/features/Home/presentation/widgets/upcoming_appointment.dart';
+import 'home_available_service_widget.dart';
+import 'home_early_protection_card.dart';
 import 'home_health_article.dart';
 import 'home_top_doctor.dart';
 

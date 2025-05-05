@@ -7,9 +7,8 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
-import 'package:shifa/features/Home/screens/home_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
-
+import '../../Home/presentation/screens/home_screen.dart';
 import '../../Profile/screens/profile_screen.dart';
 import '../cubit/bottom_bar_cubit.dart';
 import '../cubit/bottom_bar_state.dart';

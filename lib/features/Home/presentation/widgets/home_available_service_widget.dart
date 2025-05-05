@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +8,8 @@ import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/features/Bottom%20Bar/cubit/bottom_bar_cubit.dart';
-import 'package:shifa/features/Home/widgets/home_service_card.dart';
+
+import 'home_service_card.dart';
 
 class HomeAvailableService extends StatelessWidget {
   const HomeAvailableService({super.key});
