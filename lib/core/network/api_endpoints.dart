@@ -4,4 +4,5 @@ class ApiEndpoints {
   static const String logout = '$baseUrl/logout';
   static const String register = '$baseUrl/register';
   static const String topDoctors = '$baseUrl/top-doctors';
+  static const String clinics = '$baseUrl/clinics';
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
@@ -15,7 +14,6 @@ class ClinicsDoctorSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         CustomTextField(
