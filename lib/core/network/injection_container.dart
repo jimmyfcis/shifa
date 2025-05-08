@@ -13,6 +13,11 @@ import '../../features/authentication/domain/use_cases/login_usecase.dart';
 import '../../features/authentication/domain/use_cases/logout_use_case.dart';
 import '../../features/authentication/presentation/cubit/login/login_cubit.dart';
 import '../../features/authentication/presentation/cubit/logout/logout_cubit.dart';
+import '../../features/Clinics/data/data_source/clinics_remote_data_source.dart';
+import '../../features/Clinics/data/repositories/clinics_repository_impl.dart';
+import '../../features/Clinics/domain/repositories/clinics_repository.dart';
+import '../../features/Clinics/domain/use_cases/get_clinics_use_case.dart';
+import '../../features/Clinics/presentation/cubit/clinics_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -27,6 +32,9 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthRemoteDatasource>(
     () => AuthRemoteDatasourceImpl(),
   );
+  sl.registerLazySingleton<ClinicsRemoteDataSource>(
+    () => ClinicsRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<HomeRepository>(
@@ -38,6 +46,11 @@ Future<void> init() async {
     () => AuthRepositoryImpl(
       remoteDatasource: sl<AuthRemoteDatasource>(),
       tokenStorage: sl<TokenStorage>(),
+    ),
+  );
+  sl.registerLazySingleton<ClinicsRepository>(
+    () => ClinicsRepositoryImpl(
+      clinicsRemoteDataSource: sl<ClinicsRemoteDataSource>(),
     ),
   );
 
@@ -54,6 +67,9 @@ Future<void> init() async {
   sl.registerLazySingleton<LogoutUseCase>(
     () => LogoutUseCase(sl<AuthRepository>()),
   );
+  sl.registerLazySingleton<GetClinicsUseCase>(
+    () => GetClinicsUseCase(sl<ClinicsRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<HomeCubit>(
@@ -64,5 +80,8 @@ Future<void> init() async {
   );
   sl.registerFactory<LogoutCubit>(
     () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),
+  );
+  sl.registerFactory<ClinicsCubit>(
+    () => ClinicsCubit(getClinicsUseCase: sl<GetClinicsUseCase>()),
   );
 }
