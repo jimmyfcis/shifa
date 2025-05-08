@@ -12,6 +12,7 @@ class ClinicsRemoteDataSourceImpl implements ClinicsRemoteDataSource {
 
   @override
   Future<ClinicsResponse> getClinics() async {
+    ///
     final response = await dio.get(ApiEndpoints.clinics);
     return ClinicsResponse.fromJson(response.data);
   }
