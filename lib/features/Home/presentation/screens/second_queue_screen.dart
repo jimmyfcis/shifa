@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgtes/common_app_bar_title.dart';
@@ -23,7 +24,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild: const CommonAppBarTitle(title: "Queue"),
+      appBarChild: CommonAppBarTitle(title: context.tr.translate('queue')),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
@@ -38,7 +39,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal:24.w),
                   child: Text(
-                    "Queue for",
+                    context.tr.translate('queue_for'),
                     style: TextStyles.nexaRegular.copyWith(
                       color: AppTheme.grey5Color,
                       fontSize: 12.sp,
@@ -68,7 +69,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Dr.Fady Mohamed Nabil",
+                                        context.tr.translate('doctor_name'),
                                         style: TextStyles.nexaBold.copyWith(
                                           fontWeight: FontWeight.w900,
                                           color: AppTheme.primaryTextColor,
@@ -77,7 +78,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                                       ),
                                       const SizedBox(height: 8),
                                       Text(
-                                        "Obstetrics and Gynecology Dep",
+                                        context.tr.translate('doctor_specialty'),
                                         style: TextStyles.nexaRegular.copyWith(
                                           color: AppTheme.secondaryTextColor,
                                           fontSize: 12.sp,
@@ -91,7 +92,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                           ),
                           SizedBox(height: 24.h),
                           Text(
-                            "Queue Number is",
+                            context.tr.translate('queue_number_is'),
                             style: TextStyles.nexaBold.copyWith(
                               color: AppTheme.grey5Color,
                               fontWeight: FontWeight.w400,
@@ -127,7 +128,7 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                           ),
                           SizedBox(height: 24.h),
                           Text(
-                            "Please confirm your arrival at the clinics before your queue number with adequate time, in case of missing your queue number you will need to request a new number from the reception.",
+                            context.tr.translate('arrival_confirmation'),
                             style: TextStyles.nexaRegular.copyWith(
                               color: AppTheme.grey5Color,
                               fontSize: 14.sp,
@@ -138,14 +139,14 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: "Note: ",
+                                  text: "${context.tr.translate('note')}: ",
                                   style: TextStyles.nexaRegular.copyWith(
                                     color: themeProvider.currentThemeData!.primaryColor,
                                     fontSize: 14.sp,
                                   ),
                                 ),
                                 TextSpan(
-                                  text: "you must confirm your arrival at clinics at least half an hour before clinic end.",
+                                  text: context.tr.translate('clinic_arrival_note'),
                                   style: TextStyles.nexaRegular.copyWith(
                                     color: AppTheme.grey5Color,
                                     fontSize: 14.sp,

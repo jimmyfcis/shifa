@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
 
@@ -27,7 +28,7 @@ class CancelYourVisitDialogue extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Cancel Your Visit!",
+              context.tr.translate('cancel_visit'),
               style: TextStyles.nexaBold.copyWith(
                 color: AppTheme.primaryTextColor,
                 fontSize: 20.sp,
@@ -35,7 +36,7 @@ class CancelYourVisitDialogue extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Text(
-              "Are you sure you want to cancel your doctor visit?",
+              context.tr.translate('cancel_visit_confirm'),
               textAlign: TextAlign.center,
               style: TextStyles.nexaRegular.copyWith(
                 color: AppTheme.secondaryTextColor,
@@ -48,7 +49,7 @@ class CancelYourVisitDialogue extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomWhiteButton(
-                    title: "No",
+                    title: context.tr.translate('no'),
                     borderColor: AppTheme.secondaryTextColor,
                     textColor: AppTheme.secondaryTextColor,
                     onPressed: () {
@@ -61,7 +62,7 @@ class CancelYourVisitDialogue extends StatelessWidget {
                 ),
                 Expanded(
                   child: CustomGreenButton(
-                    title: "Yes, Cancel",
+                    title: context.tr.translate('yes_cancel'),
                     fontSize: 14,
                     backGroundColor: AppTheme.redColor,
                     borderColor: AppTheme.redColor,

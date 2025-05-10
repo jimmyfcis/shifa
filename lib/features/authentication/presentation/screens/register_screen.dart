@@ -27,6 +27,7 @@ import '../../../../core/widgtes/form_fields/password_text_field.dart';
 import '../../../../core/widgtes/form_fields/phone_number_field.dart';
 import '../cubit/login/login_cubit.dart';
 import '../cubit/login/login_state.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -88,13 +89,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: [
                         SizedBox(height: 42.h),
                         Text(
-                          "Create Account",
+                          context.tr.translate('create_account'),
                           style: TextStyles.nexaRegular
                               .copyWith(fontWeight: FontWeight.bold, color: AppTheme.blackColor, fontSize: 24),
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          "Sign up now and start exploring what our app has to offer. We are excited to welcome you to our community.",
+                          context.tr.translate('sign_up_message'),
                           softWrap: true,
                           style: TextStyles.nexaRegular
                               .copyWith(fontWeight: FontWeight.w400, color: AppTheme.grey5Color, fontSize: 12),
@@ -108,25 +109,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 32.h),
-                            const CustomTextField(
-                              labelText: 'Your Name',
+                            CustomTextField(
+                              labelText: context.tr.translate('your_name'),
                               name: 'name',
                               isRequired: true,
-                              hintText: 'Enter your name',
+                              hintText: context.tr.translate('name_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const EmailTextField(
-                              labelText: 'Your Email',
+                            EmailTextField(
+                              labelText: context.tr.translate('your_email'),
                               name: 'email',
                               isRequired: true,
-                              hintText: 'Enter your email',
+                              hintText: context.tr.translate('email_hint'),
                             ),
                             SizedBox(height: 16.h),
                             PhoneNumberField(
                               controller: phoneController,
                               isValid: isValid,
                               onInputChanged: (PhoneNumber number) {
-                                print(number.phoneNumber);
                                 setState(() {
                                   isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
                                 });
@@ -138,21 +138,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               name: 'date',
                               isRequired: false,
                               inputType: InputType.date,
-                              labelText: 'Date of birth',
+                              labelText: context.tr.translate('date_of_birth'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Martial Status',
+                            CustomTextField(
+                              labelText: context.tr.translate('martial_status'),
                               name: 'martial',
                               isRequired: false,
-                              hintText: 'Enter your martial status',
+                              hintText: context.tr.translate('martial_status_hint'),
                             ),
                             SizedBox(height: 16.h),
                             CustomDropdownField(
                               name: 'religion',
                               isRequired: false,
-                              labelText: 'Your Religion',
-                              items: ["Muslim", "Christian", "Jewish"],
+                              labelText: context.tr.translate('religion'),
+                              items: [
+                                context.tr.translate('muslim'), 
+                                context.tr.translate('christian'), 
+                                context.tr.translate('jewish')
+                              ],
                               itemBuilder: (context, data) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -179,8 +183,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             CustomDropdownField(
                               name: 'gender',
                               isRequired: false,
-                              labelText: 'Your Gender',
-                              items: ["Male", "Female"],
+                              labelText: context.tr.translate('gender'),
+                              items: [context.tr.translate('male'), context.tr.translate('female')],
                               itemBuilder: (context, data) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -204,33 +208,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Age',
+                            CustomTextField(
+                              labelText: context.tr.translate('age'),
                               name: 'age',
                               isRequired: false,
                               textInputType: TextInputType.number,
-                              hintText: 'Enter your age',
+                              hintText: context.tr.translate('age_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Medical Company',
+                            CustomTextField(
+                              labelText: context.tr.translate('medical_company'),
                               name: 'company',
                               isRequired: false,
-                              hintText: 'Enter your medical company',
+                              hintText: context.tr.translate('medical_company_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your ID',
+                            CustomTextField(
+                              labelText: context.tr.translate('id'),
                               name: 'id',
                               isRequired: true,
-                              hintText: 'Enter your id',
+                              hintText: context.tr.translate('id_hint'),
                             ),
                             SizedBox(height: 16.h),
                             CustomDropdownField(
                               name: 'id_type',
                               isRequired: true,
-                              labelText: 'ID type',
-                              items: ["National ID", "Passport"],
+                              labelText: context.tr.translate('id_type'),
+                              items: [context.tr.translate('national_id'), context.tr.translate('passport')],
                               itemBuilder: (context, data) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -254,59 +258,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               },
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Address',
+                            CustomTextField(
+                              labelText: context.tr.translate('address'),
                               name: 'address',
                               isRequired: false,
-                              hintText: 'Enter your address',
+                              hintText: context.tr.translate('address_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your City',
+                            CustomTextField(
+                              labelText: context.tr.translate('city'),
                               name: 'city',
                               isRequired: false,
-                              hintText: 'Enter your city',
+                              hintText: context.tr.translate('city_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Area',
+                            CustomTextField(
+                              labelText: context.tr.translate('area'),
                               name: 'area',
                               isRequired: false,
-                              hintText: 'Enter your area',
+                              hintText: context.tr.translate('area_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Street',
+                            CustomTextField(
+                              labelText: context.tr.translate('street'),
                               name: 'street',
                               isRequired: false,
-                              hintText: 'Enter your street',
+                              hintText: context.tr.translate('street_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            const CustomTextField(
-                              labelText: 'Your Building number',
+                            CustomTextField(
+                              labelText: context.tr.translate('building_number'),
                               name: 'building',
                               isRequired: false,
                               textInputType: TextInputType.number,
-                              hintText: 'Enter your Building number',
+                              hintText: context.tr.translate('building_number_hint'),
                             ),
                             SizedBox(height: 16.h),
                             PasswordTextField(
-                              labelText: 'Password',
+                              labelText: context.tr.translate('password'),
                               name: 'password',
                               isRequired: true,
                               controller: passwordController,
-                              hintText: 'Enter your Password',
+                              hintText: context.tr.translate('password_hint'),
                             ),
                             SizedBox(height: 16.h),
                             ConfirmPasswordTextField(
-                                labelText: "Confirm password",
+                                labelText: context.tr.translate('confirm_password'),
                                 name: "confirm",
                                 isRequired: true,
-                                hintText: 'Enter your Password',
+                                hintText: context.tr.translate('password_hint'),
                                 passwordController: passwordController),
                             SizedBox(height: 34.h),
                             CustomGreenButton(
-                              title: "Create Account",
+                              title: context.tr.translate('create_account'),
                               onPressed: () {
                                 var formState = _formKey.currentState;
                                 if (formState == null) return;
@@ -353,7 +357,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 6.0),
                                   child: Text(
-                                    'or signup with',
+                                    context.tr.translate('or_signup_with'),
                                     style: TextStyles.nexaRegular.copyWith(
                                       color: AppTheme.blackColor,
                                       fontSize: 12,
@@ -384,46 +388,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'by signing up you agree to our ',
+                                          text: context.tr.translate('agree_to_terms_start'),
                                           style: TextStyles.nexaRegular.copyWith(
-                                            // color: AppTheme.grey6Color,
                                             color: AppTheme.primaryTextColor,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                         TextSpan(
-                                          text: 'Terms & Conditions ',
+                                          text: context.tr.translate('terms_conditions'),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               Navigator.pushNamed(context, AppRoutes.termsAndConditions);
                                             },
                                           style: TextStyles.nexaRegular.copyWith(
                                             color: AppTheme.primaryTextColor,
-                                            //color: AppTheme.grey6Color,
                                             fontSize: 12,
                                             decoration: TextDecoration.underline,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                         TextSpan(
-                                          text: 'and ',
+                                          text: context.tr.translate('and'),
                                           style: TextStyles.nexaRegular.copyWith(
                                             color: AppTheme.primaryTextColor,
-                                            // color: AppTheme.grey6Color,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
                                         TextSpan(
-                                          text: 'Privacy Policy',
+                                          text: context.tr.translate('privacy_policy'),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {
                                               Navigator.pushNamed(context, AppRoutes.privacyPolicy);
                                             },
                                           style: TextStyles.nexaRegular.copyWith(
                                             color: AppTheme.primaryTextColor,
-                                            //color: AppTheme.grey6Color,
                                             fontSize: 12,
                                             decoration: TextDecoration.underline,
                                             fontWeight: FontWeight.w400,
@@ -443,7 +443,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: 'Have an account?',
+                                        text: context.tr.translate('have_account'),
                                         style: TextStyles.nexaRegular.copyWith(
                                           color: AppTheme.primaryTextColor,
                                           fontSize: 12,
@@ -451,7 +451,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ),
                                       TextSpan(
-                                        text: ' Sign in',
+                                        text: context.tr.translate('sign_in'),
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () {
                                             Navigator.pushReplacementNamed(context, AppRoutes.login);

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
+import 'package:shifa/core/localization/locale_provider.dart';
 import 'package:shifa/core/theme/styles.dart';
 
 import '../../../../core/theme/theme.dart';
@@ -46,6 +49,8 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    
     return Scaffold(
       body: FadeTransition(
         opacity: _fadeAnimation,
@@ -67,7 +72,7 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                 ),
                 const SizedBox(height: 29.59),
                 Text(
-                  "WELCOME TO SHIFA HOSPITAL",
+                  context.tr.translate('app_name'),
                   style: TextStyles.nexaRegular
                       .copyWith(color: AppTheme.whiteColor, fontSize: 16),
                 ),
@@ -86,7 +91,7 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          "Please, Select your preferred language",
+                          context.tr.translate('select_language'),
                           style: TextStyles.nexaRegular.copyWith(
                             fontSize: 16,
                             color: AppTheme.blackColor,
@@ -94,22 +99,25 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                         ),
                         const SizedBox(height: 21),
                         LanguageButton(
-                          language: "English",
+                          language: context.tr.translate('english'),
                           onTap: () {
+                            localeProvider.setEnglish();
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.onboardingScreen);
                           },
                         ),
                         const SizedBox(height: 16),
                         LanguageButton(
-                          language: "العربية",
+                          language: context.tr.translate('arabic'),
                           onTap: () {
+                            localeProvider.setArabic();
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.onboardingScreen);
                           },
                         ),
                         const SizedBox(height: 32),
                         CustomGreenButton(
+                          title: context.tr.translate('continue'),
                           onPressed: () {
                             Navigator.pushReplacementNamed(
                                 context, AppRoutes.onboardingScreen);
