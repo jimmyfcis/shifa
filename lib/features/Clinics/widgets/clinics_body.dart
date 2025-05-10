@@ -13,8 +13,22 @@ import '../../../core/network/injection_container.dart';
 import '../presentation/cubit/clinics_cubit.dart';
 import '../presentation/cubit/clinics_state.dart';
 
-class ClinicsBody extends StatelessWidget {
+class ClinicsBody extends StatefulWidget {
   const ClinicsBody({super.key});
+
+  @override
+  State<ClinicsBody> createState() => _ClinicsBodyState();
+}
+
+class _ClinicsBodyState extends State<ClinicsBody> {
+  final TextEditingController _searchController = TextEditingController();
+  ClinicsCubit? _clinicsCubit;
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +39,7 @@ class ClinicsBody extends StatelessWidget {
         child: BlocProvider(
           create: (context) {
             final cubit = sl<ClinicsCubit>();
+            _clinicsCubit = cubit;
             cubit.fetchClinics(); // Call the method immediately after creating the cubit
             return cubit;
           },
@@ -40,13 +55,14 @@ class ClinicsBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomTextField(
+                          initialValue: _searchController.text,
                           name: "Search For Clinic..",
                           hasName: false,
                           labelText: "Search For Clinic..",
                           hintText: "Search For Clinic..",
-                          onChanged: (value)
-                          {
-
+                          onChanged: (value) {
+                            // Call the search method in the cubit
+                            _clinicsCubit?.searchClinics(value ?? '');
                           },
                           prefixIcon: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -57,17 +73,50 @@ class ClinicsBody extends StatelessWidget {
                               color: AppTheme.grey7Color,
                             ),
                           ),
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.clear, size: 20.w, color: AppTheme.grey7Color),
+                            onPressed: () {
+                              _searchController.clear();
+                              _clinicsCubit?.searchClinics('');
+                            },
+                          ),
                         ),
-                        Expanded(
+                        SizedBox(height: 16.h),
+                        state.clinicsResponse.clinics.isEmpty 
+                          ? Expanded(
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "No clinics found matching your search",
+                                      style: TextStyle(
+                                        fontSize: 16.sp, 
+                                        color: AppTheme.grey7Color,
+                                      ),
+                                    ),
+                                    SizedBox(height: 16.h),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        _searchController.clear();
+                                        _clinicsCubit?.searchClinics('');
+                                      },
+                                      child: Text('Show All Clinics'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : Expanded(
                           child: GridView.builder(
-                            itemCount:state.clinicsResponse.clinics.length,
+                            itemCount: state.clinicsResponse.clinics.length,
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
                               childAspectRatio: 0.75,
                             ),
                             itemBuilder: (context, index) {
-                            var clinic=  state.clinicsResponse.clinics[index];
+                            var clinic = state.clinicsResponse.clinics[index];
                               return GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -84,7 +133,7 @@ class ClinicsBody extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ):SizedBox.shrink();
+                    ): SizedBox.shrink();
             },
           ),
         ),
