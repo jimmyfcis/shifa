@@ -22,4 +22,14 @@ class Clinic {
       updatedAt: json['updated_at'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'physicianID': physicianID,
+      'clinic_id': clinicId,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
 }

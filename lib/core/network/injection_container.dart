@@ -1,5 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/Booking/data/datasources/appointment_remote_data_source.dart';
+import 'package:shifa/features/Booking/data/repositories/appointment_repository_impl.dart';
+import 'package:shifa/features/Booking/domain/repositories/appointment_repository.dart';
+import 'package:shifa/features/Booking/domain/usecases/get_appointments_usecase.dart';
+import 'package:shifa/features/Booking/presentation/cubit/appointment_cubit.dart';
 import 'package:shifa/features/Contact%20us/data/data_source/contact_us_remote_data_source.dart';
 import 'package:shifa/features/Contact%20us/data/repositories/contact_us_repository_impl.dart';
 import 'package:shifa/features/Contact%20us/domain/repositories/contact_us_repository.dart';
@@ -43,6 +48,9 @@ Future<void> init() async {
   sl.registerLazySingleton<ContactUsRemoteDataSource>(
     () => ContactUsRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<AppointmentRemoteDataSource>(
+    () => AppointmentRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<HomeRepository>(
@@ -66,6 +74,11 @@ Future<void> init() async {
       contactUsRemoteDataSource: sl<ContactUsRemoteDataSource>(),
     ),
   );
+  sl.registerLazySingleton<AppointmentRepository>(
+    () => AppointmentRepositoryImpl(
+      remoteDataSource: sl<AppointmentRemoteDataSource>(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton<GetTopDoctorsUseCase>(
@@ -86,6 +99,9 @@ Future<void> init() async {
   sl.registerLazySingleton<SendContactFormUseCase>(
     () => SendContactFormUseCase(sl<ContactUsRepository>()),
   );
+  sl.registerLazySingleton<GetAppointmentsUseCase>(
+    () => GetAppointmentsUseCase(repository: sl<AppointmentRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<HomeCubit>(
@@ -102,5 +118,8 @@ Future<void> init() async {
   );
   sl.registerFactory<ContactUsCubit>(
     () => ContactUsCubit(sendContactFormUseCase: sl<SendContactFormUseCase>()),
+  );
+  sl.registerFactory<AppointmentCubit>(
+    () => AppointmentCubit(getAppointmentsUseCase: sl<GetAppointmentsUseCase>()),
   );
 }

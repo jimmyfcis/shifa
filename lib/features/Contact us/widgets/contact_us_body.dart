@@ -15,6 +15,7 @@ import 'package:shifa/features/Contact%20us/presentation/cubit/contact_us_cubit.
 import 'package:shifa/features/Contact%20us/presentation/cubit/contact_us_state.dart';
 
 import '../../../core/utils/validators.dart';
+import '../../../core/widgtes/custom_snackbar.dart';
 import '../../../core/widgtes/form_fields/email_text_field.dart';
 import 'contact_us_item.dart';
 
@@ -56,20 +57,10 @@ class _ContactUsBodyState extends State<ContactUsBody> {
         child: BlocConsumer<ContactUsCubit, ContactUsState>(
           listener: (context, state) {
             if (state is ContactUsSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.response.message),
-                  backgroundColor: AppTheme.shifaPrimaryColor,
-                ),
-              );
+              showCustomSnackBar(context, state.response.message, isError: false );
               clearAllControllers();
             } else if (state is ContactUsFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: AppTheme.errorColor,
-                ),
-              );
+              showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
             }
           },
           builder: (context, state) {

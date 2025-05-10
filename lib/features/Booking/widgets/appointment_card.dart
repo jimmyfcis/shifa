@@ -11,10 +11,13 @@ import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
 import 'package:shifa/features/Booking/widgets/cancel_your_visit_dialogue.dart';
 
+import '../data/models/appointment_model.dart';
+
 class AppointmentCard extends StatelessWidget {
   final int tabSelectedIndex;
+  final Appointment appointment;
 
-  const AppointmentCard({super.key, required this.tabSelectedIndex});
+  const AppointmentCard({super.key, required this.tabSelectedIndex,required this.appointment});
 
   @override
   Widget build(BuildContext context) {
@@ -37,87 +40,94 @@ class AppointmentCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    ImageAssets.drWaleedImg,
-                    fit: BoxFit.fitHeight,
-                    width: 46.w,
-                    height: 46.h,
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      ImageAssets.drWaleedImg,
+                      fit: BoxFit.fitHeight,
+                      width: 46.w,
+                      height: 46.h,
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 12.w,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Dr.Waleed Yousry',
-                      style: TextStyles.nexaBold.copyWith(
-                        fontSize: 16.sp,
-                        color: AppTheme.primaryTextColor,
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        appointment.doctor?.name??"",
+                        style: TextStyles.nexaBold.copyWith(
+                          fontSize: 16.sp,
+                          color: AppTheme.primaryTextColor,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Text(
-                      'Professor of Oncology',
-                      style: TextStyles.nexaRegular.copyWith(
-                        fontSize: 12.sp,
-                        color: AppTheme.secondaryTextColor,
+                      SizedBox(
+                        height: 12.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          SVGAssets.bookingIcon,
-                          width: 16.w,
-                          height: 16.h,
+                      Text(
+                        appointment.doctor?.descriptionEn??"",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: TextStyles.nexaRegular.copyWith(
+                          fontSize: 12.sp,
+                          color: AppTheme.secondaryTextColor,
                         ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-                        Text(
-                          'Jun 10, 2021 ',
-                          style: TextStyles.nexaRegular.copyWith(
-                            fontSize: 12.sp,
-                            color: AppTheme.secondaryTextColor,
+                      ),
+                      SizedBox(
+                        height: 12.h,
+                      ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            SVGAssets.bookingIcon,
+                            width: 16.w,
+                            height: 16.h,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 12.h,
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          SVGAssets.clock,
-                          width: 16.w,
-                          height: 16.h,
-                        ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-                        Text(
-                          '09:00 - 11:30 PM',
-                          style: TextStyles.nexaRegular.copyWith(
-                            fontSize: 12.sp,
-                            color: AppTheme.secondaryTextColor,
+                          SizedBox(
+                            width: 8.w,
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                  ],
+                          Text(
+                            appointment.date??"",
+                            style: TextStyles.nexaRegular.copyWith(
+                              fontSize: 12.sp,
+                              color: AppTheme.secondaryTextColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 12.h,
+                      ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            SVGAssets.clock,
+                            width: 16.w,
+                            height: 16.h,
+                          ),
+                          SizedBox(
+                            width: 8.w,
+                          ),
+                          Text(
+                            appointment.time??"",
+                            style: TextStyles.nexaRegular.copyWith(
+                              fontSize: 12.sp,
+                              color: AppTheme.secondaryTextColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                  Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
                }
              else {
-               showCustomSnackBar(context, state.message, isError: true);
+               showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
              }
            }
         },

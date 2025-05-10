@@ -94,4 +94,36 @@ class Doctor {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'physicianID': physicianID,
+      'contractType': contractType,
+      'firstName': firstName,
+      'secondName': secondName,
+      'thirdName': thirdName,
+      'fourthName': fourthName,
+      'firstNameAR': firstNameAR,
+      'secondNameAR': secondNameAR,
+      'thirdNameAR': thirdNameAR,
+      'fourthNameAR': fourthNameAR,
+      'gender': gender,
+      'dateOfBirth': dateOfBirth,
+      'nationality': nationality,
+      'specialtyID': specialtyID,
+      'availabilityStatus': availabilityStatus,
+      'description_ar': descriptionAr,
+      'description_en': descriptionEn,
+      'status': status,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+      'rate': rate,
+      'description': description,
+      'name': name,
+      'schedule': schedule,
+      'clinics': clinics?.map((e) => e.toJson()).toList(),
+      'specialist': specialist?.toJson(),
+    };
+  }
 }

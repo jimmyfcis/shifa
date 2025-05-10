@@ -46,4 +46,22 @@ class Specialist {
       name: json['name'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name_en': nameEn,
+      'name_ar': nameAr,
+      'specialtyID': specialtyID,
+      'specialtyName': specialtyName,
+      'specialtyArabicName': specialtyArabicName,
+      'availabilityStatus': availabilityStatus,
+      'callCenterAppearance': callCenterAppearance,
+      'status': status,
+      'user_id': userId,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+      'name': name,
+    };
+  }
 }
