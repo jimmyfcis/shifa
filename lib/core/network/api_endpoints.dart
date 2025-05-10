@@ -5,4 +5,5 @@ class ApiEndpoints {
   static const String register = '$baseUrl/register';
   static const String topDoctors = '$baseUrl/top-doctors';
   static const String clinics = '$baseUrl/clinics';
+  static const String contactUs = '$baseUrl/contact-us';
 }

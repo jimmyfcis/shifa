@@ -1,5 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/Contact%20us/data/data_source/contact_us_remote_data_source.dart';
+import 'package:shifa/features/Contact%20us/data/repositories/contact_us_repository_impl.dart';
+import 'package:shifa/features/Contact%20us/domain/repositories/contact_us_repository.dart';
+import 'package:shifa/features/Contact%20us/domain/use_cases/send_contact_form_use_case.dart';
+import 'package:shifa/features/Contact%20us/presentation/cubit/contact_us_cubit.dart';
 import 'package:shifa/features/Home/data/data_source/home_remote_data_source.dart';
 import 'package:shifa/features/Home/domain/repositories/home_repository.dart';
 import 'package:shifa/features/Home/domain/use_cases/get_top_doctors_usecase.dart';
@@ -35,6 +40,9 @@ Future<void> init() async {
   sl.registerLazySingleton<ClinicsRemoteDataSource>(
     () => ClinicsRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<ContactUsRemoteDataSource>(
+    () => ContactUsRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<HomeRepository>(
@@ -51,6 +59,11 @@ Future<void> init() async {
   sl.registerLazySingleton<ClinicsRepository>(
     () => ClinicsRepositoryImpl(
       clinicsRemoteDataSource: sl<ClinicsRemoteDataSource>(),
+    ),
+  );
+  sl.registerLazySingleton<ContactUsRepository>(
+    () => ContactUsRepositoryImpl(
+      contactUsRemoteDataSource: sl<ContactUsRemoteDataSource>(),
     ),
   );
 
@@ -70,6 +83,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetClinicsUseCase>(
     () => GetClinicsUseCase(sl<ClinicsRepository>()),
   );
+  sl.registerLazySingleton<SendContactFormUseCase>(
+    () => SendContactFormUseCase(sl<ContactUsRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<HomeCubit>(
@@ -83,5 +99,8 @@ Future<void> init() async {
   );
   sl.registerFactory<ClinicsCubit>(
     () => ClinicsCubit(getClinicsUseCase: sl<GetClinicsUseCase>()),
+  );
+  sl.registerFactory<ContactUsCubit>(
+    () => ContactUsCubit(sendContactFormUseCase: sl<SendContactFormUseCase>()),
   );
 }

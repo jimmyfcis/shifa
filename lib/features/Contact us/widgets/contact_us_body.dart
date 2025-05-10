@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/network/injection_container.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/core/widgtes/form_fields/phone_number_field.dart';
+import 'package:shifa/features/Contact%20us/presentation/cubit/contact_us_cubit.dart';
+import 'package:shifa/features/Contact%20us/presentation/cubit/contact_us_state.dart';
 
+import '../../../core/utils/validators.dart';
 import '../../../core/widgtes/form_fields/email_text_field.dart';
 import 'contact_us_item.dart';
 
@@ -19,78 +26,202 @@ class ContactUsBody extends StatefulWidget {
 
 class _ContactUsBodyState extends State<ContactUsBody> {
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController subjectController = TextEditingController();
+  final TextEditingController messageController = TextEditingController();
+  bool isValid = true;
+
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    subjectController.dispose();
+    messageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 24.h,
-              ),
-              Text(
-                "Contact Us",
-                style: TextStyles.nexaBold.copyWith(
-                  fontSize: 18.sp,
-                  color: AppTheme.blackColor,
+      child: BlocProvider(
+        create: (context) => sl<ContactUsCubit>(),
+        child: BlocConsumer<ContactUsCubit, ContactUsState>(
+          listener: (context, state) {
+            if (state is ContactUsSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.response.message),
+                  backgroundColor: AppTheme.shifaPrimaryColor,
+                ),
+              );
+              clearAllControllers();
+            } else if (state is ContactUsFailure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: AppTheme.errorColor,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: FormBuilder(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Text(
+                        "Contact Us",
+                        style: TextStyles.nexaBold.copyWith(
+                          fontSize: 18.sp,
+                          color: AppTheme.blackColor,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      const ContactUsItem(
+                        icon: SVGAssets.location,
+                        title: "Cairo, Egypt",
+                        subtitle: "The 5th Settlement",
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      const ContactUsItem(
+                        icon: SVGAssets.call,
+                        title: "15051",
+                        subtitle: "Available 24/7",
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      const ContactUsItem(
+                        icon: SVGAssets.email,
+                        title: "info@shifaegypt.com",
+                        subtitle: "send us your query anytime!",
+                      ),
+                      SizedBox(height: 16.h),
+                      const Divider(color: AppTheme.greyColor),
+                      SizedBox(height: 24.h),
+                      Text(
+                        "Get in touch",
+                        style: TextStyles.nexaBold.copyWith(
+                          fontSize: 18.sp,
+                          color: AppTheme.blackColor,
+                        ),
+                      ),
+                      SizedBox(height: 16.h),
+                      CustomTextField(
+                        name: "name", 
+                        labelText: "Name",
+                        hintText: "Enter your name",
+                        initialValue: nameController.text,
+                        isRequired: true,
+                        onChanged: (value) {
+                          nameController.text = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 16.h),
+                      EmailTextField(
+                        name: "email", 
+                        labelText: "Email",
+                        initialValue: emailController.text,
+                        isRequired: true,
+                        onChanged: (value) {
+                          emailController.text = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 16.h),
+                      PhoneNumberField(
+                        controller: phoneController,
+                        isValid: isValid,
+                        onInputChanged: (PhoneNumber number) {
+                          setState(() {
+                            isValid = Validators()
+                                .isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
+                          });
+                        },
+                      ),
+                      SizedBox(height: 16.h),
+                      CustomTextField(
+                        name: "subject", 
+                        labelText: "Subject",
+                        hintText: "Message subject",
+                        initialValue: subjectController.text,
+                        onChanged: (value) {
+                          subjectController.text = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 16.h),
+                      CustomTextField(
+                        name: "message", 
+                        labelText: "Message",
+                        hintText: "Enter your message",
+                        maxLines: 7,
+                        isRequired: true,
+                        initialValue: messageController.text,
+                        onChanged: (value) {
+                          messageController.text = value ?? '';
+                        },
+                      ),
+                      SizedBox(height: 16.h),
+                      CustomGreenButton(
+                        title: state is ContactUsLoading ? "Sending..." : "Send Message",
+                        onPressed: state is ContactUsLoading
+                            ? null
+                            : () {
+                          var formState = _formKey.currentState;
+                          if (formState == null) return;
+                          if (!formState.saveAndValidate()) {
+                            return;
+                          }
+                          if (phoneController.text.isEmpty) {
+                            setState(() {
+                              isValid = false;
+                            });
+                          } else if (isValid && phoneController.text.isNotEmpty) {
+                            context.read<ContactUsCubit>().sendContactForm(
+                              name: nameController.text,
+                              email: emailController.text,
+                              message: messageController.text,
+                              phone: phoneController.text.replaceAll(" ", ""),
+                              subject: subjectController.text,
+                            );
+                            clearAllControllers();
+                          }
+                        }
+                      ),
+                      SizedBox(height: 24.h),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(
-                height: 16.h,
-              ),
-              const ContactUsItem(
-                icon: SVGAssets.location,
-                title: "Cairo, Egypt",
-                subtitle: "The 5th Settlement",
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              const ContactUsItem(
-                icon: SVGAssets.call,
-                title: "15051",
-                subtitle: "Available 24/7",
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              const ContactUsItem(
-                icon: SVGAssets.email,
-                title: "info@shifaegypt.com",
-                subtitle: "send us your query anytime!",
-              ),
-              SizedBox(height: 16.h),
-              const Divider(color: AppTheme.greyColor),
-              SizedBox(height: 24.h),
-              Text(
-                "Get in touch",
-                style: TextStyles.nexaBold.copyWith(
-                  fontSize: 18.sp,
-                  color: AppTheme.blackColor,
-                ),
-              ),
-              SizedBox(height: 16.h),
-              const CustomTextField(name: "name", labelText: "Name",hintText: "Enter your name",),
-              SizedBox(height: 16.h),
-              const EmailTextField(name: "email", labelText: "Email"),
-              SizedBox(height: 16.h),
-              PhoneNumberField(controller: phoneController),
-              SizedBox(height: 16.h),
-              const CustomTextField(name: "subject", labelText: "Subject",hintText: "message subject",),
-              SizedBox(height: 16.h),
-              const CustomTextField(name: "message", labelText: "Message",hintText: "Enter your message",maxLines: 7,),
-              SizedBox(height: 16.h),
-              CustomGreenButton(title: "Send Message",onPressed: (){},),
-              SizedBox(height: 24.h),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
+  }
+
+  void clearAllControllers(){
+    setState(() {
+      nameController.clear();
+      emailController.clear();
+      phoneController.clear();
+      subjectController.clear();
+      messageController.clear();
+    });
   }
 }
