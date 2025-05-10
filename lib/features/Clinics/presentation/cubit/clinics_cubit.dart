@@ -8,7 +8,7 @@ class ClinicsCubit extends Cubit<ClinicState> {
 
   ClinicsCubit({required this.getClinicsUseCase}) : super(ClinicInitial());
 
-  Future<void> fetchTopDoctors() async {
+  Future<void> fetchClinics() async {
     try {
       emit(ClinicLoading());
       final response = await getClinicsUseCase();

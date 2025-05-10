@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/models/clinic_model.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+
+import '../../../core/assets/svg/svg_assets.dart';
 
 class ClinicItem extends StatelessWidget {
-  final ClinicModel clinic;
+  final Clinic clinic;
 
   const ClinicItem({
     super.key,
@@ -35,7 +37,7 @@ class ClinicItem extends StatelessWidget {
             ),
             child: Center(
               child: SvgPicture.asset(
-                clinic.clinicIcon,
+                clinic.icon??SVGAssets.painIcon,
                 width: 34.w,
                 height: 34.h,
                 color: themeProvider.currentTheme == ThemeEnum.shifa
@@ -48,10 +50,12 @@ class ClinicItem extends StatelessWidget {
             height: 16.h,
           ),
           Text(
-            clinic.clinicName,
+            clinic.name,
             textAlign: TextAlign.center,
+            maxLines: 2,
             style: TextStyles.nexaRegular.copyWith(
               fontSize: 13.sp,
+              overflow: TextOverflow.ellipsis,
               color: AppTheme.primaryTextColor,
             ),
           )

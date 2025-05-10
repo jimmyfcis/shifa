@@ -1,17 +1,17 @@
 import 'package:shifa/features/Clinics/data/models/clinic_doctor_model.dart';
 
-class ClinicModel {
+class Clinic {
   final String name;
   final String? icon;
   final List<ClinicDoctor> doctors;
 
-  ClinicModel({
+  Clinic({
     required this.name,
     this.icon,
     required this.doctors,
   });
 
-  factory ClinicModel.fromJson(Map<String, dynamic> json) {
+  factory Clinic.fromJson(Map<String, dynamic> json) {
     List<ClinicDoctor> doctorsList = [];
     
     if (json['doctors'] is List) {
@@ -27,7 +27,7 @@ class ClinicModel {
           .toList();
     }
 
-    return ClinicModel(
+    return Clinic(
       name: json['name'] ?? '',
       icon: json['icon'],
       doctors: doctorsList,
