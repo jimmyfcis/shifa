@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/network/injection_container.dart';
@@ -31,8 +32,11 @@ class _ContactUsBodyState extends State<ContactUsBody> {
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
   bool isValid = true;
-
+  
+  // Add a unique key for the form
   final _formKey = GlobalKey<FormBuilderState>();
+  // Add a key to force rebuild
+  Key _formContentKey = UniqueKey();
 
   @override
   void dispose() {
@@ -75,6 +79,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                 child: FormBuilder(
                   key: _formKey,
                   child: Column(
+                    key: _formContentKey, // Add key to force rebuild
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -127,7 +132,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                         name: "name", 
                         labelText: "Name",
                         hintText: "Enter your name",
-                        initialValue: nameController.text,
+                        key: ValueKey('name-${_formContentKey.hashCode}'), // Add unique key
+                        initialValue: "",  // Force empty initialValue
                         isRequired: true,
                         onChanged: (value) {
                           nameController.text = value ?? '';
@@ -137,7 +143,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       EmailTextField(
                         name: "email", 
                         labelText: "Email",
-                        initialValue: emailController.text,
+                        key: ValueKey('email-${_formContentKey.hashCode}'), // Add unique key
+                        initialValue: "",  // Force empty initialValue 
                         isRequired: true,
                         onChanged: (value) {
                           emailController.text = value ?? '';
@@ -159,7 +166,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                         name: "subject", 
                         labelText: "Subject",
                         hintText: "Message subject",
-                        initialValue: subjectController.text,
+                        key: ValueKey('subject-${_formContentKey.hashCode}'), // Add unique key
+                        initialValue: "",  // Force empty initialValue
                         onChanged: (value) {
                           subjectController.text = value ?? '';
                         },
@@ -169,9 +177,10 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                         name: "message", 
                         labelText: "Message",
                         hintText: "Enter your message",
+                        key: ValueKey('message-${_formContentKey.hashCode}'), // Add unique key
                         maxLines: 7,
                         isRequired: true,
-                        initialValue: messageController.text,
+                        initialValue: "",  // Force empty initialValue
                         onChanged: (value) {
                           messageController.text = value ?? '';
                         },
@@ -192,16 +201,16 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                               isValid = false;
                             });
                           } else if (isValid && phoneController.text.isNotEmpty) {
-                            context.read<ContactUsCubit>().sendContactForm(
-                              name: nameController.text,
-                              email: emailController.text,
-                              message: messageController.text,
-                              phone: phoneController.text.replaceAll(" ", ""),
-                              subject: subjectController.text,
-                            );
-                            clearAllControllers();
-                          }
-                        }
+                              context.read<ContactUsCubit>().sendContactForm(
+                                name: nameController.text,
+                                email: emailController.text,
+                                message: messageController.text,
+                               phone: phoneController.text.replaceAll(" ", ""),
+                                subject: subjectController.text,
+                              );
+                              clearAllControllers();
+                           }
+                        },
                       ),
                       SizedBox(height: 24.h),
                     ],
@@ -215,13 +224,26 @@ class _ContactUsBodyState extends State<ContactUsBody> {
     );
   }
 
-  void clearAllControllers(){
+  void clearAllControllers() {
+    // Clear controller values
+    nameController.clear();
+    emailController.clear();
+    phoneController.clear();
+    subjectController.clear();
+    messageController.clear();
+    
+    // Reset form state
+    _formKey.currentState?.reset();
+    
+    // Set initialValue of all fields to empty by regenerating the form key
+    // This forces the form to rebuild with empty values
     setState(() {
-      nameController.clear();
-      emailController.clear();
-      phoneController.clear();
-      subjectController.clear();
-      messageController.clear();
+      _formContentKey = UniqueKey();
+    });
+    
+    // Schedule a rebuild after the frame to ensure text fields update
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {});
     });
   }
 }
