@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/network/injection_container.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -87,7 +87,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                         height: 24.h,
                       ),
                       Text(
-                        "Contact Us",
+                        context.tr.translate('contact_us'),
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 18.sp,
                           color: AppTheme.blackColor,
@@ -96,32 +96,32 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       SizedBox(
                         height: 16.h,
                       ),
-                      const ContactUsItem(
+                      ContactUsItem(
                         icon: SVGAssets.location,
-                        title: "Cairo, Egypt",
-                        subtitle: "The 5th Settlement",
+                        title: context.tr.translate('location'),
+                        subtitle: context.tr.translate('location_subtitle'),
                       ),
                       SizedBox(
                         height: 16.h,
                       ),
-                      const ContactUsItem(
+                      ContactUsItem(
                         icon: SVGAssets.call,
-                        title: "15051",
-                        subtitle: "Available 24/7",
+                        title: context.tr.translate('phone'),
+                        subtitle: context.tr.translate('phone_subtitle'),
                       ),
                       SizedBox(
                         height: 16.h,
                       ),
-                      const ContactUsItem(
+                      ContactUsItem(
                         icon: SVGAssets.email,
-                        title: "info@shifaegypt.com",
-                        subtitle: "send us your query anytime!",
+                        title: context.tr.translate('email'),
+                        subtitle: context.tr.translate('email_subtitle'),
                       ),
                       SizedBox(height: 16.h),
                       const Divider(color: AppTheme.greyColor),
                       SizedBox(height: 24.h),
                       Text(
-                        "Get in touch",
+                        context.tr.translate('get_in_touch'),
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 18.sp,
                           color: AppTheme.blackColor,
@@ -130,8 +130,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       SizedBox(height: 16.h),
                       CustomTextField(
                         name: "name", 
-                        labelText: "Name",
-                        hintText: "Enter your name",
+                        labelText: context.tr.translate('name'),
+                        hintText: context.tr.translate('name_hint'),
                         key: ValueKey('name-${_formContentKey.hashCode}'), // Add unique key
                         initialValue: "",  // Force empty initialValue
                         isRequired: true,
@@ -142,7 +142,7 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       SizedBox(height: 16.h),
                       EmailTextField(
                         name: "email", 
-                        labelText: "Email",
+                        labelText: context.tr.translate('email_field'),
                         key: ValueKey('email-${_formContentKey.hashCode}'), // Add unique key
                         initialValue: "",  // Force empty initialValue 
                         isRequired: true,
@@ -164,8 +164,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       SizedBox(height: 16.h),
                       CustomTextField(
                         name: "subject", 
-                        labelText: "Subject",
-                        hintText: "Message subject",
+                        labelText: context.tr.translate('subject'),
+                        hintText: context.tr.translate('subject_hint'),
                         key: ValueKey('subject-${_formContentKey.hashCode}'), // Add unique key
                         initialValue: "",  // Force empty initialValue
                         onChanged: (value) {
@@ -175,8 +175,8 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       SizedBox(height: 16.h),
                       CustomTextField(
                         name: "message", 
-                        labelText: "Message",
-                        hintText: "Enter your message",
+                        labelText: context.tr.translate('message'),
+                        hintText: context.tr.translate('message_hint'),
                         key: ValueKey('message-${_formContentKey.hashCode}'), // Add unique key
                         maxLines: 7,
                         isRequired: true,
@@ -187,7 +187,9 @@ class _ContactUsBodyState extends State<ContactUsBody> {
                       ),
                       SizedBox(height: 16.h),
                       CustomGreenButton(
-                        title: state is ContactUsLoading ? "Sending..." : "Send Message",
+                        title: state is ContactUsLoading 
+                            ? context.tr.translate('sending')
+                            : context.tr.translate('send_message'),
                         onPressed: state is ContactUsLoading
                             ? null
                             : () {

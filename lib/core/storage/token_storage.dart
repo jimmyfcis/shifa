@@ -4,17 +4,35 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/authentication/data/models/user.dart';
 
 class TokenStorage {
-  static const _tokenKey   = 'AUTH_TOKEN';
-  static const _userKey    = 'AUTH_USER';
+  static const String _tokenKey = 'token';
+  static const String _userKey = 'user';
+  static const String _languageKey = 'language';
+  static const String _defaultLanguage = 'en';
 
   Future<void> saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, token);
   }
 
   Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(_tokenKey);
+  }
+
+  Future<void> deleteToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_tokenKey);
+  }
+  
+  // Language methods
+  Future<void> saveLanguage(String languageCode) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_languageKey, languageCode);
+  }
+
+  Future<String> getLanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_languageKey) ?? _defaultLanguage;
   }
 
   Future<void> saveUser(User user) async {
