@@ -1,4 +1,4 @@
-import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 
 class ClinicsResponse {
 

@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
 

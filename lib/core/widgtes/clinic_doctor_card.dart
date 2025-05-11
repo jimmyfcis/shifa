@@ -8,7 +8,7 @@ import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
-import 'package:shifa/features/Home/data/models/doctor_model.dart';
+import 'package:shifa/core/models/doctor_model.dart';
 
 class ClinicDoctorCard extends StatelessWidget {
   final bool isFavorite;

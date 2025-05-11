@@ -1,4 +1,4 @@
-import 'doctor_model.dart';
+import '../../../../core/models/doctor_model.dart';
 
 class TopDoctorsResponse {
   final List<Doctor>? doctors;

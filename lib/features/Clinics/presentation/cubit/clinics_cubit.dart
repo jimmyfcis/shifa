@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 import 'package:shifa/features/Clinics/data/models/clinics_response.dart';
 import 'package:shifa/features/Clinics/domain/use_cases/get_clinics_use_case.dart';
 import 'package:shifa/features/Clinics/presentation/cubit/clinics_state.dart';

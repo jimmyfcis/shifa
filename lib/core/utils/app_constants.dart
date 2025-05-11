@@ -1,7 +1,6 @@
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/models/blog_model.dart';
-import 'package:shifa/core/models/doctor_model.dart';
 import 'package:shifa/core/models/radiolog_model.dart';
 import 'package:shifa/core/models/service_model.dart';
 
@@ -59,11 +58,6 @@ class AppConstants {
     ServiceModel(title: "Chemotherapy", icon: SVGAssets.chemoLeksellIcon),
     ServiceModel(title: "Radiotherapy", icon: SVGAssets.radioTherapyLeksell),
   ];
-  static TopRateDoctorModel topRateDoctorModel = TopRateDoctorModel(
-    name: "Dr.Rasha Medhat",
-    speciality: "Obstetrics and Gynecology Dep",
-    rate: "4.5",
-  );
   List<RecordsModel> recordsList = [
     RecordsModel(
       date: "21 Oct, 2024",

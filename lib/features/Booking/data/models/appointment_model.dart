@@ -1,4 +1,4 @@
-import 'package:shifa/features/Home/data/models/doctor_model.dart';
+import 'package:shifa/core/models/doctor_model.dart';
 
 class Appointment {
   final int? bookingID;

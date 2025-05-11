@@ -10,7 +10,7 @@ import 'package:shifa/features/Bottom%20Bar/cubit/bottom_bar_cubit.dart';
 import 'package:shifa/features/Bottom%20Bar/screens/bottom_bar_screen.dart';
 import 'package:shifa/features/Care%20Reminder/screens/care_reminder_screen.dart';
 import 'package:shifa/features/Clinic%20Doctors/screens/clinic_doctors_screen.dart';
-import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';

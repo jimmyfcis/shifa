@@ -1,14 +1,24 @@
-import 'package:shifa/features/Home/data/models/doctor_model.dart';
+import 'package:shifa/core/models/doctor_model.dart';
 
 class Clinic {
   final String name;
   final String? icon;
   final List<Doctor>? doctors;
+  final int? id;
+  final int? physicianID;
+  final int? clinicId;
+  final String? createdAt;
+  final String? updatedAt;
 
   Clinic({
     required this.name,
     this.icon,
     required this.doctors,
+    this.id,
+    this.physicianID,
+    this.clinicId,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory Clinic.fromJson(Map<String, dynamic> json) {
@@ -28,6 +38,11 @@ class Clinic {
     }
 
     return Clinic(
+      id: json['id']??0,
+      physicianID: json['physicianID']??0,
+      clinicId: json['clinic_id']??0,
+      createdAt: json['created_at'] ?? '',
+      updatedAt: json['updated_at'] ?? '',
       name: json['name'] ?? '',
       icon: json['icon'],
       doctors: doctorsList,
@@ -37,6 +52,11 @@ class Clinic {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
+      'id': id,
+      'physicianID': physicianID,
+      'clinic_id': clinicId,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
       'icon': icon,
       'doctors': doctors?.map((e) => e.toJson()).toList(),
 

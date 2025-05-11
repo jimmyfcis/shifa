@@ -4,7 +4,7 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/clinic_doctors_body.dart';
-import 'package:shifa/features/Clinics/data/models/clinic_model.dart';
+import 'package:shifa/core/models/clinic_model.dart';
 
 class ClinicDoctorsScreen extends StatelessWidget {
   final Clinic clinic;
