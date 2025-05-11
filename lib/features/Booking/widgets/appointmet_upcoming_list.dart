@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/features/Booking/data/models/appointment_model.dart';
 import 'appointment_card.dart';
 
-class PastAppointmentsListView extends StatelessWidget {
+class UpcomingAppointmentsListView extends StatelessWidget {
   final List<Appointment> appointments;
 
-  const PastAppointmentsListView({
+  const UpcomingAppointmentsListView({
     super.key,
     required this.appointments,
   });
@@ -22,7 +22,7 @@ class PastAppointmentsListView extends StatelessWidget {
             ),
             padding: EdgeInsets.only(top: 24.h),
             itemBuilder: (context, index) => AppointmentCard(
-              tabSelectedIndex: 1,
+              tabSelectedIndex: 0,
               appointment: appointments[index],
             ),
           );

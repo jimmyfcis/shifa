@@ -7,9 +7,9 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/presentation/cubit/appointment_cubit.dart';
 import 'package:shifa/features/Booking/presentation/cubit/appointment_state.dart';
 import 'package:shifa/features/Booking/widgets/appointment_list_view.dart';
-
 import '../../../core/network/injection_container.dart';
 import '../../../core/widgtes/custom_snackbar.dart';
+import 'appointmet_upcoming_list.dart';
 
 class AppointmentBody extends StatefulWidget {
   const AppointmentBody({super.key});
@@ -50,13 +50,13 @@ class _AppointmentBodyState extends State<AppointmentBody>
           }
         },
         builder: (context, state) {
-          return Column(
+          return  state is AppointmentLoading? const Center(child: CircularProgressIndicator()):state is AppointmentSuccess? Column(
             children: [
               Container(
                 height: 50.h,
                 padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: themeProvider.currentTheme == ThemeEnum.shifa
+                          decoration: BoxDecoration(
+                            color: themeProvider.currentTheme == ThemeEnum.shifa
                       ? AppTheme.billColor
                       : AppTheme.secondaryColorLeksell,
                   borderRadius: BorderRadius.circular(8),
@@ -100,31 +100,28 @@ class _AppointmentBodyState extends State<AppointmentBody>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    _buildAppointmentList(state),
-                    _buildAppointmentList(state),
+                    UpcomingAppointmentsListView(
+                      appointments: state.response.appointments.where((appointment){
+                        if(appointment.date==null) return false;
+                        final appointmentDate=DateTime.parse(appointment.date!);
+                        return appointmentDate.isAfter(DateTime.now());
+                      }).toList(),
+                    ),
+                    PastAppointmentsListView(
+                      appointments: state.response.appointments.where((appointment){
+                        if(appointment.date==null) return false;
+                        final appointmentDate=DateTime.parse(appointment.date!);
+                        return appointmentDate.isBefore(DateTime.now());
+                      }).toList(),
+                    )
                   ],
                 ),
               ),
             ],
-          );
+          ):SizedBox.shrink();
         },
       ),
     );
-  }
-
-  Widget _buildAppointmentList(AppointmentState state) {
-    if (state is AppointmentLoading) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (state is AppointmentSuccess) {
-      if (state.response.appointments.isEmpty) {
-        return const Center(child: Text('No appointments found'));
-      }
-      return AppointmentListView(
-        tabSelectedIndex: _selectedIndex,
-        appointments: state.response.appointments,
-      );
-    }
-    return const SizedBox();
   }
 
   @override
