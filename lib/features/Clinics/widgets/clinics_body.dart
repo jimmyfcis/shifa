@@ -122,7 +122,7 @@ class _ClinicsBodyState extends State<ClinicsBody> {
                                 Navigator.pushNamed(
                                   context,
                                   AppRoutes.clinicDoctors,
-                                  arguments: clinic.name,
+                                  arguments: clinic,
                                 );
                               },
                               child: ClinicItem(

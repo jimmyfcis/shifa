@@ -1,6 +1,6 @@
 import 'package:shifa/features/Home/data/models/specialist_model.dart';
 
-import 'clinic_model.dart';
+import '../../../Clinics/data/models/clinic_model.dart';
 
 class Doctor {
   final int? id;

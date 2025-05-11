@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/clinics_doctor_settings.dart';
+import 'package:shifa/features/Home/data/models/doctor_model.dart';
 
 class ClinicDoctorsBody extends StatelessWidget {
-  const ClinicDoctorsBody({super.key});
+  final List<Doctor> doctors;
+  const ClinicDoctorsBody({super.key, required this.doctors});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +38,10 @@ class ClinicDoctorsBody extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(
               height: 16.h,
             ),
-            itemCount: 10,
-            itemBuilder: (context, index) => const ClinicDoctorCard(
+            itemCount: doctors.length,
+            itemBuilder: (context, index) =>  ClinicDoctorCard(
               isFavorite: false,
+              doctor: doctors[index],
             ),
           ),
         )

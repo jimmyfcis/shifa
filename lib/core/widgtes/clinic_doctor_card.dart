@@ -8,11 +8,13 @@ import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
+import 'package:shifa/features/Home/data/models/doctor_model.dart';
 
 class ClinicDoctorCard extends StatelessWidget {
   final bool isFavorite;
+  final Doctor? doctor;
 
-  const ClinicDoctorCard({super.key, required this.isFavorite});
+  const ClinicDoctorCard({super.key, required this.isFavorite,  this.doctor});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class ClinicDoctorCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr.Waleed Yousry',
+                        doctor?.name??"",
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 16.sp,
                           color: AppTheme.primaryTextColor,
@@ -62,7 +64,7 @@ class ClinicDoctorCard extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                        'Professor of Oncology & General Surgery ',
+                        doctor?.descriptionEn??"",
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.secondaryTextColor,
@@ -82,7 +84,7 @@ class ClinicDoctorCard extends StatelessWidget {
                             width: 4.w,
                           ),
                           Text(
-                            '4.5',
+                            doctor?.rate??"5",
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 12.sp,
                               color: AppTheme.primaryTextColor,
