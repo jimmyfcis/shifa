@@ -7,9 +7,9 @@ import 'package:shifa/features/Doctors/widgets/booking_radio_steps.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/widgtes/common_app_bar_title.dart';
 import '../../../core/widgtes/watermark_widget.dart';
-import '../widgets/booking_step_indicator.dart';
-import '../widgets/my_self_booking_details.dart';
-import '../widgets/someone_booking_details.dart';
+import '../../Doctors/widgets/booking_step_indicator.dart';
+import '../../Doctors/widgets/my_self_booking_details.dart';
+import '../../Doctors/widgets/someone_booking_details.dart';
 
 class FirstBookingScreen extends StatefulWidget {
   const FirstBookingScreen({super.key});

@@ -8,10 +8,10 @@ import '../../../core/theme/theme.dart';
 import '../../../core/widgtes/common_app_bar_title.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/watermark_widget.dart';
-import '../widgets/booking_step_indicator.dart';
-import '../widgets/confirm_booking_dialogue.dart';
-import '../widgets/doctor_second_booking_card.dart';
-import '../widgets/payment_value.dart';
+import '../../Doctors/widgets/booking_step_indicator.dart';
+import '../../Doctors/widgets/confirm_booking_dialogue.dart';
+import '../../Doctors/widgets/doctor_second_booking_card.dart';
+import '../../Doctors/widgets/payment_value.dart';
 
 class SecondBookingScreen extends StatefulWidget {
   const SecondBookingScreen({super.key});
