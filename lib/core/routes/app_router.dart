@@ -20,7 +20,7 @@ import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_scree
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Favorite/screens/my_favorite_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
-import 'package:shifa/features/My%20Records/screens/my_records_screen.dart';
+import 'package:shifa/features/My%20Records/presentation/screens/my_records_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
