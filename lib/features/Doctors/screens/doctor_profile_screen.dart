@@ -107,7 +107,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                state.doctorDetailsResponse.doctor.name??"",
+                                                "${state.doctorDetailsResponse.doctor.firstName} ${state.doctorDetailsResponse.doctor.secondName} ${state.doctorDetailsResponse.doctor.thirdName} ${state.doctorDetailsResponse.doctor.fourthName}",
                                                 style: TextStyles.nexaBold.copyWith(
                                                   fontWeight: FontWeight.w900,
                                                   color: AppTheme.primaryTextColor,
@@ -116,7 +116,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                state.doctorDetailsResponse.doctor.clinics?.first.name??"",
+                                                state.doctorDetailsResponse.doctor.specialist?.name??"",
                                                 style: TextStyles.nexaRegular.copyWith(
                                                   color: AppTheme.secondaryTextColor,
                                                   fontSize: 14,
@@ -166,7 +166,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                       const DoctorProfileTitle(title: "Doctor Biography"),
                                       const SizedBox(height: 8.0),
                                       Text(
-                                        state.doctorDetailsResponse.doctor.descriptionEn??"",
+                                        state.doctorDetailsResponse.doctor.description??"",
                                         style: TextStyles.nexaRegular.copyWith(
                                           color: AppTheme.secondaryTextColor,
                                           fontSize: 14,
