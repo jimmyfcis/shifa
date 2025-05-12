@@ -5,8 +5,13 @@ import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/My%20Favorite/widgets/my_favorite_body.dart';
 
+import '../../../core/models/clinic_model.dart';
+import '../../../core/models/doctor_model.dart';
+
 class MyFavoriteScreen extends StatelessWidget {
-  const MyFavoriteScreen({super.key});
+  final Doctor? doctor;
+  final Clinic clinic;
+  const MyFavoriteScreen({super.key, this.doctor, required this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class MyFavoriteScreen extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
-      contentChild: const Expanded(child: MyFavoriteBody()),
+      contentChild:  Expanded(child: MyFavoriteBody(clinic: clinic,doctor: doctor,)),
     );
   }
 }

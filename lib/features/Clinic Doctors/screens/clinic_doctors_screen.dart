@@ -20,7 +20,7 @@ class ClinicDoctorsScreen extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
-      contentChild:  Expanded(child: ClinicDoctorsBody(doctors: clinic.doctors??[],)),
+      contentChild:  Expanded(child: ClinicDoctorsBody(doctors: clinic.doctors??[], clinic: clinic,)),
     );
   }
 }

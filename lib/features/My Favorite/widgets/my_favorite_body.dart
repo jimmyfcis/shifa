@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
 
+import '../../../core/models/clinic_model.dart';
+import '../../../core/models/doctor_model.dart';
+
 class MyFavoriteBody extends StatelessWidget {
-  const MyFavoriteBody({super.key});
+  final Doctor? doctor;
+  final Clinic clinic;
+  const MyFavoriteBody({super.key, this.doctor, required this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +20,8 @@ class MyFavoriteBody extends StatelessWidget {
         separatorBuilder: (context, index) => SizedBox(
           height: 16.h,
         ),
-        itemBuilder: (context, index) => const ClinicDoctorCard(
-          isFavorite: true,
+        itemBuilder: (context, index) =>  ClinicDoctorCard(
+          isFavorite: true, clinic: clinic,doctor: doctor,
         ),
       ),
     );

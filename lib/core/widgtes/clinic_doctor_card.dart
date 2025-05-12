@@ -10,11 +10,14 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/models/doctor_model.dart';
 
+import '../models/clinic_model.dart';
+
 class ClinicDoctorCard extends StatelessWidget {
   final bool isFavorite;
   final Doctor? doctor;
+  final Clinic clinic;
 
-  const ClinicDoctorCard({super.key, required this.isFavorite,  this.doctor});
+  const ClinicDoctorCard({super.key, required this.isFavorite,  this.doctor, required this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +141,10 @@ class ClinicDoctorCard extends StatelessWidget {
               fontSize: 14.sp,
               title: "Book an appointment",
               onPressed: (){
-                Navigator.pushNamed(context, AppRoutes.doctorProfile);
+                Navigator.pushNamed(context, AppRoutes.doctorProfile,arguments: {
+                  "clinicId": clinic.id.toString(),
+                  "doctorId": doctor?.id.toString(),
+                });
               },
             ),
           ],

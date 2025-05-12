@@ -8,7 +8,7 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   DoctorCubit({required this.getDoctorDetailsUseCase}) : super(DoctorInitial());
 
-  Future<void> fetchTopDoctors({
+  Future<void> getDoctorDetails({
     required String clinicId,
     required String id,
   }) async {

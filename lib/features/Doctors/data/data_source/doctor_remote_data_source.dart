@@ -18,7 +18,7 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
     required String clinicId,
     required String id,
   }) async {
-    final response = await dio.get(
+    final response = await dio.post(
       ApiEndpoints.doctorDetails,
       data: {
         'id': id,

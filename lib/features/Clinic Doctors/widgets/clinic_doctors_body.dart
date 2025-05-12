@@ -5,9 +5,12 @@ import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/clinics_doctor_settings.dart';
 import 'package:shifa/core/models/doctor_model.dart';
 
+import '../../../core/models/clinic_model.dart';
+
 class ClinicDoctorsBody extends StatelessWidget {
   final List<Doctor> doctors;
-  const ClinicDoctorsBody({super.key, required this.doctors});
+  final Clinic clinic;
+  const ClinicDoctorsBody({super.key, required this.doctors,required this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,7 @@ class ClinicDoctorsBody extends StatelessWidget {
             itemBuilder: (context, index) =>  ClinicDoctorCard(
               isFavorite: false,
               doctor: doctors[index],
+              clinic: clinic,
             ),
           ),
         )

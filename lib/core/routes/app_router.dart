@@ -101,7 +101,12 @@ class AppRouter {
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
       case AppRoutes.myFavorite:
-        return MaterialPageRoute(builder: (_) => MyFavoriteScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (_) => MyFavoriteScreen(
+                  clinic: arguments['clinic'],
+                  doctor: arguments['doctor'],
+                ));
       case AppRoutes.labTests:
         return MaterialPageRoute(builder: (_) => LabTestsScreen());
       case AppRoutes.booking:
@@ -144,11 +149,13 @@ class AppRouter {
                   recordType: arguments['recordType'],
                 ));
       case AppRoutes.doctorProfile:
-        //  var arguments = settings.arguments as Map<String, dynamic>;
+        var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => DoctorProfileScreen(
-              //   fromBookings: arguments['fromBookings'],
-              ),
+            fromBookings: arguments['fromBookings'],
+            clinicId: arguments['clinicId'],
+            doctorId: arguments['doctorId'],
+          ),
         );
       case AppRoutes.blogDetails:
         final BlogModel blog = settings.arguments as BlogModel;
