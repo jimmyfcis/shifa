@@ -90,20 +90,26 @@ class VisitsScreen extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  placeName ?? '',
-                  style: TextStyles.nexaBold.copyWith(
-                    color: AppTheme.shifaPrimaryColor,
-                    fontSize: 16.sp,
+                Expanded(
+                  flex: 8,
+                  child: Text(
+                    placeName ?? '',
+                    style: TextStyles.nexaBold.copyWith(
+                      color: AppTheme.shifaPrimaryColor,
+                      fontSize: 16.sp,
+                    ),
                   ),
                 ),
-                Text(
-                  '#${visit.visitNumber ?? ''}',
-                  style: TextStyles.nexaRegular.copyWith(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.sp,
+                Expanded(
+                  child: Text(
+                    '#${visit.visitNumber ?? ''}',
+                    style: TextStyles.nexaRegular.copyWith(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
               ],
