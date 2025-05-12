@@ -21,6 +21,11 @@ import 'package:shifa/features/Home/domain/use_cases/get_top_doctors_usecase.dar
 import 'package:shifa/features/Home/presentation/cubit/home_cubit.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
+import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
+import '../../features/My Records/data/repositories/visit_repository_impl.dart';
+import '../../features/My Records/domain/repositories/visit_repository.dart';
+import '../../features/My Records/domain/use_cases/get_my_visits_use_case.dart';
+import '../../features/My Records/presentation/visit_cubit.dart';
 import '../../features/authentication/data/datasources/auth_remote_datasource.dart';
 import '../../features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../features/authentication/domain/repositories/auth_repository.dart';
@@ -59,6 +64,9 @@ Future<void> init() async {
   sl.registerLazySingleton<AppointmentRemoteDataSource>(
     () => AppointmentRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<VisitRemoteDataSource>(
+    () => VisitRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<DoctorRepository>(
@@ -92,6 +100,11 @@ Future<void> init() async {
       remoteDataSource: sl<AppointmentRemoteDataSource>(),
     ),
   );
+  sl.registerLazySingleton<VisitRepository>(
+    () => VisitRepositoryImpl(
+      visitRemoteDataSource: sl<VisitRemoteDataSource>(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton<GetDoctorDetailsUseCase>(
@@ -118,6 +131,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetAppointmentsUseCase>(
     () => GetAppointmentsUseCase(repository: sl<AppointmentRepository>()),
   );
+  sl.registerLazySingleton<GetMyVisitsUseCase>(
+    () => GetMyVisitsUseCase(sl<VisitRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
@@ -140,5 +156,8 @@ Future<void> init() async {
   );
   sl.registerFactory<AppointmentCubit>(
     () => AppointmentCubit(getAppointmentsUseCase: sl<GetAppointmentsUseCase>()),
+  );
+  sl.registerFactory<VisitCubit>(
+    () => VisitCubit(getMyVisitsUseCase: sl<GetMyVisitsUseCase>()),
   );
 }

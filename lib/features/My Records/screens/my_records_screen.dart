@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
-import 'package:shifa/features/My%20Records/widgets/my_records_body.dart';
+import 'package:shifa/features/My%20Records/presentation/screens/visits_screen.dart';
 
 class MyRecordsScreen extends StatelessWidget {
   const MyRecordsScreen({super.key});
@@ -17,7 +17,7 @@ class MyRecordsScreen extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
-      contentChild: const MyRecordsBody(),
+      contentChild: const VisitsScreen(),
     );
   }
 }
