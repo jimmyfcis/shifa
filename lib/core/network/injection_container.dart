@@ -19,6 +19,11 @@ import 'package:shifa/features/Home/data/data_source/home_remote_data_source.dar
 import 'package:shifa/features/Home/domain/repositories/home_repository.dart';
 import 'package:shifa/features/Home/domain/use_cases/get_top_doctors_usecase.dart';
 import 'package:shifa/features/Home/presentation/cubit/home_cubit.dart';
+import 'package:shifa/features/Labs/data/data_source/lab_remote_data_source.dart';
+import 'package:shifa/features/Labs/data/repositories/lab_repository_impl.dart';
+import 'package:shifa/features/Labs/domain/repositories/lab_repository.dart';
+import 'package:shifa/features/Labs/domain/use_cases/get_labs_use_case.dart';
+import 'package:shifa/features/Labs/presentation/lab_cubit.dart';
 import 'package:shifa/features/Radiology/data/data_source/radiology_remote_data_source.dart';
 import 'package:shifa/features/Radiology/data/repositories/radiology_repository_impl.dart';
 import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
@@ -75,6 +80,9 @@ Future<void> init() async {
   sl.registerLazySingleton<RadiologyRemoteDataSource>(
     () => RadiologyRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<LabRemoteDataSource>(
+    () => LabRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<DoctorRepository>(
@@ -118,6 +126,11 @@ Future<void> init() async {
       radiologyRemoteDataSource: sl<RadiologyRemoteDataSource>(),
     ),
   );
+  sl.registerLazySingleton<LabRepository>(
+    () => LabRepositoryImpl(
+      labRemoteDataSource: sl<LabRemoteDataSource>(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton<GetDoctorDetailsUseCase>(
@@ -150,6 +163,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetRadiologiesUseCase>(
     () => GetRadiologiesUseCase(sl<RadiologyRepository>()),
   );
+  sl.registerLazySingleton<GetLabsUseCase>(
+    () => GetLabsUseCase(sl<LabRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
@@ -178,5 +194,8 @@ Future<void> init() async {
   );
   sl.registerFactory<RadiologyCubit>(
     () => RadiologyCubit(getRadiologiesUseCase: sl<GetRadiologiesUseCase>()),
+  );
+  sl.registerFactory<LabCubit>(
+    () => LabCubit(getLabsUseCase: sl<GetLabsUseCase>()),
   );
 }

@@ -15,7 +15,7 @@ import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';
 import 'package:shifa/features/Booking/screens/first_booking_screen.dart';
-import 'package:shifa/features/Lab%20Tests/screens/lab_tests_screen.dart';
+import 'package:shifa/features/Labs/presentation/screens/lab_tests_screen.dart';
 import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Favorite/screens/my_favorite_screen.dart';

@@ -14,17 +14,17 @@ class RadiologyCubit extends Cubit<RadiologyState> {
       emit(RadiologyLoading());
       final storage = TokenStorage();
       final user = await storage.getUser();
-      String _userID = '';
+      String userID = '';
 
       if(user!.patientID!=null &&user.patientID!.isNotEmpty)
       {
-        _userID=user.patientID!;
+        userID=user.patientID!;
       }
       else {
-        _userID=user.userId??"";
+        userID=user.userId??"";
 
       }
-      final response = await getRadiologiesUseCase(patientId: _userID);
+      final response = await getRadiologiesUseCase(patientId: userID);
       emit(RadiologyLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
