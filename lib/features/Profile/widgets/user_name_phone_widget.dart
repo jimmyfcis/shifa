@@ -25,8 +25,8 @@ class _UserNameAndPhoneNumberState extends State<UserNameAndPhoneNumber> {
     final user = await storage.getUser();
     if (mounted && user != null) {
       setState(() {
-        _userName = "${user.firstName??""} ${user.secondName??""}";
-        _phoneNumber = user.phoneNumber??user.phone??"";
+        _userName = user.name??"";
+        _phoneNumber = user.phoneNumber??"";
       });
     }
   }

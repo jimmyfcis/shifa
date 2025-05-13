@@ -4,9 +4,11 @@ class Clinic {
   final String name;
   final String? icon;
   final List<Doctor>? doctors;
-  final int? id;
-  final int? physicianID;
-  final int? clinicId;
+
+  //system id
+  final String? id;
+  final String? physicianID;
+  final String? clinicId;
   final String? createdAt;
   final String? updatedAt;
 
@@ -38,9 +40,9 @@ class Clinic {
     }
 
     return Clinic(
-      id: json['id']??0,
-      physicianID: json['physicianID']??0,
-      clinicId: json['clinic_id']??0,
+      id: json['id']??"",
+      physicianID: json['physicianID']??"",
+      clinicId: json['clinic_id']??"",
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
       name: json['name'] ?? '',

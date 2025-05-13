@@ -1,15 +1,15 @@
 import 'package:shifa/core/models/doctor_model.dart';
 
 class Appointment {
-  final int? bookingID;
-  final int? appointmentID;
+  final String? id;
+  final String? appointmentID;
   final String? scheduleSerial;
   final String? date;
   final String? time;
   final Doctor? doctor;
 
   Appointment({
-    this.bookingID,
+    this.id,
     this.appointmentID,
     this.scheduleSerial,
     this.date,
@@ -19,18 +19,18 @@ class Appointment {
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
     return Appointment(
-      bookingID: json['bookingID'],
-      appointmentID: json['appointmentID'],
-      scheduleSerial: json['scheduleSerial'],
-      date: json['date'],
-      time: json['time'],
+      id: json['id']??"",
+      appointmentID: json['appointmentID']??"",
+      scheduleSerial: json['scheduleSerial']??"",
+      date: json['date']??"",
+      time: json['time']??"",
       doctor: json['doctor'] != null ? Doctor.fromJson(json['doctor']) : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'bookingID': bookingID,
+      'id': id,
       'appointmentID': appointmentID,
       'scheduleSerial': scheduleSerial,
       'date': date,

@@ -1,14 +1,13 @@
 class Specialist {
-  final int? id;
+  final String? id;
   final String? nameEn;
   final String? nameAr;
-  final int? specialtyID;
+  final String? specialtyID;
   final String? specialtyName;
   final String? specialtyArabicName;
   final String? availabilityStatus;
   final String? callCenterAppearance;
   final String? status;
-  final int? userId;
   final String? createdAt;
   final String? updatedAt;
   final String? name;
@@ -23,7 +22,6 @@ class Specialist {
      this.availabilityStatus,
      this.callCenterAppearance,
      this.status,
-     this.userId,
      this.createdAt,
      this.updatedAt,
      this.name,
@@ -31,16 +29,15 @@ class Specialist {
 
   factory Specialist.fromJson(Map<String, dynamic> json) {
     return Specialist(
-      id: json['id']??0,
+      id: json['id']??"",
       nameEn: json['name_en'] ?? '',
       nameAr: json['name_ar'] ?? '',
-      specialtyID: json['specialtyID']??0,
+      specialtyID: json['specialtyID']??"",
       specialtyName: json['specialtyName'] ?? '',
       specialtyArabicName: json['specialtyArabicName'] ?? '',
       availabilityStatus: json['availabilityStatus'] ?? '',
       callCenterAppearance: json['callCenterAppearance'] ?? '',
       status: json['status'] ?? '',
-      userId: json['user_id']??0,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
       name: json['name'] ?? '',
@@ -58,7 +55,6 @@ class Specialist {
       'availabilityStatus': availabilityStatus,
       'callCenterAppearance': callCenterAppearance,
       'status': status,
-      'user_id': userId,
       'created_at': createdAt,
       'updated_at': updatedAt,
       'name': name,

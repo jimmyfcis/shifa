@@ -107,7 +107,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "${state.doctorDetailsResponse.doctor.firstName} ${state.doctorDetailsResponse.doctor.secondName} ${state.doctorDetailsResponse.doctor.thirdName} ${state.doctorDetailsResponse.doctor.fourthName}",
+                                                state.doctorDetailsResponse.doctor.name??"",
                                                 style: TextStyles.nexaBold.copyWith(
                                                   fontWeight: FontWeight.w900,
                                                   color: AppTheme.primaryTextColor,

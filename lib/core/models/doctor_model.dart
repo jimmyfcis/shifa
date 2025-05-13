@@ -1,7 +1,5 @@
 import 'package:shifa/core/models/specialist_model.dart';
-
 import 'clinic_model.dart';
-import '../../features/authentication/data/models/user.dart';
 
 class ScheduleSlot {
   final String? timeStart;
@@ -28,8 +26,8 @@ class ScheduleSlot {
 }
 
 class Schedule {
-  final int? clinicID;
-  final int? physicianID;
+  final String? clinicID;
+  final String? physicianID;
   final String? physicianNameAr;
   final String? physicianNameEn;
   final String? shiftDate;
@@ -56,8 +54,8 @@ class Schedule {
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
-      clinicID: json['clinicID'],
-      physicianID: json['physicianID'],
+      clinicID: json['clinicID']??"",
+      physicianID: json['physicianID']??"",
       physicianNameAr: json['physicianNameAr'],
       physicianNameEn: json['physicianNameEn'],
       shiftDate: json['shiftDate'],
@@ -89,28 +87,20 @@ class Schedule {
 
 
 class Doctor {
-  final int? id;
+  final String? id;
   final String? leksell;
   final String? rate;
   final int? serviceId;
-  final int? userId;
   final String? physicianID;
   final String? arabicNickname;
   final String? englishNickname;
   final String? physicianCode;
   final String? contractType;
-  final String? firstName;
-  final String? secondName;
-  final String? thirdName;
-  final String? fourthName;
-  final String? firstNameAR;
-  final String? secondNameAR;
-  final String? thirdNameAR;
-  final String? fourthNameAR;
+  final String? nameAR;
   final String? gender;
   final String? dateOfBirth;
   final String? nationality;
-  final int? specialtyID;
+  final String? specialtyID;
   final String? availabilityStatus;
   final String? descriptionAr;
   final String? descriptionEn;
@@ -123,27 +113,17 @@ class Doctor {
   final List<Clinic>? clinics;
   final Specialist? specialist;
   final List<Schedule>? schedules;
-  final User? user;
 
   Doctor({
     this.id,
     this.leksell,
     this.rate,
     this.serviceId,
-    this.userId,
     this.physicianID,
     this.arabicNickname,
     this.englishNickname,
     this.physicianCode,
     this.contractType,
-    this.firstName,
-    this.secondName,
-    this.thirdName,
-    this.fourthName,
-    this.firstNameAR,
-    this.secondNameAR,
-    this.thirdNameAR,
-    this.fourthNameAR,
     this.gender,
     this.dateOfBirth,
     this.nationality,
@@ -156,37 +136,29 @@ class Doctor {
     this.updatedAt,
     this.description,
     this.name,
+    this.nameAR,
     this.schedule,
     this.clinics,
     this.specialist,
     this.schedules,
-    this.user,
   });
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
-      id: json['id'],
+      id: json['id']??"",
       leksell: json['leksell'],
       rate: json['rate'],
       serviceId: json['service_id'],
-      userId: json['user_id'],
-      physicianID: json['physicianID'],
+      physicianID: json['physicianID']??"",
       arabicNickname: json['arabicNickname'],
       englishNickname: json['englishNickname'],
       physicianCode: json['physicianCode'],
       contractType: json['contractType'] ?? '',
-      firstName: json['firstName'] ?? '',
-      secondName: json['secondName'] ?? '',
-      thirdName: json['thirdName'] ?? '',
-      fourthName: json['fourthName'] ?? '',
-      firstNameAR: json['firstNameAR'] ?? '',
-      secondNameAR: json['secondNameAR'] ?? '',
-      thirdNameAR: json['thirdNameAR'] ?? '',
-      fourthNameAR: json['fourthNameAR'] ?? '',
+      nameAR: json['nameAr'] ?? '',
       gender: json['gender'] ?? '',
       dateOfBirth: json['dateOfBirth'] ?? '',
       nationality: json['nationality'] ?? '',
-      specialtyID: json['specialtyID'],
+      specialtyID: json['specialtyID']??"",
       availabilityStatus: json['availabilityStatus'] ?? '',
       descriptionAr: json['description_ar'] ?? '',
       descriptionEn: json['description_en'] ?? '',
@@ -199,7 +171,6 @@ class Doctor {
       clinics: (json['clinics'] as List?)?.map((e) => Clinic.fromJson(e)).toList(),
       specialist: json['specialist'] != null ? Specialist.fromJson(json['specialist']) : null,
       schedules: (json['schedules'] as List?)?.map((e) => Schedule.fromJson(e)).toList(),
-      user: json['user'] != null ? User.fromJson(json['user']) : null,
     );
   }
 
@@ -209,20 +180,12 @@ class Doctor {
       'leksell': leksell,
       'rate': rate,
       'service_id': serviceId,
-      'user_id': userId,
       'physicianID': physicianID,
       'arabicNickname': arabicNickname,
       'englishNickname': englishNickname,
       'physicianCode': physicianCode,
       'contractType': contractType,
-      'firstName': firstName,
-      'secondName': secondName,
-      'thirdName': thirdName,
-      'fourthName': fourthName,
-      'firstNameAR': firstNameAR,
-      'secondNameAR': secondNameAR,
-      'thirdNameAR': thirdNameAR,
-      'fourthNameAR': fourthNameAR,
+      'nameAr': nameAR,
       'gender': gender,
       'dateOfBirth': dateOfBirth,
       'nationality': nationality,
@@ -239,7 +202,6 @@ class Doctor {
       'clinics': clinics?.map((e) => e.toJson()).toList(),
       'specialist': specialist?.toJson(),
       'schedules': schedules?.map((e) => e.toJson()).toList(),
-      'user': user?.toJson(),
     };
   }
 }

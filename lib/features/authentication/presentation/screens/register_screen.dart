@@ -331,7 +331,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     email: formValues['email'] ?? '',
                                     password: formValues['password'] ?? '',
                                     confirmPassword: formValues['confirm'] ?? '',
-                                    phone: phoneController.text.replaceAll(" ", ""),
+                                    phoneNumber: phoneController.text.replaceAll(" ", ""),
                                     maritalStatus: formValues['martial'] ?? '',
                                     birthdate: birthdate,
                                     religion: formValues['religion'] ?? '',

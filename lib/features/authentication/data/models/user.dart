@@ -1,8 +1,7 @@
 class User {
-  final String? firstName;
   final String? name;
-  final String? secondName;
-  final int? userId;
+  //act AS Patient ID for shifa operation
+  final String? userId;
   final String? email;
   final String? nationalId;
   final String? phoneNumber;
@@ -12,6 +11,7 @@ class User {
   final String? gender;
   final int? age;
   final String? medicalCompany;
+  //user id for the app
   final String? id;
   final String? idType;
   final String? type;
@@ -20,25 +20,19 @@ class User {
   final String? city;
   final String? area;
   final String? street;
-  final String? phone;
   final String? buildingNumber;
   final String? password;
   final String? status;
   final String? createdAt;
   final String? updatedAt;
-  final String? avatar;
-
   final String? image;
   final String? confirmPassword;
 
   User({
-    this.firstName,
-    this.secondName,
     this.nationalId,
     this.name,
     this.password,
     this.userId,
-    this.phone,
     this.confirmPassword,
     this.email,
     this.phoneNumber,
@@ -60,14 +54,11 @@ class User {
     this.status,
     this.createdAt,
     this.updatedAt,
-    this.avatar,
     this.image,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        firstName: json['firstName'] ?? '',
-        secondName: json['secondName'] ?? '',
-        userId: json['userId'] is int ? json['userId'] : int.tryParse('${json['userId']}') ?? 0,
+        userId: json['userId']?? "",
         nationalId: json['national_id'] ?? '',
         name: json['name'] ?? '',
         confirmPassword: json['confirmPassword'] ?? '',
@@ -76,12 +67,10 @@ class User {
         status: json['status'] ?? '',
         createdAt: json['created_at'] ?? '',
         updatedAt: json['updated_at'] ?? '',
-        avatar: json['avatar'] ?? '',
         image: json['image'] ?? '',
         patientID: json['PatientID'] ?? '',
         email: json['email'] ?? '',
         phoneNumber: json['phoneNumber'] ?? '',
-        phone: json['phone'] ?? '',
         maritalStatus: json['maritalStatus'] ?? '',
         birthdate: json['birthdate'] ?? '',
         religion: json['religion']?.trim() ?? '',
@@ -98,12 +87,9 @@ class User {
       );
 
   Map<String, dynamic> toJson() => {
-        'firstName': firstName,
-        'secondName': secondName,
         'userId': userId,
         'email': email,
         'name': name,
-        'phone': phone,
         'password': password,
         'confirmPassword': confirmPassword,
         'phoneNumber': phoneNumber,
@@ -124,7 +110,6 @@ class User {
         'type': type,
         'created_at': createdAt,
         'updated_at': updatedAt,
-        'avatar': avatar,
         'image': image,
         'status': status,
         'PatientID': patientID,

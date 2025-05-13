@@ -90,7 +90,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                             height: 16.h,
                           ),
                           Text(
-                            "${doctor.firstName??""} ${doctor.secondName??""}",
+                            doctor.name??"",
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 14.sp,
                               color: AppTheme.primaryTextColor,
@@ -106,7 +106,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                               color: AppTheme.secondaryTextColor,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             width: 45.w,
                             padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
@@ -146,7 +146,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                 ),
               ),
             ],
-          ):SizedBox.shrink();
+          ):const SizedBox.shrink();
         },
       ),
     );
