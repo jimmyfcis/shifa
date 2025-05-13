@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shifa/core/error/error_handler.dart';
 import 'package:shifa/features/Radiology/presentation/radiology_state.dart';
+import '../../../core/storage/token_storage.dart';
 import '../domain/use_cases/get_radiologies_use_case.dart';
 
 class RadiologyCubit extends Cubit<RadiologyState> {
@@ -8,10 +9,22 @@ class RadiologyCubit extends Cubit<RadiologyState> {
 
   RadiologyCubit({required this.getRadiologiesUseCase}) : super(RadiologyInitial());
 
-  Future<void> getRadiologies({required String patientId}) async {
+  Future<void> getRadiologies() async {
     try {
       emit(RadiologyLoading());
-      final response = await getRadiologiesUseCase(patientId: patientId);
+      final storage = TokenStorage();
+      final user = await storage.getUser();
+      String _userID = '';
+
+      if(user!.patientID!=null &&user.patientID!.isNotEmpty)
+      {
+        _userID=user.patientID!;
+      }
+      else {
+        _userID=user.userId??"";
+
+      }
+      final response = await getRadiologiesUseCase(patientId: _userID);
       emit(RadiologyLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
