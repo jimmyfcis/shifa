@@ -19,6 +19,11 @@ import 'package:shifa/features/Home/data/data_source/home_remote_data_source.dar
 import 'package:shifa/features/Home/domain/repositories/home_repository.dart';
 import 'package:shifa/features/Home/domain/use_cases/get_top_doctors_usecase.dart';
 import 'package:shifa/features/Home/presentation/cubit/home_cubit.dart';
+import 'package:shifa/features/Radiology/data/data_source/radiology_remote_data_source.dart';
+import 'package:shifa/features/Radiology/data/repositories/radiology_repository_impl.dart';
+import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
+import 'package:shifa/features/Radiology/domain/use_cases/get_radiologies_use_case.dart';
+import 'package:shifa/features/Radiology/presentation/radiology_cubit.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
 import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
@@ -67,6 +72,9 @@ Future<void> init() async {
   sl.registerLazySingleton<VisitRemoteDataSource>(
     () => VisitRemoteDataSourceImpl(),
   );
+  sl.registerLazySingleton<RadiologyRemoteDataSource>(
+    () => RadiologyRemoteDataSourceImpl(),
+  );
 
   // Repositories
   sl.registerLazySingleton<DoctorRepository>(
@@ -105,6 +113,11 @@ Future<void> init() async {
       visitRemoteDataSource: sl<VisitRemoteDataSource>(),
     ),
   );
+  sl.registerLazySingleton<RadiologyRepository>(
+    () => RadiologyRepositoryImpl(
+      radiologyRemoteDataSource: sl<RadiologyRemoteDataSource>(),
+    ),
+  );
 
   // Use cases
   sl.registerLazySingleton<GetDoctorDetailsUseCase>(
@@ -134,6 +147,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetMyVisitsUseCase>(
     () => GetMyVisitsUseCase(sl<VisitRepository>()),
   );
+  sl.registerLazySingleton<GetRadiologiesUseCase>(
+    () => GetRadiologiesUseCase(sl<RadiologyRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
@@ -159,5 +175,8 @@ Future<void> init() async {
   );
   sl.registerFactory<VisitCubit>(
     () => VisitCubit(getMyVisitsUseCase: sl<GetMyVisitsUseCase>()),
+  );
+  sl.registerFactory<RadiologyCubit>(
+    () => RadiologyCubit(getRadiologiesUseCase: sl<GetRadiologiesUseCase>()),
   );
 }
