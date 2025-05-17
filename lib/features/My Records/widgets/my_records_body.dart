@@ -12,9 +12,11 @@ import 'package:shifa/features/My%20Records/widgets/lab_tests_radiology_records.
 import 'package:shifa/features/My%20Records/widgets/medicines_card.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
+import '../data/models/visit_model.dart';
 
 class MyRecordsBody extends StatelessWidget {
-  const MyRecordsBody({super.key});
+  final Visit visit;
+  const MyRecordsBody({super.key, required this.visit});
 
   @override
   Widget build(BuildContext context) {

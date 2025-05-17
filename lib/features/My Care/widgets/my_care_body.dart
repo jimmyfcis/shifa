@@ -28,7 +28,7 @@ class MyCareBody extends StatelessWidget {
                   : SVGAssets.clincsShifaIcon,
               onTap: () {
                 log("My Records");
-                Navigator.pushNamed(context, AppRoutes.myRecords);
+                Navigator.pushNamed(context, AppRoutes.myVisits);
               },
             ),
             SizedBox(

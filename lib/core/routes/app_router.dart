@@ -21,6 +21,7 @@ import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
 import 'package:shifa/features/My%20Favorite/screens/my_favorite_screen.dart';
 import 'package:shifa/features/My%20Profile/screens/my_profie_screen.dart';
 import 'package:shifa/features/My%20Records/presentation/screens/my_records_screen.dart';
+import 'package:shifa/features/My%20Records/presentation/screens/my_visits_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
@@ -121,8 +122,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => MedicalReminderScreen());
       case AppRoutes.vaccineReminder:
         return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
+      case AppRoutes.myVisits:
+        return MaterialPageRoute(builder: (_) => MyVisitsScreen());
       case AppRoutes.myRecords:
-        return MaterialPageRoute(builder: (_) => MyRecordsScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (_) => MyRecordsScreen(
+                  visit: arguments['visit'],
+                ));
       case AppRoutes.newVaccineReminder:
         return MaterialPageRoute(builder: (_) => NewVaccineReminderScreen());
       case AppRoutes.newCareReminder:
