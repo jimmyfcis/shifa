@@ -35,7 +35,7 @@ import '../../features/My Records/data/data_source/visit_remote_data_source.dart
 import '../../features/My Records/data/repositories/visit_repository_impl.dart';
 import '../../features/My Records/domain/repositories/visit_repository.dart';
 import '../../features/My Records/domain/use_cases/get_my_visits_use_case.dart';
-import '../../features/My Records/presentation/visit_cubit.dart';
+import '../../features/My Records/presentation/managers/visits/visit_cubit.dart';
 import '../../features/authentication/data/datasources/auth_remote_datasource.dart';
 import '../../features/authentication/data/repositories/auth_repository_impl.dart';
 import '../../features/authentication/domain/repositories/auth_repository.dart';

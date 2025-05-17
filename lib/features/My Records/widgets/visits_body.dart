@@ -10,8 +10,8 @@ import 'package:shifa/core/widgtes/error_widget.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/theme/theme.dart';
 import '../data/models/visit_model.dart';
-import '../presentation/visit_cubit.dart';
-import '../presentation/visit_state.dart';
+import '../presentation/managers/visits/visit_cubit.dart';
+import '../presentation/managers/visits/visit_state.dart';
 
 class VisitsBody extends StatelessWidget {
   const VisitsBody({super.key});

@@ -1,5 +1,5 @@
 
-import '../data/models/visit_response.dart';
+import '../../../data/models/visit_response.dart';
 
 abstract class VisitState {}
 

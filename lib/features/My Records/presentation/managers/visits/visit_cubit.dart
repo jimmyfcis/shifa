@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shifa/core/error/error_handler.dart';
-import 'package:shifa/features/My%20Records/presentation/visit_state.dart';
-import '../domain/use_cases/get_my_visits_use_case.dart';
+import 'package:shifa/features/My%20Records/presentation/managers/visits/visit_state.dart';
+import '../../../domain/use_cases/get_my_visits_use_case.dart';
 
 class VisitCubit extends Cubit<VisitState> {
   final GetMyVisitsUseCase getMyVisitsUseCase;
