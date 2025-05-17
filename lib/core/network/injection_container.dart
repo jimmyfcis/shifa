@@ -24,6 +24,11 @@ import 'package:shifa/features/Labs/data/repositories/lab_repository_impl.dart';
 import 'package:shifa/features/Labs/domain/repositories/lab_repository.dart';
 import 'package:shifa/features/Labs/domain/use_cases/get_labs_use_case.dart';
 import 'package:shifa/features/Labs/presentation/lab_cubit.dart';
+import 'package:shifa/features/My%20Records/data/data_source/records_remote_data_source.dart';
+import 'package:shifa/features/My%20Records/data/repositories/records_repository_impl.dart';
+import 'package:shifa/features/My%20Records/domain/repositories/records_repository.dart';
+import 'package:shifa/features/My%20Records/domain/use_cases/get_my_records_use_case.dart';
+import 'package:shifa/features/My%20Records/presentation/managers/records/records_cubit.dart';
 import 'package:shifa/features/Radiology/data/data_source/radiology_remote_data_source.dart';
 import 'package:shifa/features/Radiology/data/repositories/radiology_repository_impl.dart';
 import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
@@ -56,6 +61,10 @@ Future<void> init() async {
   sl.registerLazySingleton<TokenStorage>(() => TokenStorage());
 
   // Data sources
+
+  sl.registerLazySingleton<RecordsRemoteDataSource>(
+        () => RecordsRemoteDataSourceImpl(),
+  );
   sl.registerLazySingleton<DoctorRemoteDataSource>(
     () => DoctorRemoteDataSourceImpl(),
   );
@@ -88,6 +97,12 @@ Future<void> init() async {
   sl.registerLazySingleton<DoctorRepository>(
     () => DoctorRepositoryImpl(
       doctorRemoteDataSource: sl<DoctorRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<RecordsRepository>(
+        () => RecordsRepositoryImpl(
+          remoteDataSource: sl<RecordsRemoteDataSource>(),
     ),
   );
   sl.registerLazySingleton<HomeRepository>(
@@ -136,6 +151,10 @@ Future<void> init() async {
   sl.registerLazySingleton<GetDoctorDetailsUseCase>(
     () => GetDoctorDetailsUseCase(sl<DoctorRepository>()),
   );
+
+  sl.registerLazySingleton<GetRecordsUseCase>(
+        () => GetRecordsUseCase(sl<RecordsRepository>()),
+  );
   sl.registerLazySingleton<GetTopDoctorsUseCase>(
     () => GetTopDoctorsUseCase(sl<HomeRepository>()),
   );
@@ -170,6 +189,9 @@ Future<void> init() async {
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
     () => DoctorCubit(getDoctorDetailsUseCase: sl<GetDoctorDetailsUseCase>()),
+  );
+  sl.registerFactory<RecordsCubit>(
+        () => RecordsCubit(getRecordsUseCase: sl<GetRecordsUseCase>()),
   );
   sl.registerFactory<HomeCubit>(
     () => HomeCubit(getTopDoctorsUseCase: sl<GetTopDoctorsUseCase>()),

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:shifa/core/network/api_endpoints.dart';
+import '../../../../core/network/dio_client.dart';
 import '../models/records_request_model.dart';
 import '../models/records_response_model.dart';
 
@@ -8,9 +9,9 @@ abstract class RecordsRemoteDataSource {
 }
 
 class RecordsRemoteDataSourceImpl implements RecordsRemoteDataSource {
-  final Dio dio;
+  final Dio dio = DioClient().dio;
 
-  RecordsRemoteDataSourceImpl(this.dio);
+  RecordsRemoteDataSourceImpl();
 
   @override
   Future<RecordsResponseModel> getRecords(RecordsRequestModel request) async {

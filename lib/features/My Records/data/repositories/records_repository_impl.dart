@@ -6,7 +6,7 @@ import '../models/records_response_model.dart';
 class RecordsRepositoryImpl implements RecordsRepository {
   final RecordsRemoteDataSource remoteDataSource;
 
-  RecordsRepositoryImpl(this.remoteDataSource);
+  RecordsRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<RecordsResponseModel> getRecords(RecordsRequestModel request) {

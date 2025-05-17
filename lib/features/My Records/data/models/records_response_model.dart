@@ -2,8 +2,8 @@ import '../../../authentication/data/models/user.dart';
 
 class RecordsResponseModel {
   final User? user;
-  final List<Lab>? labs;
-  final List<Rad>? rads;
+  final List<LabRecord>? labs;
+  final List<RadRecord>? rads;
   final List<Diagnosis>? diagnosis;
   final List<Complaint>? complaints;
   final List<PatientVitalSign>? patientVitalSigns;
@@ -28,8 +28,8 @@ class RecordsResponseModel {
   factory RecordsResponseModel.fromJson(Map<String, dynamic> json) {
     return RecordsResponseModel(
       user: json['user'] != null ? User.fromJson(json['user']) : null,
-      labs: (json['labs'] as List?)?.map((e) => Lab.fromJson(e)).toList(),
-      rads: (json['rads'] as List?)?.map((e) => Rad.fromJson(e)).toList(),
+      labs: (json['labs'] as List?)?.map((e) => LabRecord.fromJson(e)).toList(),
+      rads: (json['rads'] as List?)?.map((e) => RadRecord.fromJson(e)).toList(),
       diagnosis: (json['diagnosis'] as List?)?.map((e) => Diagnosis.fromJson(e)).toList(),
       complaints: (json['complaints'] as List?)?.map((e) => Complaint.fromJson(e)).toList(),
       patientVitalSigns: (json['patientVitalSigns'] as List?)?.map((e) => PatientVitalSign.fromJson(e)).toList(),
@@ -53,7 +53,7 @@ class RecordsResponseModel {
     'medicalReports': medicalReports?.map((e) => e.toJson()).toList(),
   };
 }
-class Lab {
+class LabRecord {
   final String? categoryId;
   final String? categoryAr;
   final String? categoryEn;
@@ -64,7 +64,7 @@ class Lab {
   final String? serviceStatusEn;
   final String? date;
 
-  Lab({
+  LabRecord({
     this.categoryId,
     this.categoryAr,
     this.categoryEn,
@@ -76,7 +76,7 @@ class Lab {
     this.date,
   });
 
-  factory Lab.fromJson(Map<String, dynamic> json) => Lab(
+  factory LabRecord.fromJson(Map<String, dynamic> json) => LabRecord(
     categoryId: json['categoryId'],
     categoryAr: json['categoryAr'],
     categoryEn: json['categoryEn'],
@@ -101,7 +101,7 @@ class Lab {
   };
 }
 
-class Rad {
+class RadRecord {
   final String? categoryId;
   final String? categoryAr;
   final String? categoryEn;
@@ -112,7 +112,7 @@ class Rad {
   final String? serviceStatusEn;
   final String? date;
 
-  Rad({
+  RadRecord({
     this.categoryId,
     this.categoryAr,
     this.categoryEn,
@@ -124,7 +124,7 @@ class Rad {
     this.date,
   });
 
-  factory Rad.fromJson(Map<String, dynamic> json) => Rad(
+  factory RadRecord.fromJson(Map<String, dynamic> json) => RadRecord(
     categoryId: json['categoryId'],
     categoryAr: json['categoryAr'],
     categoryEn: json['categoryEn'],
