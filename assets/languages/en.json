@@ -6,6 +6,7 @@
   "settings": "Settings",
   "profile": "Profile",
   "skip": "Skip",
+  "password_error": "Passwords are not matching, please re-enter the password",
   "get_started": "Get Started",
   "contact_us": "Contact Us",
   "contact_us_subtitle": "Get in touch with us",

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 
 import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
@@ -76,7 +77,7 @@ class _ConfirmPasswordTextFieldState extends State<ConfirmPasswordTextField> {
               borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
-            hintText: "Enter your password",
+            hintText: context.tr.translate('password_hint'),
             hintStyle: TextStyles.nexaRegular.copyWith(
               fontWeight: FontWeight.w400,
               color: AppTheme.hintColor,
