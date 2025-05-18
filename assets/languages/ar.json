@@ -106,5 +106,8 @@
   "phone_number": "رقم الهاتف",
   "search_country": "ابحث عن الدولة",
   "invalid_phone": "رقم الهاتف غير صحيح",
-  "phone_number_hint": "أدخل رقم هاتفك"
+  "phone_number_hint": "أدخل رقم هاتفك",
+  "forget_password_title": "نسيت كلمة المرور",
+  "forget_password_message": "يرجى إدخال رقم هاتفك المسجل لاستعادة كلمة المرور الخاصة بك. سنرسل لك رمز تحقق على هذا الرقم.",
+  "send_verification_code": "إرسال رمز التحقق"
 } 

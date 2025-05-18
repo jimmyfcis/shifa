@@ -9,6 +9,7 @@ import '../../../../core/utils/validators.dart';
 import '../../../../core/widgtes/auth_appbar.dart';
 import '../../../../core/widgtes/custom_green_button.dart';
 import '../../../../core/widgtes/form_fields/phone_number_field.dart';
+import '../../../../core/localization/app_extensions.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -37,7 +38,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Forget Password",
+                    context.tr.translate('forget_password_title'),
                     style: TextStyles.nexaBold.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppTheme.primaryTextColor,
@@ -45,7 +46,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    "Please enter your registered mobile number to recover your password. we will send you a verification code to this number.",
+                    context.tr.translate('forget_password_message'),
                     softWrap: true,
                     style: TextStyles.nexaRegular.copyWith(
                         fontWeight: FontWeight.w400,
@@ -66,7 +67,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                   SizedBox(height: 56.h),
                   CustomGreenButton(
-                    title: "Send Verification Code",
+                    title: context.tr.translate('send_verification_code'),
                     onPressed: () {
                       if (phoneController.text.isEmpty) {
                         setState(() {

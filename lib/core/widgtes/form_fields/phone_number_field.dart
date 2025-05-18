@@ -11,7 +11,7 @@ class PhoneNumberField extends StatefulWidget {
     super.key,
     required this.controller,
     this.isRequired = true,
-    this.labelText = "Phone Number",
+    this.labelText ,
     this.onInputChanged, this.isValid = true,
   });
 
@@ -19,7 +19,7 @@ class PhoneNumberField extends StatefulWidget {
   final bool isRequired;
   final bool isValid;
   final void Function(PhoneNumber)? onInputChanged;
-  final String labelText;
+  final String? labelText;
 
   @override
   State<PhoneNumberField> createState() => _PhoneNumberFieldState();
@@ -61,7 +61,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          widget.isRequired ? "${widget.labelText}*" : widget.labelText,
+          widget.isRequired ? "${context.tr.translate('phone_number')}*" : context.tr.translate('phone_number_hint'),
           style: TextStyles.nexaRegular.copyWith(
             color: AppTheme.blackColor,
             fontSize: 14,
