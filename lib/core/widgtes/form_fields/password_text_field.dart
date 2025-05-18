@@ -6,6 +6,7 @@ import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
 import '../../utils/validators.dart';
+import '../../localization/app_extensions.dart';
 
 class PasswordTextField extends StatefulWidget {
   final String? initialValue;
@@ -77,7 +78,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
-            hintText: "Enter your password",
+            hintText: context.tr.translate('password_hint'),
             hintStyle: TextStyles.nexaRegular.copyWith(
               fontWeight: FontWeight.w400,
               color: AppTheme.hintColor,

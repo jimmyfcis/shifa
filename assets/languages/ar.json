@@ -99,5 +99,12 @@
   "or_signup_with": "أو قم بالتسجيل باستخدام",
   "agree_to_terms_start": "بالتسجيل فإنك توافق على ",
   "and": "و ",
-  "sign_in": " تسجيل الدخول"
+  "sign_in": " تسجيل الدخول",
+  "welcome_back": "مرحبًا بعودتك!",
+  "login_message": "يرجى تسجيل الدخول إلى حسابك للوصول إلى تفاصيل حسابك.",
+  "forgot_password": "هل نسيت كلمة المرور؟",
+  "phone_number": "رقم الهاتف",
+  "search_country": "ابحث عن الدولة",
+  "invalid_phone": "رقم الهاتف غير صحيح",
+  "phone_number_hint": "أدخل رقم هاتفك"
 } 

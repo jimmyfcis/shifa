@@ -4,6 +4,7 @@ import '../../assets/svg/svg_assets.dart';
 import '../../theme/styles.dart';
 import '../../theme/theme.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../localization/app_extensions.dart';
 
 class PhoneNumberField extends StatefulWidget {
   const PhoneNumberField({
@@ -106,7 +107,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               border: InputBorder.none,
-              hintText: "Search for country",
+              hintText: context.tr.translate('search_country'),
               hintStyle: TextStyles.nexaRegular.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppTheme.hintColor,
@@ -123,7 +124,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
               border: InputBorder.none,
-              hintText: "Phone number",
+              hintText: context.tr.translate('phone_number_hint'),
               hintStyle: TextStyles.nexaRegular.copyWith(
                 fontWeight: FontWeight.w400,
                 color: AppTheme.hintColor,
@@ -139,7 +140,7 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
-              "Invalid phone number",
+              context.tr.translate('invalid_phone'),
               style: TextStyles.nexaBold.copyWith(
                 color: Colors.red,
                 fontSize: 14,

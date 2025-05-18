@@ -5,8 +5,9 @@ import 'package:shifa/core/theme/theme.dart';
 
 class AuthAppbar extends StatefulWidget {
   final Widget body;
+  final bool showBack;
 
-  const AuthAppbar({super.key, required this.body});
+  const AuthAppbar({super.key, required this.body, this.showBack=true});
 
   @override
   State<AuthAppbar> createState() => _AuthAppbarState();
@@ -19,7 +20,7 @@ class _AuthAppbarState extends State<AuthAppbar> {
       appBar: AppBar(
         backgroundColor: AppTheme.onBoardingBG,
         leadingWidth: 100.w,
-        leading: Padding(
+        leading:widget.showBack? Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0.w),
           child: InkWell(
             onTap: () {
@@ -40,7 +41,7 @@ class _AuthAppbarState extends State<AuthAppbar> {
               ),
             ),
           ),
-        ),
+        ):const SizedBox.shrink(),
       ),
       backgroundColor: AppTheme.onBoardingBG,
       body: widget.body,

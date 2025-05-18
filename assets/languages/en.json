@@ -99,5 +99,12 @@
   "or_signup_with": "or signup with",
   "agree_to_terms_start": "by signing up you agree to our ",
   "and": "and ",
-  "sign_in": " Sign in"
+  "sign_in": " Sign in",
+  "welcome_back": "Welcome Back!",
+  "login_message": "Please login to your account to access your account details.",
+  "forgot_password": "Forgot Password?",
+  "phone_number": "Phone Number",
+  "search_country": "Search for country",
+  "invalid_phone": "Invalid phone number",
+  "phone_number_hint": "Enter your phone number"
 } 

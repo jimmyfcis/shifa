@@ -18,6 +18,7 @@ import '../../../../core/widgtes/form_fields/password_text_field.dart';
 import '../../../../core/widgtes/form_fields/phone_number_field.dart';
 import '../cubit/login/login_cubit.dart';
 import '../cubit/login/login_state.dart';
+import '../../../../core/localization/app_extensions.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           final loginCubit = context.read<AuthCubit>();
 
           return AuthAppbar(
+            showBack: false,
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -66,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome Back!",
+                          context.tr.translate('welcome_back'),
                           style: TextStyles.nexaBold.copyWith(
                             fontWeight: FontWeight.bold,
                             color: AppTheme.primaryTextColor,
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          "Please login to your account to access your account details .",
+                          context.tr.translate('login_message'),
                           softWrap: true,
                           style: TextStyles.nexaRegular.copyWith(
                             fontWeight: FontWeight.w400,
@@ -87,6 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         PhoneNumberField(
                           controller: phoneController,
                           isValid: isValid,
+                          labelText: context.tr.translate('phone_number'),
                           onInputChanged: (PhoneNumber number) {
                             setState(() {
                               isValid = Validators()
@@ -101,11 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: <Widget>[
                               SizedBox(height: 24.h),
                               PasswordTextField(
-                                labelText: 'Password',
+                                labelText: context.tr.translate('password'),
                                 name: 'password',
                                 controller: controller,
                                 isRequired: true,
-                                hintText: 'Enter your password',
+                                hintText: context.tr.translate('password_hint'),
                               ),
                               SizedBox(height: 16.h),
                               Row(
@@ -116,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Navigator.pushNamed(context, AppRoutes.forgetPassword);
                                     },
                                     child: Text(
-                                      'Forgot Password?',
+                                      context.tr.translate('forgot_password'),
                                       style: TextStyles.nexaRegular.copyWith(
                                         color: themeProvider.currentThemeData!.primaryColor,
                                         fontSize: 12,
@@ -128,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               SizedBox(height: 34.h),
                               CustomGreenButton(
-                                title: "Login",
+                                title: context.tr.translate('login'),
                                 onPressed: () {
                                   var formState = _formKey.currentState;
                                   if (formState == null) return;
@@ -155,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                                     child: Text(
-                                      'or sign up with',
+                                      context.tr.translate('or_signup_with'),
                                       style: TextStyles.nexaRegular.copyWith(
                                         color: AppTheme.blackColor,
                                         fontSize: 12,
@@ -182,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Don’t have an account?',
+                                    context.tr.translate('no_account'),
                                     style: TextStyles.nexaRegular.copyWith(
                                       color: AppTheme.primaryTextColor,
                                       fontSize: 12,
@@ -194,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Navigator.pushReplacementNamed(context, AppRoutes.register);
                                     },
                                     child: Text(
-                                      ' Create account',
+                                      context.tr.translate('create_account'),
                                       style: TextStyles.nexaRegular.copyWith(
                                         color: themeProvider.currentThemeData!.primaryColor,
                                         fontSize: 12,
