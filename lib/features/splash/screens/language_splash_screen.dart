@@ -71,11 +71,6 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                   ),
                 ),
                 const SizedBox(height: 29.59),
-                Text(
-                  context.tr.translate('app_name'),
-                  style: TextStyles.nexaRegular
-                      .copyWith(color: AppTheme.whiteColor, fontSize: 16),
-                ),
                 const Spacer(),
                 Container(
                   decoration: BoxDecoration(

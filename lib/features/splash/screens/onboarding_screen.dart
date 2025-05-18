@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
@@ -63,7 +64,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ? TextButton(
                     onPressed: _skip,
                     child: Text(
-                      "Skip",
+                      context.tr.translate('skip'),
                       style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.darkGreyColor, fontSize: 14),
                     ),
@@ -80,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 padding: const EdgeInsets.all(24),
                 child: Center(
                   child: CustomGreenButton(
-                    title: "Get Started",
+                    title: context.tr.translate('get_started'),
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, AppRoutes.login);
                     },
