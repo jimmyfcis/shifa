@@ -18,6 +18,8 @@ class RecordsItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
@@ -41,7 +43,7 @@ class RecordsItem extends StatelessWidget {
                   width: 8.w,
                 ),
                 Text(
-                  labRecord?.testNameEn??radRecord?.serviceNameEn??"",
+                  isArabic?labRecord?.testNameAr??radRecord?.serviceNameAr??"":labRecord?.testNameEn??radRecord?.serviceNameEn??"",
                   style: TextStyles.nexaBold.copyWith(
                     fontSize: 14.sp,
                     color: AppTheme.primaryTextColor,
@@ -53,7 +55,7 @@ class RecordsItem extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              "Category: ${labRecord?.categoryEn??radRecord?.categoryEn??""}",
+              isArabic?"Category: ${labRecord?.categoryAr??radRecord?.categoryAr??""}":"Category: ${labRecord?.categoryEn??radRecord?.categoryEn??""}",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 14.sp,
                 color: AppTheme.primaryTextColor,
@@ -87,7 +89,7 @@ class RecordsItem extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              "Status: ${labRecord?.serviceStatusEn??radRecord?.serviceStatusEn??""}",
+              isArabic?"Status: ${labRecord?.serviceStatusAr??radRecord?.serviceStatusAr??""}":"Status: ${labRecord?.serviceStatusEn??radRecord?.serviceStatusEn??""}",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 14.sp,
                 color: AppTheme.primaryTextColor,

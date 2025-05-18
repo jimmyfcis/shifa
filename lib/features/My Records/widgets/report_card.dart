@@ -5,10 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/features/My%20Records/data/models/records_response_model.dart';
 import 'package:shifa/features/My%20Records/widgets/diagnose_card_title.dart';
 
-class DiagnoseCard extends StatelessWidget {
-  const DiagnoseCard({super.key});
+class ReportCard extends StatelessWidget {
+  const ReportCard({super.key, required this.medicalReport});
+  final MedicalReport medicalReport;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class DiagnoseCard extends StatelessWidget {
                 width: 8.w,
               ),
               Text(
-                "Diagnose",
+                "Medical Report",
                 style: TextStyles.nexaBold.copyWith(
                   fontSize: 14.sp,
                   color: AppTheme.primaryTextColor,
@@ -48,33 +50,34 @@ class DiagnoseCard extends StatelessWidget {
           SizedBox(
             height: 16.h,
           ),
-          const DiagnoseCardTitle(
-            title: "Diagnose or condition description",
-            subTitle: "irritable bowel syndrome",
+           DiagnoseCardTitle(
+            title: "Report Name",
+            subTitle: medicalReport.reportName??"",
             hasDivider: true,
           ),
           SizedBox(
             height: 8.h,
           ),
-          const DiagnoseCardTitle(
-            title: "Diagnose Date",
-            subTitle: "05/04/1999",
+           DiagnoseCardTitle(
+            title: "Report Date",
+            subTitle: medicalReport.visitEnddate??"",
             hasDivider: true,
           ),
           SizedBox(
             height: 8.h,
           ),
-          const DiagnoseCardTitle(
-            title: "Is it chronic?",
-            subTitle: "No",
+
+           DiagnoseCardTitle(
+            title: "Report Type",
+            subTitle: medicalReport.visitTypeEn??"",
             hasDivider: true,
           ),
           SizedBox(
             height: 8.h,
           ),
-          const DiagnoseCardTitle(
-            title: "Occurrence",
-            subTitle: "Acute",
+           DiagnoseCardTitle(
+            title: "Record Serial",
+            subTitle: medicalReport.serial??"",
             hasDivider: false,
           ),
         ],

@@ -25,8 +25,7 @@ class RecordsCubit extends Cubit<RecordsState> {
         userID=user.userId??"";
 
       }
-      final response = await getRecordsUseCase(RecordsRequestModel(patientID: "520761", visitID: "1"));
-     // final response = await getRecordsUseCase(RecordsRequestModel(patientID: userID, visitID: visitNumber));
+      final response = await getRecordsUseCase(RecordsRequestModel(patientID: userID, visitID: visitNumber));
       emit(RecordsLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
