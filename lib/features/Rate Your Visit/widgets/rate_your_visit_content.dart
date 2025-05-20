@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
@@ -12,7 +13,6 @@ class RateYourVisitContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Expanded(
         child: Column(
       children: [
@@ -28,31 +28,31 @@ class RateYourVisitContent extends StatelessWidget {
                   SizedBox(
                     height: 24.h,
                   ),
-                  const RatingTitleBar(title: 'Rate The Doctor'),
+                  RatingTitleBar(title: context.tr.translate("rate_the_doctor")),
                   SizedBox(
                     height: 24.h,
                   ),
-                  const RatingTitleBar(title: 'Nursing Staff'),
+                  RatingTitleBar(title: context.tr.translate("nursing_staff")),
                   SizedBox(
                     height: 24.h,
                   ),
-                  const RatingTitleBar(title: 'Receptionist'),
+                  RatingTitleBar(title: context.tr.translate("receptionist")),
                   SizedBox(
                     height: 24.h,
                   ),
-                  const RatingTitleBar(title: 'Hospitality'),
+                  RatingTitleBar(title: context.tr.translate("hospitality")),
                   SizedBox(
                     height: 24.h,
                   ),
-                  const RatingTitleBar(title: 'Waiting time'),
+                  RatingTitleBar(title: context.tr.translate("waiting_time")),
                   SizedBox(
                     height: 24.h,
                   ),
-                  const CustomTextField(
+                  CustomTextField(
                     name: "notes",
-                    labelText: "Write Your Notes",
+                    labelText: context.tr.translate("write_your_notes"),
                     maxLines: 3,
-                    hintText: "Enter Your Notes",
+                    hintText: context.tr.translate("enter_your_notes"),
                   ),
                 ],
               ),
@@ -79,7 +79,7 @@ class RateYourVisitContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomWhiteButton(
-                    title: "Cancel",
+                    title: context.tr.translate("cancel"),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -88,9 +88,9 @@ class RateYourVisitContent extends StatelessWidget {
                 SizedBox(
                   width: 16.w,
                 ),
-                const Expanded(
+                Expanded(
                   child: CustomGreenButton(
-                    title: "Submit",
+                    title: context.tr.translate("submit"),
                   ),
                 ),
               ],

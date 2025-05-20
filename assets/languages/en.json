@@ -116,6 +116,7 @@
   "blogs": "Blogs",
   "appointments": "Appointments",
   "past": "Past",
+  "rate_visit": "Rate Your Visit",
   "no_appointments": "No appointments found",
   "upcoming": "Upcoming",
   "bookings": "Bookings",
@@ -129,5 +130,14 @@
   "cancel_your_visit": "Cancel Your Visit",
   "rate_your_visit": "Rate Your Visit",
   "reschedule": "Reschedule",
-  "book_again": "Book Again"
+  "book_again": "Book Again",
+  "rate_the_doctor": "Rate The Doctor",
+  "nursing_staff": "Nursing Staff",
+  "receptionist": "Receptionist",
+  "hospitality": "Hospitality",
+  "waiting_time": "Waiting time",
+  "write_your_notes": "Write Your Notes",
+  "enter_your_notes": "Enter Your Notes",
+  "cancel": "Cancel",
+  "submit": "Submit"
 } 

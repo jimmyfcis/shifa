@@ -115,6 +115,7 @@
   "my_favorite": "المفضلة",
   "blogs": "المدونات",
   "appointments": "المواعيد",
+  "rate_visit": "قيم زيارتك",
   "no_appointments": "لم يتم العثور على مواعيد",
   "past": "الحجوزات الماضية",
   "upcoming": "الحجوزات القادمة",
@@ -129,5 +130,14 @@
   "cancel_your_visit": "إلغاء زيارتك",
   "rate_your_visit": "تقييم زيارتك",
   "reschedule": "إعادة الجدولة",
-  "book_again": "حجز مرة أخرى"
+  "book_again": "حجز مرة أخرى",
+  "rate_the_doctor": "تقييم الطبيب",
+  "nursing_staff": "طاقم التمريض",
+  "receptionist": "موظف الاستقبال",
+  "hospitality": "الضيافة",
+  "waiting_time": "وقت الانتظار",
+  "write_your_notes": "اكتب ملاحظاتك",
+  "enter_your_notes": "أدخل ملاحظاتك",
+  "cancel": "إلغاء",
+  "submit": "إرسال"
 } 
