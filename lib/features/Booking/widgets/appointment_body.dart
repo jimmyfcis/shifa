@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/presentation/cubit/appointment_cubit.dart';
@@ -73,7 +74,7 @@ class _AppointmentBodyState extends State<AppointmentBody>
                   tabs: [
                     Tab(
                       child: Text(
-                        "Upcoming",
+                context.tr.translate("upcoming"),
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 14.sp,
                           color: _selectedIndex == 0
@@ -84,7 +85,7 @@ class _AppointmentBodyState extends State<AppointmentBody>
                     ),
                     Tab(
                       child: Text(
-                        "Past",
+                        context.tr.translate("past"),
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 14.sp,
                           color: _selectedIndex == 1

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_child_theme.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
@@ -14,7 +15,7 @@ class BookingScreen extends StatelessWidget {
     return WaterMark(
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       alignment: Alignment.center,
-      appBarChild: const CommonAppBarChildTheme(title: 'Appointments'),
+      appBarChild: CommonAppBarChildTheme(title: context.tr.translate('appointments')),
       hasBorderRadius: true,
       contentChild: const Expanded(
         child: Padding(

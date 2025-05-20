@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
@@ -100,7 +101,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         BlendMode.srcIn,
                       ),
                     ),
-                    label: 'Home',
+                    label: context.tr.translate("home"),
                   ),
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(SVGAssets.bookingIcon),
@@ -111,7 +112,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         BlendMode.srcIn,
                       ),
                     ),
-                    label: 'Bookings',
+                    label: context.tr.translate("bookings"),
                   ),
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(SVGAssets.clinicsIcon),
@@ -122,7 +123,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         BlendMode.srcIn,
                       ),
                     ),
-                    label: 'Clinics',
+                    label: context.tr.translate("clinics"),
                   ),
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(SVGAssets.myCareIcon),
@@ -133,7 +134,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         BlendMode.srcIn,
                       ),
                     ),
-                    label: 'My Care',
+                    label: context.tr.translate("my_care"),
                   ),
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(SVGAssets.profileIcon),
@@ -144,7 +145,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                         BlendMode.srcIn,
                       ),
                     ),
-                    label: 'Profile',
+                    label: context.tr.translate("profile"),
                   ),
                 ],
                 currentIndex: state.selectedIndex,

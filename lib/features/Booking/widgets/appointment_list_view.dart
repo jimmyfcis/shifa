@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/features/Booking/data/models/appointment_model.dart';
 import 'appointment_card.dart';
 
@@ -14,7 +15,7 @@ class PastAppointmentsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return appointments.isEmpty
-        ? const Center(child: Text('No appointments found'))
+        ?  Center(child: Text(context.tr.translate('no_appointments')))
         : ListView.separated(
             itemCount: appointments.length,
             separatorBuilder: (context, index) => SizedBox(
