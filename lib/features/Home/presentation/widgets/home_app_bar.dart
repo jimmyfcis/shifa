@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/appbar_widget.dart';
@@ -20,11 +21,12 @@ class HomeAppBar extends StatefulWidget {
 class _HomeAppBarState extends State<HomeAppBar> {
   String _userName = '';
 
-@override
+  @override
   void initState() {
     super.initState();
     _loadUserName();
-}
+  }
+
   Future<void> _loadUserName() async {
     final storage = TokenStorage();
     final user = await storage.getUser();
@@ -34,6 +36,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -47,7 +50,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello, $_userName",
+              "${context.tr.translate("hello")} $_userName",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 24.sp,
                 color: AppTheme.whiteColor,
@@ -57,7 +60,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               height: 8.h,
             ),
             Text(
-              "How are you Today",
+              context.tr.translate("how_are_you_today"),
               style: TextStyles.nexaRegular.copyWith(
                 fontSize: 16.sp,
                 color: AppTheme.whiteColor,
@@ -67,10 +70,10 @@ class _HomeAppBarState extends State<HomeAppBar> {
               height: 16.h,
             ),
             CustomTextField(
-              name: "Search Doctor...",
-              labelText: "Search Doctor...",
+              name: "Search",
+              labelText: context.tr.translate("search_doctor"),
               hasName: false,
-              hintText: "Search Doctor...",
+              hintText: context.tr.translate("search_doctor"),
               fillColor: AppTheme.whiteColor.withOpacity(0.4),
               hintTextColor: AppTheme.whiteColor,
               prefixIcon: Padding(

@@ -139,5 +139,8 @@
   "write_your_notes": "Write Your Notes",
   "enter_your_notes": "Enter Your Notes",
   "cancel": "Cancel",
-  "submit": "Submit"
+  "submit": "Submit",
+  "hello": "Hello,",
+  "how_are_you_today": "How are you Today",
+  "search_doctor": "Search Doctor..."
 } 
