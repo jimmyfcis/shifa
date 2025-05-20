@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Profile/widgets/profile_app_bar.dart';
@@ -51,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                             Navigator.pushNamed(context, AppRoutes.myProfile);
                           },
                           svgIcon: SVGAssets.profileIcon,
-                          title: 'Profile',
+                          title: context.tr.translate('profile'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -60,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                             log("Medical Insurance Page");
                           },
                           svgIcon: SVGAssets.medicalInsuranceIcon,
-                          title: 'Medical Insurance',
+                          title: context.tr.translate('medical_insurance'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -70,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                             Navigator.pushNamed(context, AppRoutes.myFavorite);
                           },
                           svgIcon: SVGAssets.myFavoriteSolidIcon,
-                          title: 'My Favorite',
+                          title: context.tr.translate('my_favorite'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -80,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
                             Navigator.pushNamed(context, AppRoutes.blogs);
                           },
                           svgIcon: SVGAssets.blogsIcon,
-                          title: 'Blogs',
+                          title: context.tr.translate('blogs'),
                         ),
                       ],
                     ),
@@ -101,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
                             Navigator.pushNamed(context, AppRoutes.settings);
                           },
                           svgIcon: SVGAssets.settingsIcon,
-                          title: 'Settings',
+                          title: context.tr.translate('settings'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -112,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                                 context, AppRoutes.termsAndConditions);
                           },
                           svgIcon: SVGAssets.termsAndConditionsIcon,
-                          title: 'Terms and Conditions',
+                          title: context.tr.translate('terms_conditions'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -123,7 +124,7 @@ class ProfileScreen extends StatelessWidget {
                                 context, AppRoutes.privacyPolicy);
                           },
                           svgIcon: SVGAssets.privacyPolicyIcon,
-                          title: 'Privacy Policy',
+                          title: context.tr.translate('privacy_policy'),
                         ),
                         SizedBox(height: 16.h),
                         ProfileWidget(
@@ -133,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
                             log("Contact Us Page");
                           },
                           svgIcon: SVGAssets.contactUsIcon,
-                          title: 'Contact Us',
+                          title: context.tr.translate('contact_us'),
                         ),
                       ],
                     ),
@@ -171,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                               context.read<LogoutCubit>().logout();
                             },
                             svgIcon: SVGAssets.logoutIcon,
-                            title: 'Logout',
+                            title: context.tr.translate('logout'),
                           );
                         },
                       ),

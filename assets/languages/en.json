@@ -3,8 +3,8 @@
   "home": "Home",
   "clinics": "Clinics",
   "doctors": "Doctors",
-  "settings": "Settings",
-  "profile": "Profile",
+  "settings": "App Settings",
+  "profile": "User Profile",
   "skip": "Skip",
   "password_error": "Passwords are not matching, please re-enter the password",
   "get_started": "Get Started",
@@ -31,7 +31,7 @@
   "english": "English",
   "arabic": "العربية",
   "language": "Language",
-  "terms_conditions": "Terms & Conditions",
+  "terms_conditions": "Terms and Conditions",
   "privacy_policy": "Privacy Policy",
   "logout": "Logout",
   "login": "Login",
@@ -110,5 +110,8 @@
   "phone_number_hint": "Enter your phone number",
   "forget_password_title": "Forget Password",
   "forget_password_message": "Please enter your registered mobile number to recover your password. We will send you a verification code to this number.",
-  "send_verification_code": "Send Verification Code"
+  "send_verification_code": "Send Verification Code",
+  "medical_insurance": "Medical Insurance",
+  "my_favorite": "My Favorite",
+  "blogs": "Blogs"
 } 
