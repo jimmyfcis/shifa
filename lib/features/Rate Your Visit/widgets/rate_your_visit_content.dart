@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
 import 'package:shifa/core/widgtes/custom_white_button.dart';
@@ -13,7 +12,6 @@ class RateYourVisitContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Expanded(
         child: Column(
@@ -51,7 +49,7 @@ class RateYourVisitContent extends StatelessWidget {
                     height: 24.h,
                   ),
                   const CustomTextField(
-                    name: "Write Your Notes",
+                    name: "notes",
                     labelText: "Write Your Notes",
                     maxLines: 3,
                     hintText: "Enter Your Notes",
@@ -71,7 +69,7 @@ class RateYourVisitContent extends StatelessWidget {
                 BoxShadow(
                   color: AppTheme.blackColor.withOpacity(0.1),
                   blurRadius: 12,
-                  offset: Offset(0, -1),
+                  offset: const Offset(0, -1),
                 )
               ],
             ),

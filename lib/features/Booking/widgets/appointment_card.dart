@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -144,8 +145,8 @@ class AppointmentCard extends StatelessWidget {
                 Expanded(
                   child: CustomWhiteButton(
                     title: tabSelectedIndex == 0
-                        ? "Cancel Your Visit"
-                        : "Rate Your Visit",
+                        ? context.tr.translate("cancel_your_visit")
+                        : context.tr.translate("rate_your_visit"),
                     onPressed: () {
                       if (tabSelectedIndex == 0) {
                         showDialog(
@@ -168,7 +169,9 @@ class AppointmentCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: CustomGreenButton(
-                    title: tabSelectedIndex == 0 ? "Reschedule" : "Book Again",
+                    title: tabSelectedIndex == 0 
+                        ? context.tr.translate("reschedule") 
+                        : context.tr.translate("book_again"),
                     fontSize: 14,
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.doctorProfile);

@@ -125,5 +125,9 @@
   "care_reminder": "Care Reminder",
   "lab_tests": "Lab Tests",
   "radiology": "Radiology",
-  "my_care": "My Care"
+  "my_care": "My Care",
+  "cancel_your_visit": "Cancel Your Visit",
+  "rate_your_visit": "Rate Your Visit",
+  "reschedule": "Reschedule",
+  "book_again": "Book Again"
 } 
