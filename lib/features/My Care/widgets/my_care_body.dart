@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/My%20Care/widgets/my_care_card.dart';
@@ -22,7 +23,7 @@ class MyCareBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyCareCard(
-              title: "My Records",
+              title:  context.tr.translate("my_records"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.clincsLeksellIcon
                   : SVGAssets.clincsShifaIcon,
@@ -35,7 +36,7 @@ class MyCareBody extends StatelessWidget {
               height: 16.h,
             ),
             MyCareCard(
-              title: "Medication Reminder",
+              title:  context.tr.translate("medication_reminder"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.medicineLeksellIcon
                   : SVGAssets.medicineShifaIcon,
@@ -48,7 +49,7 @@ class MyCareBody extends StatelessWidget {
               height: 16.h,
             ),
             MyCareCard(
-              title: "Vaccine Reminder",
+              title:  context.tr.translate("vaccine_reminder"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.vaccineLeksellIcon
                   : SVGAssets.vaccineShifaIcon,
@@ -61,7 +62,7 @@ class MyCareBody extends StatelessWidget {
               height: 16.h,
             ),
             MyCareCard(
-              title: "Care Reminder",
+              title:  context.tr.translate("care_reminder"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.careLeksellIcon
                   : SVGAssets.careShifaIcon,
@@ -74,7 +75,7 @@ class MyCareBody extends StatelessWidget {
               height: 16.h,
             ),
             MyCareCard(
-              title: "Lab Tests",
+              title:  context.tr.translate("lab_tests"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
                   ? SVGAssets.labsLeksellIcon
                   : SVGAssets.labShifaIcon,
@@ -87,7 +88,7 @@ class MyCareBody extends StatelessWidget {
               height: 16.h,
             ),
             MyCareCard(
-              title: "Radiology",
+              title:  context.tr.translate("radiology"),
               svgIcon: SVGAssets.radiologyIcon,
               onTap: () {
                 log("Radiology");

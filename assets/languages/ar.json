@@ -113,5 +113,11 @@
   "send_verification_code": "إرسال رمز التحقق",
   "medical_insurance": "التأمين الطبي",
   "my_favorite": "المفضلة",
-  "blogs": "المدونات"
+  "blogs": "المدونات",
+  "my_records": "سجلاتي",
+  "medication_reminder": "تذكير الأدوية",
+  "vaccine_reminder": "تذكير التطعيمات",
+  "care_reminder": "تذكير الرعاية",
+  "lab_tests": "التحاليل",
+  "radiology": "الأشعة"
 } 
