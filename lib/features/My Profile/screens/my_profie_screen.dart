@@ -2,15 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
-import 'package:shifa/core/routes/app_routes.dart';
-import 'package:shifa/core/theme/styles.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/My%20Profile/widgets/my_profile_widget.dart';
+import 'package:shifa/features/authentication/data/models/user.dart';
 
-class MyProfile extends StatelessWidget {
+import '../../../core/storage/token_storage.dart';
+
+class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
+
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
+  User? userData;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    final storage = TokenStorage();
+    final user = await storage.getUser();
+    if (mounted && user != null) {
+      setState(() {
+        userData = user;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +47,22 @@ class MyProfile extends StatelessWidget {
       height: 105,
       alignment: Alignment.bottomCenter,
       appBarChild: CommonAppBarTitle(
-        title: "My Profile",
-        actionButton: GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(context, AppRoutes.editProfile);
-          },
-          child: Text(
-            "Edit",
-            style: TextStyles.nexaBold.copyWith(
-              fontSize: 18.sp,
-              shadows: [Shadow(color: Colors.white, offset: Offset(0, -4))],
-              color: Colors.transparent,
-              decoration: TextDecoration.underline,
-              decorationColor: AppTheme.whiteColor,
-            ),
-          ),
-        ),
+        title: context.tr.translate("profile"),
+        // actionButton: GestureDetector(
+        //   onTap: () {
+        //     Navigator.pushNamed(context, AppRoutes.editProfile);
+        //   },
+        //   child: Text(
+        //     context.tr.translate("edit"),
+        //     style: TextStyles.nexaBold.copyWith(
+        //       fontSize: 18.sp,
+        //       shadows: [Shadow(color: Colors.white, offset: Offset(0, -4))],
+        //       color: Colors.transparent,
+        //       decoration: TextDecoration.underline,
+        //       decorationColor: AppTheme.whiteColor,
+        //     ),
+        //   ),
+        // ),
       ),
       contentChild: Expanded(
         child: Padding(
@@ -53,9 +78,13 @@ class MyProfile extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  child: Image.asset(
-                    ImageAssets.myProfileImg,
-                  ),
+                  child: userData?.image != null && userData!.image!.isNotEmpty
+                      ? Image.network(
+                          userData?.image ?? "",
+                        )
+                      : Image.asset(
+                          ImageAssets.myProfileImg,
+                        ),
                 ),
               ),
               SizedBox(
@@ -66,46 +95,37 @@ class MyProfile extends StatelessWidget {
                       child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const MyProfileWidget(
-                      title: "Name", subTitle: "Ahmed Salah", hasDivider: true),
+                  if(userData?.name != null && userData!.name!.isNotEmpty) MyProfileWidget(title: context.tr.translate("name"), subTitle: userData?.name ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Date Of Birth",
-                      subTitle: "05/04/1999",
-                      hasDivider: true),
+                  if(userData?.birthdate != null && userData!.birthdate!.isNotEmpty)    MyProfileWidget(title: context.tr.translate("date_of_birth"), subTitle: userData?.birthdate ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Gender", subTitle: "Male", hasDivider: true),
+                  if(userData?.gender != null && userData!.gender!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("gender"), subTitle: userData?.gender ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Blood Type", subTitle: "O+", hasDivider: true),
+                  // if(userData?.image != null && userData!.image!.isNotEmpty) MyProfileWidget(
+                  //     title: "Blood Type", subTitle: userData?.??"", hasDivider: true),
+                  // SizedBox(
+                  //   height: 16.h,
+                  // ),
+                  if(userData?.email != null && userData!.email!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("email_field"), subTitle: userData?.email ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Email",
-                      subTitle: "Ahmed.salah32@gmail.com",
-                      hasDivider: true),
+                  if(userData?.phoneNumber != null && userData!.phoneNumber!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("phone_number"), subTitle: userData?.phoneNumber ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Phone Number",
-                      subTitle: "+201098037023",
-                      hasDivider: true),
+                  if(userData?.maritalStatus != null && userData!.maritalStatus!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("martial_status"), subTitle: userData?.maritalStatus ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  const MyProfileWidget(
-                      title: "Martial Status",
-                      subTitle: "Married",
-                      hasDivider: false),
+
+                  if(userData?.address != null && userData!.address!.isNotEmpty)   MyProfileWidget(title: context.tr.translate("address"), subTitle: userData?.address ?? "", hasDivider: false),
                   SizedBox(
                     height: 16.h,
                   ),
