@@ -74,8 +74,8 @@ class HomeAvailableService extends StatelessWidget {
                         } else if (shifaServiceModel[index]
                                 .title ==
                             context.tr.translate("physical_therapy")) {
-                          Navigator.pushNamed(context, AppRoutes.clinicDoctors,
-                              arguments: context.tr.translate("physical_therapy"));
+                          BlocProvider.of<BottomBarCubit>(context)
+                              .updateIndex(2);
                         }
                       },
                       title: shifaServiceModel[index].title,
@@ -104,17 +104,17 @@ class HomeAvailableService extends StatelessWidget {
                         Navigator.pushNamed(context, AppRoutes.ambulance);
                       } else if (leksellServiceModel[index]
                               .title ==
-                          context.tr.translate("clinics")) {
+                          context.tr.translate("discover_clinic")) {
                         BlocProvider.of<BottomBarCubit>(context).updateIndex(2);
                       } else if (leksellServiceModel[index]
                               .title ==
-                          context.tr.translate("queue")) {
+                          context.tr.translate("monitor_queue")) {
                         Navigator.pushNamed(
                             context, AppRoutes.firstQueueScreen);
                       } else {
-                        Navigator.pushNamed(context, AppRoutes.clinicDoctors,
-                            arguments: leksellServiceModel[index]
-                                .title);
+                        // Navigator.pushNamed(context, AppRoutes.clinicDoctors,
+                        //     arguments: leksellServiceModel[index]
+                        //         .title);
                       }
                     },
                     title: leksellServiceModel[index].title,
