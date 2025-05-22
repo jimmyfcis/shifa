@@ -155,5 +155,8 @@
   "top_doctor": "Top Doctors",
   "discover_clinic": "Discover Clinic",
   "monitor_queue": "Monitor Queue",
-  "physical_therapy": "Physical Therapy"
+  "physical_therapy": "Physical Therapy",
+  "search_for_clinic": "Search For Clinic..",
+  "no_clinics_found": "No clinics found matching your search",
+  "show_all_clinics": "Show All Clinics"
 } 

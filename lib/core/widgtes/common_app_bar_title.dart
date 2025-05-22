@@ -23,6 +23,8 @@ class CommonAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: 16.h,
@@ -38,7 +40,13 @@ class CommonAppBarTitle extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: SvgPicture.asset(
+              child: isArabic?SvgPicture.asset(
+              SVGAssets.arrowRight,
+              width: 24.w,
+              height: 24.h,
+                color: AppTheme.whiteColor,
+              )
+                  :SvgPicture.asset(
                 SVGAssets.arrowBack,
                 colorFilter: ColorFilter.mode(
                   iconColor ?? AppTheme.whiteColor,

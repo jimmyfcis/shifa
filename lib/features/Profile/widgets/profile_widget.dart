@@ -20,6 +20,8 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Column(
       children: [
         GestureDetector(
@@ -42,9 +44,15 @@ class ProfileWidget extends StatelessWidget {
                   )
                 ],
               ),
-              SvgPicture.asset(
-                SVGAssets.arrowRight,
-              ),
+              isArabic
+                  ? Image.asset(
+                      Assets.arrowLeft,
+                      width: 24.w,
+                      height: 24.h,
+                    )
+                  : SvgPicture.asset(
+                      SVGAssets.arrowRight,
+                    ),
             ],
           ),
         ),

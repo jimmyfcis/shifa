@@ -155,5 +155,8 @@
   "top_doctor": "افضل الاطباء",
   "discover_clinic": "اكتشف العيادة",
   "monitor_queue": "مراقبة الانتظار",
-  "physical_therapy": "العلاج الطبيعي"
+  "physical_therapy": "العلاج الطبيعي",
+  "search_for_clinic": "البحث عن عيادة..",
+  "no_clinics_found": "لم يتم العثور على عيادات تطابق بحثك",
+  "show_all_clinics": "عرض جميع العيادات"
 } 
