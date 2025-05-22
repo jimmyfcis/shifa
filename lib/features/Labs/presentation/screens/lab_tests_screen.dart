@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
@@ -12,7 +13,7 @@ class LabTestsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild: const CommonAppBarTitle(title: "Lab Tests"),
+      appBarChild:  CommonAppBarTitle(title: context.tr.translate("lab_tests")),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
@@ -16,7 +17,7 @@ class RadiologyScreen extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
-      appBarChild: const CommonAppBarTitle(title: "Radiology"),
+      appBarChild:  CommonAppBarTitle(title: context.tr.translate("radiology")),
       contentChild: const RadiologyBody(),
     );
   }
