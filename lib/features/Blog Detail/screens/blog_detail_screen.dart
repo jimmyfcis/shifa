@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -23,7 +24,7 @@ class BlogDetailScreen extends StatelessWidget {
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
-      appBarChild: CommonAppBarTitle(title: "Blog Details"),
+      appBarChild: CommonAppBarTitle(title: context.tr.translate("blog_details")),
       height: 105,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       contentChild: Expanded(

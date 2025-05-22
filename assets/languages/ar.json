@@ -142,5 +142,18 @@
   "submit": "إرسال",
   "hello": "مرحباً،",
   "how_are_you_today": "كيف حالك اليوم",
-  "search_doctor": "البحث عن طبيب..."
+  "search_doctor": "البحث عن طبيب...",
+  "available_services": "الخدمات المتاحة",
+  "early_protection_title": "حماية مبكرة\nلصحة عائلتك",
+  "learn_more": "اعرف المزيد",
+  "ambulance": "الإسعاف",
+  "radiotherapy": "العلاج الإشعاعي",
+  "chemotherapy": "العلاج الكيميائي",
+  "blog_details": "تفاصيل المدونة",
+  "health_article": "مقالات صحية",
+  "see_all": "عرض الكل",
+  "top_doctor": "افضل الاطباء",
+  "discover_clinic": "اكتشف العيادة",
+  "monitor_queue": "مراقبة الانتظار",
+  "physical_therapy": "العلاج الطبيعي"
 } 

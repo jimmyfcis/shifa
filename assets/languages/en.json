@@ -142,5 +142,18 @@
   "submit": "Submit",
   "hello": "Hello,",
   "how_are_you_today": "How are you Today",
-  "search_doctor": "Search Doctor..."
+  "search_doctor": "Search Doctor...",
+  "available_services": "Available Services",
+  "early_protection_title": "Early protection for\nyour family health",
+  "learn_more": "Learn More",
+  "ambulance": "Ambulance",
+  "chemotherapy": "Chemotherapy",
+  "radiotherapy": "Radiotherapy",
+  "blog_details": "Blog Details",
+  "health_article": "Health Articles",
+  "see_all": "See All",
+  "top_doctor": "Top Doctors",
+  "discover_clinic": "Discover Clinic",
+  "monitor_queue": "Monitor Queue",
+  "physical_therapy": "Physical Therapy"
 } 

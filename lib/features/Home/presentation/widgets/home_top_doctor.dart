@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Home/presentation/cubit/home_cubit.dart';
@@ -35,6 +36,8 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
       },
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
+          final locale = Localizations.localeOf(context);
+          final isArabic = locale.languageCode == 'ar';
           return state is HomeLoading
               ? Center(
               child: CircularProgressIndicator(
@@ -45,7 +48,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text('Top Doctor',
+                child: Text(context.tr.translate("top_doctor"),
                     style: TextStyles.nexaBold.copyWith(
                       fontSize: 16.sp,
                       color: AppTheme.textBlackColor,
@@ -90,7 +93,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                             height: 16.h,
                           ),
                           Text(
-                            doctor.name??"",
+                            isArabic?doctor.nameAR??"":doctor.name??"",
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 14.sp,
                               color: AppTheme.primaryTextColor,
@@ -100,7 +103,7 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                             height: 8.h,
                           ),
                           Text(
-                            doctor.specialist?.name??"",
+                            isArabic?doctor.specialist?.nameAr??"":doctor.specialist?.nameEn??"",
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 12.sp,
                               color: AppTheme.secondaryTextColor,

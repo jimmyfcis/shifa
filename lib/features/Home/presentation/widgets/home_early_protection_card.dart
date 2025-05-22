@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/custom_green_button.dart';
@@ -25,6 +26,7 @@ class HomeEarlyProtectionCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(
               left: 24.w,
+              right: 24.w,
               top: 21.h,
               bottom: 16.h,
             ),
@@ -32,7 +34,7 @@ class HomeEarlyProtectionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Early protection for\nyour family health',
+                  context.tr.translate("early_protection_title"),
                   style: TextStyles.nexaBold.copyWith(
                     color: AppTheme.textBlackColor,
                     fontSize: 18.sp,
@@ -40,7 +42,7 @@ class HomeEarlyProtectionCard extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 CustomGreenButton(
-                  title: "Learn More",
+                  title: context.tr.translate("learn_more"),
                   fontSize: 12.sp,
                   width: 95.w,
                   height: 30.h,

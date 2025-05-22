@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 
@@ -21,14 +22,14 @@ class HomeHealthArticle extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Health Article',
+                context.tr.translate('health_article'),
                 style: TextStyles.nexaBold.copyWith(
                   fontSize: 16.sp,
                   color: AppTheme.textBlackColor,
                 ),
               ),
               Text(
-                'See All',
+                context.tr.translate("see_all"),
                 style: TextStyles.nexaRegular.copyWith(
                   fontSize: 12.sp,
                   color: themeProvider.currentTheme == ThemeEnum.shifa
