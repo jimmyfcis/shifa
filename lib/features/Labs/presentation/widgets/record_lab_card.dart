@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Labs/data/models/lab_model.dart';
@@ -72,7 +73,7 @@ class _LabRecordCardState extends State<LabRecordCard> {
                       width: 8.w,
                     ),
                     Text(
-                      "Radiology",
+                      context.tr.translate("lab_tests"),
                       style: TextStyles.nexaBold.copyWith(
                         fontSize: 14.sp,
                         color: AppTheme.primaryTextColor,

@@ -23,7 +23,8 @@ class AppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
-
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Card(
       color: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
@@ -62,7 +63,7 @@ class AppointmentCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        appointment.doctor?.name??"",
+                        isArabic?appointment.doctor?.nameAR??"":appointment.doctor?.name??"",
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 16.sp,
                           color: AppTheme.primaryTextColor,
@@ -72,7 +73,7 @@ class AppointmentCard extends StatelessWidget {
                         height: 12.h,
                       ),
                       Text(
-                        appointment.doctor?.descriptionEn??"",
+                        isArabic?appointment.doctor?.descriptionAr??"":appointment.doctor?.descriptionEn??"",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyles.nexaRegular.copyWith(

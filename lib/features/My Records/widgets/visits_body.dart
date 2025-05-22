@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/network/injection_container.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/widgtes/empty_state.dart';
@@ -27,8 +28,8 @@ class VisitsBody extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is VisitLoaded) {
               if (state.visitResponse.visits.isEmpty) {
-                return const EmptyStateWidget(
-                  message: 'No visits found',
+                return  EmptyStateWidget(
+                  message: context.tr.translate('no_visits'),
                 );
               }
               return _buildVisitsList(context, state.visitResponse.visits);
@@ -135,7 +136,7 @@ class VisitsBody extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
               Text(
-                'Type: $visitType',
+                '${context.tr.translate("visit_type")}: $visitType',
                 style: TextStyles.nexaRegular.copyWith(
                   fontSize: 14.sp,
                   color: AppTheme.primaryTextColor,
@@ -143,7 +144,7 @@ class VisitsBody extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(
-                'Doctor: $doctorName',
+                '${context.tr.translate("doctor")}: $doctorName',
                 style: TextStyles.nexaRegular.copyWith(
                   fontSize: 14.sp,
                   color: AppTheme.primaryTextColor,
@@ -151,7 +152,7 @@ class VisitsBody extends StatelessWidget {
               ),
               SizedBox(height: 8.h),
               Text(
-                'Specialty: $doctorSpecialty',
+                '${context.tr.translate("specialty")}: $doctorSpecialty',
                 style: TextStyles.nexaRegular.copyWith(
                   fontSize: 14.sp,
                   color: AppTheme.primaryTextColor,

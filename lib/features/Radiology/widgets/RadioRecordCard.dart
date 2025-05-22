@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Radiology/data/models/radiology_model.dart';
@@ -68,7 +69,7 @@ class _RadioRecordCardState extends State<RadioRecordCard> {
                       width: 8.w,
                     ),
                     Text(
-                      "Radiology",
+                      context.tr.translate("radiology"),
                       style: TextStyles.nexaBold.copyWith(
                         fontSize: 14.sp,
                         color: AppTheme.primaryTextColor,
