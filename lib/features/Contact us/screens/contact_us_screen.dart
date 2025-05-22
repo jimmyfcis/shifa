@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
@@ -15,7 +16,7 @@ class ContactUsScreen extends StatelessWidget {
       hasBorderRadius: false,
       contentChild: ContactUsBody(),
       appBarChild: CommonAppBarTitle(
-        title: 'Contact Us',
+        title: context.tr.translate('contact_us'),
       ),
       height: 105,
       alignment: Alignment.bottomCenter,

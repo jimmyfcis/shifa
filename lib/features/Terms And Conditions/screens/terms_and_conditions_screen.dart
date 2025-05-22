@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/utils/app_constants.dart';
@@ -16,8 +17,8 @@ class TermsAndConditionsScreen extends StatelessWidget {
       hasBorderRadius: false,
       alignment: Alignment.bottomCenter,
       height: 105,
-      appBarChild: const CommonAppBarTitle(
-        title: 'Terms And Conditions',
+      appBarChild:  CommonAppBarTitle(
+        title: context.tr.translate('terms_conditions'),
       ),
       contentChild: Expanded(
         child: SingleChildScrollView(
