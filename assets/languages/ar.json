@@ -127,7 +127,7 @@
   "medication_reminder": "تذكير الأدوية",
   "vaccine_reminder": "تذكير التطعيمات",
   "care_reminder": "تذكير الرعاية",
-  "lab_tests": "التحاليل",
+  "lab_tests": "التحاليل المخبرية",
   "radiology": "الأشعة",
   "my_care": "رعايتي",
   "cancel_your_visit": "إلغاء زيارتك",
@@ -161,5 +161,10 @@
   "physical_therapy": "العلاج الطبيعي",
   "search_for_clinic": "البحث عن عيادة..",
   "no_clinics_found": "لم يتم العثور على عيادات تطابق بحثك",
-  "show_all_clinics": "عرض جميع العيادات"
+  "show_all_clinics": "عرض جميع العيادات",
+  "diagnosis": "التشخيص",
+  "complaints": "الشكاوى",
+  "patient_history": "تاريخ المريض",
+  "patient_findings": "نتائج المريض",
+  "reports": "التقارير"
 } 

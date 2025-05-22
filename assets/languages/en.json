@@ -161,5 +161,10 @@
   "physical_therapy": "Physical Therapy",
   "search_for_clinic": "Search For Clinic..",
   "no_clinics_found": "No clinics found matching your search",
-  "show_all_clinics": "Show All Clinics"
+  "show_all_clinics": "Show All Clinics",
+  "diagnosis": "Diagnosis",
+  "complaints": "Complaints",
+  "patient_history": "Patient History",
+  "patient_findings": "Patient Findings",
+  "reports": "Reports"
 } 

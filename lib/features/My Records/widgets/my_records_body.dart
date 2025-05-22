@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/My%20Records/presentation/managers/records/records_cubit.dart';
@@ -69,7 +70,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                       children: [
                         if (state.recordsResponseModel.diagnosis!.isEmpty) ...[
                           Text(
-                            "Diagnosis",
+                            context.tr.translate("diagnosis"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -90,7 +91,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 12.h,
                           ),
                           Text(
-                            "Complaints",
+                              context.tr.translate("complaints"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -112,7 +113,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 12.h,
                           ),
                           Text(
-                            "Patient History",
+                              context.tr.translate("patient_history"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -133,7 +134,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 12.h,
                           ),
                           Text(
-                            "Patient Findings",
+                              context.tr.translate("patient_findings"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -154,7 +155,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 12.h,
                           ),
                           Text(
-                            "Reports",
+                              context.tr.translate("reports"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -171,7 +172,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 16.h,
                           ),
                           Text(
-                            "Lab Tests",
+                              context.tr.translate("lab_tests"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
@@ -193,7 +194,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             height: 16.h,
                           ),
                           Text(
-                            "Radiology",
+                              context.tr.translate("radiology"),
                             style: TextStyles.nexaBold.copyWith(
                               fontSize: 16.sp,
                               color: AppTheme.primaryTextColor,
