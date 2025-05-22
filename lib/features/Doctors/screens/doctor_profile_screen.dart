@@ -343,13 +343,13 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 padding: const EdgeInsets.only(top: 10.0, left: 24, right: 24, bottom: 20),
                                 child: CustomGreenButton(
                                   title: widget.fromBookings != null && widget.fromBookings == true
-                                      ? "Save Changes"
-                                      : "Book appointment",
+                                      ? context.tr.translate('save_changes')
+                                      : context.tr.translate('book_appointment'),
                                   onPressed: () {
                                     if (_selectedTimeSlotIndex != null) {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                         content: Text(
-                                            "Booked: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${_timeSlots[_selectedTimeSlotIndex!]}"),
+                                            "${context.tr.translate('booked_success')}: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${_timeSlots[_selectedTimeSlotIndex!]}"),
                                       ));
                                       if (widget.fromBookings ?? false) {
                                         showDialog(
@@ -367,13 +367,12 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                   ),
                                                 ),
                                                 constraints: const BoxConstraints(
-                                                  minWidth: 100, // Minimum width
-                                                  minHeight: 50, // Minimum height
+                                                  minWidth: 100,
+                                                  minHeight: 50,
                                                 ),
                                                 padding: const EdgeInsets.all(32),
                                                 child: Column(
                                                   mainAxisSize: MainAxisSize.min,
-                                                  // Ensures dialog size adjusts to content
                                                   children: [
                                                     Container(
                                                       decoration: BoxDecoration(
@@ -394,7 +393,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                     ),
                                                     const SizedBox(height: 24),
                                                     Text(
-                                                      "Reschedule appointment",
+                                                      context.tr.translate('reschedule_appointment'),
                                                       style: TextStyles.nexaBold.copyWith(
                                                         color: AppTheme.primaryTextColor,
                                                         fontSize: 20,
@@ -403,7 +402,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                     ),
                                                     const SizedBox(height: 8),
                                                     Text(
-                                                      "Your Reschedule has been updated successful.",
+                                                      context.tr.translate('reschedule_success'),
                                                       style: TextStyles.nexaRegular.copyWith(
                                                         color: AppTheme.secondaryTextColor,
                                                         fontSize: 16,
@@ -415,7 +414,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                         Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
                                                       },
                                                       child: Text(
-                                                        "My Appointments",
+                                                        context.tr.translate('my_appointments'),
                                                         style: TextStyles.nexaRegular.copyWith(
                                                           decoration: TextDecoration.underline,
                                                           color: themeProvider.currentThemeData!.primaryColor,
@@ -434,8 +433,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         Navigator.pushNamed(context, AppRoutes.firstBookAppointment);
                                       }
                                     } else {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                        content: Text("Please select a time slot."),
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                        content: Text(context.tr.translate('please_select_time_slot')),
                                       ));
                                     }
                                   },

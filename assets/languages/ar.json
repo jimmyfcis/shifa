@@ -175,5 +175,11 @@
   "complaints": "الشكاوى",
   "patient_history": "تاريخ المريض",
   "patient_findings": "نتائج المريض",
-  "reports": "التقارير"
+  "reports": "التقارير",
+  "save_changes": "حفظ التغييرات",
+  "please_select_time_slot": "الرجاء اختيار موعد.",
+  "reschedule_appointment": "إعادة جدولة الموعد",
+  "reschedule_success": "تم تحديث إعادة الجدولة بنجاح.",
+  "my_appointments": "مواعيدي",
+  "booked_success": "تم الحجز: {date} {time}"
 } 
