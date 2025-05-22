@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 
@@ -26,7 +27,7 @@ class NoRecordWidget extends StatelessWidget {
             height: 24.h,
           ),
           Text(
-            title ?? 'you didn’t have any records yet.',
+            title ?? context.tr.translate("no_records"),
             textAlign: TextAlign.center,
             style: TextStyles.nexaRegular.copyWith(
               fontSize: 14.sp,

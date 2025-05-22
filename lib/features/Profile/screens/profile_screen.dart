@@ -64,16 +64,19 @@ class ProfileScreen extends StatelessWidget {
                           title: context.tr.translate('medical_insurance'),
                         ),
                         SizedBox(height: 16.h),
-                        ProfileWidget(
-                          hasDivider: true,
-                          onTap: () {
-                            log("My Favorite Page");
-                            Navigator.pushNamed(context, AppRoutes.myFavorite);
-                          },
-                          svgIcon: SVGAssets.myFavoriteSolidIcon,
-                          title: context.tr.translate('my_favorite'),
-                        ),
-                        SizedBox(height: 16.h),
+                        // ProfileWidget(
+                        //   hasDivider: true,
+                        //   onTap: () {
+                        //     log("My Favorite Page");
+                        //     Navigator.pushNamed(context, AppRoutes.myFavorite,arguments: {
+                        //       "clinic":Clinic(name: "", doctors: []),
+                        //       "doctor":Doctor(),
+                        //     },);
+                        //   },
+                        //   svgIcon: SVGAssets.myFavoriteSolidIcon,
+                        //   title: context.tr.translate('my_favorite'),
+                        // ),
+                        // SizedBox(height: 16.h),
                         ProfileWidget(
                           hasDivider: false,
                           onTap: () {
