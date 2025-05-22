@@ -32,6 +32,8 @@ class _UserNameAndPhoneNumberState extends State<UserNameAndPhoneNumber> {
   }
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Container(
       width: 327.w,
@@ -52,7 +54,13 @@ class _UserNameAndPhoneNumberState extends State<UserNameAndPhoneNumber> {
           SizedBox(
             height: 12.h,
           ),
-          Text(
+         isArabic?Text(
+           "$_phoneNumber 20+",
+           style: TextStyle(
+             color: themeProvider.currentThemeData!.primaryColor,
+             fontSize: 16.sp,
+           ),
+         ): Text(
             "+20 $_phoneNumber",
             style: TextStyle(
               color: themeProvider.currentThemeData!.primaryColor,
