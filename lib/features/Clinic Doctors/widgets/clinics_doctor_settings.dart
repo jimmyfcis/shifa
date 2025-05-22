@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/features/Clinic%20Doctors/widgets/filter_by_bottom_sheet.dart';
@@ -17,10 +18,10 @@ class ClinicsDoctorSettings extends StatelessWidget {
     return Column(
       children: [
         CustomTextField(
-          name: "Search For Doctors..",
+          name: "search",
           hasName: false,
-          labelText: "Search For Doctors..",
-          hintText: "Search For Doctors..",
+          labelText: context.tr.translate("search_doctor"),
+          hintText: context.tr.translate("search_doctor"),
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.asset(

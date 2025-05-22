@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -21,6 +22,8 @@ class ClinicDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Card(
       color: AppTheme.whiteColor,
@@ -57,7 +60,7 @@ class ClinicDoctorCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        doctor?.name??"",
+                        isArabic?doctor?.nameAR??"":doctor?.name??"",
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 16.sp,
                           color: AppTheme.primaryTextColor,
@@ -67,7 +70,7 @@ class ClinicDoctorCard extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                        doctor?.descriptionEn??"",
+                        isArabic?doctor?.descriptionAr??"":doctor?.descriptionEn??"",
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.secondaryTextColor,
@@ -139,7 +142,7 @@ class ClinicDoctorCard extends StatelessWidget {
             ),
             CustomGreenButton(
               fontSize: 14.sp,
-              title: "Book an appointment",
+              title: context.tr.translate("book_appointment"),
               onPressed: (){
                 Navigator.pushNamed(context, AppRoutes.doctorProfile,arguments: {
                   "clinicId": clinic.id.toString(),

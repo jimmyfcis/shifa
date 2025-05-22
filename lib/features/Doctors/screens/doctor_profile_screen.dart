@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
 import '../../../core/assets/svg/svg_assets.dart';
@@ -69,8 +70,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
       hasBorderRadius: false,
       alignment: Alignment.bottomCenter,
       height: 105,
-      appBarChild: const CommonAppBarTitle(
-        title: 'Doctor Profile',
+      appBarChild:  CommonAppBarTitle(
+        title: context.tr.translate('doctor_profile'),
       ),
       contentChild: Expanded(
         child: BlocProvider(
@@ -82,6 +83,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
           child: BlocConsumer<DoctorCubit, DoctorState>(
             listener: (context, state) {},
             builder: (context, state) {
+              final locale = Localizations.localeOf(context);
+              final isArabic = locale.languageCode == 'ar';
               return state is DoctorLoading
                   ? Center(
                       child: CircularProgressIndicator(
@@ -107,7 +110,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                state.doctorDetailsResponse.doctor.name??"",
+                                                isArabic?state.doctorDetailsResponse.doctor.nameAR??"":state.doctorDetailsResponse.doctor.name??"",
                                                 style: TextStyles.nexaBold.copyWith(
                                                   fontWeight: FontWeight.w900,
                                                   color: AppTheme.primaryTextColor,
@@ -116,7 +119,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                state.doctorDetailsResponse.doctor.specialist?.name??"",
+                                                isArabic?state.doctorDetailsResponse.doctor.specialist?.nameAr??"":state.doctorDetailsResponse.doctor.specialist?.name??"",
                                                 style: TextStyles.nexaRegular.copyWith(
                                                   color: AppTheme.secondaryTextColor,
                                                   fontSize: 14,
@@ -163,10 +166,10 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         thickness: 1.0,
                                       ),
                                       const SizedBox(height: 24.0),
-                                      const DoctorProfileTitle(title: "Doctor Biography"),
+                                       DoctorProfileTitle(title: context.tr.translate("doctor_biography")),
                                       const SizedBox(height: 8.0),
                                       Text(
-                                        state.doctorDetailsResponse.doctor.description??"",
+                                        isArabic?state.doctorDetailsResponse.doctor.descriptionAr??"":state.doctorDetailsResponse.doctor.description??"",
                                         style: TextStyles.nexaRegular.copyWith(
                                           color: AppTheme.secondaryTextColor,
                                           fontSize: 14,
@@ -184,7 +187,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const DoctorProfileTitle(title: "Schedules"),
+                                           DoctorProfileTitle(title: context.tr.translate("schedules")),
                                           InkWell(
                                             onTap: () => _pickDate(context),
                                             child: Row(
@@ -304,7 +307,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         thickness: 1.0,
                                       ),
                                       const SizedBox(height: 24.0),
-                                      const DoctorProfileTitle(title: "Pick time slot"),
+                                       DoctorProfileTitle(title: context.tr.translate("pick_slot")),
                                       const SizedBox(height: 16.0),
                                       Wrap(
                                         spacing: 20,
