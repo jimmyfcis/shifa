@@ -175,6 +175,7 @@
   "appointment_details": "Appointment Details",
   "doctor": "Doctor",
   "visit_type": "Type",
+  "confirm": "Confirm",
   "specialty": "Specialty",
   "no_visits": "'No visits found'",
   "complaints": "Complaints",
@@ -186,5 +187,8 @@
   "reschedule_appointment": "Reschedule appointment",
   "reschedule_success": "Your Reschedule has been updated successful.",
   "my_appointments": "My Appointments",
-  "booked_success": "Selected:"
+  "booked_success": "Selected:",
+  "booking_success": "Booking Success",
+  "appointment_booked_success": "Your Appointment has been booked successful.",
+  "booking_number_is": "your booking number is:"
 } 

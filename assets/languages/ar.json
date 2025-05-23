@@ -106,6 +106,7 @@
   "building_number_hint": "أدخل رقم المبنى",
   "password_hint": "أدخل كلمة المرور",
   "confirm_password": "تأكيد كلمة المرور",
+  "confirm": "تأكيد",
   "or_signup_with": "أو قم بالتسجيل باستخدام",
   "agree_to_terms_start": "بالتسجيل فإنك توافق على ",
   "and": "و ",
@@ -186,5 +187,8 @@
   "reschedule_appointment": "إعادة جدولة الموعد",
   "reschedule_success": "تم تحديث إعادة الجدولة بنجاح.",
   "my_appointments": "مواعيدي",
-  "booked_success": "تم اختيار"
+  "booked_success": "تم اختيار",
+  "booking_success": "تم الحجز بنجاح",
+  "appointment_booked_success": "تم حجز موعدك بنجاح.",
+  "booking_number_is": "رقم الحجز الخاص بك هو:"
 } 

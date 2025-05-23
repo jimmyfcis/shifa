@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
-
+import 'package:shifa/core/routes/app_routes.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
+
 class ConfirmBookingDialogue extends StatelessWidget {
   const ConfirmBookingDialogue({
     super.key,
@@ -19,7 +20,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
     return Dialog(
       backgroundColor: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r), // Rounded corners
+        borderRadius: BorderRadius.circular(16.r),
       ),
       child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -40,7 +41,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             Text(
-              "Booking Success",
+              context.tr.translate('booking_success'),
               style: TextStyles.nexaBold.copyWith(
                 color: AppTheme.primaryTextColor,
                 fontSize: 20.sp,
@@ -48,7 +49,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Text(
-              "Your Appointment has been booked successful.",
+              context.tr.translate('appointment_booked_success'),
               textAlign: TextAlign.center,
               style: TextStyles.nexaRegular.copyWith(
                 color: AppTheme.secondaryTextColor,
@@ -56,7 +57,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
               ),
             ),
             Text(
-              "your booking number is:",
+              context.tr.translate('booking_number_is'),
               textAlign: TextAlign.center,
               style: TextStyles.nexaRegular.copyWith(
                 color: AppTheme.secondaryTextColor,
@@ -84,10 +85,10 @@ class ConfirmBookingDialogue extends StatelessWidget {
             SizedBox(height: 24.h),
             InkWell(
               onTap: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.pushNamed(context, AppRoutes.bottomBar);
               },
               child: Text(
-                context.tr.translate("my_appointments"),
+                context.tr.translate('my_appointments'),
                 style: TextStyles.nexaRegular
                     .copyWith(
                   color: themeProvider.currentThemeData!.primaryColor,

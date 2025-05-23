@@ -75,7 +75,9 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
             },
             builder: (context, state) {
               final cubit = context.read<BookAppointmentCubit>();
-              return Column(
+              return state is BookAppointmentLoading
+                  ? Center(child: CircularProgressIndicator(color: themeProvider.currentThemeData!.primaryColor,))
+                  :  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -97,9 +99,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                       ],
                     ),
                   ),
-                  state is BookAppointmentLoading
-                      ? Center(child: CircularProgressIndicator(color: themeProvider.currentThemeData!.primaryColor,))
-                      :  Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,8 +196,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                       ),
                     ),
                   ),
-                  state is BookAppointmentLoading
-                  ?const SizedBox.shrink(): Card(
+                  Card(
                     color: AppTheme.whiteColor,
                     elevation: 0,
                     margin: EdgeInsets.zero,
@@ -209,7 +208,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                         children: [
                           Expanded(
                             child: CustomWhiteButton(
-                              title: "Cancel",
+                              title: context.tr.translate("cancel"),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -220,7 +219,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                           ),
                           Expanded(
                             child: CustomGreenButton(
-                              title: "Confirm",
+                              title: context.tr.translate("confirm"),
                               fontSize: 14,
                               onPressed: () {
                                 cubit.bookAppointment(
