@@ -462,7 +462,24 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                           },
                                         );
                                       } else {
-                                        Navigator.pushNamed(context, AppRoutes.firstBookAppointment);
+                                        Navigator.pushNamed(context, AppRoutes.firstBookAppointment, arguments: {
+                                          "clinicID": widget.clinicId,
+                                          "doctor": state.doctorDetailsResponse.doctor,
+                                          "date": DateFormat('yyyy-MM-dd').format(_selectedDate),
+                                          "doctorId": widget.doctorId,
+                                          "time": state.doctorDetailsResponse.doctor.schedules!
+                                                  .firstWhere(
+                                                    (element) =>
+                                                        element.shiftDate!.year == _selectedDate.year &&
+                                                        element.shiftDate!.month == _selectedDate.month &&
+                                                        element.shiftDate!.day == _selectedDate.day,
+                                                  )
+                                                  .slots![_selectedTimeSlotIndex!]
+                                                  .timeStart
+                                                  ?.replaceAll(" pm", "")
+                                                  .replaceAll(" am", "") ??
+                                              "",
+                                        });
                                       }
                                     } else {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

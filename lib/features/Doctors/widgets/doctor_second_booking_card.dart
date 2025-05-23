@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/models/doctor_model.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
@@ -8,13 +9,19 @@ import '../../../core/theme/theme.dart';
 class DoctorSecondBookingCard extends StatelessWidget {
   const DoctorSecondBookingCard({
     super.key,
-    required this.themeProvider,
+    required this.themeProvider, required this.date, required this.time, required this.doctor,
   });
+
+  final String date;
+  final String time;
+  final Doctor doctor;
 
   final ThemeProvider themeProvider;
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Container(
       decoration: BoxDecoration(
         color: themeProvider.currentTheme == ThemeEnum.shifa
@@ -43,7 +50,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Dr.Fady Mohamed Nabil",
+                      isArabic?doctor.nameAR??"":doctor.name??"",
                       style: TextStyles.nexaBold.copyWith(
                         fontWeight: FontWeight.w800,
                         color: AppTheme.primaryTextColor,
@@ -52,7 +59,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Obstetrics and Gynecology Dep",
+                      isArabic?doctor.specialist?.nameAr??"":doctor.specialist?.name??"",
                       style: TextStyles.nexaRegular.copyWith(
                         color: AppTheme.secondaryTextColor,
                         fontSize: 14.sp,
@@ -97,7 +104,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
                         width: 8.w,
                       ),
                       Text(
-                        'Jun 10, 2021 ',
+                        date,
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.primaryTextColor,
@@ -117,7 +124,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
                         width: 8.w,
                       ),
                       Text(
-                        '09:00 - 11:30 PM',
+                        time,
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.primaryTextColor,

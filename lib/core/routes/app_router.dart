@@ -98,7 +98,18 @@ class AppRouter {
       case AppRoutes.ambulance:
         return MaterialPageRoute(builder: (_) => AmbulanceScreen());
       case AppRoutes.secondBookingScreen:
-        return MaterialPageRoute(builder: (_) => SecondBookingScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => SecondBookingScreen(
+            clinicID: arguments['clinicID'],
+            date: arguments['date'],
+            doctorId: arguments['doctorId'],
+            time: arguments['time'],
+            mobile: arguments['mobile'],
+            name: arguments['name'],
+            doctor: arguments['doctor'],
+          ),
+        );
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => BlogsScreen());
       case AppRoutes.myFavorite:
@@ -139,7 +150,15 @@ class AppRouter {
       case AppRoutes.careReminder:
         return MaterialPageRoute(builder: (_) => CareReminderScreen());
       case AppRoutes.firstBookAppointment:
-        return MaterialPageRoute(builder: (_) => FirstBookingScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+            builder: (_) => FirstBookingScreen(
+                  clinicID: arguments['clinicID'],
+                  date: arguments['date'],
+                  doctorId: arguments['doctorId'],
+                  time: arguments['time'],
+                  doctor: arguments['doctor'],
+                ));
       case AppRoutes.clinicDoctors:
         var clinic = settings.arguments as Clinic;
         return MaterialPageRoute(
