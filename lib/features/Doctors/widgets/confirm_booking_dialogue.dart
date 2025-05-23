@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
@@ -16,6 +17,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.r), // Rounded corners
       ),
@@ -85,7 +87,7 @@ class ConfirmBookingDialogue extends StatelessWidget {
                 Navigator.of(context).pop(); // Close the dialog
               },
               child: Text(
-                "My Appointments",
+                context.tr.translate("my_appointments"),
                 style: TextStyles.nexaRegular
                     .copyWith(
                   color: themeProvider.currentThemeData!.primaryColor,

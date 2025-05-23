@@ -9,8 +9,8 @@ import 'package:shifa/core/widgtes/doctor_card.dart';
 
 import '../../../../core/network/injection_container.dart';
 import '../../../../core/widgtes/custom_snackbar.dart';
-import '../../../Booking/presentation/cubit/appointment_cubit.dart';
-import '../../../Booking/presentation/cubit/appointment_state.dart';
+import '../../../Booking/presentation/cubit/get appointemnets/appointment_cubit.dart';
+import '../../../Booking/presentation/cubit/get appointemnets/appointment_state.dart';
 
 class UpcomingAppointment extends StatefulWidget {
   const UpcomingAppointment({super.key});

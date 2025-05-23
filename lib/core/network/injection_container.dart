@@ -3,8 +3,10 @@ import 'package:shifa/core/storage/token_storage.dart';
 import 'package:shifa/features/Booking/data/datasources/appointment_remote_data_source.dart';
 import 'package:shifa/features/Booking/data/repositories/appointment_repository_impl.dart';
 import 'package:shifa/features/Booking/domain/repositories/appointment_repository.dart';
+import 'package:shifa/features/Booking/domain/usecases/book_appointment_usecase.dart';
 import 'package:shifa/features/Booking/domain/usecases/get_appointments_usecase.dart';
-import 'package:shifa/features/Booking/presentation/cubit/appointment_cubit.dart';
+import 'package:shifa/features/Booking/presentation/cubit/book%20appointement/book_appointment_cubit.dart';
+import 'package:shifa/features/Booking/presentation/cubit/get%20appointemnets/appointment_cubit.dart';
 import 'package:shifa/features/Contact%20us/data/data_source/contact_us_remote_data_source.dart';
 import 'package:shifa/features/Contact%20us/data/repositories/contact_us_repository_impl.dart';
 import 'package:shifa/features/Contact%20us/domain/repositories/contact_us_repository.dart';
@@ -175,6 +177,8 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetAppointmentsUseCase>(
     () => GetAppointmentsUseCase(repository: sl<AppointmentRepository>()),
+  );sl.registerLazySingleton<BookAppointmentUseCase>(
+    () => BookAppointmentUseCase(repository: sl<AppointmentRepository>()),
   );
   sl.registerLazySingleton<GetMyVisitsUseCase>(
     () => GetMyVisitsUseCase(sl<VisitRepository>()),
@@ -210,6 +214,8 @@ Future<void> init() async {
   );
   sl.registerFactory<AppointmentCubit>(
     () => AppointmentCubit(getAppointmentsUseCase: sl<GetAppointmentsUseCase>()),
+  );sl.registerFactory<BookAppointmentCubit>(
+    () => BookAppointmentCubit(bookAppointmentUseCase: sl<BookAppointmentUseCase>()),
   );
   sl.registerFactory<VisitCubit>(
     () => VisitCubit(getMyVisitsUseCase: sl<GetMyVisitsUseCase>()),

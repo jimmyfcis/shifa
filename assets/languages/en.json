@@ -167,6 +167,8 @@
   "no_clinics_found": "No clinics found matching your search",
   "show_all_clinics": "Show All Clinics",
   "diagnosis": "Diagnosis",
+  "step_1": "Step 1",
+  "step_2": "Step 2",
   "patient_details": "Patient Details",
   "doctor_profile": "Doctor Profile",
   "book_appointment": "Book an appointment",
