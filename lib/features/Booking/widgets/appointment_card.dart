@@ -175,7 +175,10 @@ class AppointmentCard extends StatelessWidget {
                         : context.tr.translate("book_again"),
                     fontSize: 14,
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.doctorProfile);
+                      Navigator.pushNamed(context, AppRoutes.doctorProfile,arguments: {
+                        "clinicId": appointment.doctor?.clinics?.first.id??"",
+                        "doctorId": appointment.doctor?.id??"",
+                      });
                     },
                   ),
                 )
