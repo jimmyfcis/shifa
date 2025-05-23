@@ -105,7 +105,7 @@ class _AppointmentBodyState extends State<AppointmentBody>
                       appointments: state.response.appointments.where((appointment){
                         if(appointment.date==null) return false;
                         final appointmentDate=DateTime.parse(appointment.date!);
-                        return appointmentDate.isBefore(DateTime.now());
+                        return appointmentDate.isAfter(DateTime.now());
                       }).toList(),
                     ),
                     PastAppointmentsListView(

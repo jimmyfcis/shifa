@@ -18,7 +18,7 @@ class AppointmentCard extends StatelessWidget {
   final int tabSelectedIndex;
   final Appointment appointment;
 
-  const AppointmentCard({super.key, required this.tabSelectedIndex,required this.appointment});
+  const AppointmentCard({super.key, required this.tabSelectedIndex, required this.appointment});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class AppointmentCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        isArabic?appointment.doctor?.nameAR??"":appointment.doctor?.name??"",
+                        isArabic ? appointment.doctor?.nameAR ?? "" : appointment.doctor?.name ?? "",
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 16.sp,
                           color: AppTheme.primaryTextColor,
@@ -73,7 +73,7 @@ class AppointmentCard extends StatelessWidget {
                         height: 12.h,
                       ),
                       Text(
-                        isArabic?appointment.doctor?.descriptionAr??"":appointment.doctor?.descriptionEn??"",
+                        isArabic ? appointment.doctor?.descriptionAr ?? "" : appointment.doctor?.descriptionEn ?? "",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyles.nexaRegular.copyWith(
@@ -95,7 +95,7 @@ class AppointmentCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            appointment.date??"",
+                            appointment.date ?? "",
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 12.sp,
                               color: AppTheme.secondaryTextColor,
@@ -117,7 +117,7 @@ class AppointmentCard extends StatelessWidget {
                             width: 8.w,
                           ),
                           Text(
-                            appointment.time??"",
+                            appointment.time ?? "",
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 12.sp,
                               color: AppTheme.secondaryTextColor,
@@ -156,7 +156,9 @@ class AppointmentCard extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) {
                             return CancelYourVisitDialogue(
-                                themeProvider: themeProvider);
+                              appointment: appointment,
+                              themeProvider: themeProvider,
+                            );
                           },
                         );
                       } else {
@@ -170,14 +172,13 @@ class AppointmentCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: CustomGreenButton(
-                    title: tabSelectedIndex == 0 
-                        ? context.tr.translate("reschedule") 
-                        : context.tr.translate("book_again"),
+                    title:
+                        tabSelectedIndex == 0 ? context.tr.translate("reschedule") : context.tr.translate("book_again"),
                     fontSize: 14,
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.doctorProfile,arguments: {
-                        "clinicId": appointment.doctor?.clinics?.first.id??"",
-                        "doctorId": appointment.doctor?.id??"",
+                      Navigator.pushNamed(context, AppRoutes.doctorProfile, arguments: {
+                        "clinicId": appointment.doctor?.clinics?.first.id ?? "",
+                        "doctorId": appointment.doctor?.id ?? "",
                       });
                     },
                   ),

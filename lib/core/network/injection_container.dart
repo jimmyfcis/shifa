@@ -55,6 +55,8 @@ import '../../features/Clinics/data/repositories/clinics_repository_impl.dart';
 import '../../features/Clinics/domain/repositories/clinics_repository.dart';
 import '../../features/Clinics/domain/use_cases/get_clinics_use_case.dart';
 import '../../features/Clinics/presentation/cubit/clinics_cubit.dart';
+import 'package:shifa/features/Booking/domain/usecases/cancel_appointment_usecase.dart';
+import 'package:shifa/features/Booking/presentation/cubit/cancel_appointment_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -189,6 +191,9 @@ Future<void> init() async {
   sl.registerLazySingleton<GetLabsUseCase>(
     () => GetLabsUseCase(sl<LabRepository>()),
   );
+  sl.registerLazySingleton<CancelAppointmentUseCase>(
+    () => CancelAppointmentUseCase(repository: sl<AppointmentRepository>()),
+  );
 
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
@@ -225,5 +230,8 @@ Future<void> init() async {
   );
   sl.registerFactory<LabCubit>(
     () => LabCubit(getLabsUseCase: sl<GetLabsUseCase>()),
+  );
+  sl.registerFactory<CancelAppointmentCubit>(
+    () => CancelAppointmentCubit(cancelAppointmentUseCase: sl<CancelAppointmentUseCase>()),
   );
 }
