@@ -7,6 +7,7 @@ import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
 import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/models/doctor_model.dart';
 import '../../../core/network/injection_container.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
@@ -32,19 +33,20 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
   int? _selectedTimeSlotIndex;
   DateTime _selectedDate = DateTime.now();
 
-  // Generate a list of dates around the selected date
   List<DateTime> _generateDates(DateTime selectedDate) {
     return List.generate(7, (index) => selectedDate.subtract(Duration(days: 3 - index)));
   }
 
-  final List<String> _timeSlots = [
-    "09:00 - 11:30 AM",
-    "07:30 - 10:30 PM",
-    "05:30 - 06:30 PM",
-    "07:30 - 10:30 PM",
-    "10:30 - 11:30 PM",
-    "11:30 - 12:30 PM",
-  ];
+  String concatenateSlotTime(ScheduleSlot? slot) {
+    bool isPM = true;
+    if (slot?.timeStart?.contains("am") ?? false) {
+      setState(() {
+        isPM = false;
+      });
+    }
+    String time = "${slot?.timeStart ?? ""} -> ${slot?.timeEnd ?? ""}".replaceAll("pm", "");
+    return isPM ? "$time PM" : "$time AM";
+  }
 
   Future<void> _pickDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -70,14 +72,15 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
       hasBorderRadius: false,
       alignment: Alignment.bottomCenter,
       height: 105,
-      appBarChild:  CommonAppBarTitle(
+      appBarChild: CommonAppBarTitle(
         title: context.tr.translate('doctor_profile'),
       ),
       contentChild: Expanded(
         child: BlocProvider(
           create: (context) {
             final cubit = sl<DoctorCubit>();
-            cubit.getDoctorDetails(clinicId: widget.clinicId, id: widget.doctorId); // Call the method immediately after creating the cubit
+            cubit.getDoctorDetails(
+                clinicId: widget.clinicId, id: widget.doctorId); // Call the method immediately after creating the cubit
             return cubit;
           },
           child: BlocConsumer<DoctorCubit, DoctorState>(
@@ -110,7 +113,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                isArabic?state.doctorDetailsResponse.doctor.nameAR??"":state.doctorDetailsResponse.doctor.name??"",
+                                                isArabic
+                                                    ? state.doctorDetailsResponse.doctor.nameAR ?? ""
+                                                    : state.doctorDetailsResponse.doctor.name ?? "",
                                                 style: TextStyles.nexaBold.copyWith(
                                                   fontWeight: FontWeight.w900,
                                                   color: AppTheme.primaryTextColor,
@@ -119,7 +124,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                isArabic?state.doctorDetailsResponse.doctor.specialist?.nameAr??"":state.doctorDetailsResponse.doctor.specialist?.name??"",
+                                                isArabic
+                                                    ? state.doctorDetailsResponse.doctor.specialist?.nameAr ?? ""
+                                                    : state.doctorDetailsResponse.doctor.specialist?.name ?? "",
                                                 style: TextStyles.nexaRegular.copyWith(
                                                   color: AppTheme.secondaryTextColor,
                                                   fontSize: 14,
@@ -131,7 +138,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                   SvgPicture.asset(SVGAssets.star),
                                                   const SizedBox(width: 4),
                                                   Text(
-                                                    state.doctorDetailsResponse.doctor.rate??"",
+                                                    state.doctorDetailsResponse.doctor.rate ?? "",
                                                     style: TextStyles.nexaRegular.copyWith(
                                                       color: AppTheme.secondaryTextColor,
                                                       fontSize: 14,
@@ -166,10 +173,12 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         thickness: 1.0,
                                       ),
                                       const SizedBox(height: 24.0),
-                                       DoctorProfileTitle(title: context.tr.translate("doctor_biography")),
+                                      DoctorProfileTitle(title: context.tr.translate("doctor_biography")),
                                       const SizedBox(height: 8.0),
                                       Text(
-                                        isArabic?state.doctorDetailsResponse.doctor.descriptionAr??"":state.doctorDetailsResponse.doctor.description??"",
+                                        isArabic
+                                            ? state.doctorDetailsResponse.doctor.descriptionAr ?? ""
+                                            : state.doctorDetailsResponse.doctor.description ?? "",
                                         style: TextStyles.nexaRegular.copyWith(
                                           color: AppTheme.secondaryTextColor,
                                           fontSize: 14,
@@ -187,7 +196,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                           DoctorProfileTitle(title: context.tr.translate("schedules")),
+                                          DoctorProfileTitle(title: context.tr.translate("schedules")),
                                           InkWell(
                                             onTap: () => _pickDate(context),
                                             child: Row(
@@ -215,7 +224,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                 Container(
                                                   decoration: BoxDecoration(
                                                     color: themeProvider.currentThemeData!.primaryColor,
-                                                    borderRadius: BorderRadius.only(
+                                                    borderRadius: const BorderRadius.only(
                                                       bottomRight: Radius.circular(4),
                                                       topRight: Radius.circular(4),
                                                     ),
@@ -307,14 +316,24 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         thickness: 1.0,
                                       ),
                                       const SizedBox(height: 24.0),
-                                       DoctorProfileTitle(title: context.tr.translate("pick_slot")),
+                                      DoctorProfileTitle(title: context.tr.translate("pick_slot")),
                                       const SizedBox(height: 16.0),
                                       Wrap(
                                         spacing: 20,
                                         runSpacing: 20,
                                         alignment: WrapAlignment.spaceEvenly,
                                         children: List.generate(
-                                          _timeSlots.length,
+                                          state.doctorDetailsResponse.doctor.schedules
+                                                  ?.firstWhere(
+                                                    (element) =>
+                                                        element.shiftDate!.year == _selectedDate.year &&
+                                                        element.shiftDate!.month == _selectedDate.month &&
+                                                        element.shiftDate!.day == _selectedDate.day,
+                                                    orElse: () => Schedule(shiftDate: _selectedDate, slots: []),
+                                                  )
+                                                  .slots
+                                                  ?.length ??
+                                              0,
                                           (index) => GestureDetector(
                                             onTap: () {
                                               setState(() {
@@ -322,7 +341,15 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               });
                                             },
                                             child: TimeSlot(
-                                              time: _timeSlots[index],
+                                              time: concatenateSlotTime(state.doctorDetailsResponse.doctor.schedules
+                                                  ?.firstWhere(
+                                                    (element) =>
+                                                        element.shiftDate!.year == _selectedDate.year &&
+                                                        element.shiftDate!.month == _selectedDate.month &&
+                                                        element.shiftDate!.day == _selectedDate.day,
+                                                    orElse: () => Schedule(shiftDate: _selectedDate, slots: []),
+                                                  )
+                                                  .slots![index]),
                                               isSelected: _selectedTimeSlotIndex == index,
                                             ),
                                           ),
@@ -349,7 +376,12 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                     if (_selectedTimeSlotIndex != null) {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                         content: Text(
-                                            "${context.tr.translate('booked_success')}: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${_timeSlots[_selectedTimeSlotIndex!]}"),
+                                            "${context.tr.translate('booked_success')}: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${concatenateSlotTime(state.doctorDetailsResponse.doctor.schedules!.firstWhere(
+                                                  (element) =>
+                                                      element.shiftDate!.year == _selectedDate.year &&
+                                                      element.shiftDate!.month == _selectedDate.month &&
+                                                      element.shiftDate!.day == _selectedDate.day,
+                                                ).slots![_selectedTimeSlotIndex!])}"),
                                       ));
                                       if (widget.fromBookings ?? false) {
                                         showDialog(
@@ -376,7 +408,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                   children: [
                                                     Container(
                                                       decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.all(
+                                                        borderRadius: const BorderRadius.all(
                                                           Radius.circular(50.0),
                                                         ),
                                                         color: themeProvider.currentTheme == ThemeEnum.shifa

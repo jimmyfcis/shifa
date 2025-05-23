@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:shifa/core/models/specialist_model.dart';
 import 'clinic_model.dart';
 
@@ -30,7 +31,7 @@ class Schedule {
   final String? physicianID;
   final String? physicianNameAr;
   final String? physicianNameEn;
-  final String? shiftDate;
+  final DateTime? shiftDate;
   final int? shift;
   final int? dayOfWeek;
   final String? dayNameAr;
@@ -53,12 +54,13 @@ class Schedule {
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
+    final formatter = DateFormat('dd/MM/yyyy');
     return Schedule(
       clinicID: json['clinicID']??"",
       physicianID: json['physicianID']??"",
       physicianNameAr: json['physicianNameAr'],
       physicianNameEn: json['physicianNameEn'],
-      shiftDate: json['shiftDate'],
+      shiftDate: formatter.parse(json['shiftDate']),
       shift: json['shift'],
       dayOfWeek: json['dayOfWeek'],
       dayNameAr: json['dayNameAr'],

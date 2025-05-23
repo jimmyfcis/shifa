@@ -181,5 +181,5 @@
   "reschedule_appointment": "إعادة جدولة الموعد",
   "reschedule_success": "تم تحديث إعادة الجدولة بنجاح.",
   "my_appointments": "مواعيدي",
-  "booked_success": "تم الحجز: {date} {time}"
+  "booked_success": "تم اختيار"
 } 

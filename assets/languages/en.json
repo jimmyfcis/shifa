@@ -181,5 +181,5 @@
   "reschedule_appointment": "Reschedule appointment",
   "reschedule_success": "Your Reschedule has been updated successful.",
   "my_appointments": "My Appointments",
-  "booked_success": "Booked: {date} {time}"
+  "booked_success": "Selected:"
 } 

@@ -8,6 +8,7 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   DoctorCubit({required this.getDoctorDetailsUseCase}) : super(DoctorInitial());
 
+  DateTime selectedDate=DateTime.now();
   Future<void> getDoctorDetails({
     required String clinicId,
     required String id,
@@ -18,6 +19,7 @@ class DoctorCubit extends Cubit<DoctorState> {
         clinicId: clinicId,
         id: id,
       );
+      selectedDate=response.doctor.schedules?.first.shiftDate??DateTime.now();
       emit(DoctorLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);
