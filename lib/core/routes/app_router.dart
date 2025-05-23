@@ -181,6 +181,7 @@ class AppRouter {
             fromBookings: arguments['fromBookings'],
             clinicId: arguments['clinicId'],
             doctorId: arguments['doctorId'],
+            appointment: arguments['appointment'],
           ),
         );
       case AppRoutes.blogDetails:

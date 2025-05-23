@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
+import 'package:shifa/features/Booking/data/models/appointment_model.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/models/doctor_model.dart';
@@ -22,8 +23,9 @@ class DoctorProfileScreen extends StatefulWidget {
   final bool? fromBookings;
   final String clinicId;
   final String doctorId;
+  final Appointment? appointment;
 
-  const DoctorProfileScreen({super.key, this.fromBookings = false, required this.clinicId, required this.doctorId});
+  const DoctorProfileScreen({super.key, this.fromBookings = false, required this.clinicId, required this.doctorId, this.appointment});
 
   @override
   State<DoctorProfileScreen> createState() => _DoctorProfileScreenState();
