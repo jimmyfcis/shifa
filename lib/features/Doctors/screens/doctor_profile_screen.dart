@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/features/Booking/data/models/appointment_model.dart';
+import 'package:shifa/features/Booking/data/models/reschedule_appointment_model.dart';
+import 'package:shifa/features/Booking/presentation/cubit/reschedule_appointment_cubit.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/models/doctor_model.dart';
@@ -14,6 +16,7 @@ import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/widgtes/common_app_bar_title.dart';
 import '../../../core/widgtes/custom_green_button.dart';
+import '../../../core/widgtes/custom_snackbar.dart';
 import '../../../core/widgtes/watermark_widget.dart';
 import '../presentation/doctor_state.dart';
 import '../widgets/doctor_profile_title.dart';
@@ -25,7 +28,8 @@ class DoctorProfileScreen extends StatefulWidget {
   final String doctorId;
   final Appointment? appointment;
 
-  const DoctorProfileScreen({super.key, this.fromBookings = false, required this.clinicId, required this.doctorId, this.appointment});
+  const DoctorProfileScreen(
+      {super.key, this.fromBookings = false, required this.clinicId, required this.doctorId, this.appointment});
 
   @override
   State<DoctorProfileScreen> createState() => _DoctorProfileScreenState();
@@ -370,125 +374,175 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                               color: AppTheme.whiteColor,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 10.0, left: 24, right: 24, bottom: 20),
-                                child: CustomGreenButton(
-                                  title: widget.fromBookings != null && widget.fromBookings == true
-                                      ? context.tr.translate('save_changes')
-                                      : context.tr.translate('book_appointment'),
-                                  onPressed: () {
-                                    if (_selectedTimeSlotIndex != null) {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(
-                                            "${context.tr.translate('booked_success')}: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${concatenateSlotTime(state.doctorDetailsResponse.doctor.schedules!.firstWhere(
-                                                  (element) =>
-                                                      element.shiftDate!.year == _selectedDate.year &&
-                                                      element.shiftDate!.month == _selectedDate.month &&
-                                                      element.shiftDate!.day == _selectedDate.day,
-                                                ).slots![_selectedTimeSlotIndex!])}"),
-                                      ));
-                                      if (widget.fromBookings ?? false) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return Dialog(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(16),
-                                              ),
-                                              child: Container(
-                                                decoration: const BoxDecoration(
-                                                  color: AppTheme.whiteColor,
-                                                  borderRadius: BorderRadius.all(
-                                                    Radius.circular(16.0),
+                                child: BlocProvider(
+                                  create: (context) => sl<RescheduleAppointmentCubit>(),
+                                  child: BlocConsumer<RescheduleAppointmentCubit, RescheduleAppointmentState>(
+                                    listener: (context, stateReschedule) {
+                                      if(stateReschedule is RescheduleAppointmentSuccess)
+                                        {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return Dialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(16),
+                                                ),
+                                                child: Container(
+                                                  decoration: const BoxDecoration(
+                                                    color: AppTheme.whiteColor,
+                                                    borderRadius: BorderRadius.all(
+                                                      Radius.circular(16.0),
+                                                    ),
                                                   ),
-                                                ),
-                                                constraints: const BoxConstraints(
-                                                  minWidth: 100,
-                                                  minHeight: 50,
-                                                ),
-                                                padding: const EdgeInsets.all(32),
-                                                child: Column(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: const BorderRadius.all(
-                                                          Radius.circular(50.0),
+                                                  constraints: const BoxConstraints(
+                                                    minWidth: 100,
+                                                    minHeight: 50,
+                                                  ),
+                                                  padding: const EdgeInsets.all(32),
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children: [
+                                                      Container(
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: const BorderRadius.all(
+                                                            Radius.circular(50.0),
+                                                          ),
+                                                          color: themeProvider.currentTheme == ThemeEnum.shifa
+                                                              ? AppTheme.green4Color
+                                                              : AppTheme.secondaryColorLeksell,
                                                         ),
-                                                        color: themeProvider.currentTheme == ThemeEnum.shifa
-                                                            ? AppTheme.green4Color
-                                                            : AppTheme.secondaryColorLeksell,
-                                                      ),
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.all(30.0),
-                                                        child: SvgPicture.asset(
-                                                          SVGAssets.success,
-                                                          color: themeProvider.currentThemeData!.primaryColor,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(30.0),
+                                                          child: SvgPicture.asset(
+                                                            SVGAssets.success,
+                                                            color: themeProvider.currentThemeData!.primaryColor,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    const SizedBox(height: 24),
-                                                    Text(
-                                                      context.tr.translate('reschedule_appointment'),
-                                                      style: TextStyles.nexaBold.copyWith(
-                                                        color: AppTheme.primaryTextColor,
-                                                        fontSize: 20,
-                                                        fontWeight: FontWeight.w700,
+                                                      const SizedBox(height: 24),
+                                                      Text(
+                                                        context.tr.translate('reschedule_appointment'),
+                                                        style: TextStyles.nexaBold.copyWith(
+                                                          color: AppTheme.primaryTextColor,
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.w700,
+                                                        ),
                                                       ),
-                                                    ),
-                                                    const SizedBox(height: 8),
-                                                    Text(
-                                                      context.tr.translate('reschedule_success'),
-                                                      style: TextStyles.nexaRegular.copyWith(
-                                                        color: AppTheme.secondaryTextColor,
-                                                        fontSize: 16,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(height: 24),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
-                                                      },
-                                                      child: Text(
-                                                        context.tr.translate('my_appointments'),
+                                                      const SizedBox(height: 8),
+                                                      Text(
+                                                        context.tr.translate('reschedule_success'),
                                                         style: TextStyles.nexaRegular.copyWith(
-                                                          decoration: TextDecoration.underline,
-                                                          color: themeProvider.currentThemeData!.primaryColor,
-                                                          decorationColor: themeProvider.currentThemeData!.primaryColor,
+                                                          color: AppTheme.secondaryTextColor,
                                                           fontSize: 16,
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      const SizedBox(height: 24),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushReplacementNamed(
+                                                              context, AppRoutes.bottomBar);
+                                                        },
+                                                        child: Text(
+                                                          context.tr.translate('my_appointments'),
+                                                          style: TextStyles.nexaRegular.copyWith(
+                                                            decoration: TextDecoration.underline,
+                                                            color: themeProvider.currentThemeData!.primaryColor,
+                                                            decorationColor:
+                                                            themeProvider.currentThemeData!.primaryColor,
+                                                            fontSize: 16,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      } else {
-                                        Navigator.pushNamed(context, AppRoutes.firstBookAppointment, arguments: {
-                                          "clinicID": widget.clinicId,
-                                          "doctor": state.doctorDetailsResponse.doctor,
-                                          "date": DateFormat('yyyy-MM-dd').format(_selectedDate),
-                                          "doctorId": widget.doctorId,
-                                          "time": state.doctorDetailsResponse.doctor.schedules!
-                                                  .firstWhere(
-                                                    (element) =>
-                                                        element.shiftDate!.year == _selectedDate.year &&
-                                                        element.shiftDate!.month == _selectedDate.month &&
-                                                        element.shiftDate!.day == _selectedDate.day,
-                                                  )
-                                                  .slots![_selectedTimeSlotIndex!]
-                                                  .timeStart
-                                                  ?.replaceAll(" pm", "")
-                                                  .replaceAll(" am", "") ??
-                                              "",
-                                        });
-                                      }
-                                    } else {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(context.tr.translate('please_select_time_slot')),
-                                      ));
-                                    }
-                                  },
+                                              );
+                                            },
+                                          );
+                                        }
+                                      else if (stateReschedule is RescheduleAppointmentError)
+                                        {
+                                          showCustomSnackBar(context, stateReschedule.message, isError: true,statusCode: stateReschedule.statusCode);
+
+                                        }
+                                    },
+                                    builder: (context, stateReschedule) {
+                                      return CustomGreenButton(
+                                        title: widget.fromBookings != null && widget.fromBookings == true
+                                            ? context.tr.translate('save_changes')
+                                            : context.tr.translate('book_appointment'),
+                                        onPressed: () {
+                                          if (_selectedTimeSlotIndex != null) {
+                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "${context.tr.translate('booked_success')}: ${DateFormat("EE,MMM, yyyy").format(_selectedDate)} ${concatenateSlotTime(state.doctorDetailsResponse.doctor.schedules!.firstWhere(
+                                                        (element) =>
+                                                            element.shiftDate!.year == _selectedDate.year &&
+                                                            element.shiftDate!.month == _selectedDate.month &&
+                                                            element.shiftDate!.day == _selectedDate.day,
+                                                      ).slots![_selectedTimeSlotIndex!])}"),
+                                            ));
+                                            if (widget.fromBookings ?? false) {
+                                              final cubit = sl<RescheduleAppointmentCubit>();
+                                              cubit.rescheduleAppointment(
+                                                  rescheduleAppointmentRequest: RescheduleAppointmentRequest(
+                                                    appointmentID: widget.appointment?.appointmentID ?? "",
+                                                    id: widget.appointment?.id ?? "",
+                                                    dateFrom: "${DateFormat('MM/dd/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
+                                                        .firstWhere(
+                                                          (element) =>
+                                                      element.shiftDate!.year == _selectedDate.year &&
+                                                          element.shiftDate!.month == _selectedDate.month &&
+                                                          element.shiftDate!.day == _selectedDate.day,
+                                                    )
+                                                        .slots![_selectedTimeSlotIndex!]
+                                                        .timeStart
+                                                        ?.replaceAll(" pm", "")
+                                                        .replaceAll(" am", "") ??
+                                                        ""}",
+                                                    dateTo: "${DateFormat('MM/dd/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
+                                                        .firstWhere(
+                                                          (element) =>
+                                                      element.shiftDate!.year == _selectedDate.year &&
+                                                          element.shiftDate!.month == _selectedDate.month &&
+                                                          element.shiftDate!.day == _selectedDate.day,
+                                                    )
+                                                        .slots![_selectedTimeSlotIndex!]
+                                                        .timeEnd
+                                                        ?.replaceAll(" pm", "")
+                                                        .replaceAll(" am", "") ??
+                                                        ""}",
+                                                    scheduleSerial: widget.appointment?.scheduleSerial ?? "",
+                                                  ));
+                                            } else {
+                                              Navigator.pushNamed(context, AppRoutes.firstBookAppointment, arguments: {
+                                                "clinicID": widget.clinicId,
+                                                "doctor": state.doctorDetailsResponse.doctor,
+                                                "date": DateFormat('yyyy-MM-dd').format(_selectedDate),
+                                                "doctorId": widget.doctorId,
+                                                "time": state.doctorDetailsResponse.doctor.schedules!
+                                                        .firstWhere(
+                                                          (element) =>
+                                                              element.shiftDate!.year == _selectedDate.year &&
+                                                              element.shiftDate!.month == _selectedDate.month &&
+                                                              element.shiftDate!.day == _selectedDate.day,
+                                                        )
+                                                        .slots![_selectedTimeSlotIndex!]
+                                                        .timeStart
+                                                        ?.replaceAll(" pm", "")
+                                                        .replaceAll(" am", "") ??
+                                                    "",
+                                              });
+                                            }
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                              content: Text(context.tr.translate('please_select_time_slot')),
+                                            ));
+                                          }
+                                        },
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ),

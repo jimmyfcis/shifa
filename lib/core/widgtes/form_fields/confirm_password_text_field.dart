@@ -90,7 +90,7 @@ class _ConfirmPasswordTextFieldState extends State<ConfirmPasswordTextField> {
             obscuringCharacter: "*",
             validator: FormBuilderValidators.compose(
               <String? Function(String?)>[
-                if (widget.isRequired) (value) => Validators.isNotNullNorEmpty(value, widget.labelText),
+                if (widget.isRequired) (value) => Validators.isNotNullNorEmpty(value, widget.labelText,context),
                     (value) {
                   if (value != widget.passwordController.text) {
                     return "Passwords are not matching, please re-enter the password";

@@ -112,7 +112,7 @@ class CustomTextField extends StatelessWidget {
           validator: FormBuilderValidators.compose(
             <String? Function(String?)>[
               if (isRequired)
-                (value) => Validators.isNotNullNorEmpty(value, labelText),
+                (value) => Validators.isNotNullNorEmpty(value, labelText,context),
               for (final validator in validators)
                 (value) => validator(value, labelText),
             ],

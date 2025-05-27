@@ -85,8 +85,8 @@ class EmailTextField extends StatelessWidget {
           cursorColor: AppTheme.blackColor,
             validator: FormBuilderValidators.compose(
               <String? Function(String?)>[
-                if (isRequired) (value) => Validators.isNotNullNorEmpty(value, labelText),
-                    (value) => Validators.email(value, labelText),
+                if (isRequired) (value) => Validators.isNotNullNorEmpty(value, labelText,context),
+                    (value) => Validators.email(value, labelText,context),
               ],
             ),
             onChanged: onChanged,

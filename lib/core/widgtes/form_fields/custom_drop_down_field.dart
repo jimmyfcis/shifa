@@ -108,7 +108,7 @@ class CustomDropdownField<T> extends StatelessWidget {
           autovalidateMode: AutovalidateMode.disabled,
           validator: (T? value) {
             var validatorsList = <String? Function(T?)>[
-              if (isRequired) (value) => Validators.required(value, labelText),
+              if (isRequired) (value) => Validators.required(value, labelText,context),
               for (final validator in validators) (value) => validator(value, labelText),
             ];
             for (var validator in validatorsList) {

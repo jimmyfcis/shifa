@@ -95,7 +95,7 @@ class CustomDateField extends StatelessWidget {
             initialValue: initialValue,
             validator: FormBuilderValidators.compose(
               <String? Function(DateTime?)>[
-                if (isRequired) (value) => Validators.required(value, labelText),
+                if (isRequired) (value) => Validators.required(value, labelText,context),
                 for (final validator in validators) (value) => validator(value, labelText),
               ],
             ),

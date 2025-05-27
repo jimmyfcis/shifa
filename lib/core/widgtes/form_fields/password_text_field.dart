@@ -97,7 +97,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           obscuringCharacter: "*",
           validator: FormBuilderValidators.compose(
             <String? Function(String?)>[
-              if (widget.isRequired) (value) => Validators.isNotNullNorEmpty(value, widget.labelText),
+              if (widget.isRequired) (value) => Validators.isNotNullNorEmpty(value, widget.labelText,context),
               for (final validator in widget.validators) (value) => validator(value, widget.labelText),
             ],
           ),

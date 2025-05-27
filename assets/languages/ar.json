@@ -108,6 +108,8 @@
   "confirm_password": "تأكيد كلمة المرور",
   "confirm": "تأكيد",
   "reason": "السبب",
+  "invalid_email": "البريد الإلكتروني غير صالح",
+  "required": "الخانة مطلوبه",
   "or_signup_with": "أو قم بالتسجيل باستخدام",
   "agree_to_terms_start": "بالتسجيل فإنك توافق على ",
   "and": "و ",

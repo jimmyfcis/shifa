@@ -100,6 +100,7 @@ class Doctor {
   final String? contractType;
   final String? nameAR;
   final String? gender;
+  final String? image;
   final String? dateOfBirth;
   final String? nationality;
   final String? specialtyID;
@@ -135,6 +136,7 @@ class Doctor {
     this.descriptionEn,
     this.status,
     this.createdAt,
+    this.image,
     this.updatedAt,
     this.description,
     this.name,
@@ -148,6 +150,7 @@ class Doctor {
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
       id: json['id']??"",
+      image: json['image']??"",
       leksell: json['leksell'],
       rate: json['rate'],
       serviceId: json['service_id'],
@@ -189,6 +192,7 @@ class Doctor {
       'contractType': contractType,
       'nameAr': nameAR,
       'gender': gender,
+      'image': image,
       'dateOfBirth': dateOfBirth,
       'nationality': nationality,
       'specialtyID': specialtyID,

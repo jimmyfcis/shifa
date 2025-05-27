@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
+
 class Validators {
   static String? oneOf<T>(List<T> items, T? value, String? fieldName) {
     if (!items.contains(value)) {
@@ -5,25 +8,25 @@ class Validators {
     }
   }
 
-  static String? isNotNullNorEmpty(String? value, String? fieldName) {
+  static String? isNotNullNorEmpty(String? value, String? fieldName,BuildContext context) {
     value = value?.trim();
     if (value == null) {
-      return "${fieldName ?? "This field"} is required.";
+      return "${fieldName ?? "This field"} ${context.tr.translate("required")}";
     }
     if (value.isEmpty) {
-      return "${fieldName ?? "This field"} is required.";
+      return "${fieldName ?? "This field"} ${context.tr.translate("required")}";
     }
     return null;
   }
 
-  static String? required(dynamic value, String? fieldName) {
+  static String? required(dynamic value, String? fieldName,BuildContext context) {
     if (value == null) {
-      return "${fieldName ?? "This field"} is required.";
+      return "${fieldName ?? "This field"} ${context.tr.translate("required")}";
     }
     return null;
   }
 
-  static String? email(String? value, String? fieldName) {
+  static String? email(String? value, String? fieldName,BuildContext context) {
     value = value?.trim().toLowerCase();
     if (value == null) {
       return null;
@@ -32,7 +35,7 @@ class Validators {
     if (!RegExp(r"^(?:[a-z0-9_-]+(?:\.[a-z0-9_-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+)$")
         .hasMatch(value) ||
         strList[0].length > 64) {
-      return "Invalid Email";
+      return context.tr.translate("invalid_email");
     }
     return null;
   }

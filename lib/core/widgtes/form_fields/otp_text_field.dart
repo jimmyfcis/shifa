@@ -47,7 +47,7 @@ class OTPTextField extends StatelessWidget {
       initialValue: initialValue,
       validator: FormBuilderValidators.compose(
         <String? Function(String?)>[
-          if (isRequired) (value) => Validators.isNotNullNorEmpty(value, labelText),
+          if (isRequired) (value) => Validators.isNotNullNorEmpty(value, labelText,context),
           for (final validator in validators) (value) => validator(value, labelText),
         ],
       ),

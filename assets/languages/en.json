@@ -177,6 +177,8 @@
   "visit_type": "Type",
   "confirm": "Confirm",
   "reason": "Reason",
+  "invalid_email": "Invalid Email",
+  "required": "is required.",
   "specialty": "Specialty",
   "no_visits": "'No visits found'",
   "complaints": "Complaints",
