@@ -90,7 +90,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
             return cubit;
           },
           child: BlocConsumer<DoctorCubit, DoctorState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+             if(state is DoctorFailure) showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
+            },
             builder: (context, state) {
               final locale = Localizations.localeOf(context);
               final isArabic = locale.languageCode == 'ar';
@@ -376,6 +378,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                 padding: const EdgeInsets.only(top: 10.0, left: 24, right: 24, bottom: 20),
                                 child: BlocProvider(
                                   create: (context) => sl<RescheduleAppointmentCubit>(),
+                                  lazy: false,
                                   child: BlocConsumer<RescheduleAppointmentCubit, RescheduleAppointmentState>(
                                     listener: (context, stateReschedule) {
                                       if(stateReschedule is RescheduleAppointmentSuccess)
@@ -483,12 +486,11 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                       ).slots![_selectedTimeSlotIndex!])}"),
                                             ));
                                             if (widget.fromBookings ?? false) {
-                                              final cubit = sl<RescheduleAppointmentCubit>();
-                                              cubit.rescheduleAppointment(
+                                              context.read<RescheduleAppointmentCubit>().rescheduleAppointment(
                                                   rescheduleAppointmentRequest: RescheduleAppointmentRequest(
                                                     appointmentID: widget.appointment?.appointmentID ?? "",
                                                     id: widget.appointment?.id ?? "",
-                                                    dateFrom: "${DateFormat('MM/dd/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
+                                                    dateFrom: "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
                                                         .firstWhere(
                                                           (element) =>
                                                       element.shiftDate!.year == _selectedDate.year &&
@@ -499,8 +501,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                         .timeStart
                                                         ?.replaceAll(" pm", "")
                                                         .replaceAll(" am", "") ??
-                                                        ""}",
-                                                    dateTo: "${DateFormat('MM/dd/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
+                                                        ""}:00",
+                                                    dateTo: "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
                                                         .firstWhere(
                                                           (element) =>
                                                       element.shiftDate!.year == _selectedDate.year &&
@@ -511,7 +513,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                         .timeEnd
                                                         ?.replaceAll(" pm", "")
                                                         .replaceAll(" am", "") ??
-                                                        ""}",
+                                                        ""}:00",
                                                     scheduleSerial: widget.appointment?.scheduleSerial ?? "",
                                                   ));
                                             } else {
