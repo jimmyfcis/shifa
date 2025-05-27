@@ -27,10 +27,11 @@ class SecondBookingScreen extends StatefulWidget {
       required this.time,
       required this.mobile,
       required this.name,
-      required this.doctor});
+      required this.doctor, this.image});
 
   final String clinicID;
   final String doctorId;
+  final String? image;
   final String date;
   final String time;
   final String mobile;
@@ -109,6 +110,7 @@ class _SecondBookingScreenState extends State<SecondBookingScreen> {
                             themeProvider: themeProvider,
                             date: widget.date,
                             time: widget.time,
+                            image: widget.image??"",
                             doctor: widget.doctor,
                           ),
                           // SizedBox(height: 30.h),

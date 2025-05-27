@@ -28,21 +28,29 @@ class DoctorCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    ImageAssets.drWaleedImg,
+                  child: appointment.doctor?.image != null && appointment.doctor!.image!.isNotEmpty
+                      ? Image.network(
+                    appointment.doctor?.image ?? "",
                     fit: BoxFit.fitHeight,
+                    width: 46.w,
+                    height: 46.h,
+                  )
+                      : Image.asset(
+                    ImageAssets.drWaleedImg,
                     width: 46.w,
                     height: 46.h,
                   ),
                 ),
                 SizedBox(
-                  width: 12.w,
+                  width: 24.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

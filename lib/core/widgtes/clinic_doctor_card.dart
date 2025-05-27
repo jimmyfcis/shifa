@@ -44,9 +44,15 @@ class ClinicDoctorCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    ImageAssets.drWaleedImg,
+                  child: doctor?.image != null && doctor!.image!.isNotEmpty
+                      ? Image.network(
+                    doctor?.image ?? "",
                     fit: BoxFit.fitHeight,
+                    width: 46.w,
+                    height: 46.h,
+                  )
+                      : Image.asset(
+                    ImageAssets.drWaleedImg,
                     width: 46.w,
                     height: 46.h,
                   ),
@@ -79,47 +85,47 @@ class ClinicDoctorCard extends StatelessWidget {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            SVGAssets.star,
-                            width: 16.w,
-                            height: 16.h,
-                          ),
-                          SizedBox(
-                            width: 4.w,
-                          ),
-                          Text(
-                            doctor?.rate??"5",
-                            style: TextStyles.nexaRegular.copyWith(
-                              fontSize: 12.sp,
-                              color: AppTheme.primaryTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     SvgPicture.asset(
+                      //       SVGAssets.star,
+                      //       width: 16.w,
+                      //       height: 16.h,
+                      //     ),
+                      //     SizedBox(
+                      //       width: 4.w,
+                      //     ),
+                      //     Text(
+                      //       doctor?.rate??"5",
+                      //       style: TextStyles.nexaRegular.copyWith(
+                      //         fontSize: 12.sp,
+                      //         color: AppTheme.primaryTextColor,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       SizedBox(
                         height: 8.h,
                       ),
-                      Row(
-                        children: [
-                          SvgPicture.asset(
-                            SVGAssets.money,
-                            width: 16.w,
-                            height: 16.h,
-                          ),
-                          SizedBox(
-                            width: 4.w,
-                          ),
-                          Text(
-                            '750 EGP',
-                            style: TextStyles.nexaRegular.copyWith(
-                              fontSize: 12.sp,
-                              color: AppTheme.primaryTextColor,
-                            ),
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   children: [
+                      //     SvgPicture.asset(
+                      //       SVGAssets.money,
+                      //       width: 16.w,
+                      //       height: 16.h,
+                      //     ),
+                      //     SizedBox(
+                      //       width: 4.w,
+                      //     ),
+                      //     Text(
+                      //       '750 EGP',
+                      //       style: TextStyles.nexaRegular.copyWith(
+                      //         fontSize: 12.sp,
+                      //         color: AppTheme.primaryTextColor,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

@@ -3,16 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shifa/core/models/doctor_model.dart';
 
+import '../../../core/assets/images/image_assets.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
 class DoctorSecondBookingCard extends StatelessWidget {
   const DoctorSecondBookingCard({
     super.key,
-    required this.themeProvider, required this.date, required this.time, required this.doctor,
+    required this.themeProvider, required this.date, required this.time, required this.doctor, this.image,
   });
 
   final String date;
+  final String? image;
   final String time;
   final Doctor doctor;
 
@@ -44,7 +46,23 @@ class DoctorSecondBookingCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset("assets/svg/icons/docpng.png"),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child:image != null &&
+                      image!.isNotEmpty
+                      ? Image.network(
+                    image ?? "",
+                    fit: BoxFit.fitHeight,
+                    width: 50.w,
+                    height: 50.h,
+                  )
+                      : Image.asset(
+                    ImageAssets.drWaleedImg,
+                    fit: BoxFit.fitHeight,
+                    width: 50.w,
+                    height: 50.h,
+                  ),
+                ),
                 const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,19 +84,19 @@ class DoctorSecondBookingCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        SvgPicture.asset(SVGAssets.money),
-                        const SizedBox(width: 4),
-                        Text(
-                          "750 EGP",
-                          style: TextStyles.nexaRegular.copyWith(
-                            color: AppTheme.grey7Color,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     SvgPicture.asset(SVGAssets.money),
+                    //     const SizedBox(width: 4),
+                    //     Text(
+                    //       "750 EGP",
+                    //       style: TextStyles.nexaRegular.copyWith(
+                    //         color: AppTheme.grey7Color,
+                    //         fontSize: 12.sp,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 24.h),
                   ],
                 ),

@@ -105,6 +105,7 @@ class AppRouter {
             date: arguments['date'],
             doctorId: arguments['doctorId'],
             time: arguments['time'],
+            image: arguments['image'],
             mobile: arguments['mobile'],
             name: arguments['name'],
             doctor: arguments['doctor'],
@@ -156,6 +157,7 @@ class AppRouter {
                   clinicID: arguments['clinicID'],
                   date: arguments['date'],
                   doctorId: arguments['doctorId'],
+                  image: arguments['image'],
                   time: arguments['time'],
                   doctor: arguments['doctor'],
                 ));

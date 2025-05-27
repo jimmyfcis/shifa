@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'package:shifa/features/Booking/data/models/appointment_model.dart';
 import 'package:shifa/features/Booking/data/models/reschedule_appointment_model.dart';
 import 'package:shifa/features/Booking/presentation/cubit/reschedule_appointment_cubit.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
+import '../../../core/assets/images/image_assets.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/models/doctor_model.dart';
 import '../../../core/network/injection_container.dart';
@@ -91,7 +93,8 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
           },
           child: BlocConsumer<DoctorCubit, DoctorState>(
             listener: (context, state) {
-             if(state is DoctorFailure) showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
+              if (state is DoctorFailure)
+                showCustomSnackBar(context, state.message, isError: true, statusCode: state.statusCode);
             },
             builder: (context, state) {
               final locale = Localizations.localeOf(context);
@@ -115,8 +118,24 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Image.asset("assets/svg/icons/docpng.png"),
-                                          const SizedBox(width: 8),
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(8.0),
+                                            child:state.doctorDetailsResponse.doctor.image != null &&
+                                                  state.doctorDetailsResponse.doctor.image!.isNotEmpty
+                                              ? Image.network(
+                                                  state.doctorDetailsResponse.doctor.image ?? "",
+                                            fit: BoxFit.fitHeight,
+                                            width: 50.w,
+                                            height: 50.h,
+                                                )
+                                              : Image.asset(
+                                                  ImageAssets.drWaleedImg,
+                                            fit: BoxFit.fitHeight,
+                                            width: 50.w,
+                                            height: 50.h,
+                                                ),
+                                          ),
+                                          const SizedBox(width: 16),
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
@@ -141,33 +160,33 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                 ),
                                               ),
                                               const SizedBox(height: 8),
-                                              Row(
-                                                children: [
-                                                  SvgPicture.asset(SVGAssets.star),
-                                                  const SizedBox(width: 4),
-                                                  Text(
-                                                    state.doctorDetailsResponse.doctor.rate ?? "",
-                                                    style: TextStyles.nexaRegular.copyWith(
-                                                      color: AppTheme.secondaryTextColor,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                              // Row(
+                                              //   children: [
+                                              //     SvgPicture.asset(SVGAssets.star),
+                                              //     const SizedBox(width: 4),
+                                              //     Text(
+                                              //       state.doctorDetailsResponse.doctor.rate ?? "",
+                                              //       style: TextStyles.nexaRegular.copyWith(
+                                              //         color: AppTheme.secondaryTextColor,
+                                              //         fontSize: 14,
+                                              //       ),
+                                              //     ),
+                                              //   ],
+                                              // ),
                                               const SizedBox(height: 8),
-                                              Row(
-                                                children: [
-                                                  SvgPicture.asset(SVGAssets.money),
-                                                  const SizedBox(width: 4),
-                                                  Text(
-                                                    "750 EGP",
-                                                    style: TextStyles.nexaRegular.copyWith(
-                                                      color: AppTheme.grey7Color,
-                                                      fontSize: 12,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                              // Row(
+                                              //   children: [
+                                              //     SvgPicture.asset(SVGAssets.money),
+                                              //     const SizedBox(width: 4),
+                                              //     Text(
+                                              //       "750 EGP",
+                                              //       style: TextStyles.nexaRegular.copyWith(
+                                              //         color: AppTheme.grey7Color,
+                                              //         fontSize: 12,
+                                              //       ),
+                                              //     ),
+                                              //   ],
+                                              // ),
                                             ],
                                           ),
                                         ],
@@ -381,93 +400,88 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                   lazy: false,
                                   child: BlocConsumer<RescheduleAppointmentCubit, RescheduleAppointmentState>(
                                     listener: (context, stateReschedule) {
-                                      if(stateReschedule is RescheduleAppointmentSuccess)
-                                        {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return Dialog(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(16),
+                                      if (stateReschedule is RescheduleAppointmentSuccess) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Dialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16),
+                                              ),
+                                              child: Container(
+                                                decoration: const BoxDecoration(
+                                                  color: AppTheme.whiteColor,
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(16.0),
+                                                  ),
                                                 ),
-                                                child: Container(
-                                                  decoration: const BoxDecoration(
-                                                    color: AppTheme.whiteColor,
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(16.0),
+                                                constraints: const BoxConstraints(
+                                                  minWidth: 100,
+                                                  minHeight: 50,
+                                                ),
+                                                padding: const EdgeInsets.all(32),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: const BorderRadius.all(
+                                                          Radius.circular(50.0),
+                                                        ),
+                                                        color: themeProvider.currentTheme == ThemeEnum.shifa
+                                                            ? AppTheme.green4Color
+                                                            : AppTheme.secondaryColorLeksell,
+                                                      ),
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.all(30.0),
+                                                        child: SvgPicture.asset(
+                                                          SVGAssets.success,
+                                                          color: themeProvider.currentThemeData!.primaryColor,
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  constraints: const BoxConstraints(
-                                                    minWidth: 100,
-                                                    minHeight: 50,
-                                                  ),
-                                                  padding: const EdgeInsets.all(32),
-                                                  child: Column(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: const BorderRadius.all(
-                                                            Radius.circular(50.0),
-                                                          ),
-                                                          color: themeProvider.currentTheme == ThemeEnum.shifa
-                                                              ? AppTheme.green4Color
-                                                              : AppTheme.secondaryColorLeksell,
-                                                        ),
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.all(30.0),
-                                                          child: SvgPicture.asset(
-                                                            SVGAssets.success,
-                                                            color: themeProvider.currentThemeData!.primaryColor,
-                                                          ),
-                                                        ),
+                                                    const SizedBox(height: 24),
+                                                    Text(
+                                                      context.tr.translate('reschedule_appointment'),
+                                                      style: TextStyles.nexaBold.copyWith(
+                                                        color: AppTheme.primaryTextColor,
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.w700,
                                                       ),
-                                                      const SizedBox(height: 24),
-                                                      Text(
-                                                        context.tr.translate('reschedule_appointment'),
-                                                        style: TextStyles.nexaBold.copyWith(
-                                                          color: AppTheme.primaryTextColor,
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.w700,
-                                                        ),
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Text(
+                                                      context.tr.translate('reschedule_success'),
+                                                      style: TextStyles.nexaRegular.copyWith(
+                                                        color: AppTheme.secondaryTextColor,
+                                                        fontSize: 16,
                                                       ),
-                                                      const SizedBox(height: 8),
-                                                      Text(
-                                                        context.tr.translate('reschedule_success'),
+                                                    ),
+                                                    const SizedBox(height: 24),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+                                                      },
+                                                      child: Text(
+                                                        context.tr.translate('my_appointments'),
                                                         style: TextStyles.nexaRegular.copyWith(
-                                                          color: AppTheme.secondaryTextColor,
+                                                          decoration: TextDecoration.underline,
+                                                          color: themeProvider.currentThemeData!.primaryColor,
+                                                          decorationColor: themeProvider.currentThemeData!.primaryColor,
                                                           fontSize: 16,
                                                         ),
                                                       ),
-                                                      const SizedBox(height: 24),
-                                                      InkWell(
-                                                        onTap: () {
-                                                          Navigator.pushReplacementNamed(
-                                                              context, AppRoutes.bottomBar);
-                                                        },
-                                                        child: Text(
-                                                          context.tr.translate('my_appointments'),
-                                                          style: TextStyles.nexaRegular.copyWith(
-                                                            decoration: TextDecoration.underline,
-                                                            color: themeProvider.currentThemeData!.primaryColor,
-                                                            decorationColor:
-                                                            themeProvider.currentThemeData!.primaryColor,
-                                                            fontSize: 16,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              );
-                                            },
-                                          );
-                                        }
-                                      else if (stateReschedule is RescheduleAppointmentError)
-                                        {
-                                          showCustomSnackBar(context, stateReschedule.message, isError: true,statusCode: stateReschedule.statusCode);
-
-                                        }
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      } else if (stateReschedule is RescheduleAppointmentError) {
+                                        showCustomSnackBar(context, stateReschedule.message,
+                                            isError: true, statusCode: stateReschedule.statusCode);
+                                      }
                                     },
                                     builder: (context, stateReschedule) {
                                       return CustomGreenButton(
@@ -487,39 +501,29 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             ));
                                             if (widget.fromBookings ?? false) {
                                               context.read<RescheduleAppointmentCubit>().rescheduleAppointment(
-                                                  rescheduleAppointmentRequest: RescheduleAppointmentRequest(
+                                                      rescheduleAppointmentRequest: RescheduleAppointmentRequest(
                                                     appointmentID: widget.appointment?.appointmentID ?? "",
                                                     id: widget.appointment?.id ?? "",
-                                                    dateFrom: "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
-                                                        .firstWhere(
+                                                    dateFrom:
+                                                        "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!.firstWhere(
+                                                              (element) =>
+                                                                  element.shiftDate!.year == _selectedDate.year &&
+                                                                  element.shiftDate!.month == _selectedDate.month &&
+                                                                  element.shiftDate!.day == _selectedDate.day,
+                                                            ).slots![_selectedTimeSlotIndex!].timeStart?.replaceAll(" pm", "").replaceAll(" am", "") ?? ""}:00",
+                                                    dateTo: "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!.firstWhere(
                                                           (element) =>
-                                                      element.shiftDate!.year == _selectedDate.year &&
-                                                          element.shiftDate!.month == _selectedDate.month &&
-                                                          element.shiftDate!.day == _selectedDate.day,
-                                                    )
-                                                        .slots![_selectedTimeSlotIndex!]
-                                                        .timeStart
-                                                        ?.replaceAll(" pm", "")
-                                                        .replaceAll(" am", "") ??
-                                                        ""}:00",
-                                                    dateTo: "${DateFormat('dd/MM/yyyy').format(_selectedDate)} ${state.doctorDetailsResponse.doctor.schedules!
-                                                        .firstWhere(
-                                                          (element) =>
-                                                      element.shiftDate!.year == _selectedDate.year &&
-                                                          element.shiftDate!.month == _selectedDate.month &&
-                                                          element.shiftDate!.day == _selectedDate.day,
-                                                    )
-                                                        .slots![_selectedTimeSlotIndex!]
-                                                        .timeEnd
-                                                        ?.replaceAll(" pm", "")
-                                                        .replaceAll(" am", "") ??
-                                                        ""}:00",
+                                                              element.shiftDate!.year == _selectedDate.year &&
+                                                              element.shiftDate!.month == _selectedDate.month &&
+                                                              element.shiftDate!.day == _selectedDate.day,
+                                                        ).slots![_selectedTimeSlotIndex!].timeEnd?.replaceAll(" pm", "").replaceAll(" am", "") ?? ""}:00",
                                                     scheduleSerial: widget.appointment?.scheduleSerial ?? "",
                                                   ));
                                             } else {
                                               Navigator.pushNamed(context, AppRoutes.firstBookAppointment, arguments: {
                                                 "clinicID": widget.clinicId,
                                                 "doctor": state.doctorDetailsResponse.doctor,
+                                                "image": state.doctorDetailsResponse.doctor.image??"",
                                                 "date": DateFormat('yyyy-MM-dd').format(_selectedDate),
                                                 "doctorId": widget.doctorId,
                                                 "time": state.doctorDetailsResponse.doctor.schedules!

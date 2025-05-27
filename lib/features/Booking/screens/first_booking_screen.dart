@@ -19,9 +19,10 @@ import '../../Doctors/widgets/booking_step_indicator.dart';
 import '../../Doctors/widgets/my_self_booking_details.dart';
 
 class FirstBookingScreen extends StatefulWidget {
-  const FirstBookingScreen({super.key, required this.clinicID, required this.doctorId, required this.date, required this.time, required this.doctor});
+  const FirstBookingScreen({super.key, required this.clinicID, required this.doctorId, required this.date, required this.time, required this.doctor, this.image});
   final String clinicID;
   final String doctorId;
+  final String? image;
   final String date;
   final String time;
   final Doctor doctor;
@@ -111,6 +112,7 @@ class _FirstBookingScreenState extends State<FirstBookingScreen> {
                               "date": widget.date,
                               "doctorId": widget.doctorId,
                               "time": widget.time,
+                              "image": widget.image??"",
                               "name": _userName,
                               "mobile": _phoneNumber,
                               "doctor": widget.doctor,
@@ -133,6 +135,7 @@ class _FirstBookingScreenState extends State<FirstBookingScreen> {
                               "clinicID": widget.clinicID,
                               "date": widget.date,
                               "doctorId": widget.doctorId,
+                              "image": widget.image??"",
                               "time": widget.time,
                               "name": formValues['name'],
                               "doctor": widget.doctor,

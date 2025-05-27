@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
-import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -109,39 +107,39 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
                               color: AppTheme.secondaryTextColor,
                             ),
                           ),
-                          const Spacer(),
-                          Container(
-                            width: 45.w,
-                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                            decoration: BoxDecoration(
-                              color: themeProvider.currentTheme == ThemeEnum.shifa
-                                  ? AppTheme.billColor
-                                  : AppTheme.secondaryColorLeksell,
-                              borderRadius: BorderRadius.circular(4.r),
-                            ),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SVGAssets.star,
-                                  color: themeProvider.currentTheme == ThemeEnum.shifa
-                                      ? AppTheme.shifaPrimaryColor
-                                      : AppTheme.leksellPrimaryColor,
-                                ),
-                                SizedBox(
-                                  width: 2.w,
-                                ),
-                                Text(
-                                  doctor.rate??"",
-                                  style: TextStyles.nexaRegular.copyWith(
-                                    fontSize: 12.sp,
-                                    color: themeProvider.currentTheme == ThemeEnum.shifa
-                                        ? AppTheme.shifaPrimaryColor
-                                        : AppTheme.leksellPrimaryColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
+                          // const Spacer(),
+                          // Container(
+                          //   width: 45.w,
+                          //   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                          //   decoration: BoxDecoration(
+                          //     color: themeProvider.currentTheme == ThemeEnum.shifa
+                          //         ? AppTheme.billColor
+                          //         : AppTheme.secondaryColorLeksell,
+                          //     borderRadius: BorderRadius.circular(4.r),
+                          //   ),
+                          //   child: Row(
+                          //     children: [
+                          //       SvgPicture.asset(
+                          //         SVGAssets.star,
+                          //         color: themeProvider.currentTheme == ThemeEnum.shifa
+                          //             ? AppTheme.shifaPrimaryColor
+                          //             : AppTheme.leksellPrimaryColor,
+                          //       ),
+                          //       SizedBox(
+                          //         width: 2.w,
+                          //       ),
+                          //       Text(
+                          //         doctor.rate??"",
+                          //         style: TextStyles.nexaRegular.copyWith(
+                          //           fontSize: 12.sp,
+                          //           color: themeProvider.currentTheme == ThemeEnum.shifa
+                          //               ? AppTheme.shifaPrimaryColor
+                          //               : AppTheme.leksellPrimaryColor,
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // )
                         ],
                       ),
                     );

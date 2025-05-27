@@ -44,14 +44,19 @@ class AppointmentCard extends StatelessWidget {
               children: [
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      ImageAssets.drWaleedImg,
-                      fit: BoxFit.fitHeight,
-                      width: 46.w,
-                      height: 46.h,
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: appointment.doctor?.image != null && appointment.doctor!.image!.isNotEmpty
+                          ? Image.network(
+                              appointment.doctor?.image ?? "",
+                              fit: BoxFit.fitHeight,
+                              width: 46.w,
+                              height: 46.h,
+                            )
+                          : Image.asset(
+                              ImageAssets.drWaleedImg,
+                              width: 46.w,
+                              height: 46.h,
+                            )),
                 ),
                 SizedBox(
                   width: 12.w,
