@@ -169,6 +169,7 @@
   "early_protection_title": "حماية مبكرة\nلصحة عائلتك",
   "learn_more": "اعرف المزيد",
   "ambulance": "الإسعاف",
+  "ambulance_info_message": "أرسل لنا معلوماتك وسنتواصل معك قريباً.",
   "radiotherapy": "العلاج الإشعاعي",
   "chemotherapy": "العلاج الكيميائي",
   "blog_details": "تفاصيل المدونة",
@@ -196,5 +197,16 @@
   "booked_success": "تم اختيار",
   "booking_success": "تم الحجز بنجاح",
   "appointment_booked_success": "تم حجز موعدك بنجاح.",
-  "booking_number_is": "رقم الحجز الخاص بك هو:"
+  "booking_number_is": "رقم الحجز الخاص بك هو:",
+  "address_details": "تفاصيل العنوان",
+  "address_details_hint": "اسم الشارع",
+  "floor_number": "رقم الطابق",
+  "floor_number_hint": "أدخل عنوانك",
+  "patient_name": "اسم المريض",
+  "patient_name_hint": "أدخل اسم المريض",
+  "patient_condition": "وصف حالة المريض",
+  "patient_condition_hint": "أدخل حالة المريض",
+  "additional_notes": "ملاحظات إضافية",
+  "additional_notes_hint": "أضف أي ملاحظات إضافية هنا",
+  "send_request": "إرسال الطلب"
 } 

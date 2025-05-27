@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 
 import '../../../../core/theme/theme.dart';
 import '../../../../core/utils/validators.dart';
@@ -29,7 +30,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild: const CommonAppBarTitle(title: "Ambulance"),
+      appBarChild: CommonAppBarTitle(title: context.tr.translate('ambulance')),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
@@ -42,9 +43,9 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
           children: [
             SizedBox(height: 34.h),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal:24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                "Send us your info and we will contact you soon.",
+                context.tr.translate('ambulance_info_message'),
                 style: TextStyles.nexaRegular.copyWith(
                   color: AppTheme.grey5Color,
                   fontSize: 12.sp,
@@ -57,34 +58,34 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
                     children: [
-                      const CustomTextField(
-                        labelText: 'Building number',
+                      CustomTextField(
+                        labelText: context.tr.translate('building_number'),
                         name: 'building',
                         isRequired: true,
                         textInputType: TextInputType.number,
-                        hintText: 'Enter your address',
+                        hintText: context.tr.translate('building_number_hint'),
                       ),
                       SizedBox(height: 24.h),
-                      const CustomTextField(
-                        labelText: 'Address details',
+                      CustomTextField(
+                        labelText: context.tr.translate('address_details'),
                         name: 'address',
                         isRequired: true,
-                        hintText: 'street name',
+                        hintText: context.tr.translate('address_details_hint'),
                       ),
                       SizedBox(height: 24.h),
-                      const CustomTextField(
-                        labelText: 'Floor number',
+                      CustomTextField(
+                        labelText: context.tr.translate('floor_number'),
                         name: 'floor',
                         isRequired: true,
                         textInputType: TextInputType.number,
-                        hintText: 'Enter your address',
+                        hintText: context.tr.translate('floor_number_hint'),
                       ),
                       SizedBox(height: 24.h),
-                      const CustomTextField(
-                        labelText: 'Patient name',
+                      CustomTextField(
+                        labelText: context.tr.translate('patient_name'),
                         name: 'patient',
                         isRequired: true,
-                        hintText: 'Enter Patient name',
+                        hintText: context.tr.translate('patient_name_hint'),
                       ),
                       SizedBox(height: 24.h),
                       PhoneNumberField(
@@ -99,18 +100,18 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
                         },
                       ),
                       SizedBox(height: 24.h),
-                      const CustomTextField(
-                        labelText: 'Patient condition description',
+                      CustomTextField(
+                        labelText: context.tr.translate('patient_condition'),
                         name: 'condition',
                         isRequired: true,
-                        hintText: 'Enter Patient condition',
+                        hintText: context.tr.translate('patient_condition_hint'),
                       ),
                       SizedBox(height: 24.h),
-                      const CustomTextField(
-                        labelText: 'Additional Notes',
+                      CustomTextField(
+                        labelText: context.tr.translate('additional_notes'),
                         name: 'condition',
                         isRequired: false,
-                        hintText: 'Add any additional notes here',
+                        hintText: context.tr.translate('additional_notes_hint'),
                       ),
                     ],
                   ),
@@ -125,7 +126,7 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
                 child: CustomGreenButton(
-                  title: "Send Request",
+                  title: context.tr.translate('send_request'),
                   onPressed: () {
                     Navigator.pop(context);
                   },
