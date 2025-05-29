@@ -60,6 +60,13 @@ import 'package:shifa/features/Booking/presentation/cubit/cancel_appointment_cub
 import 'package:shifa/features/Booking/domain/usecases/reschedule_appointment_usecase.dart';
 import 'package:shifa/features/Booking/presentation/cubit/reschedule_appointment_cubit.dart';
 
+import '../../features/departments/data/datasources/departments_remote_data_source.dart';
+import '../../features/departments/data/repositories/departments_repository_impl.dart';
+import '../../features/departments/domain/repositories/departments_repository.dart';
+import '../../features/departments/domain/usecases/get_all_departments.dart';
+import '../../features/departments/domain/usecases/get_department_by_id.dart';
+import '../../features/departments/presentation/cubit/departments_cubit.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -68,6 +75,9 @@ Future<void> init() async {
 
   // Data sources
 
+  sl.registerLazySingleton<DepartmentsRemoteDataSource>(
+        () => DepartmentsRemoteDataSourceImpl(),
+  );
   sl.registerLazySingleton<RecordsRemoteDataSource>(
         () => RecordsRemoteDataSourceImpl(),
   );
@@ -103,6 +113,12 @@ Future<void> init() async {
   sl.registerLazySingleton<DoctorRepository>(
     () => DoctorRepositoryImpl(
       doctorRemoteDataSource: sl<DoctorRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<DepartmentsRepository>(
+        () => DepartmentsRepositoryImpl(
+          remoteDataSource : sl<DepartmentsRemoteDataSource>(),
     ),
   );
 
@@ -158,6 +174,14 @@ Future<void> init() async {
     () => GetDoctorDetailsUseCase(sl<DoctorRepository>()),
   );
 
+  sl.registerLazySingleton<GetAllDepartments>(
+        () => GetAllDepartments(sl<DepartmentsRepository>()),
+  );
+
+  sl.registerLazySingleton<GetDepartmentById>(
+        () => GetDepartmentById(sl<DepartmentsRepository>()),
+  );
+
   sl.registerLazySingleton<GetRecordsUseCase>(
         () => GetRecordsUseCase(sl<RecordsRepository>()),
   );
@@ -203,6 +227,12 @@ Future<void> init() async {
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
     () => DoctorCubit(getDoctorDetailsUseCase: sl<GetDoctorDetailsUseCase>()),
+  );
+
+  sl.registerFactory<DepartmentsCubit>(
+        () => DepartmentsCubit(
+            getAllDepartments: sl<GetAllDepartments>(),
+            getDepartmentById: sl<GetDepartmentById>()),
   );
   sl.registerFactory<RecordsCubit>(
         () => RecordsCubit(getRecordsUseCase: sl<GetRecordsUseCase>()),

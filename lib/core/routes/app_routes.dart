@@ -42,4 +42,6 @@ class AppRoutes {
   static const String verifyOTP = '/verifyOTP';
   static const String myFavorite = '/myFavorite';
   static const String myVisits = '/myVisits';
+  static const String departments = '/departments';
+  static const String departmentDetails = '/departmentDetails';
 }

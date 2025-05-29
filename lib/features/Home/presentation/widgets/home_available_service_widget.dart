@@ -23,7 +23,7 @@ class HomeAvailableService extends StatelessWidget {
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsShifaIcon),
       ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.monitorQueueShifaIcon),
       ServiceModel(
-          title: context.tr.translate("physical_therapy"), icon: SVGAssets.physicalTherapyShifaIcon),
+          title: context.tr.translate("departments"), icon: SVGAssets.physicalTherapyShifaIcon),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceShifa),
     ];
     List<ServiceModel> leksellServiceModel = [
@@ -73,9 +73,11 @@ class HomeAvailableService extends StatelessWidget {
                               context, AppRoutes.firstQueueScreen);
                         } else if (shifaServiceModel[index]
                                 .title ==
-                            context.tr.translate("physical_therapy")) {
-                          BlocProvider.of<BottomBarCubit>(context)
-                              .updateIndex(2);
+                            context.tr.translate("departments")) {
+                          // BlocProvider.of<BottomBarCubit>(context)
+                          //     .updateIndex(2);
+                          Navigator.pushNamed(
+                              context, AppRoutes.departments);
                         }
                       },
                       title: shifaServiceModel[index].title,

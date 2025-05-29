@@ -181,6 +181,8 @@
   "session_expired": "Session Expired",
   "session_expired_desc": "Your session expired. Please login to continue.",
   "reason": "Reason",
+  "view_details": "View Details",
+  "departments": "Departments",
   "error": "Something went wrong. Please try again.",
   "invalid_email": "Invalid Email",
   "required": "is required.",

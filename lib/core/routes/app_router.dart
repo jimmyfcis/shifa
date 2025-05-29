@@ -27,6 +27,7 @@ import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_scree
 import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/new_vaccine_reminder.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
+import 'package:shifa/features/departments/presentation/screens/department_details_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
@@ -45,6 +46,7 @@ import '../../features/authentication/presentation/screens/forget_password_scree
 import '../../features/authentication/presentation/screens/login_screen.dart';
 import '../../features/authentication/presentation/screens/register_screen.dart';
 import '../../features/authentication/presentation/screens/verify_code_screen.dart';
+import '../../features/departments/presentation/screens/departments_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';
 
@@ -52,7 +54,7 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.splash:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case AppRoutes.bottomBar:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -61,42 +63,42 @@ class AppRouter {
           ),
         );
       case AppRoutes.home:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case AppRoutes.languageSplash:
-        return MaterialPageRoute(builder: (_) => LanguageSplashScreen());
+        return MaterialPageRoute(builder: (_) => const LanguageSplashScreen());
       case AppRoutes.onboardingScreen:
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:
-        return MaterialPageRoute(builder: (_) => ProfileScreen());
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       case AppRoutes.editProfile:
-        return MaterialPageRoute(builder: (_) => EditMyProfileScreen());
+        return MaterialPageRoute(builder: (_) => const EditMyProfileScreen());
       case AppRoutes.myCare:
-        return MaterialPageRoute(builder: (_) => MyCareScreen());
+        return MaterialPageRoute(builder: (_) => const MyCareScreen());
 
       case AppRoutes.privacyPolicy:
-        return MaterialPageRoute(builder: (_) => PrivacyPolicyScreen());
+        return MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen());
       case AppRoutes.termsAndConditions:
-        return MaterialPageRoute(builder: (_) => TermsAndConditionsScreen());
+        return MaterialPageRoute(builder: (_) => const TermsAndConditionsScreen());
       case AppRoutes.settings:
-        return MaterialPageRoute(builder: (_) => SettingsScreen());
+        return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case AppRoutes.forgetPassword:
-        return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case AppRoutes.contactUs:
-        return MaterialPageRoute(builder: (_) => ContactUsScreen());
+        return MaterialPageRoute(builder: (_) => const ContactUsScreen());
 
       case AppRoutes.login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case AppRoutes.firstQueueScreen:
-        return MaterialPageRoute(builder: (_) => FirstQueueScreen());
+        return MaterialPageRoute(builder: (_) => const FirstQueueScreen());
       case AppRoutes.secondQueueScreen:
-        return MaterialPageRoute(builder: (_) => SecondQueueScreen());
+        return MaterialPageRoute(builder: (_) => const SecondQueueScreen());
       case AppRoutes.register:
-        return MaterialPageRoute(builder: (_) => RegisterScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case AppRoutes.verifyOTP:
-        return MaterialPageRoute(builder: (_) => VerificationCodeScreen());
+        return MaterialPageRoute(builder: (_) => const VerificationCodeScreen());
       case AppRoutes.ambulance:
-        return MaterialPageRoute(builder: (_) => AmbulanceScreen());
+        return MaterialPageRoute(builder: (_) => const AmbulanceScreen());
       case AppRoutes.secondBookingScreen:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -112,7 +114,9 @@ class AppRouter {
           ),
         );
       case AppRoutes.blogs:
-        return MaterialPageRoute(builder: (_) => BlogsScreen());
+        return MaterialPageRoute(builder: (_) => const BlogsScreen());
+      case AppRoutes.departments:
+        return MaterialPageRoute(builder: (_) => const DepartmentsScreen());
       case AppRoutes.myFavorite:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -121,21 +125,21 @@ class AppRouter {
                   doctor: arguments['doctor'],
                 ));
       case AppRoutes.labTests:
-        return MaterialPageRoute(builder: (_) => LabTestsScreen());
+        return MaterialPageRoute(builder: (_) => const LabTestsScreen());
       case AppRoutes.booking:
-        return MaterialPageRoute(builder: (_) => BookingScreen());
+        return MaterialPageRoute(builder: (_) => const BookingScreen());
       case AppRoutes.rateYourVisit:
-        return MaterialPageRoute(builder: (_) => RateYourVisitScreen());
+        return MaterialPageRoute(builder: (_) => const RateYourVisitScreen());
       case AppRoutes.radiology:
-        return MaterialPageRoute(builder: (_) => RadiologyScreen());
+        return MaterialPageRoute(builder: (_) => const RadiologyScreen());
       case AppRoutes.clinics:
-        return MaterialPageRoute(builder: (_) => ClinicsScreen());
+        return MaterialPageRoute(builder: (_) => const ClinicsScreen());
       case AppRoutes.medicalReminder:
-        return MaterialPageRoute(builder: (_) => MedicalReminderScreen());
+        return MaterialPageRoute(builder: (_) => const MedicalReminderScreen());
       case AppRoutes.vaccineReminder:
-        return MaterialPageRoute(builder: (_) => VaccineReminderScreen());
+        return MaterialPageRoute(builder: (_) => const VaccineReminderScreen());
       case AppRoutes.myVisits:
-        return MaterialPageRoute(builder: (_) => MyVisitsScreen());
+        return MaterialPageRoute(builder: (_) => const MyVisitsScreen());
       case AppRoutes.myRecords:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -143,13 +147,13 @@ class AppRouter {
                   visit: arguments['visit'],
                 ));
       case AppRoutes.newVaccineReminder:
-        return MaterialPageRoute(builder: (_) => NewVaccineReminderScreen());
+        return MaterialPageRoute(builder: (_) => const NewVaccineReminderScreen());
       case AppRoutes.newCareReminder:
-        return MaterialPageRoute(builder: (_) => NewCareReminderScreen());
+        return MaterialPageRoute(builder: (_) => const NewCareReminderScreen());
       case AppRoutes.newMedicineReminderScreen:
-        return MaterialPageRoute(builder: (_) => NewMedicineReminderScreen());
+        return MaterialPageRoute(builder: (_) => const NewMedicineReminderScreen());
       case AppRoutes.careReminder:
-        return MaterialPageRoute(builder: (_) => CareReminderScreen());
+        return MaterialPageRoute(builder: (_) => const CareReminderScreen());
       case AppRoutes.firstBookAppointment:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
@@ -192,12 +196,19 @@ class AppRouter {
             builder: (_) => BlogDetailScreen(
                   blog: blog,
                 ));
+      case AppRoutes.departmentDetails:
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => DepartmentDetailsScreen(
+            department: arguments['department'],
+          ),
+        );
       case AppRoutes.myProfile:
-        return MaterialPageRoute(builder: (_) => MyProfile());
+        return MaterialPageRoute(builder: (_) => const MyProfile());
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (_) => const Scaffold(
             body: Center(child: Text('404 - Page Not Found')),
           ),
         );
