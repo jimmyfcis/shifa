@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/departments/data/models/department_model.dart';
-
-// ... Previous imports and code
 
 class DepartmentDetailsScreen extends StatelessWidget {
   final DepartmentModel department;
@@ -20,19 +16,20 @@ class DepartmentDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
-      appBarChild: CommonAppBarTitle(title: context.tr.translate("blog_details")),
+      appBarChild: CommonAppBarTitle(title: isArabic?department.titleAr??"":department.titleEn??""),
       height: 105,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       contentChild: Expanded(
         child: Stack(
           children: [
-            Image.asset(
-              //blog.imageUrl,
-              "",
+            Image.network(
+              "https://prelive.shifaegypt.com/front_assets/images/15.jpg",
               width: 375.w,
               height: 320.h,
               fit: BoxFit.cover,
@@ -56,13 +53,13 @@ class DepartmentDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        department.description??"",
+                        isArabic?department.descriptionAr??"":department.description??"",
                         style: TextStyles.nexaBold.copyWith(
                             fontSize: 18.sp, color: AppTheme.primaryTextColor),
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        AppConstants.lognText,
+                        isArabic?department.contentAr??"":department.contentEn??"",
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
                           fontSize: 14.sp,

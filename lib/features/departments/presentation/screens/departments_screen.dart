@@ -32,7 +32,7 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
       ),
       contentChild: Expanded(
         child: BlocProvider(
-          create: (context) => sl<DepartmentsCubit>()..getAllDepartments(),
+          create: (context) => sl<DepartmentsCubit>()..loadDepartments(),
           child: BlocConsumer<DepartmentsCubit, DepartmentsState>(
             listener: (context, state) {
               if (state is DepartmentsError) {
