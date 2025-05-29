@@ -9,6 +9,7 @@ import 'package:shifa/features/departments/data/models/department_model.dart';
 
 class DepartmentDetailsScreen extends StatelessWidget {
   final DepartmentModel department;
+
   const DepartmentDetailsScreen({
     super.key,
     required this.department,
@@ -22,7 +23,7 @@ class DepartmentDetailsScreen extends StatelessWidget {
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
-      appBarChild: CommonAppBarTitle(title: isArabic?department.titleAr??"":department.titleEn??""),
+      appBarChild: CommonAppBarTitle(title: isArabic ? department.titleAr ?? "" : department.titleEn ?? ""),
       height: 105,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       contentChild: Expanded(
@@ -53,13 +54,12 @@ class DepartmentDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        isArabic?department.descriptionAr??"":department.description??"",
-                        style: TextStyles.nexaBold.copyWith(
-                            fontSize: 18.sp, color: AppTheme.primaryTextColor),
+                        isArabic ? department.descriptionAr ?? "" : department.description ?? "",
+                        style: TextStyles.nexaBold.copyWith(fontSize: 18.sp, color: AppTheme.primaryTextColor),
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        isArabic?department.contentAr??"":department.contentEn??"",
+                        isArabic ? department.contentAr ?? "" : department.contentEn ?? "",
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
                           fontSize: 14.sp,
