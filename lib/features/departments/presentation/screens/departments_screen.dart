@@ -19,8 +19,6 @@ class DepartmentsScreen extends StatefulWidget {
 }
 
 class _DepartmentsScreenState extends State<DepartmentsScreen> {
-  DepartmentsCubit? _departmentsCubit;
-
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -34,12 +32,7 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
       ),
       contentChild: Expanded(
         child: BlocProvider(
-          create: (context) {
-            final cubit = sl<DepartmentsCubit>();
-            _departmentsCubit = cubit;
-            cubit.getAllDepartments(); // Call the method immediately after creating the cubit
-            return cubit;
-          },
+          create: (context) => sl<DepartmentsCubit>()..getAllDepartments(),
           child: BlocConsumer<DepartmentsCubit, DepartmentsState>(
             listener: (context, state) {
               if (state is DepartmentsError) {
@@ -47,25 +40,21 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
               }
             },
             builder: (context, state) {
-              return BlocBuilder<DepartmentsCubit, DepartmentsState>(
-                builder: (context, state) {
-                  return state is DepartmentsLoading
-                      ? Center(
-                          child: CircularProgressIndicator(
-                          color: themeProvider.currentThemeData!.primaryColor,
-                        ))
-                      : state is DepartmentsLoaded
-                          ? ListView.builder(
-                              padding: const EdgeInsets.all(16),
-                              itemCount: state.response.departments?.length ?? 0,
-                              itemBuilder: (context, index) {
-                                final department = state.response.departments![index];
-                                return DepartmentCard(department: department);
-                              },
-                            )
-                          : const SizedBox();
-                },
-              );
+              return state is DepartmentsLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: themeProvider.currentThemeData!.primaryColor,
+                    ))
+                  : state is DepartmentsLoaded
+                      ? ListView.builder(
+                          padding: const EdgeInsets.all(16),
+                          itemCount: state.response.departments?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            final department = state.response.departments![index];
+                            return DepartmentCard(department: department);
+                          },
+                        )
+                      : const SizedBox();
             },
           ),
         ),
