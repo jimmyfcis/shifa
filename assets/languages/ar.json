@@ -6,6 +6,7 @@
   "doctor": "الدكتور",
   "specialty": "القسم",
   "skip": "تخطي",
+  "register_success": "تم التسجيل بنجاح",
   "edit": "تعديل",
   "password_error": "كلمات المرور غير متطابقة، يرجى إعادة إدخال كلمة المرور",
   "get_started": "ابدآ",
@@ -74,7 +75,7 @@
   "muslim": "مسلم",
   "christian": "مسيحي",
   "jewish": "يهودي",
-  "national_id": "بطاقة الهوية الوطنية",
+  "national_id": "بطاقة الرقم القومي",
   "passport": "جواز سفر",
   
   "cancel_visit": "إلغاء زيارتك!",

@@ -75,7 +75,7 @@ class EmailTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(color: AppTheme.greyColor, width: 1),
             ),
-            hintText: "Enter your email",
+            hintText: hintText,
             hintStyle: TextStyles.nexaRegular.copyWith(
               fontWeight: FontWeight.w400,
               color: AppTheme.hintColor,

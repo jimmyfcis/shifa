@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushReplacementNamed(context, AppRoutes.register);
+                                      Navigator.pushNamed(context, AppRoutes.register);
                                     },
                                     child: Text(
                                       context.tr.translate('create_account'),

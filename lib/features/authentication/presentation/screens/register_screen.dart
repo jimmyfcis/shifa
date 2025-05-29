@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String formatDate(DateTime? date) {
     if (date == null) return '';
-    return DateFormat('dd/MM/yyyy HH:mm:ss').format(date);
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 
   String formatGender(String? gender) {
@@ -59,25 +59,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
       create: (context) => sl<AuthCubit>(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-           if (state is AuthSuccess) {
+          if (state is AuthSuccess) {
+            showCustomSnackBar(context, context.tr.translate("register_success"), isError: false);
             Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
           }
-           else if (state is AuthFailure) {
-             if(state.message.isEmpty)
-               {
-                 Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
-               }
-             else {
-               showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
-             }
-           }
+          else if (state is AuthFailure) {
+            if (state.message.isEmpty) {
+              showCustomSnackBar(context, context.tr.translate("error"), isError: true, statusCode: state.statusCode);
+            }
+            else {
+              showCustomSnackBar(context, state.message, isError: true, statusCode: state.statusCode);
+            }
+          }
         },
         builder: (context, state) {
           final loginCubit = context.read<AuthCubit>();
           return AuthAppbar(
             body: Padding(
               padding: const EdgeInsets.only(left: 24.0, right: 24, bottom: 60),
-              child: FormBuilder(
+              child: state is AuthLoading ? Center(
+                  child: CircularProgressIndicator(
+                    color: themeProvider.currentThemeData!.primaryColor,
+                  ))
+                  : FormBuilder(
                 key: _formKey,
                 child: Column(
                   children: [
@@ -119,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             EmailTextField(
                               labelText: context.tr.translate('your_email'),
                               name: 'email',
-                              isRequired: true,
+                              isRequired: false,
                               hintText: context.tr.translate('email_hint'),
                             ),
                             SizedBox(height: 16.h),
@@ -139,45 +143,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               isRequired: false,
                               inputType: InputType.date,
                               labelText: context.tr.translate('date_of_birth'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('martial_status'),
-                              name: 'martial',
-                              isRequired: false,
-                              hintText: context.tr.translate('martial_status_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomDropdownField(
-                              name: 'religion',
-                              isRequired: false,
-                              labelText: context.tr.translate('religion'),
-                              items: [
-                                context.tr.translate('muslim'), 
-                                context.tr.translate('christian'), 
-                                context.tr.translate('jewish')
-                              ],
-                              itemBuilder: (context, data) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    color: AppTheme.whiteColor,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data,
-                                          style: TextStyles.nexaRegular.copyWith(
-                                            fontWeight: FontWeight.w400,
-                                            color: AppTheme.primaryTextColor,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
                             ),
                             SizedBox(height: 16.h),
                             CustomDropdownField(
@@ -209,89 +174,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             SizedBox(height: 16.h),
                             CustomTextField(
-                              labelText: context.tr.translate('age'),
-                              name: 'age',
-                              isRequired: false,
-                              textInputType: TextInputType.number,
-                              hintText: context.tr.translate('age_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('medical_company'),
-                              name: 'company',
-                              isRequired: false,
-                              hintText: context.tr.translate('medical_company_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
                               labelText: context.tr.translate('id'),
                               name: 'id',
                               isRequired: true,
                               hintText: context.tr.translate('id_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            CustomDropdownField(
+                            CustomTextField(
                               name: 'id_type',
-                              isRequired: true,
+                              isRequired: false,
+                              enabled: false,
+                              initialValue: context.tr.translate('national_id'),
                               labelText: context.tr.translate('id_type'),
-                              items: [context.tr.translate('national_id'), context.tr.translate('passport')],
-                              itemBuilder: (context, data) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    color: AppTheme.whiteColor,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data,
-                                          style: TextStyles.nexaRegular.copyWith(
-                                            fontWeight: FontWeight.w400,
-                                            color: AppTheme.primaryTextColor,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('address'),
-                              name: 'address',
-                              isRequired: false,
-                              hintText: context.tr.translate('address_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('city'),
-                              name: 'city',
-                              isRequired: false,
-                              hintText: context.tr.translate('city_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('area'),
-                              name: 'area',
-                              isRequired: false,
-                              hintText: context.tr.translate('area_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('street'),
-                              name: 'street',
-                              isRequired: false,
-                              hintText: context.tr.translate('street_hint'),
-                            ),
-                            SizedBox(height: 16.h),
-                            CustomTextField(
-                              labelText: context.tr.translate('building_number'),
-                              name: 'building',
-                              isRequired: false,
-                              textInputType: TextInputType.number,
-                              hintText: context.tr.translate('building_number_hint'),
                             ),
                             SizedBox(height: 16.h),
                             PasswordTextField(
@@ -332,18 +226,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     password: formValues['password'] ?? '',
                                     confirmPassword: formValues['confirm'] ?? '',
                                     phoneNumber: phoneController.text.replaceAll(" ", ""),
-                                    maritalStatus: formValues['martial'] ?? '',
                                     birthdate: birthdate,
-                                    religion: formValues['religion'] ?? '',
                                     gender: gender,
-                                    age: int.parse(formValues['age'] ?? 0),
-                                    medicalCompany: formValues['company'] ?? '',
                                     idType: formValues['id_type'] ?? '',
-                                    address: formValues['address'] ?? '',
-                                    city: formValues['city'] ?? '',
-                                    area: formValues['area'] ?? '',
-                                    street: formValues['street'] ?? '',
-                                    buildingNumber: formValues['building']?.toString() ?? '',
                                   );
                                   loginCubit.register(user: user);
                                 }
@@ -474,8 +359,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-            ),
-          );
+            ),);
         },
       ),
     );
