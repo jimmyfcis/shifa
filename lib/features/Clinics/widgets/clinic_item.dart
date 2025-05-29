@@ -19,6 +19,8 @@ class ClinicItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Container(
       width: 98.w,
       padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -50,7 +52,7 @@ class ClinicItem extends StatelessWidget {
             height: 16.h,
           ),
           Text(
-            clinic.name,
+           isArabic?clinic.nameAr??"": clinic.name,
             textAlign: TextAlign.center,
             maxLines: 2,
             style: TextStyles.nexaRegular.copyWith(

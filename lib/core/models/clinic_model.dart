@@ -2,6 +2,7 @@ import 'package:shifa/core/models/doctor_model.dart';
 
 class Clinic {
   final String name;
+  final String? nameAr;
   final String? icon;
   final List<Doctor>? doctors;
 
@@ -17,6 +18,7 @@ class Clinic {
     this.icon,
     required this.doctors,
     this.id,
+    this.nameAr,
     this.physicianID,
     this.clinicId,
     this.createdAt,
@@ -43,6 +45,7 @@ class Clinic {
       id: json['id']??"",
       physicianID: json['physicianID']??"",
       clinicId: json['clinic_id']??"",
+      nameAr: json['name_ar']??"",
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',
       name: json['name'] ?? '',
@@ -57,6 +60,7 @@ class Clinic {
       'id': id,
       'physicianID': physicianID,
       'clinic_id': clinicId,
+      'name_ar': nameAr,
       'created_at': createdAt,
       'updated_at': updatedAt,
       'icon': icon,

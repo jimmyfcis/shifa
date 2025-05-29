@@ -41,7 +41,7 @@ class ClinicsCubit extends Cubit<ClinicState> {
       } else {
         // Filter clinics based on search query
         final filteredClinics = allClinics.where((clinic) {
-          final nameContainsQuery = clinic.name.toLowerCase().contains(searchQuery);
+          final nameContainsQuery = clinic.name.toLowerCase().contains(searchQuery)||clinic.nameAr!.contains(searchQuery);
           return nameContainsQuery;
         }).toList();
         final response = ClinicsResponse(
