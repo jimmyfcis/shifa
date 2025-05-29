@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -79,8 +80,13 @@ class _MyProfileState extends State<MyProfile> {
                     ),
                   ),
                   child: userData?.image != null && userData!.image!.isNotEmpty
-                      ? Image.network(
-                          userData?.image ?? "",
+                      ? CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: themeProvider.currentThemeData!.primaryColor,
+                            ), // Loading spinner
+                          ),
+                          imageUrl: userData?.image ?? "",
                         )
                       : Image.asset(
                           ImageAssets.myProfileImg,
@@ -95,15 +101,23 @@ class _MyProfileState extends State<MyProfile> {
                       child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if(userData?.name != null && userData!.name!.isNotEmpty) MyProfileWidget(title: context.tr.translate("name"), subTitle: userData?.name ?? "", hasDivider: true),
+                  if (userData?.name != null && userData!.name!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("name"), subTitle: userData?.name ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  if(userData?.birthdate != null && userData!.birthdate!.isNotEmpty)    MyProfileWidget(title: context.tr.translate("date_of_birth"), subTitle: userData?.birthdate ?? "", hasDivider: true),
+                  if (userData?.birthdate != null && userData!.birthdate!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("date_of_birth"),
+                        subTitle: userData?.birthdate ?? "",
+                        hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  if(userData?.gender != null && userData!.gender!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("gender"), subTitle: userData?.gender ?? "", hasDivider: true),
+                  if (userData?.gender != null && userData!.gender!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("gender"), subTitle: userData?.gender ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
@@ -112,20 +126,32 @@ class _MyProfileState extends State<MyProfile> {
                   // SizedBox(
                   //   height: 16.h,
                   // ),
-                  if(userData?.email != null && userData!.email!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("email_field"), subTitle: userData?.email ?? "", hasDivider: true),
+                  if (userData?.email != null && userData!.email!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("email_field"), subTitle: userData?.email ?? "", hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  if(userData?.phoneNumber != null && userData!.phoneNumber!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("phone_number"), subTitle: userData?.phoneNumber ?? "", hasDivider: true),
+                  if (userData?.phoneNumber != null && userData!.phoneNumber!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("phone_number"),
+                        subTitle: userData?.phoneNumber ?? "",
+                        hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
-                  if(userData?.maritalStatus != null && userData!.maritalStatus!.isNotEmpty)  MyProfileWidget(title: context.tr.translate("martial_status"), subTitle: userData?.maritalStatus ?? "", hasDivider: true),
+                  if (userData?.maritalStatus != null && userData!.maritalStatus!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("martial_status"),
+                        subTitle: userData?.maritalStatus ?? "",
+                        hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
 
-                  if(userData?.address != null && userData!.address!.isNotEmpty)   MyProfileWidget(title: context.tr.translate("address"), subTitle: userData?.address ?? "", hasDivider: false),
+                  if (userData?.address != null && userData!.address!.isNotEmpty)
+                    MyProfileWidget(
+                        title: context.tr.translate("address"), subTitle: userData?.address ?? "", hasDivider: false),
                   SizedBox(
                     height: 16.h,
                   ),

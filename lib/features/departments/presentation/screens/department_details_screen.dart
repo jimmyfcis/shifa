@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -29,15 +30,22 @@ class DepartmentDetailsScreen extends StatelessWidget {
       contentChild: Expanded(
         child: Stack(
           children: [
-            Image.network(
-              "https://prelive.shifaegypt.com/front_assets/images/15.jpg",
+            CachedNetworkImage(
+              imageUrl: "https://prelive.shifaegypt.com/front_assets/images/15.jpg",
               width: 375.w,
               height: 320.h,
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(
+                  color: themeProvider.currentThemeData!.primaryColor,
+                ), // Loading spinner
+              ),
               fit: BoxFit.cover,
             ),
             Positioned(
-              top: 290.h, // Start below the image
-              bottom: 0, // Extend to the bottom of the screen
+              top: 290.h,
+              // Start below the image
+              bottom: 0,
+              // Extend to the bottom of the screen
               left: 0,
               right: 0,
               child: Container(

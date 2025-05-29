@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,10 +8,15 @@ import '../../../core/assets/images/image_assets.dart';
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
+
 class DoctorSecondBookingCard extends StatelessWidget {
   const DoctorSecondBookingCard({
     super.key,
-    required this.themeProvider, required this.date, required this.time, required this.doctor, this.image,
+    required this.themeProvider,
+    required this.date,
+    required this.time,
+    required this.doctor,
+    this.image,
   });
 
   final String date;
@@ -26,9 +32,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
     final isArabic = locale.languageCode == 'ar';
     return Container(
       decoration: BoxDecoration(
-        color: themeProvider.currentTheme == ThemeEnum.shifa
-            ? AppTheme.billColor
-            : AppTheme.secondaryColorLeksell,
+        color: themeProvider.currentTheme == ThemeEnum.shifa ? AppTheme.billColor : AppTheme.secondaryColorLeksell,
       ),
       child: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -48,27 +52,31 @@ class DoctorSecondBookingCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child:image != null &&
-                      image!.isNotEmpty
-                      ? Image.network(
-                    image ?? "",
-                    fit: BoxFit.fitHeight,
-                    width: 50.w,
-                    height: 50.h,
-                  )
+                  child: image != null && image!.isNotEmpty
+                      ? CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: themeProvider.currentThemeData!.primaryColor,
+                            ), // Loading spinner
+                          ),
+                          imageUrl: image ?? "",
+                          fit: BoxFit.fitHeight,
+                          width: 50.w,
+                          height: 50.h,
+                        )
                       : Image.asset(
-                    ImageAssets.drWaleedImg,
-                    fit: BoxFit.fitHeight,
-                    width: 50.w,
-                    height: 50.h,
-                  ),
+                          ImageAssets.drWaleedImg,
+                          fit: BoxFit.fitHeight,
+                          width: 50.w,
+                          height: 50.h,
+                        ),
                 ),
                 const SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isArabic?doctor.nameAR??"":doctor.name??"",
+                      isArabic ? doctor.nameAR ?? "" : doctor.name ?? "",
                       style: TextStyles.nexaBold.copyWith(
                         fontWeight: FontWeight.w800,
                         color: AppTheme.primaryTextColor,
@@ -77,7 +85,7 @@ class DoctorSecondBookingCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      isArabic?doctor.specialist?.nameAr??"":doctor.specialist?.name??"",
+                      isArabic ? doctor.specialist?.nameAr ?? "" : doctor.specialist?.name ?? "",
                       style: TextStyles.nexaRegular.copyWith(
                         color: AppTheme.secondaryTextColor,
                         fontSize: 14.sp,

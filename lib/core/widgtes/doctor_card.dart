@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
@@ -9,12 +11,14 @@ import 'package:shifa/features/Booking/data/models/appointment_model.dart';
 
 class DoctorCard extends StatelessWidget {
   final Appointment appointment;
+
   const DoctorCard({super.key, required this.appointment});
 
   @override
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return Card(
       color: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
@@ -37,17 +41,22 @@ class DoctorCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: appointment.doctor?.image != null && appointment.doctor!.image!.isNotEmpty
-                      ? Image.network(
-                    appointment.doctor?.image ?? "",
-                    fit: BoxFit.fitHeight,
-                    width: 46.w,
-                    height: 46.h,
-                  )
+                      ? CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: themeProvider.currentThemeData!.primaryColor,
+                            ), // Loading spinner
+                          ),
+                          imageUrl: appointment.doctor?.image ?? "",
+                          fit: BoxFit.fitHeight,
+                          width: 46.w,
+                          height: 46.h,
+                        )
                       : Image.asset(
-                    ImageAssets.drWaleedImg,
-                    width: 46.w,
-                    height: 46.h,
-                  ),
+                          ImageAssets.drWaleedImg,
+                          width: 46.w,
+                          height: 46.h,
+                        ),
                 ),
                 SizedBox(
                   width: 24.w,
@@ -57,7 +66,7 @@ class DoctorCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      isArabic?appointment.doctor?.nameAR??"":appointment.doctor?.name??"",
+                      isArabic ? appointment.doctor?.nameAR ?? "" : appointment.doctor?.name ?? "",
                       style: TextStyles.nexaBold.copyWith(
                         fontSize: 16.sp,
                         color: AppTheme.primaryTextColor,
@@ -67,7 +76,9 @@ class DoctorCard extends StatelessWidget {
                       height: 12.h,
                     ),
                     Text(
-                      isArabic?appointment.doctor?.specialist?.nameAr??"":appointment.doctor?.specialist?.nameEn??"",
+                      isArabic
+                          ? appointment.doctor?.specialist?.nameAr ?? ""
+                          : appointment.doctor?.specialist?.nameEn ?? "",
                       style: TextStyles.nexaRegular.copyWith(
                         fontSize: 12.sp,
                         color: AppTheme.secondaryTextColor,
@@ -102,7 +113,7 @@ class DoctorCard extends StatelessWidget {
                         width: 8.w,
                       ),
                       Text(
-                        appointment.date??"",
+                        appointment.date ?? "",
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.secondaryTextColor,

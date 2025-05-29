@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -46,8 +47,13 @@ class AppointmentCard extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: appointment.doctor?.image != null && appointment.doctor!.image!.isNotEmpty
-                          ? Image.network(
-                              appointment.doctor?.image ?? "",
+                          ? CachedNetworkImage(
+                              placeholder: (context, url) => Center(
+                                child: CircularProgressIndicator(
+                                  color: themeProvider.currentThemeData!.primaryColor,
+                                ), // Loading spinner
+                              ),
+                              imageUrl: appointment.doctor?.image ?? "",
                               fit: BoxFit.fitHeight,
                               width: 46.w,
                               height: 46.h,

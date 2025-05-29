@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,7 +19,7 @@ class ClinicDoctorCard extends StatelessWidget {
   final Doctor? doctor;
   final Clinic clinic;
 
-  const ClinicDoctorCard({super.key, required this.isFavorite,  this.doctor, required this.clinic});
+  const ClinicDoctorCard({super.key, required this.isFavorite, this.doctor, required this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +46,22 @@ class ClinicDoctorCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: doctor?.image != null && doctor!.image!.isNotEmpty
-                      ? Image.network(
-                    doctor?.image ?? "",
-                    fit: BoxFit.fitHeight,
-                    width: 46.w,
-                    height: 46.h,
-                  )
+                      ? CachedNetworkImage(
+                          placeholder: (context, url) => Center(
+                            child: CircularProgressIndicator(
+                              color: themeProvider.currentThemeData!.primaryColor,
+                            ), // Loading spinner
+                          ),
+                          imageUrl: doctor?.image ?? "",
+                          fit: BoxFit.fitHeight,
+                          width: 46.w,
+                          height: 46.h,
+                        )
                       : Image.asset(
-                    ImageAssets.drWaleedImg,
-                    width: 46.w,
-                    height: 46.h,
-                  ),
+                          ImageAssets.drWaleedImg,
+                          width: 46.w,
+                          height: 46.h,
+                        ),
                 ),
                 SizedBox(
                   width: 12.w,
@@ -66,7 +72,7 @@ class ClinicDoctorCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        isArabic?doctor?.nameAR??"":doctor?.name??"",
+                        isArabic ? doctor?.nameAR ?? "" : doctor?.name ?? "",
                         style: TextStyles.nexaBold.copyWith(
                           fontSize: 16.sp,
                           color: AppTheme.primaryTextColor,
@@ -76,7 +82,7 @@ class ClinicDoctorCard extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                        isArabic?doctor?.descriptionAr??"":doctor?.descriptionEn??"",
+                        isArabic ? doctor?.descriptionAr ?? "" : doctor?.descriptionEn ?? "",
                         style: TextStyles.nexaRegular.copyWith(
                           fontSize: 12.sp,
                           color: AppTheme.secondaryTextColor,
@@ -149,8 +155,8 @@ class ClinicDoctorCard extends StatelessWidget {
             CustomGreenButton(
               fontSize: 14.sp,
               title: context.tr.translate("book_appointment"),
-              onPressed: (){
-                Navigator.pushNamed(context, AppRoutes.doctorProfile,arguments: {
+              onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.doctorProfile, arguments: {
                   "clinicId": clinic.id.toString(),
                   "doctorId": doctor?.id.toString(),
                 });

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,116 +39,129 @@ class _HomeTopDoctorState extends State<HomeTopDoctor> {
           final isArabic = locale.languageCode == 'ar';
           return state is HomeLoading
               ? Center(
-              child: CircularProgressIndicator(
-                color: themeProvider.currentThemeData!.primaryColor,
-              ))
-              : state is HomeLoaded?Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(context.tr.translate("top_doctor"),
-                    style: TextStyles.nexaBold.copyWith(
-                      fontSize: 16.sp,
-                      color: AppTheme.textBlackColor,
-                    )),
-              ),
-              SizedBox(height: 16.h),
-              SizedBox(
-                height: 235.h,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: state.topDoctorsResponse.doctors?.length??0,
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: 16.w,
-                  ),
-                  itemBuilder: (context, index) {
-                    final doctor =state.topDoctorsResponse.doctors![index];
-                    return Container(
-                      width: 150.w,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                        vertical: 18.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppTheme.whiteColor,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                ImageAssets.doctorAvatar,
-                                width: 85.w,
-                                height: 85.h,
-                              ),
+                  child: CircularProgressIndicator(
+                  color: themeProvider.currentThemeData!.primaryColor,
+                ))
+              : state is HomeLoaded
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(context.tr.translate("top_doctor"),
+                              style: TextStyles.nexaBold.copyWith(
+                                fontSize: 16.sp,
+                                color: AppTheme.textBlackColor,
+                              )),
+                        ),
+                        SizedBox(height: 16.h),
+                        SizedBox(
+                          height: 235.h,
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.topDoctorsResponse.doctors?.length ?? 0,
+                            separatorBuilder: (context, index) => SizedBox(
+                              width: 16.w,
                             ),
+                            itemBuilder: (context, index) {
+                              final doctor = state.topDoctorsResponse.doctors![index];
+                              return Container(
+                                width: 150.w,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 12.w,
+                                  vertical: 18.h,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.whiteColor,
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Center(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8.0),
+                                        child: doctor.image != null && doctor.image!.isNotEmpty
+                                            ? CachedNetworkImage(
+                                                placeholder: (context, url) => Center(
+                                                  child: CircularProgressIndicator(
+                                                    color: themeProvider.currentThemeData!.primaryColor,
+                                                  ), // Loading spinner
+                                                ),
+                                                imageUrl: doctor.image ?? "",
+                                                width: 85.w,
+                                                height: 85.h,
+                                              )
+                                            : Image.asset(
+                                                ImageAssets.doctorAvatar,
+                                                width: 85.w,
+                                                height: 85.h,
+                                              ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 16.h,
+                                    ),
+                                    Text(
+                                      isArabic ? doctor.nameAR ?? "" : doctor.name ?? "",
+                                      style: TextStyles.nexaBold.copyWith(
+                                        fontSize: 14.sp,
+                                        color: AppTheme.primaryTextColor,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Text(
+                                      isArabic ? doctor.specialist?.nameAr ?? "" : doctor.specialist?.nameEn ?? "",
+                                      style: TextStyles.nexaRegular.copyWith(
+                                        fontSize: 12.sp,
+                                        color: AppTheme.secondaryTextColor,
+                                      ),
+                                    ),
+                                    // const Spacer(),
+                                    // Container(
+                                    //   width: 45.w,
+                                    //   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                                    //   decoration: BoxDecoration(
+                                    //     color: themeProvider.currentTheme == ThemeEnum.shifa
+                                    //         ? AppTheme.billColor
+                                    //         : AppTheme.secondaryColorLeksell,
+                                    //     borderRadius: BorderRadius.circular(4.r),
+                                    //   ),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       SvgPicture.asset(
+                                    //         SVGAssets.star,
+                                    //         color: themeProvider.currentTheme == ThemeEnum.shifa
+                                    //             ? AppTheme.shifaPrimaryColor
+                                    //             : AppTheme.leksellPrimaryColor,
+                                    //       ),
+                                    //       SizedBox(
+                                    //         width: 2.w,
+                                    //       ),
+                                    //       Text(
+                                    //         doctor.rate??"",
+                                    //         style: TextStyles.nexaRegular.copyWith(
+                                    //           fontSize: 12.sp,
+                                    //           color: themeProvider.currentTheme == ThemeEnum.shifa
+                                    //               ? AppTheme.shifaPrimaryColor
+                                    //               : AppTheme.leksellPrimaryColor,
+                                    //         ),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // )
+                                  ],
+                                ),
+                              );
+                            },
                           ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Text(
-                            isArabic?doctor.nameAR??"":doctor.name??"",
-                            style: TextStyles.nexaBold.copyWith(
-                              fontSize: 14.sp,
-                              color: AppTheme.primaryTextColor,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Text(
-                            isArabic?doctor.specialist?.nameAr??"":doctor.specialist?.nameEn??"",
-                            style: TextStyles.nexaRegular.copyWith(
-                              fontSize: 12.sp,
-                              color: AppTheme.secondaryTextColor,
-                            ),
-                          ),
-                          // const Spacer(),
-                          // Container(
-                          //   width: 45.w,
-                          //   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                          //   decoration: BoxDecoration(
-                          //     color: themeProvider.currentTheme == ThemeEnum.shifa
-                          //         ? AppTheme.billColor
-                          //         : AppTheme.secondaryColorLeksell,
-                          //     borderRadius: BorderRadius.circular(4.r),
-                          //   ),
-                          //   child: Row(
-                          //     children: [
-                          //       SvgPicture.asset(
-                          //         SVGAssets.star,
-                          //         color: themeProvider.currentTheme == ThemeEnum.shifa
-                          //             ? AppTheme.shifaPrimaryColor
-                          //             : AppTheme.leksellPrimaryColor,
-                          //       ),
-                          //       SizedBox(
-                          //         width: 2.w,
-                          //       ),
-                          //       Text(
-                          //         doctor.rate??"",
-                          //         style: TextStyles.nexaRegular.copyWith(
-                          //           fontSize: 12.sp,
-                          //           color: themeProvider.currentTheme == ThemeEnum.shifa
-                          //               ? AppTheme.shifaPrimaryColor
-                          //               : AppTheme.leksellPrimaryColor,
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // )
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ):const SizedBox.shrink();
+                        ),
+                      ],
+                    )
+                  : const SizedBox.shrink();
         },
       ),
     );

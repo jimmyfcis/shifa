@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -120,20 +121,25 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                         children: [
                                           ClipRRect(
                                             borderRadius: BorderRadius.circular(8.0),
-                                            child:state.doctorDetailsResponse.doctor.image != null &&
-                                                  state.doctorDetailsResponse.doctor.image!.isNotEmpty
-                                              ? Image.network(
-                                                  state.doctorDetailsResponse.doctor.image ?? "",
-                                            fit: BoxFit.fitHeight,
-                                            width: 50.w,
-                                            height: 50.h,
-                                                )
-                                              : Image.asset(
-                                                  ImageAssets.drWaleedImg,
-                                            fit: BoxFit.fitHeight,
-                                            width: 50.w,
-                                            height: 50.h,
-                                                ),
+                                            child: state.doctorDetailsResponse.doctor.image != null &&
+                                                    state.doctorDetailsResponse.doctor.image!.isNotEmpty
+                                                ? CachedNetworkImage(
+                                                    placeholder: (context, url) => Center(
+                                                      child: CircularProgressIndicator(
+                                                        color: themeProvider.currentThemeData!.primaryColor,
+                                                      ), // Loading spinner
+                                                    ),
+                                                    imageUrl: state.doctorDetailsResponse.doctor.image ?? "",
+                                                    fit: BoxFit.fitHeight,
+                                                    width: 50.w,
+                                                    height: 50.h,
+                                                  )
+                                                : Image.asset(
+                                                    ImageAssets.drWaleedImg,
+                                                    fit: BoxFit.fitHeight,
+                                                    width: 50.w,
+                                                    height: 50.h,
+                                                  ),
                                           ),
                                           const SizedBox(width: 16),
                                           Column(
@@ -523,7 +529,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               Navigator.pushNamed(context, AppRoutes.firstBookAppointment, arguments: {
                                                 "clinicID": widget.clinicId,
                                                 "doctor": state.doctorDetailsResponse.doctor,
-                                                "image": state.doctorDetailsResponse.doctor.image??"",
+                                                "image": state.doctorDetailsResponse.doctor.image ?? "",
                                                 "date": DateFormat('yyyy-MM-dd').format(_selectedDate),
                                                 "doctorId": widget.doctorId,
                                                 "time": state.doctorDetailsResponse.doctor.schedules!
