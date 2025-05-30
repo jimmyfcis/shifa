@@ -43,7 +43,9 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is AuthFailure) {
             showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
           } else if (state is AuthSuccess) {
-            Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+            Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+              "index": 0,
+            });
           }
         },
         builder: (context, state) {

@@ -61,7 +61,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             showCustomSnackBar(context, context.tr.translate("register_success"), isError: false);
-            Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+            Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+              "index": 0,
+            });
           }
           else if (state is AuthFailure) {
             if (state.message.isEmpty) {

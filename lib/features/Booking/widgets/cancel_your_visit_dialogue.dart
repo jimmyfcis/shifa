@@ -47,7 +47,9 @@ class _CancelYourVisitDialogueState extends State<CancelYourVisitDialogue> {
             if (state is CancelAppointmentError) {
               showCustomSnackBar(context, state.message, isError: true, statusCode: state.statusCode);
             } else if (state is CancelAppointmentSuccess) {
-              Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+              Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                "index": 1,
+              });
             }
           },
           builder: (context, state) {

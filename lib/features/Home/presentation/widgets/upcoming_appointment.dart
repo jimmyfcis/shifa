@@ -8,6 +8,7 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/doctor_card.dart';
 
 import '../../../../core/network/injection_container.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/widgtes/custom_snackbar.dart';
 import '../../../Booking/presentation/cubit/get appointemnets/appointment_cubit.dart';
 import '../../../Booking/presentation/cubit/get appointemnets/appointment_state.dart';
@@ -66,13 +67,20 @@ class _UpcomingAppointmentState extends State<UpcomingAppointment> {
                                   color: AppTheme.textBlackColor,
                                 ),
                               ),
-                              Text(
-                                context.tr.translate("see_all"),
-                                style: TextStyles.nexaRegular.copyWith(
-                                  fontSize: 12.sp,
-                                  color: themeProvider.currentTheme == ThemeEnum.shifa
-                                      ? AppTheme.green5Color
-                                      : AppTheme.leksellPrimaryColor,
+                              InkWell(
+                                onTap: (){
+                                  Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                                    "index": 1,
+                                  });
+                                },
+                                child: Text(
+                                  context.tr.translate("see_all"),
+                                  style: TextStyles.nexaRegular.copyWith(
+                                    fontSize: 12.sp,
+                                    color: themeProvider.currentTheme == ThemeEnum.shifa
+                                        ? AppTheme.green5Color
+                                        : AppTheme.leksellPrimaryColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -103,7 +111,7 @@ class _UpcomingAppointmentState extends State<UpcomingAppointment> {
                         ),
                       ],
                     )
-                  : SizedBox.shrink();
+                  : const SizedBox.shrink();
         },
       ),
     );

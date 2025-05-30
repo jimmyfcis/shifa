@@ -466,7 +466,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                     const SizedBox(height: 24),
                                                     InkWell(
                                                       onTap: () {
-                                                        Navigator.pushReplacementNamed(context, AppRoutes.bottomBar);
+                                                        Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                                                          "index": 1,
+                                                        });
                                                       },
                                                       child: Text(
                                                         context.tr.translate('my_appointments'),

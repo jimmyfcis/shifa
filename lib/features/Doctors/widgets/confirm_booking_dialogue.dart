@@ -30,9 +30,8 @@ class ConfirmBookingDialogue extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100.r),
-                color: themeProvider.currentTheme == ThemeEnum.shifa
-                    ? AppTheme.billColor
-                    : AppTheme.leksellSecondaryColor,
+                color:
+                    themeProvider.currentTheme == ThemeEnum.shifa ? AppTheme.billColor : AppTheme.leksellSecondaryColor,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(23.0),
@@ -64,40 +63,42 @@ class ConfirmBookingDialogue extends StatelessWidget {
                 fontSize: 16.sp,
               ),
             ),
-            SizedBox(height: 24.h),
-            Container(
-              decoration: BoxDecoration(
-                color: themeProvider.currentThemeData!.primaryColor,
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "17",
-                  textAlign: TextAlign.center,
-                  style: TextStyles.nexaRegular.copyWith(
-                    color: AppTheme.whiteColor,
-                    fontSize: 24.sp,
-                  ),
-                ),
-              ),
-            ),
+            // SizedBox(height: 24.h),
+            // Container(
+            //   decoration: BoxDecoration(
+            //     color: themeProvider.currentThemeData!.primaryColor,
+            //     borderRadius: BorderRadius.circular(8.r),
+            //   ),
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(16.0),
+            //     child: Text(
+            //       "17",
+            //       textAlign: TextAlign.center,
+            //       style: TextStyles.nexaRegular.copyWith(
+            //         color: AppTheme.whiteColor,
+            //         fontSize: 24.sp,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SizedBox(height: 24.h),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, AppRoutes.bottomBar);
+                Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                  "index": 1,
+                });
               },
               child: Text(
                 context.tr.translate('my_appointments'),
                 style: TextStyles.nexaRegular
                     .copyWith(
-                  color: themeProvider.currentThemeData!.primaryColor,
-                  fontSize: 16.sp,
-                )
+                      color: themeProvider.currentThemeData!.primaryColor,
+                      fontSize: 16.sp,
+                    )
                     .copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: themeProvider.currentThemeData!.primaryColor,
-                ),
+                      decoration: TextDecoration.underline,
+                      decorationColor: themeProvider.currentThemeData!.primaryColor,
+                    ),
               ),
             ),
           ],

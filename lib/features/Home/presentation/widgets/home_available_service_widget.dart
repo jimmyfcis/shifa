@@ -1,14 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/features/Bottom%20Bar/cubit/bottom_bar_cubit.dart';
-
 import '../../../../core/assets/svg/svg_assets.dart';
 import '../../../../core/models/service_model.dart';
 import 'home_service_card.dart';
@@ -21,14 +18,14 @@ class HomeAvailableService extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     List<ServiceModel> shifaServiceModel = [
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsShifaIcon),
-      ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.monitorQueueShifaIcon),
+     // ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.monitorQueueShifaIcon),
       ServiceModel(
           title: context.tr.translate("departments"), icon: SVGAssets.physicalTherapyShifaIcon),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceShifa),
     ];
     List<ServiceModel> leksellServiceModel = [
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsLeksellIcon),
-      ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.queueLeksell),
+      //ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.queueLeksell),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceLeksell),
       ServiceModel(title: context.tr.translate("chemotherapy"), icon: SVGAssets.chemoLeksellIcon),
       ServiceModel(title: context.tr.translate("radiotherapy"), icon: SVGAssets.radioTherapyLeksell),
@@ -64,8 +61,9 @@ class HomeAvailableService extends StatelessWidget {
                         } else if (shifaServiceModel[index]
                                 .title ==
                             context.tr.translate("discover_clinic")) {
-                          BlocProvider.of<BottomBarCubit>(context)
-                              .updateIndex(2);
+                          Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                            "index": 2,
+                          });
                         } else if (shifaServiceModel[index]
                                 .title ==
                             context.tr.translate("monitor_queue")) {
@@ -74,8 +72,6 @@ class HomeAvailableService extends StatelessWidget {
                         } else if (shifaServiceModel[index]
                                 .title ==
                             context.tr.translate("departments")) {
-                          // BlocProvider.of<BottomBarCubit>(context)
-                          //     .updateIndex(2);
                           Navigator.pushNamed(
                               context, AppRoutes.departments);
                         }
@@ -107,7 +103,9 @@ class HomeAvailableService extends StatelessWidget {
                       } else if (leksellServiceModel[index]
                               .title ==
                           context.tr.translate("discover_clinic")) {
-                        BlocProvider.of<BottomBarCubit>(context).updateIndex(2);
+                        Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
+                          "index": 2,
+                        });
                       } else if (leksellServiceModel[index]
                               .title ==
                           context.tr.translate("monitor_queue")) {
