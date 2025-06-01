@@ -1,14 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/features/Blogs/data/models/blog_model.dart';
 
 class ArticleCard extends StatelessWidget {
-  const ArticleCard({super.key});
+  final Blog blog;
+
+  const ArticleCard({super.key, required this.blog});
 
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: 327.w,
@@ -27,12 +35,24 @@ class ArticleCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(4.0),
-            child: Image.asset(
-              ImageAssets.articleImg,
-              width: 70.w,
-              height: 70.h,
-              fit: BoxFit.fitHeight,
-            ),
+            child: blog.image != null && blog.image!.isNotEmpty
+                ? CachedNetworkImage(
+                    imageUrl: blog.image!,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(
+                        color: themeProvider.currentThemeData!.primaryColor,
+                      ), // Loading spinner
+                    ),
+                    width: 70.w,
+                    height: 70.h,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    ImageAssets.blogImg1,
+                    width: 70.w,
+                    height: 70.h,
+                    fit: BoxFit.cover,
+                  ),
           ),
           SizedBox(
             width: 16.w,
@@ -41,7 +61,9 @@ class ArticleCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "The 25 Healthiest Fruits You Can Eat, According to a Nutritionist",
+                  isArabic ? blog.titleAr ?? "" : blog.titleEn ?? "",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyles.nexaBold.copyWith(
                     fontSize: 13.sp,
                     color: AppTheme.primaryTextColor,
@@ -52,7 +74,9 @@ class ArticleCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    " is simply dummy text of the printing and typesetting industry.",
+                    isArabic ? blog.descriptionAr ?? "" : blog.descriptionEn ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyles.nexaRegular.copyWith(
                       fontSize: 11.sp,
                       color: AppTheme.secondaryTextColor,
