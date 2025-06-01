@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shifa/core/network/api_endpoints.dart';
 import 'package:shifa/core/network/dio_client.dart';
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/authentication/data/models/forget_password_response.dart';
 import 'package:shifa/features/authentication/data/models/login_response.dart';
 import 'package:shifa/features/authentication/data/models/user.dart';
 abstract class AuthRemoteDatasource {
@@ -13,6 +14,10 @@ abstract class AuthRemoteDatasource {
   });
 
   Future<void> logout();
+
+  Future<ForgetPasswordResponse> forgetPassword({
+    required String phoneNumber,
+  });
 }
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
@@ -70,5 +75,19 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
       await storage.saveUser(loginResp.user);
 
       return loginResp;
+  }
+
+  @override
+  Future<ForgetPasswordResponse> forgetPassword({required String phoneNumber}) async {
+    final response = await dio.post(
+      ApiEndpoints.forgetPassword,
+      data: {
+        'phone': phoneNumber,
+      },
+    );
+
+    final forgetResponse = ForgetPasswordResponse.fromJson(response.data);
+
+    return forgetResponse;
   }
 }

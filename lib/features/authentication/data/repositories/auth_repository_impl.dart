@@ -1,4 +1,5 @@
 import 'package:shifa/core/storage/token_storage.dart';
+import 'package:shifa/features/authentication/data/models/forget_password_response.dart';
 import 'package:shifa/features/authentication/data/models/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
@@ -27,6 +28,12 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<LoginResponse> register({required User user}) async{
     final loginResponse = await remoteDatasource.register(user: user);
     return loginResponse;
+  }
+
+  @override
+  Future<ForgetPasswordResponse> forgetPassword({required String phoneNumber}) async{
+    final forgetResponse = await remoteDatasource.forgetPassword(phoneNumber: phoneNumber);
+    return forgetResponse;
   }
 
 }

@@ -36,7 +36,9 @@ import 'package:shifa/features/Radiology/data/repositories/radiology_repository_
 import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
 import 'package:shifa/features/Radiology/domain/use_cases/get_radiologies_use_case.dart';
 import 'package:shifa/features/Radiology/presentation/radiology_cubit.dart';
+import 'package:shifa/features/authentication/domain/use_cases/forget_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
+import 'package:shifa/features/authentication/presentation/cubit/forget%20password/forget_password_cubit.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
 import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
 import '../../features/My Records/data/repositories/visit_repository_impl.dart';
@@ -194,6 +196,9 @@ Future<void> init() async {
   sl.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(sl<AuthRepository>()),
   );
+  sl.registerLazySingleton<ForgetPasswordUseCase>(
+        () => ForgetPasswordUseCase(sl<AuthRepository>()),
+  );
   sl.registerLazySingleton<LogoutUseCase>(
     () => LogoutUseCase(sl<AuthRepository>()),
   );
@@ -239,6 +244,10 @@ Future<void> init() async {
   );
   sl.registerFactory<HomeCubit>(
     () => HomeCubit(getTopDoctorsUseCase: sl<GetTopDoctorsUseCase>()),
+  );
+
+  sl.registerFactory<ForgetPasswordCubit>(
+        () => ForgetPasswordCubit(forgetPasswordUseCase: sl<ForgetPasswordUseCase>()),
   );
   sl.registerFactory<AuthCubit>(
     () => AuthCubit(loginUseCase: sl<LoginUseCase>(), registerUseCase: sl<RegisterUseCase>()),
