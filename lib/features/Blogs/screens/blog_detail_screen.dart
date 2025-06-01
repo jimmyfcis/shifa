@@ -1,18 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
-import 'package:shifa/core/models/blog_model.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/utils/app_constants.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
-
-// ... Previous imports and code
+import 'package:shifa/features/Blogs/data/models/blog_model.dart';
+import '../../../core/assets/images/image_assets.dart';
 
 class BlogDetailScreen extends StatelessWidget {
-  final BlogModel blog;
+  final Blog blog;
   const BlogDetailScreen({
     super.key,
     required this.blog,
@@ -21,6 +20,8 @@ class BlogDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
@@ -30,8 +31,19 @@ class BlogDetailScreen extends StatelessWidget {
       contentChild: Expanded(
         child: Stack(
           children: [
-            Image.asset(
-              blog.imageUrl,
+           blog.image!=null&& blog.image!.isNotEmpty?
+           CachedNetworkImage(
+            imageUrl:  blog.image!,
+             placeholder: (context, url) => Center(
+               child: CircularProgressIndicator(
+                 color: themeProvider.currentThemeData!.primaryColor,
+               ), // Loading spinner
+             ),
+             width: 375.w,
+             height: 320.h,
+             fit: BoxFit.cover,
+           ): Image.asset(
+             ImageAssets.blogImg1,
               width: 375.w,
               height: 320.h,
               fit: BoxFit.cover,
@@ -55,13 +67,13 @@ class BlogDetailScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        blog.title,
+                        isArabic?blog.titleAr??"":blog.titleEn??"",
                         style: TextStyles.nexaBold.copyWith(
                             fontSize: 18.sp, color: AppTheme.primaryTextColor),
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        AppConstants.lognText,
+                        isArabic?blog.descriptionAr??"":blog.descriptionEn??"",
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
                           fontSize: 14.sp,

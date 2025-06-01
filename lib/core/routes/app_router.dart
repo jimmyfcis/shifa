@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:shifa/core/models/blog_model.dart';
+import 'package:shifa/features/Blogs/data/models/blog_model.dart';
 import 'package:shifa/features/Blogs/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
@@ -186,7 +186,7 @@ class AppRouter {
           ),
         );
       case AppRoutes.blogDetails:
-        final BlogModel blog = settings.arguments as BlogModel;
+        final Blog blog = settings.arguments as Blog;
         return MaterialPageRoute(
             builder: (_) => BlogDetailScreen(
                   blog: blog,
