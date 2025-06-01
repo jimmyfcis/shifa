@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/theme.dart';
@@ -15,6 +14,7 @@ import '../../../../core/assets/svg/svg_assets.dart';
 import '../../../../core/network/injection_container.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/styles.dart';
+import '../../../../core/utils/utils.dart';
 import '../../../../core/widgtes/auth_appbar.dart';
 import '../../../../core/widgtes/custom_green_button.dart';
 import '../../../../core/widgtes/custom_snackbar.dart';
@@ -42,15 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  String formatDate(DateTime? date) {
-    if (date == null) return '';
-    return DateFormat('yyyy-MM-dd').format(date);
-  }
 
-  String formatGender(String? gender) {
-    if (gender == null) return '';
-    return gender.toLowerCase() == 'male' ? 'M' : 'F';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -219,8 +211,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   });
                                 } else if (isValid && phoneController.text.isNotEmpty) {
                                   final formValues = formState.value;
-                                  final birthdate = formatDate(formValues['date']);
-                                  final gender = formatGender(formValues['gender']);
+                                  final birthdate = Utils.formatDate(formValues['date']);
+                                  final gender = Utils.formatGender(formValues['gender']);
                                   final user = User(
                                     name: formValues['name'] ?? '',
                                     nationalId: formValues['id'] ?? '',

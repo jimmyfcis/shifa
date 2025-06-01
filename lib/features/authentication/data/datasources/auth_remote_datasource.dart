@@ -5,13 +5,16 @@ import 'package:shifa/core/storage/token_storage.dart';
 import 'package:shifa/features/authentication/data/models/forget_password_response.dart';
 import 'package:shifa/features/authentication/data/models/login_response.dart';
 import 'package:shifa/features/authentication/data/models/user.dart';
+
 abstract class AuthRemoteDatasource {
   Future<LoginResponse> login({
     required String phoneNumber,
     required String password,
-  });  Future<LoginResponse> register({
-    required User user
   });
+
+  Future<LoginResponse> register({required User user});
+
+  Future<LoginResponse> updateProfile({required User user});
 
   Future<void> logout();
 
@@ -64,17 +67,16 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
   }
 
   @override
-  Future<LoginResponse> register({required User user})
-    async {
-      final response = await dio.post(
-        ApiEndpoints.register,
-        data:user.toJson(),
-      );
-      final loginResp = LoginResponse.fromJson(response.data);
-      await storage.saveToken(loginResp.token);
-      await storage.saveUser(loginResp.user);
+  Future<LoginResponse> register({required User user}) async {
+    final response = await dio.post(
+      ApiEndpoints.register,
+      data: user.toJson(),
+    );
+    final loginResp = LoginResponse.fromJson(response.data);
+    await storage.saveToken(loginResp.token);
+    await storage.saveUser(loginResp.user);
 
-      return loginResp;
+    return loginResp;
   }
 
   @override
@@ -89,5 +91,17 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     final forgetResponse = ForgetPasswordResponse.fromJson(response.data);
 
     return forgetResponse;
+  }
+
+  @override
+  Future<LoginResponse> updateProfile({required User user}) async {
+    final response = await dio.post(
+      ApiEndpoints.updateProfile,
+      data: user.toJson(),
+    );
+    final loginResp = LoginResponse.fromJson(response.data);
+    await storage.saveUser(loginResp.user);
+
+    return loginResp;
   }
 }

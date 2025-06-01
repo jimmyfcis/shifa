@@ -38,6 +38,7 @@ import 'package:shifa/features/Radiology/domain/use_cases/get_radiologies_use_ca
 import 'package:shifa/features/Radiology/presentation/radiology_cubit.dart';
 import 'package:shifa/features/authentication/domain/use_cases/forget_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
+import 'package:shifa/features/authentication/domain/use_cases/update_profile_use_case.dart';
 import 'package:shifa/features/authentication/presentation/cubit/forget%20password/forget_password_cubit.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
 import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
@@ -84,10 +85,10 @@ Future<void> init() async {
   // Data sources
 
   sl.registerLazySingleton<DepartmentsRemoteDataSource>(
-        () => DepartmentsRemoteDataSourceImpl(),
+    () => DepartmentsRemoteDataSourceImpl(),
   );
   sl.registerLazySingleton<RecordsRemoteDataSource>(
-        () => RecordsRemoteDataSourceImpl(),
+    () => RecordsRemoteDataSourceImpl(),
   );
   sl.registerLazySingleton<DoctorRemoteDataSource>(
     () => DoctorRemoteDataSourceImpl(),
@@ -128,18 +129,18 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton<DepartmentsRepository>(
-        () => DepartmentsRepositoryImpl(
-          remoteDataSource : sl<DepartmentsRemoteDataSource>(),
+    () => DepartmentsRepositoryImpl(
+      remoteDataSource: sl<DepartmentsRemoteDataSource>(),
     ),
   );
 
   sl.registerLazySingleton<RecordsRepository>(
-        () => RecordsRepositoryImpl(
-          remoteDataSource: sl<RecordsRemoteDataSource>(),
+    () => RecordsRepositoryImpl(
+      remoteDataSource: sl<RecordsRemoteDataSource>(),
     ),
   );
   sl.registerLazySingleton<HomeRepository>(
-        () => HomeRepositoryImpl(
+    () => HomeRepositoryImpl(
       homeRemoteDataSource: sl<HomeRemoteDataSource>(),
     ),
   );
@@ -191,15 +192,15 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton<GetAllDepartments>(
-        () => GetAllDepartments(sl<DepartmentsRepository>()),
+    () => GetAllDepartments(sl<DepartmentsRepository>()),
   );
 
   sl.registerLazySingleton<GetDepartmentById>(
-        () => GetDepartmentById(sl<DepartmentsRepository>()),
+    () => GetDepartmentById(sl<DepartmentsRepository>()),
   );
 
   sl.registerLazySingleton<GetRecordsUseCase>(
-        () => GetRecordsUseCase(sl<RecordsRepository>()),
+    () => GetRecordsUseCase(sl<RecordsRepository>()),
   );
   sl.registerLazySingleton<GetTopDoctorsUseCase>(
     () => GetTopDoctorsUseCase(sl<HomeRepository>()),
@@ -210,8 +211,11 @@ Future<void> init() async {
   sl.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(sl<AuthRepository>()),
   );
+  sl.registerLazySingleton<UpdateProfileUseCase>(
+    () => UpdateProfileUseCase(sl<AuthRepository>()),
+  );
   sl.registerLazySingleton<ForgetPasswordUseCase>(
-        () => ForgetPasswordUseCase(sl<AuthRepository>()),
+    () => ForgetPasswordUseCase(sl<AuthRepository>()),
   );
   sl.registerLazySingleton<LogoutUseCase>(
     () => LogoutUseCase(sl<AuthRepository>()),
@@ -224,7 +228,8 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetAppointmentsUseCase>(
     () => GetAppointmentsUseCase(repository: sl<AppointmentRepository>()),
-  );sl.registerLazySingleton<BookAppointmentUseCase>(
+  );
+  sl.registerLazySingleton<BookAppointmentUseCase>(
     () => BookAppointmentUseCase(repository: sl<AppointmentRepository>()),
   );
   sl.registerLazySingleton<GetMyVisitsUseCase>(
@@ -252,22 +257,24 @@ Future<void> init() async {
   );
 
   sl.registerFactory<DepartmentsCubit>(
-        () => DepartmentsCubit(
-            getAllDepartments: sl<GetAllDepartments>(),
-            getDepartmentById: sl<GetDepartmentById>()),
+    () => DepartmentsCubit(getAllDepartments: sl<GetAllDepartments>(), getDepartmentById: sl<GetDepartmentById>()),
   );
   sl.registerFactory<RecordsCubit>(
-        () => RecordsCubit(getRecordsUseCase: sl<GetRecordsUseCase>()),
+    () => RecordsCubit(getRecordsUseCase: sl<GetRecordsUseCase>()),
   );
   sl.registerFactory<HomeCubit>(
     () => HomeCubit(getTopDoctorsUseCase: sl<GetTopDoctorsUseCase>()),
   );
 
   sl.registerFactory<ForgetPasswordCubit>(
-        () => ForgetPasswordCubit(forgetPasswordUseCase: sl<ForgetPasswordUseCase>()),
+    () => ForgetPasswordCubit(forgetPasswordUseCase: sl<ForgetPasswordUseCase>()),
   );
   sl.registerFactory<AuthCubit>(
-    () => AuthCubit(loginUseCase: sl<LoginUseCase>(), registerUseCase: sl<RegisterUseCase>()),
+    () => AuthCubit(
+      updateProfileUseCase: sl<UpdateProfileUseCase>(),
+      loginUseCase: sl<LoginUseCase>(),
+      registerUseCase: sl<RegisterUseCase>(),
+    ),
   );
   sl.registerFactory<LogoutCubit>(
     () => LogoutCubit(logoutUseCase: sl<LogoutUseCase>()),
@@ -280,7 +287,8 @@ Future<void> init() async {
   );
   sl.registerFactory<AppointmentCubit>(
     () => AppointmentCubit(getAppointmentsUseCase: sl<GetAppointmentsUseCase>()),
-  );sl.registerFactory<BookAppointmentCubit>(
+  );
+  sl.registerFactory<BookAppointmentCubit>(
     () => BookAppointmentCubit(bookAppointmentUseCase: sl<BookAppointmentUseCase>()),
   );
   sl.registerFactory<VisitCubit>(

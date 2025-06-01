@@ -3,6 +3,7 @@ class ApiEndpoints {
   static const String login = '$baseUrl/login';
   static const String logout = '$baseUrl/logout';
   static const String register = '$baseUrl/register';
+  static const String updateProfile = '$baseUrl/update-profile';
   static const String forgetPassword = '$baseUrl/forget-password';
   static const String topDoctors = '$baseUrl/top-doctors';
   static const String clinics = '$baseUrl/clinics';

@@ -10,7 +10,9 @@ import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/My%20Profile/widgets/my_profile_widget.dart';
 import 'package:shifa/features/authentication/data/models/user.dart';
 
+import '../../../core/routes/app_routes.dart';
 import '../../../core/storage/token_storage.dart';
+import '../../../core/theme/styles.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -49,21 +51,21 @@ class _MyProfileState extends State<MyProfile> {
       alignment: Alignment.bottomCenter,
       appBarChild: CommonAppBarTitle(
         title: context.tr.translate("profile"),
-        // actionButton: GestureDetector(
-        //   onTap: () {
-        //     Navigator.pushNamed(context, AppRoutes.editProfile);
-        //   },
-        //   child: Text(
-        //     context.tr.translate("edit"),
-        //     style: TextStyles.nexaBold.copyWith(
-        //       fontSize: 18.sp,
-        //       shadows: [Shadow(color: Colors.white, offset: Offset(0, -4))],
-        //       color: Colors.transparent,
-        //       decoration: TextDecoration.underline,
-        //       decorationColor: AppTheme.whiteColor,
-        //     ),
-        //   ),
-        // ),
+        actionButton: GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.editProfile);
+          },
+          child: Text(
+            context.tr.translate("edit"),
+            style: TextStyles.nexaBold.copyWith(
+              fontSize: 18.sp,
+              shadows: [Shadow(color: Colors.white, offset: Offset(0, -4))],
+              color: Colors.transparent,
+              decoration: TextDecoration.underline,
+              decorationColor: AppTheme.whiteColor,
+            ),
+          ),
+        ),
       ),
       contentChild: Expanded(
         child: Padding(
