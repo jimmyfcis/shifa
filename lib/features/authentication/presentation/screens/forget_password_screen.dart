@@ -51,7 +51,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             builder: (context, state) {
               final forgetPasswordCubit = context.read<ForgetPasswordCubit>();
               return state is ForgetPasswordLoading
-                  ? Center(child: CircularProgressIndicator(color: themeProvider.currentThemeData!.primaryColor,))
+                  ? Center(child: Padding(
+                    padding:  const EdgeInsets.only(top: 100.0),
+                    child: CircularProgressIndicator(color: themeProvider.currentThemeData!.primaryColor,),
+                  ))
                   : Column(
                 children: [
                   SizedBox(height: 24.h),
