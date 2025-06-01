@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shifa/core/models/blog_model.dart';
-import 'package:shifa/features/Blog%20Detail/screens/blog_detail_screen.dart';
+import 'package:shifa/features/Blogs/screens/blog_detail_screen.dart';
 import 'package:shifa/features/Blogs/screens/blogs_screen.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Bottom%20Bar/screens/bottom_bar_screen.dart';
