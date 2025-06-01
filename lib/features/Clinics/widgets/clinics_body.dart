@@ -42,7 +42,9 @@ class _ClinicsBodyState extends State<ClinicsBody> {
           create: (context) {
             final cubit = sl<ClinicsCubit>();
             _clinicsCubit = cubit;
-            cubit.fetchClinics(); // Call the method immediately after creating the cubit
+            cubit.fetchClinics(
+              isLekxell: themeProvider.currentTheme == ThemeEnum.shifa ? null : true,
+            ); // Call the method immediately after creating the cubit
             return cubit;
           },
           child: BlocBuilder<ClinicsCubit, ClinicState>(

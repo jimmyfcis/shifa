@@ -6,7 +6,7 @@ class GetClinicsUseCase {
 
   GetClinicsUseCase(this.repository);
 
-  Future<ClinicsResponse> call() async {
-    return await repository.fetchClinics();
+  Future<ClinicsResponse> call({bool? isLekxell}) async {
+    return await repository.fetchClinics(isLekxell: isLekxell);
   }
 } 

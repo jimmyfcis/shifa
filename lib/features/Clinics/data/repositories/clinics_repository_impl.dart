@@ -8,8 +8,8 @@ class ClinicsRepositoryImpl implements ClinicsRepository {
   ClinicsRepositoryImpl({required this.clinicsRemoteDataSource});
 
   @override
-  Future<ClinicsResponse> fetchClinics() async {
-    final response = await clinicsRemoteDataSource.getClinics();
+  Future<ClinicsResponse> fetchClinics({bool? isLekxell}) async {
+    final response = await clinicsRemoteDataSource.getClinics(isLekxell:isLekxell);
     return response;
   }
 } 

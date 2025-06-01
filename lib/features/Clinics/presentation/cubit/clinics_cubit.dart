@@ -13,10 +13,10 @@ class ClinicsCubit extends Cubit<ClinicState> {
 
   ClinicsCubit({required this.getClinicsUseCase}) : super(ClinicInitial());
 
-  Future<void> fetchClinics() async {
+  Future<void> fetchClinics({bool? isLekxell}) async {
     try {
       emit(ClinicLoading());
-      final response = await getClinicsUseCase();
+      final response = await getClinicsUseCase(isLekxell: isLekxell);
       allClinics = response.clinics;
       emit(ClinicLoaded(response));
     } catch (error) {
