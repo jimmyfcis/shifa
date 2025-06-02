@@ -20,4 +20,5 @@ class ApiEndpoints {
   static const String getAllDepartments = '$baseUrl/ddepartments';
   static const String getDepartmentById = '$baseUrl/ddepartments/';
   static const String articles = '$baseUrl/articles';
+  static const String tickets = '$baseUrl/tickets';
 }

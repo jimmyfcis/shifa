@@ -76,6 +76,11 @@ import 'package:shifa/features/Blogs/domain/repositories/blogs_repository.dart';
 import 'package:shifa/features/Blogs/domain/usecases/get_blogs_usecase.dart';
 import 'package:shifa/features/Blogs/presentation/cubit/blogs_cubit.dart';
 
+import '../../features/Queue/data/datasources/queue_remote_data_source.dart';
+import '../../features/Queue/data/repositories/queue_repository_impl.dart';
+import '../../features/Queue/domain/repositories/queue_repository.dart';
+import '../../features/Queue/domain/usecases/get_tickets_usecase.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -119,6 +124,11 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<BlogsRemoteDataSource>(
     () => BlogsRemoteDataSourceImpl(),
+  );
+
+  // Queue Feature
+  sl.registerLazySingleton<QueueRemoteDataSource>(
+    () => QueueRemoteDataSourceImpl(dio: sl()),
   );
 
   // Repositories
@@ -186,6 +196,10 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton<QueueRepository>(
+    () => QueueRepositoryImpl(remoteDataSource: sl()),
+  );
+
   // Use cases
   sl.registerLazySingleton<GetDoctorDetailsUseCase>(
     () => GetDoctorDetailsUseCase(sl<DoctorRepository>()),
@@ -249,6 +263,10 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<GetBlogsUseCase>(
     () => GetBlogsUseCase(sl<BlogsRepository>()),
+  );
+
+  sl.registerLazySingleton<GetTicketsUseCase>(
+    () => GetTicketsUseCase(repository: sl()),
   );
 
   // Presentation (Cubit)
