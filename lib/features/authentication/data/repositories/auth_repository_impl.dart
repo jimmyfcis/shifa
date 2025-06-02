@@ -39,7 +39,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<LoginResponse> updateProfile({required User user}) async {
-    final loginResponse = await remoteDatasource.register(user: user);
+    final loginResponse = await remoteDatasource.updateProfile(user: user);
     return loginResponse;
   }
 }

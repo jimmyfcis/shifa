@@ -8,6 +8,6 @@ class Utils {
 
   static String formatGender(String? gender) {
     if (gender == null) return '';
-    return gender.toLowerCase() == 'male' ? 'M' : 'F';
+    return gender.toLowerCase() == 'male'||gender.toLowerCase() == 'm'||gender == 'ذكر' ? 'M' : 'F';
   }
 }

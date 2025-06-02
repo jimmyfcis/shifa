@@ -89,7 +89,7 @@ class CustomDateField extends StatelessWidget {
               hintText: hintText??"dd/mm/yyyy",
               suffixIcon: inputType==InputType.date?Image.asset(Assets.calendarForm):Image.asset(Assets.clockForm),
             ),
-            format: DateFormat("${DateFormat.WEEKDAY} ${DateFormat.DAY} ${DateFormat.ABBR_MONTH}"),
+            format: DateFormat("yyyy-MM-dd"),
             inputType: inputType,
             firstDate: firstDate,
             lastDate: lastDate,

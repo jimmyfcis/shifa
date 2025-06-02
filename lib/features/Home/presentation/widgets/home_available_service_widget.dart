@@ -27,8 +27,7 @@ class HomeAvailableService extends StatelessWidget {
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsLeksellIcon),
       ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.queueLeksell),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceLeksell),
-      ServiceModel(title: context.tr.translate("chemotherapy"), icon: SVGAssets.chemoLeksellIcon),
-      ServiceModel(title: context.tr.translate("radiotherapy"), icon: SVGAssets.radioTherapyLeksell),
+      ServiceModel(title: context.tr.translate("departments"), icon: SVGAssets.radioTherapyLeksell),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,6 +110,12 @@ class HomeAvailableService extends StatelessWidget {
                           context.tr.translate("monitor_queue")) {
                         Navigator.pushNamed(
                             context, AppRoutes.firstQueueScreen);
+                      }
+                      else if (leksellServiceModel[index]
+                          .title ==
+                          context.tr.translate("departments")) {
+                        Navigator.pushNamed(
+                            context, AppRoutes.departments);
                       }
                     },
                     title: leksellServiceModel[index].title,
