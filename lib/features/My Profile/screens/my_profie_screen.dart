@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
@@ -72,29 +70,29 @@ class _MyProfileState extends State<MyProfile> {
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              Center(
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: AppTheme.greyColor,
-                      width: 1,
-                    ),
-                  ),
-                  child: userData?.image != null && userData!.image!.isNotEmpty
-                      ? CachedNetworkImage(
-                          placeholder: (context, url) => Center(
-                            child: CircularProgressIndicator(
-                              color: themeProvider.currentThemeData!.primaryColor,
-                            ), // Loading spinner
-                          ),
-                          imageUrl: userData?.image ?? "",
-                        )
-                      : Image.asset(
-                          ImageAssets.myProfileImg,
-                        ),
-                ),
-              ),
+              // Center(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       border: Border.all(
+              //         color: AppTheme.greyColor,
+              //         width: 1,
+              //       ),
+              //     ),
+              //     child: userData?.image != null && userData!.image!.isNotEmpty
+              //         ? CachedNetworkImage(
+              //             placeholder: (context, url) => Center(
+              //               child: CircularProgressIndicator(
+              //                 color: themeProvider.currentThemeData!.primaryColor,
+              //               ), // Loading spinner
+              //             ),
+              //             imageUrl: userData?.image ?? "",
+              //           )
+              //         : Image.asset(
+              //             ImageAssets.myProfileImg,
+              //           ),
+              //   ),
+              // ),
               SizedBox(
                 height: 36.h,
               ),
@@ -119,7 +117,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                   if (userData?.gender != null && userData!.gender!.isNotEmpty)
                     MyProfileWidget(
-                        title: context.tr.translate("gender"), subTitle: userData?.gender ?? "", hasDivider: true),
+                        title: context.tr.translate("gender"), subTitle: userData!.gender!.toLowerCase().contains("f")?context.tr.translate("female"):context.tr.translate("male"), hasDivider: true),
                   SizedBox(
                     height: 16.h,
                   ),
