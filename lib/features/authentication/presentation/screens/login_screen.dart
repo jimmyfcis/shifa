@@ -9,6 +9,7 @@ import 'package:shifa/core/theme/theme.dart';
 import '../../../../core/assets/svg/svg_assets.dart';
 import '../../../../core/network/injection_container.dart';
 import '../../../../core/routes/app_routes.dart';
+import '../../../../core/storage/token_storage.dart';
 import '../../../../core/theme/styles.dart';
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgtes/auth_appbar.dart';
@@ -32,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isValid = true;
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController controller = TextEditingController();
+  bool _rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +116,31 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               SizedBox(height: 16.h),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Row(
+                                    children: [
+                                      Checkbox(
+                                        value: _rememberMe,
+                                        onChanged: (value) async{
+                                          setState(() {
+                                            _rememberMe = value ?? false;
+                                          });
+                                          final TokenStorage storage = TokenStorage();
+                                          await storage.saveRemember(_rememberMe);
+                                        },
+                                        activeColor: themeProvider.currentThemeData!.primaryColor,
+                                      ),
+                                      Text(
+                                        context.tr.translate('remember_me'),
+                                        style: TextStyles.nexaRegular.copyWith(
+                                          color: AppTheme.primaryTextColor,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       Navigator.pushNamed(context, AppRoutes.forgetPassword);

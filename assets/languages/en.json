@@ -213,5 +213,6 @@
   "patient_condition_hint": "Enter Patient condition",
   "additional_notes": "Additional Notes",
   "additional_notes_hint": "Add any additional notes here",
-  "send_request": "Send Request"
+  "send_request": "Send Request",
+  "remember_me": "Remember Me"
 } 

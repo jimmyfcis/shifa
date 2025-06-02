@@ -213,5 +213,6 @@
   "patient_condition_hint": "أدخل حالة المريض",
   "additional_notes": "ملاحظات إضافية",
   "additional_notes_hint": "أضف أي ملاحظات إضافية هنا",
-  "send_request": "إرسال الطلب"
+  "send_request": "إرسال الطلب",
+  "remember_me": "تذكرني"
 } 
