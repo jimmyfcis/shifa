@@ -14,6 +14,8 @@ class EmailTextField extends StatelessWidget {
   final String labelText;
   final String? hintText;
   final bool isRequired;
+  final TextEditingController? controller;
+
   final ValueChanged<String?>? onChanged;
   final int maxLines;
 
@@ -26,7 +28,7 @@ class EmailTextField extends StatelessWidget {
     this.hintText,
     this.isRequired = false,
     this.onChanged,
-    this.maxLines = 1,
+    this.maxLines = 1, this.controller,
   }) : super(key: key);
 
   @override
@@ -47,6 +49,7 @@ class EmailTextField extends StatelessWidget {
             initialValue: initialValue,
             enabled: enabled,
             name: name,
+            controller: controller,
             maxLines: maxLines,
             style: TextStyle(
               color: enabled ? Colors.black : Colors.grey,

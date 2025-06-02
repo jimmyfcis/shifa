@@ -14,6 +14,7 @@ class CustomDateField extends StatelessWidget {
   final String labelText;
   final String? hintText;
   final bool isRequired;
+  final TextEditingController? controller;
   final InputType inputType;
 
   final DateTime? firstDate, lastDate;
@@ -34,7 +35,7 @@ class CustomDateField extends StatelessWidget {
     this.initialValue,
     this.validators = const [],
     this.isRequired = false,
-    this.onChanged, this.inputType=InputType.date,
+    this.onChanged, this.inputType=InputType.date, this.controller,
   });
 
   @override
@@ -54,6 +55,7 @@ class CustomDateField extends StatelessWidget {
         FormBuilderDateTimePicker(
             enabled: enabled,
             name: name,
+            controller: controller,
             decoration: InputDecoration(
               errorMaxLines: 10,
               fillColor: AppTheme.whiteColor,

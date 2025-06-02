@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
   final bool? readOnly;
   final String name;
+  final TextEditingController? controller;
   final String labelText;
   final String? hintText;
   final bool isRequired;
@@ -44,7 +45,7 @@ class CustomTextField extends StatelessWidget {
     this.fillColor,
     this.onTap,
     this.maxLines,
-    this.hintTextColor,
+    this.hintTextColor, this.controller,
   }) : super(key: key);
 
   @override
@@ -66,6 +67,7 @@ class CustomTextField extends StatelessWidget {
         FormBuilderTextField(
           initialValue: initialValue,
           onTap: onTap,
+          controller: controller,
           enabled: enabled,
           readOnly: readOnly ?? false,
           name: name,
