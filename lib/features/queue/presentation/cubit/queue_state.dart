@@ -7,7 +7,7 @@ class QueueInitial extends QueueState {}
 class QueueLoading extends QueueState {}
 
 class QueueLoaded extends QueueState {
-  final TicketsResponse response;
+  final TicketsRootResponse response;
 
   QueueLoaded(this.response);
 }

@@ -12,7 +12,7 @@ class QueueCubit extends Cubit<QueueState> {
   Future<void> getTickets(String phone) async {
     emit(QueueLoading());
     try {
-      final TicketsResponse response = await getTicketsUseCase(phone);
+      final TicketsRootResponse response = await getTicketsUseCase(phone);
       emit(QueueLoaded(response));
     } catch (error) {
       final failure = ErrorHandler.handle(error);

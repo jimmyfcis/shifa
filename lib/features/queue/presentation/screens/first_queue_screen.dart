@@ -33,7 +33,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild: const CommonAppBarTitle(title: "Queue"),
+      appBarChild:  CommonAppBarTitle(title: "Queue"),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
@@ -47,7 +47,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
                   showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
                 } else if (state is QueueLoaded) {
                   Navigator.pushNamed(context, AppRoutes.secondQueueScreen,arguments: {
-                    "tickets": state.response.tickets??[],
+                    "tickets": state.response.tickets?.tickets??[],
                   });
                 }
               },

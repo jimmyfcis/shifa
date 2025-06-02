@@ -1,3 +1,23 @@
+class TicketsRootResponse {
+  final TicketsResponse? tickets;
+
+  TicketsRootResponse({this.tickets});
+
+  factory TicketsRootResponse.fromJson(Map<String, dynamic> json) {
+    return TicketsRootResponse(
+      tickets: json['tickets'] != null
+          ? TicketsResponse.fromJson(json['tickets'])
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'tickets': tickets?.toJson(),
+    };
+  }
+}
+
 class TicketsResponse {
   final String? message;
   final List<Ticket>? tickets;
@@ -10,9 +30,9 @@ class TicketsResponse {
   factory TicketsResponse.fromJson(Map<String, dynamic> json) {
     return TicketsResponse(
       message: json['message'] as String?,
-      tickets: (json['tickets'] as List?)
-          ?.map((ticket) => Ticket.fromJson(ticket))
-          .toList() ?? [],
+      tickets: (json['tickets'] as List<dynamic>?)
+          ?.map((item) => Ticket.fromJson(item))
+          .toList(),
     );
   }
 

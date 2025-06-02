@@ -6,7 +6,7 @@ class GetTicketsUseCase {
 
   GetTicketsUseCase({required this.repository});
 
-  Future<TicketsResponse> call(String phone) async {
+  Future<TicketsRootResponse> call(String phone) async {
     return await repository.getTickets(phone);
   }
 } 

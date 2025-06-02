@@ -4,7 +4,7 @@ import '../models/tickets_response.dart';
 import '../../../../core/network/api_endpoints.dart';
 
 abstract class QueueRemoteDataSource {
-  Future<TicketsResponse> getTickets(String phone);
+  Future<TicketsRootResponse> getTickets(String phone);
 }
 
 class QueueRemoteDataSourceImpl implements QueueRemoteDataSource {
@@ -13,13 +13,13 @@ class QueueRemoteDataSourceImpl implements QueueRemoteDataSource {
   QueueRemoteDataSourceImpl();
 
   @override
-  Future<TicketsResponse> getTickets(String phone) async {
+  Future<TicketsRootResponse> getTickets(String phone) async {
       final response = await dio.get(
         ApiEndpoints.tickets,
         queryParameters: {
           "phone":phone,
         },
       );
-      return TicketsResponse.fromJson(response.data);
+      return TicketsRootResponse.fromJson(response.data);
   }
 } 

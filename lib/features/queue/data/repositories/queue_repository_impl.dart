@@ -8,7 +8,7 @@ class QueueRepositoryImpl implements QueueRepository {
   QueueRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<TicketsResponse> getTickets(String phone) async {
+  Future<TicketsRootResponse> getTickets(String phone) async {
     final response = await remoteDataSource.getTickets(phone);
     return response;
   }
