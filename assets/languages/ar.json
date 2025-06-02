@@ -98,7 +98,7 @@
   "queue_number_is": "رقم الانتظار هو",
   "arrival_confirmation": "يرجى تأكيد وصولك إلى العيادات قبل رقم الانتظار الخاص بك بوقت كافٍ، في حالة فقدان رقم الانتظار الخاص بك ستحتاج إلى طلب رقم جديد من الاستقبال.",
   
-  "doctor_name": "د. فادي محمد نبيل",
+  "doctor_name": "اسم الدكتور",
   "doctor_specialty": "قسم النساء والتوليد",
   
   "address": "العنوان",
@@ -214,5 +214,15 @@
   "additional_notes": "ملاحظات إضافية",
   "additional_notes_hint": "أضف أي ملاحظات إضافية هنا",
   "send_request": "إرسال الطلب",
-  "remember_me": "تذكرني"
+  "remember_me": "تذكرني",
+  "view_queue": "عرض قائمة الانتظار",
+  "enter_phone_for_appointments": "أدخل رقم هاتفك لرؤية المواعيد",
+  "ticket_number": "رقم التذكرة",
+  "clinic_name": "اسم العيادة",
+  "current_ticket": "التذكرة الحالية",
+  "clinic_number": "رقم العيادة",
+  "day_name": "اليوم",
+  "time_start": "وقت البدء",
+  "time_end": "وقت الانتهاء",
+  "status": "الحالة"
 } 

@@ -87,7 +87,7 @@
   "queue_number_is": "Queue Number is",
   "arrival_confirmation": "Please confirm your arrival at the clinics before your queue number with adequate time, in case of missing your queue number you will need to request a new number from the reception.",
   
-  "doctor_name": "Dr.Fady Mohamed Nabil",
+  "doctor_name": "Doctor Name",
   "doctor_specialty": "Obstetrics and Gynecology Dep",
   
   "address": "Your Address",
@@ -214,5 +214,15 @@
   "additional_notes": "Additional Notes",
   "additional_notes_hint": "Add any additional notes here",
   "send_request": "Send Request",
-  "remember_me": "Remember Me"
+  "remember_me": "Remember Me",
+  "view_queue": "View Queue",
+  "enter_phone_for_appointments": "Enter your phone number to see appointments",
+  "ticket_number": "Ticket Number",
+  "clinic_name": "Clinic Name",
+  "current_ticket": "Current Ticket",
+  "clinic_number": "Clinic Number",
+  "day_name": "Day",
+  "time_start": "Start Time",
+  "time_end": "End Time",
+  "status": "Status"
 } 

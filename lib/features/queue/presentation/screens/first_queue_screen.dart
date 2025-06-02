@@ -7,7 +7,6 @@ import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/features/queue/presentation/cubit/queue_cubit.dart';
 import 'package:shifa/features/queue/presentation/cubit/queue_state.dart';
-
 import '../../../../core/network/injection_container.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/theme.dart';
@@ -33,7 +32,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return WaterMark(
-      appBarChild:  CommonAppBarTitle(title: "Queue"),
+      appBarChild:  CommonAppBarTitle(title: context.tr.translate('queue')),
       height: 105,
       alignment: Alignment.bottomCenter,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
@@ -60,7 +59,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Text(
-                        "Enter your phone number to see appointments",
+                        context.tr.translate('enter_phone_for_appointments'),
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.grey5Color,
                           fontSize: 12.sp,
@@ -94,7 +93,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
                       child: Padding(
                         padding: EdgeInsets.only(left: 24.w,right: 24.w,top: 10.h, bottom: 32.h),
                         child: CustomGreenButton(
-                          title: "View Queue",
+                          title: context.tr.translate('view_queue'),
                           onPressed: () {
                             if (phoneController.text.isEmpty) {
                               setState(() {
