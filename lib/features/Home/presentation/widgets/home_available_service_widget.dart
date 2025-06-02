@@ -111,10 +111,6 @@ class HomeAvailableService extends StatelessWidget {
                           context.tr.translate("monitor_queue")) {
                         Navigator.pushNamed(
                             context, AppRoutes.firstQueueScreen);
-                      } else {
-                        // Navigator.pushNamed(context, AppRoutes.clinicDoctors,
-                        //     arguments: leksellServiceModel[index]
-                        //         .title);
                       }
                     },
                     title: leksellServiceModel[index].title,
