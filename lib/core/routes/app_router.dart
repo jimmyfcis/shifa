@@ -31,9 +31,8 @@ import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Booking/screens/second_booking_screen.dart';
 import '../../features/Home/presentation/screens/ambulance_screen.dart';
-import '../../features/Home/presentation/screens/first_queue_screen.dart';
+import '../../features/queue/presentation/screens/first_queue_screen.dart';
 import '../../features/Home/presentation/screens/home_screen.dart';
-import '../../features/Home/presentation/screens/second_queue_screen.dart';
 import '../../features/Medical Reminder/screens/new_medicine_reminder_screen.dart';
 import '../../features/My Profile/screens/edit_profile_screen.dart';
 import '../../features/Privacy Policy/screens/privacy_policy_screen.dart';
@@ -44,6 +43,7 @@ import '../../features/authentication/presentation/screens/login_screen.dart';
 import '../../features/authentication/presentation/screens/register_screen.dart';
 import '../../features/authentication/presentation/screens/verify_code_screen.dart';
 import '../../features/departments/presentation/screens/departments_screen.dart';
+import '../../features/queue/presentation/screens/second_queue_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';
 
