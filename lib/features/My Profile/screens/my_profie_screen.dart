@@ -51,7 +51,9 @@ class _MyProfileState extends State<MyProfile> {
         title: context.tr.translate("profile"),
         actionButton: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, AppRoutes.editProfile);
+            Navigator.pushNamed(context, AppRoutes.editProfile,arguments: {
+              "user":userData
+            });
           },
           child: Text(
             context.tr.translate("edit"),

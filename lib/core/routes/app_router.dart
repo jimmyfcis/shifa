@@ -67,7 +67,10 @@ class AppRouter {
       case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => const ProfileScreen());
       case AppRoutes.editProfile:
-        return MaterialPageRoute(builder: (_) => const EditMyProfileScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(builder: (_) =>  EditMyProfileScreen(
+          user: arguments['user'],
+        ));
       case AppRoutes.myCare:
         return MaterialPageRoute(builder: (_) => const MyCareScreen());
 

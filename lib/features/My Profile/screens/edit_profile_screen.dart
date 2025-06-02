@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
-import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/styles.dart';
@@ -13,8 +11,6 @@ import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import '../../../core/network/injection_container.dart';
-import '../../../core/storage/token_storage.dart';
-import '../../../core/utils/validators.dart';
 import '../../../core/widgtes/custom_green_button.dart';
 import '../../../core/widgtes/custom_snackbar.dart';
 import '../../../core/widgtes/custom_white_button.dart';
@@ -22,13 +18,14 @@ import '../../../core/widgtes/form_fields/custom_date_field.dart';
 import '../../../core/widgtes/form_fields/custom_drop_down_field.dart';
 import '../../../core/widgtes/form_fields/custom_text_field.dart';
 import '../../../core/widgtes/form_fields/email_text_field.dart';
-import '../../../core/widgtes/form_fields/phone_number_field.dart';
 import '../../authentication/data/models/user.dart';
 import '../../authentication/presentation/cubit/login/login_cubit.dart';
 import '../../authentication/presentation/cubit/login/login_state.dart';
 
 class EditMyProfileScreen extends StatefulWidget {
-  const EditMyProfileScreen({super.key});
+  final User user;
+
+  const EditMyProfileScreen({super.key, required this.user});
 
   @override
   State<EditMyProfileScreen> createState() => _EditMyProfileScreenState();
@@ -36,24 +33,25 @@ class EditMyProfileScreen extends StatefulWidget {
 
 class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
   final _formKey = GlobalKey<FormBuilderState>();
   bool isValid = true;
-
-  User? _user;
 
   @override
   void initState() {
     super.initState();
-    _loadUserName();
+    phoneController.text = widget.user.phoneNumber ?? "";
+    nameController.text = widget.user.name ?? "";
+    emailController.text = widget.user.email ?? "";
+    idController.text = widget.user.nationalId ?? "";
+    dateController.text = widget.user.birthdate ?? "";
+    genderController.text = widget.user.gender ?? "";
   }
-  Future<void> _loadUserName() async {
-    final storage = TokenStorage();
-    final user = await storage.getUser();
-      setState(() {
-        _user = user;
-      });
 
-  }
   @override
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
@@ -76,12 +74,11 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                 Navigator.pushReplacementNamed(context, AppRoutes.bottomBar, arguments: {
                   "index": 0,
                 });
-              }
-              else if (state is AuthFailure) {
+              } else if (state is AuthFailure) {
                 if (state.message.isEmpty) {
-                  showCustomSnackBar(context, context.tr.translate("error"), isError: true, statusCode: state.statusCode);
-                }
-                else {
+                  showCustomSnackBar(context, context.tr.translate("error"),
+                      isError: true, statusCode: state.statusCode);
+                } else {
                   showCustomSnackBar(context, state.message, isError: true, statusCode: state.statusCode);
                 }
               }
@@ -90,21 +87,21 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
               final loginCubit = context.read<AuthCubit>();
               return Column(
                 children: [
-                  SizedBox(height: 24.h),
-                  Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppTheme.greyColor,
-                          width: 1,
-                        ),
-                      ),
-                      child: Image.asset(
-                        ImageAssets.myProfileImg,
-                      ),
-                    ),
-                  ),
+                  // SizedBox(height: 24.h),
+                  // Center(
+                  //   child: Container(
+                  //     decoration: BoxDecoration(
+                  //       shape: BoxShape.circle,
+                  //       border: Border.all(
+                  //         color: AppTheme.greyColor,
+                  //         width: 1,
+                  //       ),
+                  //     ),
+                  //     child: Image.asset(
+                  //       ImageAssets.myProfileImg,
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 12.h,
                   ),
@@ -120,33 +117,34 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                               CustomTextField(
                                 labelText: context.tr.translate('your_name'),
                                 name: 'name',
+                                controller: nameController,
                                 isRequired: true,
-                                initialValue: _user?.name??"",
                                 hintText: context.tr.translate('name_hint'),
                               ),
                               SizedBox(height: 16.h),
                               EmailTextField(
                                 labelText: context.tr.translate('your_email'),
                                 name: 'email',
+                                controller: emailController,
                                 isRequired: false,
                                 hintText: context.tr.translate('email_hint'),
                               ),
                               SizedBox(height: 16.h),
-                              PhoneNumberField(
+                              CustomTextField(
+                                labelText: context.tr.translate('phone_number'),
+                                name: 'phone',
                                 controller: phoneController,
-                                isValid: isValid,
-                                onInputChanged: (PhoneNumber number) {
-                                  setState(() {
-                                    isValid = Validators().isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
-                                  });
-                                  return;
-                                },
+                                isRequired: true,
+                                hintText: context.tr.translate('phone_number_hint'),
                               ),
                               SizedBox(height: 16.h),
                               CustomDateField(
                                 name: 'date',
                                 isRequired: true,
-                                initialValue: _user?.birthdate!=null && _user!.birthdate!.isNotEmpty?DateTime.parse(_user?.birthdate??""):null,
+                                controller: dateController,
+                                initialValue: widget.user.birthdate != null && widget.user.birthdate!.isNotEmpty
+                                    ? DateTime.parse(widget.user.birthdate!)
+                                    : null,
                                 inputType: InputType.date,
                                 labelText: context.tr.translate('date_of_birth'),
                               ),
@@ -154,6 +152,9 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                               CustomDropdownField(
                                 name: 'gender',
                                 isRequired: true,
+                                initialValue: widget.user.gender!.toLowerCase().contains("f")
+                                    ? context.tr.translate('female')
+                                    : context.tr.translate('male'),
                                 labelText: context.tr.translate('gender'),
                                 items: [context.tr.translate('male'), context.tr.translate('female')],
                                 itemBuilder: (context, data) {
@@ -182,8 +183,9 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                               CustomTextField(
                                 labelText: context.tr.translate('id'),
                                 name: 'id',
+                                controller: idController,
                                 isRequired: true,
-                                initialValue: _user?.id??"",
+                                // initialValue: _user?.id??"",
                                 hintText: context.tr.translate('id_hint'),
                               ),
                               SizedBox(height: 24.h),
@@ -223,25 +225,19 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                                 if (!formState.saveAndValidate()) {
                                   return;
                                 }
-                                if (phoneController.text.isEmpty) {
-                                  setState(() {
-                                    isValid = false;
-                                  });
-                                } else if (isValid && phoneController.text.isNotEmpty) {
-                                  final formValues = formState.value;
-                                  final birthdate = Utils.formatDate(formValues['date']);
-                                  final gender = Utils.formatGender(formValues['gender']);
-                                  final user = User(
-                                    name: formValues['name'] ?? '',
-                                    nationalId: formValues['id'] ?? '',
-                                    email: formValues['email'] ?? '',
-                                    phoneNumber: phoneController.text.replaceAll(" ", ""),
-                                    birthdate: birthdate,
-                                    gender: gender,
-                                    idType: formValues['id_type'] ?? '',
-                                  );
-                                  loginCubit.updateProfile(user: user);
-                                }
+                                final formValues = formState.value;
+                                final birthdate = Utils.formatDate(formValues['date']);
+                                final gender = Utils.formatGender(formValues['gender']);
+                                final user = User(
+                                  name: formValues['name'] ?? '',
+                                  nationalId: formValues['id'] ?? '',
+                                  email: formValues['email'] ?? '',
+                                  phoneNumber: formValues['phone'] ?? '',
+                                  birthdate: birthdate,
+                                  gender: gender,
+                                  idType: formValues['id_type'] ?? '',
+                                );
+                                loginCubit.updateProfile(user: user);
                               },
                             ),
                           )
