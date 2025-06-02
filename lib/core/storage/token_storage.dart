@@ -9,6 +9,7 @@ class TokenStorage {
   static const String _languageKey = 'language';
   static const String _defaultLanguage = 'en';
   static const String _rememberMe = 'remember';
+  static const String _password = 'password';
 
   Future<void> saveToken(String token) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -38,6 +39,21 @@ class TokenStorage {
   Future<void> deleteRemember() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_rememberMe);
+  }
+
+  Future<void> savePassword(String password) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_password, password);
+  }
+
+  Future<String?> getPassword() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_password);
+  }
+
+  Future<void> deletePassword() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_password);
   }
   
   // Language methods

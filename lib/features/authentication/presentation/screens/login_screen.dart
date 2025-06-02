@@ -159,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(height: 34.h),
                               CustomGreenButton(
                                 title: context.tr.translate('login'),
-                                onPressed: () {
+                                onPressed: () async{
                                   var formState = _formKey.currentState;
                                   if (formState == null) return;
                                   if (!formState.saveAndValidate()) {
@@ -174,6 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       phoneController.text.trim().replaceAll(" ", ""),
                                       controller.text.trim(),
                                     );
+                                    final TokenStorage storage = TokenStorage();
+                                    await storage.savePassword(controller.text.trim());
                                   }
                                 },
                               ),
