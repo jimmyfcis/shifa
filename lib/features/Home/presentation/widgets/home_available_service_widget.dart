@@ -18,14 +18,14 @@ class HomeAvailableService extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     List<ServiceModel> shifaServiceModel = [
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsShifaIcon),
-     // ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.monitorQueueShifaIcon),
+      ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.monitorQueueShifaIcon),
       ServiceModel(
           title: context.tr.translate("departments"), icon: SVGAssets.physicalTherapyShifaIcon),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceShifa),
     ];
     List<ServiceModel> leksellServiceModel = [
       ServiceModel(title: context.tr.translate("discover_clinic"), icon: SVGAssets.clincsLeksellIcon),
-      //ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.queueLeksell),
+      ServiceModel(title: context.tr.translate("monitor_queue"), icon: SVGAssets.queueLeksell),
       ServiceModel(title: context.tr.translate("ambulance"), icon: SVGAssets.ambulanceLeksell),
       ServiceModel(title: context.tr.translate("chemotherapy"), icon: SVGAssets.chemoLeksellIcon),
       ServiceModel(title: context.tr.translate("radiotherapy"), icon: SVGAssets.radioTherapyLeksell),
