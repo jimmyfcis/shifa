@@ -4,12 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
+import 'package:shifa/features/queue/data/models/tickets_response.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgtes/common_app_bar_title.dart';
 import '../../../../core/widgtes/watermark_widget.dart';
 
 class SecondQueueScreen extends StatefulWidget {
-  const SecondQueueScreen({super.key});
+  final List<Ticket> tickets;
+  const SecondQueueScreen({super.key, required this.tickets});
 
   @override
   State<SecondQueueScreen> createState() => _SecondQueueScreenState();

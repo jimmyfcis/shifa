@@ -87,7 +87,11 @@ class AppRouter {
       case AppRoutes.firstQueueScreen:
         return MaterialPageRoute(builder: (_) => const FirstQueueScreen());
       case AppRoutes.secondQueueScreen:
-        return MaterialPageRoute(builder: (_) => const SecondQueueScreen());
+        var arguments = settings.arguments as Map<String, dynamic>;
+
+        return MaterialPageRoute(builder: (_) =>  SecondQueueScreen(
+            tickets:arguments['tickets'],
+        ));
       case AppRoutes.register:
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case AppRoutes.verifyOTP:

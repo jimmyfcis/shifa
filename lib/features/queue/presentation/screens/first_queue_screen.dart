@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
+import 'package:shifa/features/queue/presentation/cubit/queue_cubit.dart';
+import 'package:shifa/features/queue/presentation/cubit/queue_state.dart';
 
+import '../../../../core/network/injection_container.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/theme.dart';
+import '../../../../core/utils/validators.dart';
 import '../../../../core/widgtes/common_app_bar_title.dart';
 import '../../../../core/widgtes/custom_green_button.dart';
-import '../../../../core/widgtes/form_fields/custom_drop_down_field.dart';
+import '../../../../core/widgtes/custom_snackbar.dart';
+import '../../../../core/widgtes/form_fields/phone_number_field.dart';
 import '../../../../core/widgtes/watermark_widget.dart';
 
 class FirstQueueScreen extends StatefulWidget {
@@ -19,7 +26,6 @@ class FirstQueueScreen extends StatefulWidget {
 }
 
 class _FirstQueueScreenState extends State<FirstQueueScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
   bool isValid = true;
   final TextEditingController phoneController = TextEditingController();
 
@@ -33,76 +39,79 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
       contentChild: Expanded(
-          child: FormBuilder(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 34.h),
-                Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:24.w),
-                  child: Text(
-                    "Select doctor to monitor the queue",
-                    style: TextStyles.nexaRegular.copyWith(
-                      color: AppTheme.grey5Color,
-                      fontSize: 12.sp,
+          child: BlocProvider(
+            create: (context) => sl<QueueCubit>(),
+            child: BlocConsumer<QueueCubit, QueueState>(
+              listener: (context, state) {
+                if (state is QueueFailure) {
+                  showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
+                } else if (state is QueueLoaded) {
+                  Navigator.pushNamed(context, AppRoutes.secondQueueScreen,arguments: {
+                    "tickets": state.ticketsResponse.tickets??[],
+                  });
+                }
+              },
+              builder: (context, state) {
+                final queueCubit = context.read<QueueCubit>();
+                return state is QueueLoading?const Center(child: CircularProgressIndicator()):Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 34.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: Text(
+                        "Enter Your Mobile Number",
+                        style: TextStyles.nexaRegular.copyWith(
+                          color: AppTheme.grey5Color,
+                          fontSize: 12.sp,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
+                    Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: Column(
                         children: [
-                          CustomDropdownField(
-                            name: 'doctor',
-                            isRequired: true,
-                            labelText: 'Select Doctor',
-                            items: ["Waleed Yousry", "Ahmed Mahmoud", "Mohamed Ahmed"],
-                            itemBuilder: (context, data) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  color: AppTheme.whiteColor,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        data,
-                                        style: TextStyles.nexaRegular.copyWith(
-                                          fontWeight: FontWeight.w400,
-                                          color: AppTheme.primaryTextColor,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                          PhoneNumberField(
+                            controller: phoneController,
+                            isValid: isValid,
+                            labelText: context.tr.translate('phone_number'),
+                            onInputChanged: (PhoneNumber number) {
+                              setState(() {
+                                isValid = Validators()
+                                    .isValidEgyptianPhoneNumber(number.phoneNumber ?? "");
+                              });
                             },
                           ),
                         ],
                       ),
                     ),
-                  ),
-                ),
-                Card(
-                  color: AppTheme.whiteColor,
-                  elevation: 0,
-                  margin: EdgeInsets.zero,
-                  shape: const ContinuousRectangleBorder(),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
-                    child: CustomGreenButton(
-                      title: "View Queue",
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.secondQueueScreen);
-                      },
+                    Card(
+                      color: AppTheme.whiteColor,
+                      elevation: 0,
+                      margin: EdgeInsets.zero,
+                      shape: const ContinuousRectangleBorder(),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+                        child: CustomGreenButton(
+                          title: "View Queue",
+                          onPressed: () {
+                            if (phoneController.text.isEmpty) {
+                              setState(() {
+                                isValid = false;
+                              });
+                            }
+                            else if (isValid && phoneController.text.isNotEmpty) {
+                              queueCubit.getTickets(
+                                phoneController.text.trim().replaceAll(" ", ""),
+                              );
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                  ],
+                );
+              },
             ),
           )),
     );

@@ -10,7 +10,7 @@ class QueueCubit extends Cubit<QueueState> {
 
   QueueCubit({required this.getTicketsUseCase}) : super(QueueInitial());
 
-  Future<void> getLabs(String phone) async {
+  Future<void> getTickets(String phone) async {
     try {
       emit(QueueLoading());
       final TicketsResponse response = await getTicketsUseCase(phone);
