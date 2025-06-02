@@ -1,5 +1,4 @@
-import 'package:shifa/features/queue/data/models/tickets_response.dart';
-
+import '../models/tickets_response.dart';
 import '../../domain/repositories/queue_repository.dart';
 import '../datasources/queue_remote_data_source.dart';
 
