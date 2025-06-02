@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/theme/theme.dart';
+import '../../../../core/routes/app_routes.dart';
+import '../../../../core/network/injection_container.dart';
 import '../../../core/assets/svg/svg_assets.dart';
-import '../../../core/routes/app_routes.dart';
+import '../../authentication/presentation/cubit/login/login_cubit.dart';
+import '../../authentication/presentation/cubit/login/login_state.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
 
-    // Initialize fade animation
     _fadeController = AnimationController(
       duration: const Duration(seconds: 1),
       vsync: this,
@@ -31,13 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
       curve: Curves.easeIn,
     );
 
-    // Start fading animation
     _fadeController.forward();
-
-    // Delay for 5 seconds, then navigate to the next screen
-    Future.delayed(const Duration(seconds: 3)).then((val) {
-      Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
-    });
   }
 
   @override
@@ -49,22 +45,43 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FadeTransition(
-        opacity: _fadeAnimation,
-        child: Container(
-          decoration: const BoxDecoration(color: AppTheme.shifaPrimaryColor),
-          child: Hero(
-            tag: "logo",
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(SVGAssets.splashIcon),
-                  SvgPicture.asset(SVGAssets.splashTexts),
-                ],
+      body: BlocProvider(
+        create: (context) =>
+        sl<AuthCubit>()..checkRememberAndLogin(context),
+        child: BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthFailure) {
+              Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
+            } else if (state is AuthSuccess) {
+              Navigator.pushReplacementNamed(
+                context,
+                AppRoutes.bottomBar,
+                arguments: {"index": 0},
+              );
+            }
+          },
+          builder: (context, state) {
+            return FadeTransition(
+              opacity: _fadeAnimation,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppTheme.shifaPrimaryColor,
+                ),
+                child: Hero(
+                  tag: "logo",
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(SVGAssets.splashIcon),
+                        SvgPicture.asset(SVGAssets.splashTexts),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

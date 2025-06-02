@@ -174,8 +174,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                       phoneController.text.trim().replaceAll(" ", ""),
                                       controller.text.trim(),
                                     );
-                                    final TokenStorage storage = TokenStorage();
-                                    await storage.savePassword(controller.text.trim());
                                   }
                                 },
                               ),

@@ -90,5 +90,6 @@ class TokenStorage {
     await prefs.remove(_tokenKey);
     await prefs.remove(_userKey);
     await prefs.remove(_rememberMe);
+    await prefs.remove(_password);
   }
 }

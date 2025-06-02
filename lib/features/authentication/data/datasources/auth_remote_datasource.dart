@@ -43,6 +43,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     final loginResp = LoginResponse.fromJson(response.data);
     await storage.saveToken(loginResp.token);
     await storage.saveUser(loginResp.user);
+    await storage.savePassword(password);
 
     return loginResp;
   }
