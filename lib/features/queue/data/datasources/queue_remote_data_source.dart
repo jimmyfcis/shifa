@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shifa/core/network/dio_client.dart';
 import '../models/tickets_response.dart';
 import '../../../../core/network/api_endpoints.dart';
 
@@ -7,9 +8,9 @@ abstract class QueueRemoteDataSource {
 }
 
 class QueueRemoteDataSourceImpl implements QueueRemoteDataSource {
-  final Dio dio;
+  final Dio dio=DioClient().dio;
 
-  QueueRemoteDataSourceImpl({required this.dio});
+  QueueRemoteDataSourceImpl();
 
   @override
   Future<TicketsResponse> getTickets(String phone) async {

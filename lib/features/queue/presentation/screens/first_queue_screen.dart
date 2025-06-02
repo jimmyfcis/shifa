@@ -43,11 +43,11 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
             create: (context) => sl<QueueCubit>(),
             child: BlocConsumer<QueueCubit, QueueState>(
               listener: (context, state) {
-                if (state is QueueFailure) {
+                if (state is QueueError) {
                   showCustomSnackBar(context, state.message, isError: true,statusCode: state.statusCode);
                 } else if (state is QueueLoaded) {
                   Navigator.pushNamed(context, AppRoutes.secondQueueScreen,arguments: {
-                    "tickets": state.ticketsResponse.tickets??[],
+                    "tickets": state.response.tickets??[],
                   });
                 }
               },
@@ -60,7 +60,7 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Text(
-                        "Enter Your Mobile Number",
+                        "Enter your phone number to see appointments",
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.grey5Color,
                           fontSize: 12.sp,
@@ -85,13 +85,14 @@ class _FirstQueueScreenState extends State<FirstQueueScreen> {
                         ],
                       ),
                     ),
+                    const Spacer(),
                     Card(
                       color: AppTheme.whiteColor,
                       elevation: 0,
                       margin: EdgeInsets.zero,
                       shape: const ContinuousRectangleBorder(),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+                        padding: EdgeInsets.only(left: 24.w,right: 24.w,top: 10.h, bottom: 32.h),
                         child: CustomGreenButton(
                           title: "View Queue",
                           onPressed: () {

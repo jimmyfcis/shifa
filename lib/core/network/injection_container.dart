@@ -76,10 +76,11 @@ import 'package:shifa/features/Blogs/domain/repositories/blogs_repository.dart';
 import 'package:shifa/features/Blogs/domain/usecases/get_blogs_usecase.dart';
 import 'package:shifa/features/Blogs/presentation/cubit/blogs_cubit.dart';
 
-import '../../features/Queue/data/datasources/queue_remote_data_source.dart';
-import '../../features/Queue/data/repositories/queue_repository_impl.dart';
-import '../../features/Queue/domain/repositories/queue_repository.dart';
-import '../../features/Queue/domain/usecases/get_tickets_usecase.dart';
+import '../../features/queue/data/datasources/queue_remote_data_source.dart';
+import '../../features/queue/data/repositories/queue_repository_impl.dart';
+import '../../features/queue/domain/repositories/queue_repository.dart';
+import '../../features/queue/domain/usecases/get_tickets_usecase.dart';
+import '../../features/queue/presentation/cubit/queue_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -128,7 +129,7 @@ Future<void> init() async {
 
   // Queue Feature
   sl.registerLazySingleton<QueueRemoteDataSource>(
-    () => QueueRemoteDataSourceImpl(dio: sl()),
+        () => QueueRemoteDataSourceImpl(),
   );
 
   // Repositories
@@ -326,5 +327,9 @@ Future<void> init() async {
   );
   sl.registerFactory<BlogsCubit>(
     () => BlogsCubit(getBlogsUseCase: sl<GetBlogsUseCase>()),
+  );
+
+  sl.registerFactory<QueueCubit>(
+    () => QueueCubit(getTicketsUseCase: sl()),
   );
 }

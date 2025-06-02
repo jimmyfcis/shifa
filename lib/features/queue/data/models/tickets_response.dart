@@ -10,9 +10,9 @@ class TicketsResponse {
   factory TicketsResponse.fromJson(Map<String, dynamic> json) {
     return TicketsResponse(
       message: json['message'] as String?,
-      tickets: (json['tickets'] as List<dynamic>?)
-          ?.map((item) => Ticket.fromJson(item))
-          .toList(),
+      tickets: (json['tickets'] as List?)
+          ?.map((ticket) => Ticket.fromJson(ticket))
+          .toList() ?? [],
     );
   }
 
