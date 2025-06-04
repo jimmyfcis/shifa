@@ -54,12 +54,15 @@ class CommonAppBarTitle extends StatelessWidget {
                 ),
               ),
             ),
-          Center(
-            child: Text(
-              title,
-              style: TextStyles.nexaBold.copyWith(
-                color: textColor ?? AppTheme.whiteColor,
-                fontSize: 18,
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyles.nexaBold.copyWith(
+                  color: textColor ?? AppTheme.whiteColor,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),
