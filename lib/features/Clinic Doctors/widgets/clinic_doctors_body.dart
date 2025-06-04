@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/clinic_doctor_card.dart';
-import 'package:shifa/features/Clinic%20Doctors/widgets/clinics_doctor_settings.dart';
 import 'package:shifa/core/models/doctor_model.dart';
-
+import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/models/clinic_model.dart';
+import '../../../core/widgtes/form_fields/custom_text_field.dart';
 
 class ClinicDoctorsBody extends StatelessWidget {
   final List<Doctor> doctors;
@@ -30,7 +32,24 @@ class ClinicDoctorsBody extends StatelessWidget {
               ),
             ],
           ),
-          child: const ClinicsDoctorSettings(),
+          child: CustomTextField(
+            name: "search",
+            hasName: false,
+            onChanged: (value){
+
+            },
+            labelText: context.tr.translate("search_doctor"),
+            hintText: context.tr.translate("search_doctor"),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SvgPicture.asset(
+                SVGAssets.clinicsIcon,
+                width: 20.w,
+                height: 20.h,
+                color: AppTheme.grey7Color,
+              ),
+            ),
+          ),
         ),
         Expanded(
           child: ListView.separated(
