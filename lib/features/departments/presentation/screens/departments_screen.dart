@@ -7,6 +7,7 @@ import '../../../../core/network/injection_container.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgtes/common_app_bar_title.dart';
 import '../../../../core/widgtes/custom_snackbar.dart';
+import '../../../../core/widgtes/empty_state.dart';
 import '../cubit/departments_cubit.dart';
 import '../cubit/departments_state.dart';
 import '../widgets/department_card.dart';
@@ -46,14 +47,18 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
                       color: themeProvider.currentThemeData!.primaryColor,
                     ))
                   : state is DepartmentsLoaded
-                      ? ListView.builder(
-                          padding: const EdgeInsets.all(16),
-                          itemCount: state.response.departments?.length ?? 0,
-                          itemBuilder: (context, index) {
-                            final department = state.response.departments![index];
-                            return DepartmentCard(department: department);
-                          },
-                        )
+                      ? state.response.departments == null || state.response.departments!.isEmpty
+                          ? EmptyStateWidget(
+                              message: context.tr.translate('no_departments'),
+                            )
+                          : ListView.builder(
+                              padding: const EdgeInsets.all(16),
+                              itemCount: state.response.departments?.length ?? 0,
+                              itemBuilder: (context, index) {
+                                final department = state.response.departments![index];
+                                return DepartmentCard(department: department);
+                              },
+                            )
                       : const SizedBox();
             },
           ),

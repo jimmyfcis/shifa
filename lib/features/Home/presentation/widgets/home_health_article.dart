@@ -33,7 +33,7 @@ class HomeHealthArticle extends StatelessWidget {
                   child: CircularProgressIndicator(
                   color: themeProvider.currentThemeData!.primaryColor,
                 ))
-              : state is BlogsLoaded
+              : state is BlogsLoaded && state.blogsResponse.articles!=null && state.blogsResponse.articles!.isNotEmpty
                   ? Column(
                       children: [
                         Padding(

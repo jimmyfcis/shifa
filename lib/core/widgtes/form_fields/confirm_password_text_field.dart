@@ -83,8 +83,13 @@ class _ConfirmPasswordTextFieldState extends State<ConfirmPasswordTextField> {
               color: AppTheme.hintColor,
               fontSize: 14,
             ),
-            suffixIcon: obscureText?Image.asset(Assets.eyeClose):Image.asset(Assets.eyeOpen),
-          ),
+            suffixIcon: InkWell(
+                onTap: (){
+                  setState(() {
+                    obscureText= !obscureText;
+                  });
+                },
+                child: obscureText?Image.asset(Assets.eyeClose):Image.asset(Assets.eyeOpen)),          ),
           cursorColor: AppTheme.blackColor,
             obscureText: obscureText,
             obscuringCharacter: "*",

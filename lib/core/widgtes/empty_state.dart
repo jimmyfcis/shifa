@@ -28,7 +28,7 @@ class EmptyStateWidget extends StatelessWidget {
             Icon(
               icon,
               size: 64.r,
-              color: AppTheme.greyColor,
+              color: AppTheme.blackColor,
             ),
             SizedBox(height: 16.h),
             Text(

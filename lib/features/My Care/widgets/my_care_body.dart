@@ -35,45 +35,45 @@ class MyCareBody extends StatelessWidget {
             SizedBox(
               height: 16.h,
             ),
-            MyCareCard(
-              title:  context.tr.translate("medication_reminder"),
-              svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
-                  ? SVGAssets.medicineLeksellIcon
-                  : SVGAssets.medicineShifaIcon,
-              onTap: () {
-                log("Medication Reminder");
-                Navigator.pushNamed(context, AppRoutes.medicalReminder);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            MyCareCard(
-              title:  context.tr.translate("vaccine_reminder"),
-              svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
-                  ? SVGAssets.vaccineLeksellIcon
-                  : SVGAssets.vaccineShifaIcon,
-              onTap: () {
-                log("Vaccine Reminder");
-                Navigator.pushNamed(context, AppRoutes.vaccineReminder);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            MyCareCard(
-              title:  context.tr.translate("care_reminder"),
-              svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
-                  ? SVGAssets.careLeksellIcon
-                  : SVGAssets.careShifaIcon,
-              onTap: () {
-                log("Care Reminder");
-                Navigator.pushNamed(context, AppRoutes.careReminder);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
+            // MyCareCard(
+            //   title:  context.tr.translate("medication_reminder"),
+            //   svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
+            //       ? SVGAssets.medicineLeksellIcon
+            //       : SVGAssets.medicineShifaIcon,
+            //   onTap: () {
+            //     log("Medication Reminder");
+            //     Navigator.pushNamed(context, AppRoutes.medicalReminder);
+            //   },
+            // ),
+            // SizedBox(
+            //   height: 16.h,
+            // ),
+            // MyCareCard(
+            //   title:  context.tr.translate("vaccine_reminder"),
+            //   svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
+            //       ? SVGAssets.vaccineLeksellIcon
+            //       : SVGAssets.vaccineShifaIcon,
+            //   onTap: () {
+            //     log("Vaccine Reminder");
+            //     Navigator.pushNamed(context, AppRoutes.vaccineReminder);
+            //   },
+            // ),
+            // SizedBox(
+            //   height: 16.h,
+            // ),
+            // MyCareCard(
+            //   title:  context.tr.translate("care_reminder"),
+            //   svgIcon: themeProvider.currentTheme == ThemeEnum.leksell
+            //       ? SVGAssets.careLeksellIcon
+            //       : SVGAssets.careShifaIcon,
+            //   onTap: () {
+            //     log("Care Reminder");
+            //     Navigator.pushNamed(context, AppRoutes.careReminder);
+            //   },
+            // ),
+            // SizedBox(
+            //   height: 16.h,
+            // ),
             MyCareCard(
               title:  context.tr.translate("lab_tests"),
               svgIcon: themeProvider.currentTheme == ThemeEnum.leksell

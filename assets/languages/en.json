@@ -36,7 +36,7 @@
   "english": "English",
   "arabic": "العربية",
   "language": "Language",
-  "terms_conditions": "Terms and Conditions",
+  "terms_conditions": "Terms and Conditions ",
   "privacy_policy": "Privacy Policy",
   "logout": "Logout",
   "login": "Login",
@@ -83,6 +83,8 @@
   "clinic_arrival_note": "you must confirm your arrival at clinics at least half an hour before clinic end.",
   
   "queue": "Queue",
+  "no_articles": "No Articles",
+  "no_departments": "No Departments",
   "queue_for": "Queue for",
   "queue_number_is": "Queue Number is",
   "arrival_confirmation": "Please confirm your arrival at the clinics before your queue number with adequate time, in case of missing your queue number you will need to request a new number from the reception.",

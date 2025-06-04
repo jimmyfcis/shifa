@@ -154,7 +154,7 @@ class AppointmentCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+               if(tabSelectedIndex==0) Expanded(
                   child: CustomWhiteButton(
                     title: tabSelectedIndex == 0
                         ? context.tr.translate("cancel_your_visit")

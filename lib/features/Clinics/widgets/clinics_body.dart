@@ -7,6 +7,7 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/widgtes/empty_state.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/features/Clinics/widgets/clinic_item.dart';
 
@@ -56,101 +57,103 @@ class _ClinicsBodyState extends State<ClinicsBody> {
                       ),
                     )
                   : state is ClinicLoaded
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            CustomTextField(
-                              initialValue: _searchController.text,
-                              name: "clinic",
-                              hasName: false,
-                              labelText: context.tr.translate("search_for_clinic"),
-                              hintText: context.tr.translate("search_for_clinic"),
-                              onChanged: (value) {
-                                // Call the search method in the cubit
-                                _clinicsCubit?.searchClinics(value ?? '');
-                              },
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  SVGAssets.clinicsIcon,
-                                  width: 20.w,
-                                  height: 20.h,
-                                  color: AppTheme.grey7Color,
-                                ),
-                              ),
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.clear, size: 20.w, color: AppTheme.grey7Color),
-                                onPressed: () {
-                                  _searchController.clear();
-                                  _clinicsCubit?.searchClinics('');
-                                },
-                              ),
-                            ),
-                            SizedBox(height: 16.h),
-                            state.clinicsResponse.clinics.isEmpty
-                                ? Expanded(
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            context.tr.translate("no_clinics_found"),
-                                            style: TextStyle(
-                                              fontSize: 16.sp,
-                                              color: AppTheme.grey7Color,
-                                            ),
-                                          ),
-                                          SizedBox(height: 16.h),
-                                          ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor: MaterialStateProperty.all<Color>(
-                                                AppTheme.whiteColor,
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              _searchController.clear();
-                                              _clinicsCubit?.searchClinics('');
-                                            },
-                                            child: Text(
-                                              context.tr.translate("show_all_clinics"),
-                                              style: TextStyles.nexaRegular.copyWith(
-                                                fontSize: 18.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: themeProvider.currentThemeData!.primaryColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                : Expanded(
-                                    child: GridView.builder(
-                                      itemCount: state.clinicsResponse.clinics.length,
-                                      padding: const EdgeInsets.symmetric(vertical: 16),
-                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 3,
-                                        childAspectRatio: 0.75,
-                                      ),
-                                      itemBuilder: (context, index) {
-                                        var clinic = state.clinicsResponse.clinics[index];
-                                        return GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                              context,
-                                              AppRoutes.clinicDoctors,
-                                              arguments: clinic,
-                                            );
-                                          },
-                                          child: ClinicItem(
-                                            clinic: clinic,
-                                          ),
-                                        );
-                                      },
+                      ? state.clinicsResponse.clinics.isEmpty
+                          ? EmptyStateWidget(message: context.tr.translate("no_clinics_found"))
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CustomTextField(
+                                  initialValue: _searchController.text,
+                                  name: "clinic",
+                                  hasName: false,
+                                  labelText: context.tr.translate("search_for_clinic"),
+                                  hintText: context.tr.translate("search_for_clinic"),
+                                  onChanged: (value) {
+                                    // Call the search method in the cubit
+                                    _clinicsCubit?.searchClinics(value ?? '');
+                                  },
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: SvgPicture.asset(
+                                      SVGAssets.clinicsIcon,
+                                      width: 20.w,
+                                      height: 20.h,
+                                      color: AppTheme.grey7Color,
                                     ),
                                   ),
-                          ],
-                        )
+                                  suffixIcon: IconButton(
+                                    icon: Icon(Icons.clear, size: 20.w, color: AppTheme.grey7Color),
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      _clinicsCubit?.searchClinics('');
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 16.h),
+                                state.clinicsResponse.clinics.isEmpty
+                                    ? Expanded(
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                context.tr.translate("no_clinics_found"),
+                                                style: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: AppTheme.grey7Color,
+                                                ),
+                                              ),
+                                              SizedBox(height: 16.h),
+                                              ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor: MaterialStateProperty.all<Color>(
+                                                    AppTheme.whiteColor,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  _searchController.clear();
+                                                  _clinicsCubit?.searchClinics('');
+                                                },
+                                                child: Text(
+                                                  context.tr.translate("show_all_clinics"),
+                                                  style: TextStyles.nexaRegular.copyWith(
+                                                    fontSize: 18.sp,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: themeProvider.currentThemeData!.primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    : Expanded(
+                                        child: GridView.builder(
+                                          itemCount: state.clinicsResponse.clinics.length,
+                                          padding: const EdgeInsets.symmetric(vertical: 16),
+                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 3,
+                                            childAspectRatio: 0.75,
+                                          ),
+                                          itemBuilder: (context, index) {
+                                            var clinic = state.clinicsResponse.clinics[index];
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  AppRoutes.clinicDoctors,
+                                                  arguments: clinic,
+                                                );
+                                              },
+                                              child: ClinicItem(
+                                                clinic: clinic,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                              ],
+                            )
                       : SizedBox.shrink();
             },
           ),

@@ -6,6 +6,7 @@ import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/features/queue/data/models/tickets_response.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgtes/common_app_bar_title.dart';
+import '../../../../core/widgtes/empty_state.dart';
 import '../../../../core/widgtes/watermark_widget.dart';
 
 class SecondQueueScreen extends StatefulWidget {
@@ -29,7 +30,9 @@ class _SecondQueueScreenState extends State<SecondQueueScreen> {
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: false,
       contentChild: Expanded(
-        child: ListView.builder(
+        child: widget.tickets.isEmpty?EmptyStateWidget(
+          message: context.tr.translate('no_visits'),
+        ):ListView.builder(
           padding: EdgeInsets.all(16.r),
           itemCount: widget.tickets.length,
           itemBuilder: (context, index) {

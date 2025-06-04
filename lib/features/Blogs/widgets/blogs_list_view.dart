@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
+import 'package:shifa/core/widgtes/empty_state.dart';
 import 'package:shifa/features/Blogs/presentation/cubit/blogs_cubit.dart';
 import 'package:shifa/features/Blogs/presentation/cubit/blogs_state.dart';
 import 'package:shifa/features/Blogs/widgets/blog_card.dart';
@@ -32,25 +34,27 @@ class BlogsList extends StatelessWidget {
                   color: themeProvider.currentThemeData!.primaryColor,
                 ))
               : state is BlogsLoaded
-                  ? Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: state.blogsResponse.articles?.length ?? 0,
-                        separatorBuilder: (context, index) => SizedBox(
-                          height: 16.h,
-                        ),
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.blogDetails,
-                                arguments: state.blogsResponse.articles![index]);
-                          },
-                          child: BlogCard(
-                            blog: state.blogsResponse.articles![index],
+                  ? state.blogsResponse.articles == null || state.blogsResponse.articles!.isEmpty
+                      ? EmptyStateWidget(message: context.tr.translate("no_articles"))
+                      : Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: ListView.separated(
+                            shrinkWrap: true,
+                            itemCount: state.blogsResponse.articles?.length ?? 0,
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 16.h,
+                            ),
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRoutes.blogDetails,
+                                    arguments: state.blogsResponse.articles![index]);
+                              },
+                              child: BlogCard(
+                                blog: state.blogsResponse.articles![index],
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    )
+                        )
                   : const SizedBox.shrink();
         },
       ),

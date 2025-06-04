@@ -55,15 +55,15 @@ class ProfileScreen extends StatelessWidget {
                           title: context.tr.translate('profile'),
                         ),
                         SizedBox(height: 16.h),
-                        ProfileWidget(
-                          hasDivider: true,
-                          onTap: () {
-                            log("Medical Insurance Page");
-                          },
-                          svgIcon: SVGAssets.medicalInsuranceIcon,
-                          title: context.tr.translate('medical_insurance'),
-                        ),
-                        SizedBox(height: 16.h),
+                        // ProfileWidget(
+                        //   hasDivider: true,
+                        //   onTap: () {
+                        //     log("Medical Insurance Page");
+                        //   },
+                        //   svgIcon: SVGAssets.medicalInsuranceIcon,
+                        //   title: context.tr.translate('medical_insurance'),
+                        // ),
+                        // SizedBox(height: 16.h),
                         // ProfileWidget(
                         //   hasDivider: true,
                         //   onTap: () {
