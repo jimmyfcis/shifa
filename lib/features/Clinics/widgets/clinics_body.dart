@@ -7,7 +7,6 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/widgtes/empty_state.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/features/Clinics/widgets/clinic_item.dart';
 
@@ -57,9 +56,7 @@ class _ClinicsBodyState extends State<ClinicsBody> {
                       ),
                     )
                   : state is ClinicLoaded
-                      ? state.clinicsResponse.clinics.isEmpty
-                          ? EmptyStateWidget(message: context.tr.translate("no_clinics_found"))
-                          : Column(
+                      ? Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomTextField(
