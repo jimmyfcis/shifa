@@ -4,6 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/utils/fonts/fonts_manager.dart';
 
+import '../storage/token_storage.dart';
+
 class AppTheme {
   static const Color leksellPrimaryColor = Color(0xFF4270B7);
   static const Color primaryTextColor = Color(0xFF262626);
@@ -53,8 +55,7 @@ ThemeData shifaThemeData = ThemeData(
       /// AM/PM Section
       dayPeriodColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return AppTheme
-              .shifaPrimaryColor; // Selected background color (green)
+          return AppTheme.shifaPrimaryColor; // Selected background color (green)
         }
         return AppTheme.whiteColor; // Unselected background color (light green)
       }),
@@ -78,11 +79,9 @@ ThemeData shifaThemeData = ThemeData(
       hourMinuteColor: MaterialStateColor.resolveWith(
         (states) {
           if (states.contains(MaterialState.selected)) {
-            return AppTheme
-                .shifaPrimaryColor; // Selected background color (green)
+            return AppTheme.shifaPrimaryColor; // Selected background color (green)
           }
-          return AppTheme
-              .whiteColor; // Unselected background color (light green)
+          return AppTheme.whiteColor; // Unselected background color (light green)
         },
       ),
       hourMinuteTextColor: MaterialStateColor.resolveWith(
@@ -145,8 +144,7 @@ ThemeData shifaThemeData = ThemeData(
       ),
 
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           TextStyle(
             fontSize: 12,
@@ -181,8 +179,7 @@ ThemeData shifaThemeData = ThemeData(
       }),
       rangeSelectionBackgroundColor: AppTheme.shifaPrimaryColor,
       todayBackgroundColor: MaterialStateProperty.all(AppTheme.whiteColor),
-      todayForegroundColor:
-          MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
+      todayForegroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
       // Text color for selected day
       // dayForegroundColor:MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
       //  dayBackgroundColor:MaterialStateProperty.all(AppTheme.whiteColor) ,
@@ -239,8 +236,7 @@ ThemeData shifaThemeData = ThemeData(
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -251,8 +247,7 @@ ThemeData shifaThemeData = ThemeData(
         ),
         backgroundColor: MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
         // No ripple effect
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
       dayStyle: TextStyles.nexaRegular.copyWith(
@@ -312,8 +307,7 @@ ThemeData leksellThemeData = ThemeData(
         ),
       ),
       cancelButtonStyle: ButtonStyle(
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
         textStyle: MaterialStateProperty.all(
           TextStyles.nexaRegular.copyWith(
             fontSize: 12,
@@ -341,8 +335,7 @@ ThemeData leksellThemeData = ThemeData(
       }),
       rangeSelectionBackgroundColor: AppTheme.leksellPrimaryColor,
       todayBackgroundColor: MaterialStateProperty.all(AppTheme.whiteColor),
-      todayForegroundColor:
-          MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+      todayForegroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
       // Text color for selected day
       // dayForegroundColor:MaterialStateProperty.all(AppTheme.shifaPrimaryColor),
       //  dayBackgroundColor:MaterialStateProperty.all(AppTheme.whiteColor) ,
@@ -364,8 +357,7 @@ ThemeData leksellThemeData = ThemeData(
         ////fontFamily: FontsAssets.Nexa,
       ),
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 12,
@@ -374,10 +366,8 @@ ThemeData leksellThemeData = ThemeData(
             ////fontFamily: FontsAssets.Nexa,
           ),
         ),
-        backgroundColor: MaterialStateProperty.all(
-            AppTheme.leksellPrimaryColor), // No ripple effect
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
+        backgroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor), // No ripple effect
+        foregroundColor: MaterialStateProperty.all(AppTheme.whiteColor), // No ripple effect
       ),
       backgroundColor: AppTheme.whiteColor,
       dayStyle: TextStyles.nexaRegular.copyWith(
@@ -414,8 +404,7 @@ ThemeData leksellThemeData = ThemeData(
       /// AM/PM Section
       dayPeriodColor: MaterialStateColor.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return AppTheme
-              .leksellPrimaryColor; // Selected background color (green)
+          return AppTheme.leksellPrimaryColor; // Selected background color (green)
         }
         return AppTheme.whiteColor; // Unselected background color (light green)
       }),
@@ -439,11 +428,9 @@ ThemeData leksellThemeData = ThemeData(
       hourMinuteColor: MaterialStateColor.resolveWith(
         (states) {
           if (states.contains(MaterialState.selected)) {
-            return AppTheme
-                .leksellPrimaryColor; // Selected background color (green)
+            return AppTheme.leksellPrimaryColor; // Selected background color (green)
           }
-          return AppTheme
-              .whiteColor; // Unselected background color (light green)
+          return AppTheme.whiteColor; // Unselected background color (light green)
         },
       ),
       hourMinuteTextColor: MaterialStateColor.resolveWith(
@@ -495,8 +482,7 @@ ThemeData leksellThemeData = ThemeData(
 
       /// Buttons
       cancelButtonStyle: ButtonStyle(
-        foregroundColor:
-            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        foregroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
         textStyle: MaterialStateProperty.all(
           TextStyle(
             fontSize: 12,
@@ -507,8 +493,7 @@ ThemeData leksellThemeData = ThemeData(
       ),
 
       confirmButtonStyle: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
         textStyle: MaterialStateProperty.all(
           TextStyle(
             fontSize: 12,
@@ -517,8 +502,7 @@ ThemeData leksellThemeData = ThemeData(
             fontFamily: FontsAssets.nexaRegular,
           ),
         ),
-        backgroundColor:
-            MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
+        backgroundColor: MaterialStateProperty.all(AppTheme.leksellPrimaryColor),
         foregroundColor: MaterialStateProperty.all(Colors.white),
       ),
     ),
@@ -530,6 +514,13 @@ ThemeData leksellThemeData = ThemeData(
 enum ThemeEnum { shifa, leksell }
 
 class ThemeProvider extends ChangeNotifier {
+  final TokenStorage tokenStorage = TokenStorage();
+
+  Future<void> initiateTheme() async {
+    final themeStorage = await tokenStorage.getTheme();
+    currentTheme = themeStorage == "leksell" ? ThemeEnum.leksell : ThemeEnum.shifa;
+    changeTheme(currentTheme);
+  }
   ThemeEnum currentTheme = ThemeEnum.shifa;
   ThemeData? currentThemeData;
 
@@ -544,6 +535,7 @@ class ThemeProvider extends ChangeNotifier {
 
   Future<void> changeTheme(ThemeEnum theme) async {
     currentTheme = theme;
+    tokenStorage.saveTheme(currentTheme == ThemeEnum.leksell ? "leksell" : "shifa");
     _generateThemeData();
     notifyListeners();
   }

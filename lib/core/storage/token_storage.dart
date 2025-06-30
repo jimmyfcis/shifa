@@ -5,6 +5,7 @@ import '../../features/authentication/data/models/user.dart';
 
 class TokenStorage {
   static const String _tokenKey = 'token';
+  static const String _themeKey = 'theme';
   static const String _userKey = 'user';
   static const String _languageKey = 'language';
   static const String _defaultLanguage = 'en';
@@ -24,6 +25,20 @@ class TokenStorage {
   Future<void> deleteToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_tokenKey);
+  }
+  Future<void> saveTheme(String theme) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_themeKey, theme);
+  }
+
+  Future<String?> getTheme() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_themeKey);
+  }
+
+  Future<void> deleteTheme() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_themeKey);
   }
 
   Future<void> saveRemember(bool rememberMe) async {
@@ -91,5 +106,6 @@ class TokenStorage {
     await prefs.remove(_userKey);
     await prefs.remove(_rememberMe);
     await prefs.remove(_password);
+    await prefs.remove(_themeKey);
   }
 }

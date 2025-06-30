@@ -12,7 +12,7 @@ import 'core/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init(); // initialize dependency injection
-  await ThemeProvider.instance.changeTheme(ThemeProvider.instance.currentTheme);
+  await ThemeProvider.instance.initiateTheme();
   runApp(
     MultiProvider(
       providers: [
