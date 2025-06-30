@@ -46,6 +46,11 @@ import 'package:shifa/features/news/data/repositories/news_repository_impl.dart'
 import 'package:shifa/features/news/domain/repositories/news_repository.dart';
 import 'package:shifa/features/news/domain/usecases/get_news_usecase.dart';
 import 'package:shifa/features/news/presentation/cubit/news_cubit.dart';
+import 'package:shifa/features/offers/data/datasources/offers_remote_data_source.dart';
+import 'package:shifa/features/offers/data/repositories/offers_repository_impl.dart';
+import 'package:shifa/features/offers/domain/repositories/offers_repository.dart';
+import 'package:shifa/features/offers/domain/usecases/get_offers_usecase.dart';
+import 'package:shifa/features/offers/presentation/cubit/offers_cubit.dart';
 import '../../features/Doctors/presentation/search_doctors/search_doctor_cubit.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
 import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
@@ -138,6 +143,10 @@ Future<void> init() async {
         () => NewsRemoteDataSourceImpl(),
   );
 
+  sl.registerLazySingleton<OffersRemoteDataSource>(
+        () => OffersRemoteDataSourceImpl(),
+  );
+
   // Queue Feature
   sl.registerLazySingleton<QueueRemoteDataSource>(
         () => QueueRemoteDataSourceImpl(),
@@ -211,6 +220,12 @@ Future<void> init() async {
   sl.registerLazySingleton<NewsRepository>(
         () => NewsRepositoryImpl(
       remoteDataSource: sl<NewsRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<OffersRepository>(
+        () => OffersRepositoryImpl(
+      remoteDataSource: sl<OffersRemoteDataSource>(),
     ),
   );
 
@@ -291,6 +306,10 @@ Future<void> init() async {
         () => GetNewsUseCase(sl<NewsRepository>()),
   );
 
+  sl.registerLazySingleton<GetOffersUseCase>(
+        () => GetOffersUseCase(sl<OffersRepository>()),
+  );
+
   sl.registerLazySingleton<GetTicketsUseCase>(
     () => GetTicketsUseCase(repository: sl()),
   );
@@ -359,6 +378,9 @@ Future<void> init() async {
   );
   sl.registerFactory<NewsCubit>(
         () => NewsCubit(getNewsUseCase: sl<GetNewsUseCase>()),
+  );
+  sl.registerFactory<OffersCubit>(
+        () => OffersCubit(getOffersUseCase: sl<GetOffersUseCase>()),
   );
 
   sl.registerFactory<QueueCubit>(

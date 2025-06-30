@@ -28,6 +28,8 @@ class AppRoutes {
   static const String news = '/news';
   static const String newsDetails = '/newsDetails';
   static const String blogDetails = '/blogDetails';
+  static const String offersDetails = '/offersDetails';
+  static const String offers = '/offers';
   static const String myProfile = '/myProfile';
   static const String radiology = '/radiology';
   static const String recordsDetails = '/recordsDetails';

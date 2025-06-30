@@ -29,6 +29,8 @@ import 'package:shifa/features/departments/presentation/screens/department_detai
 import 'package:shifa/features/news/data/models/news_model.dart';
 import 'package:shifa/features/news/screens/news_detail_screen.dart';
 import 'package:shifa/features/news/screens/news_screen.dart';
+import 'package:shifa/features/offers/screens/offers_detail_screen.dart';
+import 'package:shifa/features/offers/screens/offers_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
@@ -95,6 +97,11 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case AppRoutes.firstQueueScreen:
         return MaterialPageRoute(builder: (_) => const FirstQueueScreen());
+        case AppRoutes.offers:
+        return MaterialPageRoute(builder: (_) => const OffersScreen());
+        case AppRoutes.offersDetails:
+          var arguments = settings.arguments as Map<String, dynamic>;
+          return MaterialPageRoute(builder: (_) =>  OffersDetailScreen(offerItem: arguments['offer']));
       case AppRoutes.secondQueueScreen:
         var arguments = settings.arguments as Map<String, dynamic>;
 
