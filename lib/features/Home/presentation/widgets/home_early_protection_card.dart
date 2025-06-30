@@ -34,7 +34,7 @@ class HomeEarlyProtectionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  context.tr.translate("early_protection_title"),
+                  context.tr.translate("offers"),
                   style: TextStyles.nexaBold.copyWith(
                     color: AppTheme.textBlackColor,
                     fontSize: 18.sp,
