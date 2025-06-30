@@ -174,12 +174,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               hintText: context.tr.translate('id_hint'),
                             ),
                             SizedBox(height: 16.h),
-                            CustomTextField(
+                            CustomDropdownField(
                               name: 'id_type',
                               isRequired: false,
-                              enabled: false,
-                              initialValue: context.tr.translate('national_id'),
                               labelText: context.tr.translate('id_type'),
+                              items: [context.tr.translate('national_id'), context.tr.translate('passport')],
+                              itemBuilder: (context, data) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    color: AppTheme.whiteColor,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          data,
+                                          style: TextStyles.nexaRegular.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: AppTheme.primaryTextColor,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                             SizedBox(height: 16.h),
                             PasswordTextField(
@@ -213,6 +233,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   final formValues = formState.value;
                                   final birthdate = Utils.formatDate(formValues['date']);
                                   final gender = Utils.formatGender(formValues['gender']);
+                                  final idType = Utils.formatIDType(formValues['id_type']);
                                   final user = User(
                                     name: formValues['name'] ?? '',
                                     nationalId: formValues['id'] ?? '',
@@ -222,7 +243,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     phoneNumber: phoneController.text.replaceAll(" ", ""),
                                     birthdate: birthdate,
                                     gender: gender,
-                                    idType: formValues['id_type'] ?? '',
+                                    idType: idType,
                                   );
                                   loginCubit.register(user: user);
                                 }
