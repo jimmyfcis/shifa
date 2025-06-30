@@ -14,7 +14,7 @@ class BlogsCubit extends Cubit<BlogsState> {
       final response = await getBlogsUseCase();
       emit(BlogsLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(BlogsFailure(failure.message, failure.statusCode ?? 0));
     }
   }

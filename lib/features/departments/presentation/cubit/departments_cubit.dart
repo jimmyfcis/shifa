@@ -19,7 +19,7 @@ class DepartmentsCubit extends Cubit<DepartmentsState> {
       final departments = await getAllDepartments(isLeksell:isLeksell);
       emit(DepartmentsLoaded(departments));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(DepartmentsError(failure.message, failure.statusCode ?? 0));
     }
   }
@@ -30,7 +30,7 @@ class DepartmentsCubit extends Cubit<DepartmentsState> {
       final department = await getDepartmentById(id);
       emit(DepartmentLoaded(department));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(DepartmentsError(failure.message, failure.statusCode ?? 0));
     }
   }

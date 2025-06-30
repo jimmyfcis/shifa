@@ -22,7 +22,7 @@ class DoctorCubit extends Cubit<DoctorState> {
       selectedDate=(response.doctor.schedules!=null&&response.doctor.schedules!.isNotEmpty&&response.doctor.schedules?.first.shiftDate!=null?response.doctor.schedules!.first.shiftDate!:DateTime.now());
       emit(DoctorLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(DoctorFailure(failure.message, failure.statusCode ?? 0));
     }
   }

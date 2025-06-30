@@ -20,7 +20,7 @@ class ClinicsCubit extends Cubit<ClinicState> {
       allClinics = response.clinics;
       emit(ClinicLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(ClinicFailure(failure.message, failure.statusCode ?? 0));
     }
   }

@@ -14,7 +14,7 @@ class LogoutCubit extends Cubit<LogoutState> {
       await logoutUseCase();
       emit(LogoutSuccess());
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(LogoutFailure(failure.message));
     }
   }

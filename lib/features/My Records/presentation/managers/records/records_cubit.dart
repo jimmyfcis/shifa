@@ -28,7 +28,7 @@ class RecordsCubit extends Cubit<RecordsState> {
       final response = await getRecordsUseCase(RecordsRequestModel(patientID: userID, visitID: visitNumber));
       emit(RecordsLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(RecordsFailure(failure.message, failure.statusCode ?? 0));
     }
   }

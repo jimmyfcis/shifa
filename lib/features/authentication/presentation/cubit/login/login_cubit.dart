@@ -28,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
           phoneNumber: phoneNumber, password: password);
       emit(AuthSuccess(loginResponse));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(AuthFailure(failure.message, failure.statusCode ?? 0));
     }
   }
@@ -39,7 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
       final loginResponse = await registerUseCase(user: user);
       emit(AuthSuccess(loginResponse));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(AuthFailure(failure.message, failure.statusCode ?? 0));
     }
   }
@@ -50,7 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
       final loginResponse = await updateProfileUseCase(user: user);
       emit(AuthSuccess(loginResponse));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(AuthFailure(failure.message, failure.statusCode ?? 0));
     }
   }

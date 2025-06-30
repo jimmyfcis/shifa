@@ -27,7 +27,7 @@ class RadiologyCubit extends Cubit<RadiologyState> {
       final response = await getRadiologiesUseCase(patientId: userID);
       emit(RadiologyLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(RadiologyFailure(failure.message, failure.statusCode ?? 0));
     }
   }

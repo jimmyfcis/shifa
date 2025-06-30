@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
       final response = await getTopDoctorsUseCase();
       emit(HomeLoaded(response));
     } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error);
+      final failure = ErrorHandler.handle(error,stacktrace);
       emit(HomeFailure(failure.message,failure.statusCode??0));
 
     }
