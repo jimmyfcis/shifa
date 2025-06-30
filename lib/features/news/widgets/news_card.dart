@@ -45,13 +45,13 @@ class NewsCard extends StatelessWidget {
               ),
               width: 70.w,
               height: 70.h,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             )
                 : Image.asset(
               ImageAssets.blogImg1,
               width: 70.w,
               height: 70.h,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
           SizedBox(
