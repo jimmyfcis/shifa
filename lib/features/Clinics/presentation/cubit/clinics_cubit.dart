@@ -19,7 +19,7 @@ class ClinicsCubit extends Cubit<ClinicState> {
       final response = await getClinicsUseCase(isLekxell: isLekxell);
       allClinics = response.clinics;
       emit(ClinicLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(ClinicFailure(failure.message, failure.statusCode ?? 0));
     }

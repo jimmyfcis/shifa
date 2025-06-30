@@ -26,7 +26,7 @@ class LabCubit extends Cubit<LabState> {
       }
       final response = await getLabsUseCase(patientId: userID);
       emit(LabLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(LabFailure(failure.message, failure.statusCode ?? 0));
     }

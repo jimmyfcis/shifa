@@ -14,7 +14,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       final forgetPasswordResponse = await forgetPasswordUseCase(
           phoneNumber: phoneNumber);
       emit(ForgetPasswordSuccess(forgetPasswordResponse));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(ForgetPasswordFailure(failure.message,failure.statusCode??0));
     }

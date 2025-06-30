@@ -28,7 +28,7 @@ class ContactUsCubit extends Cubit<ContactUsState> {
       
       final response = await sendContactFormUseCase(request);
       emit(ContactUsSuccess(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(ContactUsFailure(failure.message, failure.statusCode ?? 0));
     }

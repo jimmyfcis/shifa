@@ -21,7 +21,7 @@ class RescheduleAppointmentCubit extends Cubit<RescheduleAppointmentState> {
     try {
       final response = await rescheduleAppointmentUseCase(rescheduleAppointmentRequest);
       emit(RescheduleAppointmentSuccess(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(RescheduleAppointmentError(failure.message, failure.statusCode ?? 0));
     }

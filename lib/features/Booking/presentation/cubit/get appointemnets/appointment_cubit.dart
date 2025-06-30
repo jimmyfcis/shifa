@@ -13,7 +13,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     try {
       final response = await getAppointmentsUseCase();
       emit(AppointmentSuccess(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(AppointmentFailure(failure.message, failure.statusCode ?? 0));
     }

@@ -17,7 +17,7 @@ class SearchDoctorCubit extends Cubit<SearchDoctorState> {
         keyword: keyword,
       );
       emit(SearchDoctorLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(SearchDoctorFailure(failure.message, failure.statusCode ?? 0));
     }

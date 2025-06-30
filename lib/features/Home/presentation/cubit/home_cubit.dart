@@ -13,7 +13,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeLoading());
       final response = await getTopDoctorsUseCase();
       emit(HomeLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(HomeFailure(failure.message,failure.statusCode??0));
 

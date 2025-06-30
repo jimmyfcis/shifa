@@ -14,7 +14,7 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
     try {
       final response = await bookAppointmentUseCase(request);
       emit(BookAppointmentSuccess(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(BookAppointmentFailure(failure.message, failure.statusCode ?? 0));
     }

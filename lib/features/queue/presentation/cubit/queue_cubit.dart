@@ -14,7 +14,7 @@ class QueueCubit extends Cubit<QueueState> {
     try {
       final TicketsRootResponse response = await getTicketsUseCase(phone);
       emit(QueueLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(QueueError(failure.message, failure.statusCode ?? 0));
     }

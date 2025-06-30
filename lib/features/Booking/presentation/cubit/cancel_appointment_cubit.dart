@@ -16,7 +16,7 @@ class CancelAppointmentCubit extends Cubit<CancelAppointmentState> {
     try {
       final response = await cancelAppointmentUseCase(cancelAppointmentRequest);
       emit(CancelAppointmentSuccess(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(CancelAppointmentError(failure.message, failure.statusCode ?? 0));
     }

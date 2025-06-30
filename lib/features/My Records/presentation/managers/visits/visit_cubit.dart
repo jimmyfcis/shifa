@@ -13,7 +13,7 @@ class VisitCubit extends Cubit<VisitState> {
       emit(VisitLoading());
       final response = await getMyVisitsUseCase();
       emit(VisitLoaded(response));
-    } catch (error) {
+    } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error);
       emit(VisitFailure(failure.message, failure.statusCode ?? 0));
     }
