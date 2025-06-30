@@ -61,6 +61,7 @@ class AuthCubit extends Cubit<AuthState> {
     final isRemember = await tokenStorage.getRemember() ?? false;
     final user = await tokenStorage.getUser();
     final password = await tokenStorage.getPassword();
+    final goOnboarding = await tokenStorage.getOnboarding() ?? false;
 
     if (isRemember &&
         user != null &&
@@ -70,7 +71,12 @@ class AuthCubit extends Cubit<AuthState> {
         password.isNotEmpty) {
       login(user.phoneNumber!, password);
     } else {
-      Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
+      await Future.delayed(const Duration(seconds: 3));
+      if (goOnboarding) {
+        Navigator.pushReplacementNamed(context, AppRoutes.login);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
+      }
     }
   }
 }

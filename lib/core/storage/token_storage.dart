@@ -10,6 +10,7 @@ class TokenStorage {
   static const String _languageKey = 'language';
   static const String _defaultLanguage = 'en';
   static const String _rememberMe = 'remember';
+  static const String _onboarding = 'onboarding';
   static const String _password = 'password';
 
   Future<void> saveToken(String token) async {
@@ -54,6 +55,20 @@ class TokenStorage {
   Future<void> deleteRemember() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(_rememberMe);
+  }
+  Future<void> saveOnboarding(bool onboarding) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_onboarding, onboarding);
+  }
+
+  Future<bool?> getOnboarding() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(_onboarding);
+  }
+
+  Future<void> deleteOnboarding() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_onboarding);
   }
 
   Future<void> savePassword(String password) async {
@@ -107,5 +122,6 @@ class TokenStorage {
     await prefs.remove(_rememberMe);
     await prefs.remove(_password);
     await prefs.remove(_themeKey);
+    await prefs.remove(_onboarding);
   }
 }

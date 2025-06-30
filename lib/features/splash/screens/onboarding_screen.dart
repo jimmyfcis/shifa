@@ -6,6 +6,7 @@ import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/storage/token_storage.dart';
 import '../../../core/theme/styles.dart';
 import '../../../core/theme/theme.dart';
 import '../../../core/widgtes/custom_green_button.dart';
@@ -107,7 +108,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () {
+              onTap: () async{
+                final TokenStorage storage = TokenStorage();
+                await storage.saveOnboarding(true);
                 themeProvider.changeTheme(ThemeEnum.shifa);
                 Navigator.pushNamed(context, AppRoutes.login);
               },
@@ -135,7 +138,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             SizedBox(height: 40.h),
             GestureDetector(
-              onTap: () {
+              onTap: () async{
+                final TokenStorage storage = TokenStorage();
+                await storage.saveOnboarding(true);
                 themeProvider.changeTheme(ThemeEnum.leksell);
                 Navigator.pushNamed(context, AppRoutes.login);
               },

@@ -5,6 +5,7 @@ import '../../../../core/theme/theme.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/network/injection_container.dart';
 import '../../../core/assets/svg/svg_assets.dart';
+import '../../../core/storage/token_storage.dart';
 import '../../authentication/presentation/cubit/login/login_cubit.dart';
 import '../../authentication/presentation/cubit/login/login_state.dart';
 
@@ -15,8 +16,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
 
@@ -46,12 +46,19 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) =>
-        sl<AuthCubit>()..checkRememberAndLogin(context),
+        create: (context) => sl<AuthCubit>()..checkRememberAndLogin(context),
         child: BlocConsumer<AuthCubit, AuthState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is AuthFailure) {
-              Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
+              final tokenStorage = TokenStorage();
+              await Future.delayed(const Duration(seconds: 3));
+              final goOnboarding = await tokenStorage.getOnboarding() ?? false;
+              if (goOnboarding) {
+                Navigator.pushReplacementNamed(context, AppRoutes.login);
+              } else {
+                Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
+              }
+
             } else if (state is AuthSuccess) {
               Navigator.pushReplacementNamed(
                 context,

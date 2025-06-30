@@ -177,36 +177,36 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                 },
                               ),
-                              SizedBox(height: 24.h),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  const Expanded(child: Divider()),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                                    child: Text(
-                                      context.tr.translate('or_signup_with'),
-                                      style: TextStyles.nexaRegular.copyWith(
-                                        color: AppTheme.blackColor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                  const Expanded(child: Divider()),
-                                ],
-                              ),
-                              SizedBox(height: 24.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(SVGAssets.google),
-                                  SizedBox(width: 24.w),
-                                  SvgPicture.asset(SVGAssets.facebook),
-                                  SizedBox(width: 24.w),
-                                  SvgPicture.asset(SVGAssets.apple),
-                                ],
-                              ),
+                              // SizedBox(height: 24.h),
+                              // Row(
+                              //   crossAxisAlignment: CrossAxisAlignment.end,
+                              //   children: [
+                              //     const Expanded(child: Divider()),
+                              //     Padding(
+                              //       padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                              //       child: Text(
+                              //         context.tr.translate('or_signup_with'),
+                              //         style: TextStyles.nexaRegular.copyWith(
+                              //           color: AppTheme.blackColor,
+                              //           fontSize: 12,
+                              //           fontWeight: FontWeight.w400,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //     const Expanded(child: Divider()),
+                              //   ],
+                              // ),
+                              // SizedBox(height: 24.h),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     SvgPicture.asset(SVGAssets.google),
+                              //     SizedBox(width: 24.w),
+                              //     SvgPicture.asset(SVGAssets.facebook),
+                              //     SizedBox(width: 24.w),
+                              //     SvgPicture.asset(SVGAssets.apple),
+                              //   ],
+                              // ),
                               SizedBox(height: 24.h),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
