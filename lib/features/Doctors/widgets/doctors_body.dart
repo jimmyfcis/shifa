@@ -7,7 +7,6 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/routes/app_routes.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/widgtes/empty_state.dart';
 import 'package:shifa/core/widgtes/form_fields/custom_text_field.dart';
 import 'package:shifa/features/Doctors/presentation/search_doctors/search_doctor_cubit.dart';
 import 'package:shifa/features/Doctors/presentation/search_doctors/search_doctor_state.dart';
@@ -56,20 +55,18 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                       ),
                     )
                   : state is SearchDoctorLoaded
-                      ? state.searchDoctorsResponse.doctors==null || state.searchDoctorsResponse.doctors!.isEmpty
-                          ? EmptyStateWidget(message: context.tr.translate("no_doctors_found"))
-                          : Column(
+                      ? Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomTextField(
-                                  initialValue: _searchController.text,
+                                  controller: _searchController,
                                   name: "clinic",
                                   hasName: false,
                                   labelText: context.tr.translate("search_doctor"),
                                   hintText: context.tr.translate("search_doctor"),
                                   onChanged: (value) {
                                     // Call the search method in the cubit
-                                    _searchDoctorCubit?.getAllDoctors(keyword:value ?? '');
+                                    _searchDoctorCubit?.searchDoctors(value ?? '');
                                   },
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.all(12.0),
@@ -84,7 +81,7 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                     icon: Icon(Icons.clear, size: 20.w, color: AppTheme.grey7Color),
                                     onPressed: () {
                                       _searchController.clear();
-                                      _searchDoctorCubit?.getAllDoctors(keyword:'');
+                                      _searchDoctorCubit?.searchDoctors('');
                                     },
                                   ),
                                 ),
@@ -111,7 +108,7 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                                 ),
                                                 onPressed: () {
                                                   _searchController.clear();
-                                                  _searchDoctorCubit?.getAllDoctors(keyword:'');
+                                                  _searchDoctorCubit?.searchDoctors('');
                                                 },
                                                 child: Text(
                                                   context.tr.translate("show_all_doctors"),
