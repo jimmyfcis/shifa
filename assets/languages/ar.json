@@ -53,7 +53,6 @@
   "have_account": "هل لديك حساب بالفعل؟",
   "password": "كلمة المرور",
   "search": "بحث",
-  "search_doctors": "البحث عن أطباء..",
   "search_clinics": "البحث عن عيادة..",
 
   "continue": "متابعة",
@@ -189,7 +188,9 @@
   "physical_therapy": "العلاج الطبيعي",
   "search_for_clinic": "البحث عن عيادة..",
   "no_clinics_found": "لم يتم العثور على عيادات تطابق بحثك",
+  "no_doctors_found": "لم يتم العثور على الأطباء تطابق بحثك",
   "show_all_clinics": "عرض جميع العيادات",
+  "show_all_doctors": "عرض جميع الأطباء",
   "diagnosis": "التشخيص",
   "no_visits": "لا يوجد زيارات",
   "visit_type": "نوع الزياره",

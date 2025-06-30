@@ -12,6 +12,7 @@ import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/Contact%20us/screens/contact_us_screen.dart';
 import 'package:shifa/features/Doctors/screens/doctor_profile_screen.dart';
 import 'package:shifa/features/Booking/screens/first_booking_screen.dart';
+import 'package:shifa/features/Doctors/screens/doctors_screen.dart';
 import 'package:shifa/features/Labs/presentation/screens/lab_tests_screen.dart';
 import 'package:shifa/features/Medical%20Reminder/screens/medical_reminder_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
@@ -62,6 +63,8 @@ class AppRouter {
 
       case AppRoutes.languageSplash:
         return MaterialPageRoute(builder: (_) => const LanguageSplashScreen());
+        case AppRoutes.doctorsScreen:
+        return MaterialPageRoute(builder: (_) => const DoctorsScreen());
       case AppRoutes.onboardingScreen:
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
       case AppRoutes.profile:

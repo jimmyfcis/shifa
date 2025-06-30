@@ -16,6 +16,7 @@ import 'package:shifa/features/Doctors/data/data_source/doctor_remote_data_sourc
 import 'package:shifa/features/Doctors/data/repositories/doctor_repo_impl.dart';
 import 'package:shifa/features/Doctors/domain/repositories/doctor_repo.dart';
 import 'package:shifa/features/Doctors/domain/use_cases/get_doctor_details_use_case.dart';
+import 'package:shifa/features/Doctors/domain/use_cases/search_doctors_use_case.dart';
 import 'package:shifa/features/Doctors/presentation/doctor_cubit.dart';
 import 'package:shifa/features/Home/data/data_source/home_remote_data_source.dart';
 import 'package:shifa/features/Home/domain/repositories/home_repository.dart';
@@ -40,6 +41,7 @@ import 'package:shifa/features/authentication/domain/use_cases/forget_password_u
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/update_profile_use_case.dart';
 import 'package:shifa/features/authentication/presentation/cubit/forget%20password/forget_password_cubit.dart';
+import '../../features/Doctors/presentation/search_doctors/search_doctor_cubit.dart';
 import '../../features/Home/data/repositories/home_repository_impl.dart';
 import '../../features/My Records/data/data_source/visit_remote_data_source.dart';
 import '../../features/My Records/data/repositories/visit_repository_impl.dart';
@@ -206,6 +208,10 @@ Future<void> init() async {
     () => GetDoctorDetailsUseCase(sl<DoctorRepository>()),
   );
 
+  sl.registerLazySingleton<SearchDoctorsUseCase>(
+        () => SearchDoctorsUseCase(sl<DoctorRepository>()),
+  );
+
   sl.registerLazySingleton<GetAllDepartments>(
     () => GetAllDepartments(sl<DepartmentsRepository>()),
   );
@@ -273,6 +279,10 @@ Future<void> init() async {
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
     () => DoctorCubit(getDoctorDetailsUseCase: sl<GetDoctorDetailsUseCase>()),
+  );
+
+  sl.registerFactory<SearchDoctorCubit>(
+        () => SearchDoctorCubit(searchDoctorsUseCase: sl<SearchDoctorsUseCase>()),
   );
 
   sl.registerFactory<DepartmentsCubit>(

@@ -1,5 +1,6 @@
 import 'package:shifa/features/Doctors/data/data_source/doctor_remote_data_source.dart';
 import 'package:shifa/features/Doctors/data/models/doctor_details_response.dart';
+import 'package:shifa/features/Doctors/data/models/search_doctors_response.dart';
 import '../../domain/repositories/doctor_repo.dart';
 
 class DoctorRepositoryImpl implements DoctorRepository {
@@ -15,6 +16,14 @@ class DoctorRepositoryImpl implements DoctorRepository {
     final response = await doctorRemoteDataSource.getDoctorDetails(
       clinicId: clinicId,
       id: id,
+    );
+    return response;
+  }
+
+  @override
+  Future<SearchDoctorsResponse> getAllDoctors({required String keyword}) async{
+    final response = await doctorRemoteDataSource.getAllDoctors(
+      keyword: keyword
     );
     return response;
   }

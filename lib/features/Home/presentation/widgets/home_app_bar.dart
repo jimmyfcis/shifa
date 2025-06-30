@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/core/widgtes/appbar_widget.dart';
 import 'package:shifa/core/widgtes/common_app_bar_child_theme.dart';
+import '../../../../core/assets/svg/svg_assets.dart';
+import '../../../../core/routes/app_routes.dart';
 import '../../../../core/storage/token_storage.dart';
+import '../../../../core/widgtes/form_fields/custom_text_field.dart';
 
 class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
@@ -41,7 +45,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
       alignment: Alignment.center,
       backGroundColor: themeProvider.currentThemeData!.primaryColor,
       hasBorderRadius: true,
-      height: 200,
+      height: 253,
       appBarChild: CommonAppBarChildTheme(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,23 +70,26 @@ class _HomeAppBarState extends State<HomeAppBar> {
             SizedBox(
               height: 16.h,
             ),
-            // CustomTextField(
-            //   name: "Search",
-            //   labelText: context.tr.translate("search_doctor"),
-            //   hasName: false,
-            //   hintText: context.tr.translate("search_doctor"),
-            //   fillColor: AppTheme.whiteColor.withOpacity(0.4),
-            //   hintTextColor: AppTheme.whiteColor,
-            //   prefixIcon: Padding(
-            //     padding: const EdgeInsets.all(10.0),
-            //     child: SvgPicture.asset(
-            //       SVGAssets.search,
-            //       width: 20,
-            //       height: 20,
-            //       color: AppTheme.whiteColor,
-            //     ),
-            //   ),
-            // )
+            CustomTextField(
+              name: "Search",
+              labelText: context.tr.translate("search_doctor"),
+              hasName: false,
+              hintText: context.tr.translate("search_doctor"),
+              fillColor: AppTheme.whiteColor.withOpacity(0.4),
+              hintTextColor: AppTheme.whiteColor,
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SvgPicture.asset(
+                  SVGAssets.search,
+                  width: 20,
+                  height: 20,
+                  color: AppTheme.whiteColor,
+                ),
+              ),
+              onTap: (){
+                Navigator.pushNamed(context, AppRoutes.doctorsScreen);
+              },
+            ),
           ],
         ),
       ),
