@@ -33,7 +33,7 @@ class _DepartmentsScreenState extends State<DepartmentsScreen> {
       ),
       contentChild: Expanded(
         child: BlocProvider(
-          create: (context) => sl<DepartmentsCubit>()..loadDepartments(),
+          create: (context) => sl<DepartmentsCubit>()..loadDepartments(isLeksell: themeProvider.currentTheme==ThemeEnum.shifa?false:true),
           child: BlocConsumer<DepartmentsCubit, DepartmentsState>(
             listener: (context, state) {
               if (state is DepartmentsError) {

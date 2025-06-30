@@ -13,10 +13,10 @@ class DepartmentsCubit extends Cubit<DepartmentsState> {
     required this.getDepartmentById,
   }) : super(DepartmentsInitial());
 
-  Future<void> loadDepartments() async {
+  Future<void> loadDepartments({required bool isLeksell}) async {
     try {
       emit(DepartmentsLoading());
-      final departments = await getAllDepartments();
+      final departments = await getAllDepartments(isLeksell:isLeksell);
       emit(DepartmentsLoaded(departments));
     } catch (error) {
       final failure = ErrorHandler.handle(error);

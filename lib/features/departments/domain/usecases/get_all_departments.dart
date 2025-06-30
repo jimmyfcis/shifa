@@ -7,7 +7,7 @@ class GetAllDepartments {
 
   GetAllDepartments(this.repository);
 
-  Future<DepartmentsResponseModel> call() async {
-    return await repository.getAllDepartments();
+  Future<DepartmentsResponseModel> call({required bool isLeksell}) async {
+    return await repository.getAllDepartments(isLeksell: isLeksell);
   }
 } 

@@ -18,6 +18,7 @@ class ApiEndpoints {
   static const String cancelAppointment = '$baseUrl/cancel-appointment';
   static const String rescheduleAppointment = '$baseUrl/reschedule-appointment';
   static const String getAllDepartments = '$baseUrl/ddepartments';
+  static const String getAllLeksellDepartments = '$baseUrl/ddepartments-leksell';
   static const String getDepartmentById = '$baseUrl/ddepartments/';
   static const String articles = '$baseUrl/articles';
   static const String tickets = '$baseUrl/tickets';

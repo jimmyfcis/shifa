@@ -9,8 +9,8 @@ class DepartmentsRepositoryImpl implements DepartmentsRepository {
   DepartmentsRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<DepartmentsResponseModel> getAllDepartments() async {
-    final departments = await remoteDataSource.getAllDepartments();
+  Future<DepartmentsResponseModel> getAllDepartments({required bool isLeksell}) async {
+    final departments = await remoteDataSource.getAllDepartments(isLeksell:isLeksell);
     return departments;
   }
 

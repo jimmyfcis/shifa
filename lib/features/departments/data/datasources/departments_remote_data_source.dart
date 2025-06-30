@@ -5,7 +5,7 @@ import '../../../../core/network/api_endpoints.dart';
 import '../../../../core/network/dio_client.dart';
 
 abstract class DepartmentsRemoteDataSource {
-  Future<DepartmentsResponseModel> getAllDepartments();
+  Future<DepartmentsResponseModel> getAllDepartments({required bool isLeksell});
   Future<DepartmentDetailsResponse> getDepartmentById(int id);
 }
 
@@ -15,9 +15,9 @@ class DepartmentsRemoteDataSourceImpl implements DepartmentsRemoteDataSource {
   DepartmentsRemoteDataSourceImpl();
 
   @override
-  Future<DepartmentsResponseModel> getAllDepartments() async {
+  Future<DepartmentsResponseModel> getAllDepartments({required bool isLeksell}) async {
     final response = await dio.get(
-      ApiEndpoints.getAllDepartments,
+      isLeksell?ApiEndpoints.getAllLeksellDepartments:ApiEndpoints.getAllDepartments,
     );
     return DepartmentsResponseModel.fromJson(response.data);
   }
