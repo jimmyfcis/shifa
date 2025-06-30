@@ -41,7 +41,7 @@ class BlogDetailScreen extends StatelessWidget {
              ),
              width: 375.w,
              height: 320.h,
-             fit: BoxFit.cover,
+             fit: BoxFit.fill,
            ): Image.asset(
              ImageAssets.blogImg1,
               width: 375.w,
