@@ -63,7 +63,7 @@ class _ClinicsBodyState extends State<ClinicsBody> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 CustomTextField(
-                                  initialValue: _searchController.text,
+                                  controller: _searchController,
                                   name: "clinic",
                                   hasName: false,
                                   labelText: context.tr.translate("search_for_clinic"),
