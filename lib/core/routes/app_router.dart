@@ -26,6 +26,9 @@ import 'package:shifa/features/Records%20Detail/screens/records_details_screen.d
 import 'package:shifa/features/Vaccine%20Reminder/screens/new_vaccine_reminder.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
 import 'package:shifa/features/departments/presentation/screens/department_details_screen.dart';
+import 'package:shifa/features/news/data/models/news_model.dart';
+import 'package:shifa/features/news/screens/news_detail_screen.dart';
+import 'package:shifa/features/news/screens/news_screen.dart';
 import 'package:shifa/features/settings/screens/settings_screen.dart';
 import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
@@ -120,6 +123,8 @@ class AppRouter {
         );
       case AppRoutes.blogs:
         return MaterialPageRoute(builder: (_) => const BlogsScreen());
+        case AppRoutes.news:
+        return MaterialPageRoute(builder: (_) => const NewsScreen());
       case AppRoutes.departments:
         return MaterialPageRoute(builder: (_) => const DepartmentsScreen());
       case AppRoutes.myFavorite:
@@ -201,6 +206,12 @@ class AppRouter {
             builder: (_) => BlogDetailScreen(
                   blog: blog,
                 ));
+      case AppRoutes.newsDetails:
+        final NewsItem newsItem = settings.arguments as NewsItem;
+        return MaterialPageRoute(
+            builder: (_) => NewsDetailScreen(
+              newsItem: newsItem,
+            ));
       case AppRoutes.departmentDetails:
         var arguments = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(

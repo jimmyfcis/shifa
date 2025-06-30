@@ -22,5 +22,7 @@ class ApiEndpoints {
   static const String getAllLeksellDepartments = '$baseUrl/ddepartments-leksell';
   static const String getDepartmentById = '$baseUrl/ddepartments/';
   static const String articles = '$baseUrl/articles';
+  static const String news = '$baseUrl/news';
+  static const String newsLeksell = '$baseUrl/news-leksell';
   static const String tickets = '$baseUrl/tickets';
 }

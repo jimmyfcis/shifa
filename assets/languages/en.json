@@ -45,6 +45,7 @@
   "have_account": "Already have an account?",
   "password": "Password",
   "search": "Search",
+  "news": "News",
   "search_clinics": "Search for Clinic..",
   "continue": "Continue",
   "create_account": "Create Account",
@@ -82,6 +83,7 @@
   
   "queue": "Queue",
   "no_articles": "No Articles",
+  "no_news": "No News",
   "no_departments": "No Departments",
   "queue_for": "Queue for",
   "queue_number_is": "Queue Number is",
@@ -162,6 +164,7 @@
   "doctor_biography": "Doctor Biography",
   "radiotherapy": "Radiotherapy",
   "blog_details": "Blog Details",
+  "news_details": "News Details",
   "health_article": "Health Articles",
   "see_all": "See All",
   "top_doctor": "Top Doctors",

@@ -25,6 +25,8 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String contactUs = '/contactUs';
   static const String blogs = '/blogs';
+  static const String news = '/news';
+  static const String newsDetails = '/newsDetails';
   static const String blogDetails = '/blogDetails';
   static const String myProfile = '/myProfile';
   static const String radiology = '/radiology';

@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'failure.dart';
 
 class ErrorHandler {
-  static Failure handle(dynamic error) {
+  static Failure handle(dynamic error,[StackTrace? stackTrace]) {
+    print(error.toString());
+    print(stackTrace);
     if (error is DioException) {
       final statusCode = error.response?.statusCode ?? 0;
       final responseData = error.response?.data;
