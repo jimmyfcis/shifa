@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: Provider.of<ThemeProvider>(context).currentThemeData,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.splash,
+        initialRoute: AppRoutes.firstSplash,
         onGenerateRoute: AppRouter.generateRoute,
         
         // Add localization support

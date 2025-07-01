@@ -1,5 +1,6 @@
 class AppRoutes {
-  static const String splash = '/';
+  static const String firstSplash = '/';
+  static const String splash = '/splash';
   static const String languageSplash = '/languageSplash';
   static const String ambulance = '/ambulance';
   static const String firstQueueScreen = '/firstQueueScreen';

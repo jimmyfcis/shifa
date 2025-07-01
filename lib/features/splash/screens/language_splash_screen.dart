@@ -18,8 +18,7 @@ class LanguageSplashScreen extends StatefulWidget {
   State<LanguageSplashScreen> createState() => _LanguageSplashScreenState();
 }
 
-class _LanguageSplashScreenState extends State<LanguageSplashScreen>
-    with SingleTickerProviderStateMixin {
+class _LanguageSplashScreenState extends State<LanguageSplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
 
@@ -50,7 +49,7 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
   @override
   Widget build(BuildContext context) {
     final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
-    
+
     return Scaffold(
       body: FadeTransition(
         opacity: _fadeAnimation,
@@ -60,15 +59,12 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
             child: Column(
               children: [
                 const Spacer(),
-                Hero(
-                  tag: "logo",
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(SVGAssets.splashIcon),
-                      SvgPicture.asset(SVGAssets.splashTexts),
-                    ],
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Hero(tag: "logo", child: SvgPicture.asset(SVGAssets.splashIcon)),
+                    SvgPicture.asset(SVGAssets.splashTexts),
+                  ],
                 ),
                 const SizedBox(height: 29.59),
                 const Spacer(),
@@ -97,8 +93,7 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                           language: context.tr.translate('english'),
                           onTap: () {
                             localeProvider.setEnglish();
-                            Navigator.pushReplacementNamed(
-                                context, AppRoutes.onboardingScreen);
+                            Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
                           },
                         ),
                         const SizedBox(height: 16),
@@ -106,16 +101,14 @@ class _LanguageSplashScreenState extends State<LanguageSplashScreen>
                           language: context.tr.translate('arabic'),
                           onTap: () {
                             localeProvider.setArabic();
-                            Navigator.pushReplacementNamed(
-                                context, AppRoutes.onboardingScreen);
+                            Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
                           },
                         ),
                         const SizedBox(height: 32),
                         CustomGreenButton(
                           title: context.tr.translate('continue'),
                           onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, AppRoutes.onboardingScreen);
+                            Navigator.pushReplacementNamed(context, AppRoutes.onboardingScreen);
                           },
                         ),
                       ],

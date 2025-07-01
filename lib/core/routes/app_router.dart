@@ -50,13 +50,16 @@ import '../../features/authentication/presentation/screens/register_screen.dart'
 import '../../features/authentication/presentation/screens/verify_code_screen.dart';
 import '../../features/departments/presentation/screens/departments_screen.dart';
 import '../../features/queue/presentation/screens/second_queue_screen.dart';
+import '../../features/splash/screens/first_splash_screen.dart';
 import '../../features/splash/screens/onboarding_screen.dart';
 import 'app_routes.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case AppRoutes.splash:
+      case AppRoutes.firstSplash:
+        return MaterialPageRoute(builder: (_) => const FirstSplashScreen());
+        case AppRoutes.splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case AppRoutes.bottomBar:
         var arguments = settings.arguments as Map<String, dynamic>;

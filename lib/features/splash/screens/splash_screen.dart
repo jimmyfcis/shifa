@@ -58,7 +58,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               } else {
                 Navigator.pushReplacementNamed(context, AppRoutes.languageSplash);
               }
-
             } else if (state is AuthSuccess) {
               Navigator.pushReplacementNamed(
                 context,
@@ -74,16 +73,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 decoration: const BoxDecoration(
                   color: AppTheme.shifaPrimaryColor,
                 ),
-                child: Hero(
-                  tag: "logo",
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(SVGAssets.splashIcon),
-                        SvgPicture.asset(SVGAssets.splashTexts),
-                      ],
-                    ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Hero(
+                          tag:"logo",
+                          child: SvgPicture.asset(SVGAssets.splashIcon)),
+                      SvgPicture.asset(SVGAssets.splashTexts),
+                    ],
                   ),
                 ),
               ),
