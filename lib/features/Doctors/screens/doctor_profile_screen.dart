@@ -58,10 +58,21 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
     return isPM ? "$time PM" : "$time AM";
   }
 
-  Future<void> _pickDate(BuildContext context) async {
+  Future<void> _pickDate(BuildContext context, List<DateTime> days) async {
+    setState(() {
+      bool selectedIsInList = days.any((date) =>
+          date.year == _selectedDate.year && date.month == _selectedDate.month && date.day == _selectedDate.day);
+      if (!selectedIsInList) {
+        _selectedDate == days.first;
+      }
+    });
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
+      selectableDayPredicate: (day) {
+        bool isInList = days.any((date) => date.year == day.year && date.month == day.month && date.day == day.day);
+        return isInList;
+      },
       firstDate: DateTime.now(),
       lastDate: DateTime(2100), // Latest date
     );
@@ -101,6 +112,20 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
             builder: (context, state) {
               final locale = Localizations.localeOf(context);
               final isArabic = locale.languageCode == 'ar';
+
+              if (state is DoctorLoaded &&
+                  state.doctorDetailsResponse.doctor.schedules != null &&
+                  state.doctorDetailsResponse.doctor.schedules!.isNotEmpty) {
+                bool hasSlots = false;
+                days.clear();
+                for (var schedule in state.doctorDetailsResponse.doctor.schedules!) {
+                  DateTime shiftDate = schedule.shiftDate ?? DateTime.now();
+                  hasSlots = (schedule.slots != null && schedule.slots!.isNotEmpty);
+                  if (hasSlots) {
+                    days.add(shiftDate);
+                  }
+                }
+              }
               return state is DoctorFailure
                   ? EmptyStateWidget(message: context.tr.translate("doctor_error"))
                   : state is DoctorLoading
@@ -234,7 +259,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             children: [
                                               DoctorProfileTitle(title: context.tr.translate("schedules")),
                                               InkWell(
-                                                onTap: () => _pickDate(context),
+                                                onTap: () => _pickDate(context, days),
                                                 child: Row(
                                                   children: [
                                                     Container(
@@ -284,22 +309,12 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                               alignment: WrapAlignment.center,
                                               children: days.map((day) {
                                                 final isSelected = day.isAtSameMomentAs(_selectedDate);
-                                                final isDisabled = day.isBefore(DateTime(
-                                                    DateTime.now().year, DateTime.now().month, DateTime.now().day));
-                                                bool isEmpty=true;
-                                                for(var schedule in  state.doctorDetailsResponse.doctor.schedules!) {
-                                                  DateTime shiftDate=schedule.shiftDate??DateTime.now();
-                                                isEmpty=  !((DateTime(day.year, day.month, day.day) == DateTime(shiftDate.year, shiftDate.month, shiftDate.day))&& schedule.slots!=null && schedule.slots!.isNotEmpty);
-                                                if(isEmpty==false) break;
-                                                }
                                                 return GestureDetector(
-                                                  onTap: isDisabled || isEmpty
-                                                      ? null
-                                                      : () {
-                                                          setState(() {
-                                                            _selectedDate = day;
-                                                          });
-                                                        },
+                                                  onTap: () {
+                                                    setState(() {
+                                                      _selectedDate = day;
+                                                    });
+                                                  },
                                                   child: Container(
                                                     decoration: BoxDecoration(
                                                       color: isSelected
@@ -321,13 +336,10 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                         children: [
                                                           Text(
                                                             DateFormat("EEE").format(day),
-                                                            // "Mon", "Tue"
                                                             style: TextStyles.nexaRegular.copyWith(
-                                                              color: isDisabled ||isEmpty
-                                                                  ? AppTheme.hintColor
-                                                                  : isSelected
-                                                                      ? AppTheme.whiteColor
-                                                                      : AppTheme.secondaryTextColor,
+                                                              color: isSelected
+                                                                  ? AppTheme.whiteColor
+                                                                  : AppTheme.secondaryTextColor,
                                                               fontSize: 10,
                                                             ),
                                                           ),
@@ -336,11 +348,9 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                                             // Day of the month
                                                             style: TextStyles.nexaBold.copyWith(
                                                               fontWeight: FontWeight.w600,
-                                                              color: isDisabled || isEmpty
-                                                                  ? AppTheme.hintColor
-                                                                  : isSelected
-                                                                      ? AppTheme.whiteColor
-                                                                      : AppTheme.primaryTextColor,
+                                                              color: isSelected
+                                                                  ? AppTheme.whiteColor
+                                                                  : AppTheme.primaryTextColor,
                                                               fontSize: 18,
                                                             ),
                                                           ),
