@@ -44,7 +44,7 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
   DateTime _selectedDate = DateTime.now();
 
   List<DateTime> _generateDates(DateTime selectedDate) {
-    return List.generate(7, (index) => selectedDate.subtract(Duration(days: 3 - index)));
+    return List.generate(30, (index) => selectedDate.subtract(Duration(days: 3 - index)));
   }
 
   String concatenateSlotTime(ScheduleSlot? slot) {
@@ -276,72 +276,81 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
                                             ],
                                           ),
                                           const SizedBox(height: 16.0),
-                                          Wrap(
-                                            spacing: 10,
-                                            runSpacing: 16,
-                                            alignment: WrapAlignment.center,
-                                            children: days.map((day) {
-                                              final isSelected = day.isAtSameMomentAs(_selectedDate);
-                                              final isDisabled = day.isBefore(DateTime(
-                                                  DateTime.now().year, DateTime.now().month, DateTime.now().day));
-                                              return GestureDetector(
-                                                onTap: isDisabled
-                                                    ? null
-                                                    : () {
-                                                        setState(() {
-                                                          _selectedDate = day;
-                                                        });
-                                                      },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: isSelected
-                                                        ? themeProvider.currentThemeData!.primaryColor
-                                                        : AppTheme.whiteColor,
-                                                    border: Border.all(
+                                          SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Wrap(
+                                              spacing: 10,
+                                              runSpacing: 16,
+                                              alignment: WrapAlignment.center,
+                                              children: days.map((day) {
+                                                final isSelected = day.isAtSameMomentAs(_selectedDate);
+                                                final isDisabled = day.isBefore(DateTime(
+                                                    DateTime.now().year, DateTime.now().month, DateTime.now().day));
+                                                bool isEmpty=true;
+                                                for(var schedule in  state.doctorDetailsResponse.doctor.schedules!) {
+                                                  DateTime shiftDate=schedule.shiftDate??DateTime.now();
+                                                isEmpty=  !((DateTime(day.year, day.month, day.day) == DateTime(shiftDate.year, shiftDate.month, shiftDate.day))&& schedule.slots!=null && schedule.slots!.isNotEmpty);
+                                                if(isEmpty==false) break;
+                                                }
+                                                return GestureDetector(
+                                                  onTap: isDisabled || isEmpty
+                                                      ? null
+                                                      : () {
+                                                          setState(() {
+                                                            _selectedDate = day;
+                                                          });
+                                                        },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
                                                       color: isSelected
                                                           ? themeProvider.currentThemeData!.primaryColor
-                                                          : AppTheme.greyColor,
+                                                          : AppTheme.whiteColor,
+                                                      border: Border.all(
+                                                        color: isSelected
+                                                            ? themeProvider.currentThemeData!.primaryColor
+                                                            : AppTheme.greyColor,
+                                                      ),
+                                                      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                                                     ),
-                                                    borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-                                                  ),
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.symmetric(
-                                                      vertical: 14.0,
-                                                      horizontal: 11.0,
-                                                    ),
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          DateFormat("EEE").format(day),
-                                                          // "Mon", "Tue"
-                                                          style: TextStyles.nexaRegular.copyWith(
-                                                            color: isDisabled
-                                                                ? AppTheme.hintColor
-                                                                : isSelected
-                                                                    ? AppTheme.whiteColor
-                                                                    : AppTheme.secondaryTextColor,
-                                                            fontSize: 10,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.symmetric(
+                                                        vertical: 14.0,
+                                                        horizontal: 11.0,
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                            DateFormat("EEE").format(day),
+                                                            // "Mon", "Tue"
+                                                            style: TextStyles.nexaRegular.copyWith(
+                                                              color: isDisabled ||isEmpty
+                                                                  ? AppTheme.hintColor
+                                                                  : isSelected
+                                                                      ? AppTheme.whiteColor
+                                                                      : AppTheme.secondaryTextColor,
+                                                              fontSize: 10,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Text(
-                                                          DateFormat("d").format(day),
-                                                          // Day of the month
-                                                          style: TextStyles.nexaBold.copyWith(
-                                                            fontWeight: FontWeight.w600,
-                                                            color: isDisabled
-                                                                ? AppTheme.hintColor
-                                                                : isSelected
-                                                                    ? AppTheme.whiteColor
-                                                                    : AppTheme.primaryTextColor,
-                                                            fontSize: 18,
+                                                          Text(
+                                                            DateFormat("d").format(day),
+                                                            // Day of the month
+                                                            style: TextStyles.nexaBold.copyWith(
+                                                              fontWeight: FontWeight.w600,
+                                                              color: isDisabled || isEmpty
+                                                                  ? AppTheme.hintColor
+                                                                  : isSelected
+                                                                      ? AppTheme.whiteColor
+                                                                      : AppTheme.primaryTextColor,
+                                                              fontSize: 18,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                            }).toList(),
+                                                );
+                                              }).toList(),
+                                            ),
                                           ),
                                           const SizedBox(height: 24.0),
                                           const Divider(
