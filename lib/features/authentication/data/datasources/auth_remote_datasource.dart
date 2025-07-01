@@ -21,6 +21,11 @@ abstract class AuthRemoteDatasource {
   Future<ForgetPasswordResponse> forgetPassword({
     required String phoneNumber,
   });
+
+  Future<ForgetPasswordResponse> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  });
 }
 
 class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
@@ -104,5 +109,20 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
     await storage.saveUser(loginResp.user);
 
     return loginResp;
+  }
+
+  @override
+  Future<ForgetPasswordResponse> changePassword({required String currentPassword, required String newPassword}) async {
+    final response = await dio.put(
+      ApiEndpoints.changePassword,
+      data: {
+        'new_password': newPassword,
+        'current_password': currentPassword,
+      },
+    );
+
+    final changeResponse = ForgetPasswordResponse.fromJson(response.data);
+
+    return changeResponse;
   }
 }

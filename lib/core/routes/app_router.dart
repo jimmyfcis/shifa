@@ -37,6 +37,7 @@ import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Booking/screens/second_booking_screen.dart';
 import '../../features/Home/presentation/screens/ambulance_screen.dart';
+import '../../features/authentication/presentation/screens/change_password_screen.dart';
 import '../../features/queue/presentation/screens/first_queue_screen.dart';
 import '../../features/Home/presentation/screens/home_screen.dart';
 import '../../features/Medical Reminder/screens/new_medicine_reminder_screen.dart';
@@ -93,6 +94,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case AppRoutes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+        case AppRoutes.changePassword:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case AppRoutes.contactUs:
         return MaterialPageRoute(builder: (_) => const ContactUsScreen());
 

@@ -44,6 +44,7 @@ class AppRoutes {
 
   static const String login = '/login';
   static const String forgetPassword = '/forgetPassword';
+  static const String changePassword = '/changePassword';
   static const String register = '/register';
   static const String verifyOTP = '/verifyOTP';
   static const String myFavorite = '/myFavorite';

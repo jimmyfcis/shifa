@@ -5,6 +5,7 @@ class ApiEndpoints {
   static const String register = '$baseUrl/register';
   static const String updateProfile = '$baseUrl/update-profile';
   static const String forgetPassword = '$baseUrl/forget-password';
+  static const String changePassword = '$baseUrl/change-password';
   static const String topDoctors = '$baseUrl/top-doctors';
   static const String searchAllDoctors = '$baseUrl/search-doctors';
   static const String clinics = '$baseUrl/clinics';

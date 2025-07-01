@@ -111,6 +111,16 @@ class ProfileScreen extends StatelessWidget {
                         ProfileWidget(
                           hasDivider: true,
                           onTap: () {
+                            log("change password Page");
+                            Navigator.pushNamed(context, AppRoutes.changePassword);
+                          },
+                          svgIcon: SVGAssets.settingsIcon,
+                          title: context.tr.translate('change_password'),
+                        ),
+                        SizedBox(height: 16.h),
+                        ProfileWidget(
+                          hasDivider: true,
+                          onTap: () {
                             log("Terms and Conditions Page");
                             Navigator.pushNamed(
                                 context, AppRoutes.termsAndConditions);

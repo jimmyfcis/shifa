@@ -37,9 +37,11 @@ import 'package:shifa/features/Radiology/data/repositories/radiology_repository_
 import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
 import 'package:shifa/features/Radiology/domain/use_cases/get_radiologies_use_case.dart';
 import 'package:shifa/features/Radiology/presentation/radiology_cubit.dart';
+import 'package:shifa/features/authentication/domain/use_cases/change_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/forget_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/update_profile_use_case.dart';
+import 'package:shifa/features/authentication/presentation/cubit/change%20password/change_password_cubit.dart';
 import 'package:shifa/features/authentication/presentation/cubit/forget%20password/forget_password_cubit.dart';
 import 'package:shifa/features/news/data/datasources/news_remote_data_source.dart';
 import 'package:shifa/features/news/data/repositories/news_repository_impl.dart';
@@ -314,6 +316,10 @@ Future<void> init() async {
     () => GetTicketsUseCase(repository: sl()),
   );
 
+  sl.registerLazySingleton<ChangePasswordUseCase>(
+        () => ChangePasswordUseCase(sl<AuthRepository>()),
+  );
+
   // Presentation (Cubit)
   sl.registerFactory<DoctorCubit>(
     () => DoctorCubit(getDoctorDetailsUseCase: sl<GetDoctorDetailsUseCase>()),
@@ -382,7 +388,9 @@ Future<void> init() async {
   sl.registerFactory<OffersCubit>(
         () => OffersCubit(getOffersUseCase: sl<GetOffersUseCase>()),
   );
-
+  sl.registerFactory<ChangePasswordCubit>(
+        () => ChangePasswordCubit(changePasswordUseCase: sl()),
+  );
   sl.registerFactory<QueueCubit>(
     () => QueueCubit(getTicketsUseCase: sl()),
   );

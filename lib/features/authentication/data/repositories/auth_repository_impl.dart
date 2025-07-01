@@ -42,4 +42,10 @@ class AuthRepositoryImpl implements AuthRepository {
     final loginResponse = await remoteDatasource.updateProfile(user: user);
     return loginResponse;
   }
+
+  @override
+  Future<ForgetPasswordResponse> changePassword({required String currentPassword, required String newPassword})async {
+    final forgetResponse = await remoteDatasource.changePassword(currentPassword: currentPassword,newPassword: newPassword);
+    return forgetResponse;
+  }
 }
