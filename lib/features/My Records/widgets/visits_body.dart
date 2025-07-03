@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/network/injection_container.dart';
 import 'package:shifa/core/theme/styles.dart';
@@ -60,7 +61,7 @@ class VisitsBody extends StatelessWidget {
   Widget _buildVisitCard(BuildContext context, Visit visit) {
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     String? visitType = isArabic ? visit.visitTypeAr : visit.visitTypeEn;
     String? placeName = isArabic ? visit.placeNameAr : visit.placeNameEn;
     String? doctorName = isArabic ? visit.doctorNameAr : visit.doctorNameEn;
@@ -109,7 +110,7 @@ class VisitsBody extends StatelessWidget {
                     child: Text(
                       placeName ?? '',
                       style: TextStyles.nexaBold.copyWith(
-                        color: AppTheme.shifaPrimaryColor,
+                        color: themeProvider.currentThemeData!.primaryColor,
                         fontSize: 16.sp,
                       ),
                     ),

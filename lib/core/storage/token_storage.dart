@@ -122,6 +122,5 @@ class TokenStorage {
     await prefs.remove(_rememberMe);
     await prefs.remove(_password);
     await prefs.remove(_themeKey);
-    await prefs.remove(_onboarding);
   }
 }
