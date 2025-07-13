@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,8 +39,18 @@ class ClinicItem extends StatelessWidget {
               ),
             ),
             child: Center(
-              child: SvgPicture.asset(
-                clinic.icon??SVGAssets.painIcon,
+              child: clinic.icon!=null&&clinic.icon!.isNotEmpty?CachedNetworkImage(
+                placeholder: (context, url) => Center(
+                  child: CircularProgressIndicator(
+                    color: themeProvider.currentThemeData!.primaryColor,
+                  ), // Loading spinner
+                ),
+                imageUrl: clinic.icon ?? "",
+                fit: BoxFit.fitHeight,
+                width: 34.w,
+                height: 34.h,
+              ):SvgPicture.asset(
+                SVGAssets.painIcon,
                 width: 34.w,
                 height: 34.h,
                 color: themeProvider.currentTheme == ThemeEnum.shifa
