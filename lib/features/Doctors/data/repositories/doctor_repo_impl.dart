@@ -21,9 +21,10 @@ class DoctorRepositoryImpl implements DoctorRepository {
   }
 
   @override
-  Future<SearchDoctorsResponse> getAllDoctors({required String keyword}) async{
+  Future<SearchDoctorsResponse> getAllDoctors({required String keyword,required int page}) async{
     final response = await doctorRemoteDataSource.getAllDoctors(
-      keyword: keyword
+      keyword: keyword,
+      page: page
     );
     return response;
   }

@@ -16,16 +16,18 @@ class SearchDoctorCubit extends Cubit<SearchDoctorState> {
 
   Future<void> getAllDoctors({
     required String keyword,
+    required int page,
   }) async {
     try {
       emit(SearchDoctorLoading());
       final response = await searchDoctorsUseCase(
         keyword: keyword,
+        page: page,
       );
-      allDoctors=response.doctors??[];
+      allDoctors = response.doctors ?? [];
       emit(SearchDoctorLoaded(response));
-    } catch (error,stacktrace) {
-      final failure = ErrorHandler.handle(error,stacktrace);
+    } catch (error, stacktrace) {
+      final failure = ErrorHandler.handle(error, stacktrace);
       emit(SearchDoctorFailure(failure.message, failure.statusCode ?? 0));
     }
   }
@@ -35,14 +37,13 @@ class SearchDoctorCubit extends Cubit<SearchDoctorState> {
     try {
       if (searchQuery.isEmpty) {
         // If search query is empty, show all clinics
-        final response = SearchDoctorsResponse(
-             doctors: allDoctors
-        );
+        final response = SearchDoctorsResponse(doctors: allDoctors);
         emit(SearchDoctorLoaded(response));
       } else {
         // Filter clinics based on search query
         final filteredDoctors = allDoctors.where((doctor) {
-          final nameContainsQuery = doctor.name!.toLowerCase().contains(searchQuery)||doctor.nameAR!.contains(searchQuery);
+          final nameContainsQuery =
+              doctor.name!.toLowerCase().contains(searchQuery) || doctor.nameAR!.contains(searchQuery);
           return nameContainsQuery;
         }).toList();
         final response = SearchDoctorsResponse(

@@ -8,7 +8,8 @@ class SearchDoctorsUseCase {
 
   Future<SearchDoctorsResponse> call({
     required String keyword,
+    required int page,
   }) async {
-    return await repository.getAllDoctors(keyword: keyword);
+    return await repository.getAllDoctors(keyword: keyword,page: page);
   }
 }

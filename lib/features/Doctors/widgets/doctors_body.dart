@@ -42,7 +42,8 @@ class _DoctorsBodyState extends State<DoctorsBody> {
             final cubit = sl<SearchDoctorCubit>();
             _searchDoctorCubit = cubit;
             cubit.getAllDoctors(
-              keyword: "",
+              keyword: _searchController.text,
+              page: 1,
             ); // Call the method immediately after creating the cubit
             return cubit;
           },

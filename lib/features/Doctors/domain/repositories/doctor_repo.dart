@@ -10,5 +10,6 @@ abstract class DoctorRepository {
 
   Future<SearchDoctorsResponse> getAllDoctors({
     required String keyword,
+    required int page,
   });
 }

@@ -12,6 +12,7 @@ abstract class DoctorRemoteDataSource {
 
   Future<SearchDoctorsResponse> getAllDoctors({
     required String keyword,
+    required int page
   });
 }
 
@@ -34,10 +35,13 @@ class DoctorRemoteDataSourceImpl implements DoctorRemoteDataSource {
   }
 
   @override
-  Future<SearchDoctorsResponse> getAllDoctors({required String keyword}) async {
+  Future<SearchDoctorsResponse> getAllDoctors({required String keyword,required int page}) async {
     final response = await dio.get(
       ApiEndpoints.searchAllDoctors,
-      queryParameters: {"keyword": keyword},
+      queryParameters: {
+        "keyword": keyword,
+        "page": page,
+      },
     );
     return SearchDoctorsResponse.fromJson(response.data);
   }
