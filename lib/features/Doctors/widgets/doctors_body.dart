@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async' as dart_async;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,11 +24,23 @@ class DoctorsBody extends StatefulWidget {
 
 class _DoctorsBodyState extends State<DoctorsBody> {
   final TextEditingController _searchController = TextEditingController();
-  SearchDoctorCubit? _searchDoctorCubit;
 
+  final SearchDoctorCubit _searchDoctorCubit = sl<SearchDoctorCubit>();
+  final ScrollController _scrollController = ScrollController();
+
+  dart_async.Timer? _debounce;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _searchDoctorCubit.getAllDoctors(keyword: "", page: 1);
+    _loadMore();
+  }
   @override
   void dispose() {
     _searchController.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
@@ -37,16 +50,8 @@ class _DoctorsBodyState extends State<DoctorsBody> {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(24),
-        child: BlocProvider(
-          create: (context) {
-            final cubit = sl<SearchDoctorCubit>();
-            _searchDoctorCubit = cubit;
-            cubit.getAllDoctors(
-              keyword: _searchController.text,
-              page: 1,
-            ); // Call the method immediately after creating the cubit
-            return cubit;
-          },
+        child: BlocProvider.value(
+          value: _searchDoctorCubit,
           child: BlocBuilder<SearchDoctorCubit, SearchDoctorState>(
             builder: (context, state) {
               return state is SearchDoctorLoading
@@ -66,8 +71,11 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                   labelText: context.tr.translate("search_doctor"),
                                   hintText: context.tr.translate("search_doctor"),
                                   onChanged: (value) {
-                                    // Call the search method in the cubit
-                                    _searchDoctorCubit?.searchDoctors(value ?? '');
+                                    if (_debounce?.isActive ?? false) _debounce!.cancel();
+                                    _debounce = dart_async.Timer(const Duration(seconds: 1), () {
+                                      _searchDoctorCubit.getAllDoctors(page: 1, keyword: value ?? '');
+                                      _loadMore();
+                                    });
                                   },
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.all(12.0),
@@ -82,7 +90,7 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                     icon: Icon(Icons.clear, size: 20.w, color: AppTheme.grey7Color),
                                     onPressed: () {
                                       _searchController.clear();
-                                      _searchDoctorCubit?.searchDoctors('');
+                                     // _searchDoctorCubit?.searchDoctors('');
                                     },
                                   ),
                                 ),
@@ -109,7 +117,7 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                                 ),
                                                 onPressed: () {
                                                   _searchController.clear();
-                                                  _searchDoctorCubit?.searchDoctors('');
+                                                 // _searchDoctorCubit?.searchDoctors('');
                                                 },
                                                 child: Text(
                                                   context.tr.translate("show_all_doctors"),
@@ -125,26 +133,35 @@ class _DoctorsBodyState extends State<DoctorsBody> {
                                         ),
                                       )
                                     : Expanded(
-                                        child: ListView.builder(
-                                          itemCount: state.searchDoctorsResponse.doctors?.length??0,
-                                          padding: const EdgeInsets.symmetric(vertical: 16),
-                                          itemBuilder: (context, index) {
-                                            var doctor = state.searchDoctorsResponse.doctors![index];
-                                            final locale = Localizations.localeOf(context);
-                                            final isArabic = locale.languageCode == 'ar';
-                                            return GestureDetector(
-                                              onTap: () {
-                                                Navigator.pushNamed(
-                                                  context,
-                                                  AppRoutes.doctorProfile,
-                                                  arguments: doctor,
-                                                );
-                                              },
-                                              child: DoctorItem(
-                                                doctor: doctor, isArabic: isArabic, themeProvider: themeProvider,
-                                              ),
-                                            );
-                                          },
+                                        child: SingleChildScrollView(
+                                          controller: _scrollController,
+                                          child: Column(
+                                              children: [
+                                                ...List.generate(
+                                                  state.searchDoctorsResponse.doctors?.length ?? 0,
+                                                      (index) {
+                                                    final doctor  = state.searchDoctorsResponse.doctors![index];
+                                                    final locale  = Localizations.localeOf(context);
+                                                    final isArabic = locale.languageCode == 'ar';
+
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.pushNamed(
+                                                          context,
+                                                          AppRoutes.doctorProfile,
+                                                          arguments: doctor,
+                                                        );
+                                                      },
+                                                      child: DoctorItem(
+                                                        doctor: doctor,
+                                                        isArabic: isArabic,
+                                                        themeProvider: themeProvider,
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ]
+                                          ),
                                         ),
                                       ),
                               ],
@@ -155,5 +172,17 @@ class _DoctorsBodyState extends State<DoctorsBody> {
         ),
       ),
     );
+  }
+  _loadMore() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        bool isTop = _scrollController.position.pixels == 0;
+        if (!isTop) {
+          if (_searchDoctorCubit.doctorsHaveMore()) {
+            _searchDoctorCubit.getDoctorsLoadMore(_searchDoctorCubit.getCurrentPageNumber() + 1,);
+          }
+        }
+      }
+    });
   }
 }
