@@ -6,6 +6,7 @@ class Appointment {
   final String? clinicID;
   final String? scheduleSerial;
   final String? date;
+  final String? ticketNumber;
   final String? time;
   final Doctor? doctor;
 
@@ -16,6 +17,7 @@ class Appointment {
     this.clinicID,
     this.date,
     this.time,
+    this.ticketNumber,
     this.doctor,
   });
 
@@ -25,6 +27,7 @@ class Appointment {
       appointmentID: json['appointmentID']??"",
       clinicID: json['clinicID']??"",
       scheduleSerial: json['scheduleSerial']??"",
+      ticketNumber: json['ticketNumber']??"",
       date: json['date']??"",
       time: json['time']??"",
       doctor: json['doctor'] != null ? Doctor.fromJson(json['doctor']) : null,
@@ -37,6 +40,7 @@ class Appointment {
       'appointmentID': appointmentID,
       'clinicID': clinicID,
       'scheduleSerial': scheduleSerial,
+      'ticketNumber': ticketNumber,
       'date': date,
       'time': time,
       'doctor': doctor?.toJson(),

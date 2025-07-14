@@ -141,7 +141,15 @@ class AppointmentCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
+                Text(
+                  appointment.ticketNumber ?? "",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyles.nexaRegular.copyWith(
+                    fontSize: 12.sp,
+                    color: themeProvider.currentThemeData!.primaryColor,
+                  ),
+                ),
               ],
             ),
             Divider(
