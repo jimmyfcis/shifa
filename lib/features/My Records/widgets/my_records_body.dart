@@ -68,7 +68,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (state.recordsResponseModel.diagnosis!.isEmpty) ...[
+                        if (state.recordsResponseModel.diagnosis!.isNotEmpty) ...[
                           Text(
                             context.tr.translate("diagnosis"),
                             style: TextStyles.nexaBold.copyWith(
@@ -86,7 +86,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               date: diagnose.date,
                             ),
                         ],
-                        if (state.recordsResponseModel.complaints!.isEmpty) ...[
+                        if (state.recordsResponseModel.complaints!.isNotEmpty) ...[
                           SizedBox(
                             height: 12.h,
                           ),
@@ -108,7 +108,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                             ),
                         ],
 
-                        if (state.recordsResponseModel.patientHistory!.isEmpty) ...[
+                        if (state.recordsResponseModel.patientHistory!.isNotEmpty) ...[
                           SizedBox(
                             height: 12.h,
                           ),
@@ -129,7 +129,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               date: patientHistory.date,
                             ),
                         ],
-                        if (state.recordsResponseModel.pateintFindings!.isEmpty) ...[
+                        if (state.recordsResponseModel.pateintFindings!.isNotEmpty) ...[
                           SizedBox(
                             height: 12.h,
                           ),
@@ -150,7 +150,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               date: patientFinding.date,
                             ),
                         ],
-                        if (state.recordsResponseModel.medicalReports!.isEmpty) ...[
+                        if (state.recordsResponseModel.medicalReports!.isNotEmpty) ...[
                           SizedBox(
                             height: 12.h,
                           ),
@@ -167,7 +167,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                           for (var report in state.recordsResponseModel.medicalReports ?? [])
                             ReportCard(medicalReport: report),
                         ],
-                        if (state.recordsResponseModel.labs!.isEmpty) ...[
+                        if (state.recordsResponseModel.labs!.isNotEmpty) ...[
                           SizedBox(
                             height: 16.h,
                           ),
@@ -189,7 +189,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               labRecord: lab,
                             ),
                         ],
-                        if (state.recordsResponseModel.rads!.isEmpty) ...[
+                        if (state.recordsResponseModel.rads!.isNotEmpty) ...[
                           SizedBox(
                             height: 16.h,
                           ),

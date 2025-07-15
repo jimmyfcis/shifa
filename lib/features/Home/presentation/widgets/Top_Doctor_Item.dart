@@ -23,7 +23,7 @@ class TopDoctorItem extends StatelessWidget {
     return InkWell(
       onTap: (){
         Navigator.pushNamed(context, AppRoutes.doctorProfile, arguments: {
-          "clinicId": doctor.clinics!.first.id.toString(),
+          "clinicId": doctor.clinics!.first.clinicId.toString(),
           "doctorId": doctor.id.toString(),
         });
       },
