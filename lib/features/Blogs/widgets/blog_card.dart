@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:html/dom.dart' as dom;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/theme/styles.dart';
@@ -18,9 +20,12 @@ class BlogCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
+    final dom.Document document = parse(isArabic?blog.descriptionAr??"":blog.descriptionEn??"");
+    final paragraph = document.querySelector('p')?.text ?? "";
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
     return Card(
       color: AppTheme.whiteColor,
       shape: RoundedRectangleBorder(
@@ -74,7 +79,9 @@ class BlogCard extends StatelessWidget {
                     height: 12.h,
                   ),
                   Text(
-                    isArabic ? blog.descriptionAr ?? "" : blog.descriptionEn ?? "",
+                    paragraph,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyles.nexaRegular.copyWith(
                       fontSize: 11.sp,
                       color: AppTheme.secondaryTextColor,

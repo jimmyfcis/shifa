@@ -6,6 +6,8 @@ import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/news/data/models/news_model.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:html/dom.dart' as dom;
 
 class NewsCard extends StatelessWidget {
   final NewsItem newsItem;
@@ -17,6 +19,9 @@ class NewsCard extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
+    final dom.Document document = parse(isArabic ? newsItem.descriptionAr ?? "" : newsItem.descriptionEn ?? "");
+    final paragraph = document.querySelector('p')?.text ?? "";
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: 327.w,
@@ -37,22 +42,22 @@ class NewsCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(4.0),
             child: newsItem.imageUrl != null && newsItem.imageUrl!.isNotEmpty
                 ? CachedNetworkImage(
-              imageUrl: newsItem.imageUrl!,
-              placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(
-                  color: themeProvider.currentThemeData!.primaryColor,
-                ), // Loading spinner
-              ),
-              width: 70.w,
-              height: 70.h,
-              fit: BoxFit.fill,
-            )
+                    imageUrl: newsItem.imageUrl!,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(
+                        color: themeProvider.currentThemeData!.primaryColor,
+                      ), // Loading spinner
+                    ),
+                    width: 70.w,
+                    height: 70.h,
+                    fit: BoxFit.fill,
+                  )
                 : Image.asset(
-              ImageAssets.blogImg1,
-              width: 70.w,
-              height: 70.h,
-              fit: BoxFit.fill,
-            ),
+                    ImageAssets.blogImg1,
+                    width: 70.w,
+                    height: 70.h,
+                    fit: BoxFit.fill,
+                  ),
           ),
           SizedBox(
             width: 16.w,
@@ -74,8 +79,8 @@ class NewsCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    isArabic ? newsItem.descriptionAr ?? "" : newsItem.descriptionEn ?? "",
-                    maxLines: 2,
+                    paragraph,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.nexaRegular.copyWith(
                       fontSize: 11.sp,
