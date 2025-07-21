@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:intl/intl.dart';
 
 class Utils {
@@ -14,4 +15,10 @@ class Utils {
     if (idType == null) return '';
     return idType.toLowerCase() == 'passport'||idType == 'جواز سفر' ? 'Passport' : 'NationalID';
   }
+  static void getFcmToken ()async {
+  String? token = await FirebaseMessaging.instance.getToken();
+  print('FCM Token: $token');
+
+// TODO: Save it to your backend or use as needed
+}
 }

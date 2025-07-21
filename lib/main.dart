@@ -1,9 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/firebase/firebase_messaging.dart';
 import 'package:shifa/core/localization/app_localizations.dart';
 import 'package:shifa/core/localization/locale_provider.dart';
+import 'package:shifa/core/utils/utils.dart';
+import 'package:shifa/firebase_options.dart';
 import 'core/network/injection_container.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
@@ -11,6 +15,11 @@ import 'core/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseNotification().setupFlutterNotifications();
+  Utils.getFcmToken();
   await init(); // initialize dependency injection
   await ThemeProvider.instance.initiateTheme();
   runApp(
