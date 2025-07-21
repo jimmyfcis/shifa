@@ -33,4 +33,25 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
       sound: true,
     );
   }
+
+   Future<void> showNotification(RemoteMessage message) async {
+     final notification = message.notification;
+     final android = message.notification?.android;
+
+     if (notification != null && android != null) {
+       await flutterLocalNotificationsPlugin.show(
+         notification.hashCode,
+         notification.title,
+         notification.body,
+         NotificationDetails(
+           android: AndroidNotificationDetails(
+             'high_importance_channel', // same as your channel id
+             'High Importance Notifications',
+             channelDescription: 'This channel is used for important notifications.',
+             icon: '@mipmap/ic_launcher',
+           ),
+         ),
+       );
+     }
+   }
 }

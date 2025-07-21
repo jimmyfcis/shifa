@@ -12,12 +12,24 @@ import 'core/network/injection_container.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
 import 'core/theme/theme.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+// Top-level background handler
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  // Handle background message
+  print('Handling a background message: \\${message.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Register background handler
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   await FirebaseNotification().setupFlutterNotifications();
   Utils.getFcmToken();
   await init(); // initialize dependency injection
@@ -70,3 +82,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// NOTE: To handle foreground and opened notifications, add the following in your first screen or a global StatefulWidget:
+//
+// @override
+// void initState() {
+//   super.initState();
+//   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+//     print('Received a foreground message: \\${message.notification?.title}');
+//     // Optionally show a custom notification using flutter_local_notifications
+//   });
+//   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+//     print('User tapped a notification: \\${message.data}');
+//     // Navigate or handle as needed
+//   });
+// }
