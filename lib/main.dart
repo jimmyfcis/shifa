@@ -13,14 +13,6 @@ import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
 import 'core/theme/theme.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-
-// Top-level background handler
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  // Handle background message
-  print('Handling a background message: \\${message.messageId}');
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -28,9 +20,10 @@ void main() async {
   );
 
   // Register background handler
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(FirebaseNotification().firebaseMessagingBackgroundHandler);
 
   await FirebaseNotification().setupFlutterNotifications();
+  await FirebaseNotification().requestNotificationPermission();
   Utils.getFcmToken();
   await init(); // initialize dependency injection
   await ThemeProvider.instance.initiateTheme();

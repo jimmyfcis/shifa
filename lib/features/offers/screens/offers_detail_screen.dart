@@ -9,7 +9,8 @@ import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import '../data/models/offers_model.dart';
 import '../../../core/assets/images/image_assets.dart';
-
+import 'package:html/parser.dart' show parse;
+import 'package:html/dom.dart' as dom;
 class OffersDetailScreen extends StatelessWidget {
   final OfferItem offerItem;
   const OffersDetailScreen({
@@ -22,6 +23,8 @@ class OffersDetailScreen extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
+    final dom.Document document = parse(isArabic ? offerItem.descriptionAr ?? "" : offerItem.description ?? "");
+    final paragraph = document.querySelector('p')?.text ?? "";
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
@@ -73,7 +76,7 @@ class OffersDetailScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        isArabic?offerItem.descriptionAr??"":offerItem.description??"",
+                        paragraph,
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
                           fontSize: 14.sp,

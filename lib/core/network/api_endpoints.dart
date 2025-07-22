@@ -27,4 +27,5 @@ class ApiEndpoints {
   static const String offers = '$baseUrl/offers';
   static const String newsLeksell = '$baseUrl/news-leksell';
   static const String tickets = '$baseUrl/tickets';
+  static const String saveFCM = '$baseUrl/save-fcm-token';
 }
