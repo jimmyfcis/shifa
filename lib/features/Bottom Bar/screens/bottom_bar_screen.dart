@@ -8,10 +8,8 @@ import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/Booking/screens/booking_screen.dart';
 import 'package:shifa/features/Clinics/screens/clinics_screen.dart';
 import 'package:shifa/features/My%20Care/screens/my_care_screen.dart';
-import '../../../core/firebase/firebase_messaging.dart';
 import '../../Home/presentation/screens/home_screen.dart';
 import '../../Profile/screens/profile_screen.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class BottomBarScreen extends StatefulWidget {
   final int? index;
@@ -27,15 +25,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
 
   @override
   void initState() {
-    // Add FCM listeners
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('Received a foreground message: \\${message.notification?.title}');
-      FirebaseNotification().showNotification(message); // <-- Add this line
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('User tapped a notification: \\${message.data}');
-      // Navigate or handle as needed
-    });
     if (widget.index != null) {
       pageIndex = widget.index!;
     }

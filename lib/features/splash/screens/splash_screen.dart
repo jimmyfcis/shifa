@@ -1,6 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shifa/core/firebase/firebase_messaging.dart';
 import '../../../../core/theme/theme.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/network/injection_container.dart';
@@ -22,6 +24,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   void initState() {
+    // Add FCM listeners
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Received a foreground message: \\${message.notification?.title}');
+      FirebaseNotification().showNotification(message); // <-- Add this line
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('User tapped a notification: \\${message.data}');
+      // Navigate or handle as needed
+    });
     super.initState();
 
     _fadeController = AnimationController(
