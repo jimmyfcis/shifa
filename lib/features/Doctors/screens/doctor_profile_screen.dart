@@ -48,16 +48,30 @@ class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
   }
 
   String concatenateSlotTime(ScheduleSlot? slot) {
-    bool isPM = true;
-    if (slot?.timeStart?.contains("am") ?? false) {
-      setState(() {
-        isPM = false;
-      });
+    if(slot?.timeStart !=null && slot!.timeStart!.isNotEmpty&& slot.timeEnd !=null&&slot.timeEnd!.isNotEmpty && slot.timeStart!.contains("am")&&slot.timeEnd!.contains("am"))
+    {
+      String time = "${slot.timeStart ?? ""} -> ${slot.timeEnd ?? ""}".replaceAll("am", "");
+      return "$time ${context.tr.translate("am")}";
     }
-    String time = "${slot?.timeStart ?? ""} -> ${slot?.timeEnd ?? ""}".replaceAll("pm", "");
-    return isPM ? "$time PM" : "$time AM";
-  }
 
+    if(slot?.timeStart !=null && slot!.timeStart!.isNotEmpty&& slot.timeEnd !=null&&slot.timeEnd!.isNotEmpty && slot.timeStart!.contains("pm")&&slot.timeEnd!.contains("pm"))
+    {
+      String time = "${slot.timeStart ?? ""} -> ${slot.timeEnd ?? ""}".replaceAll("pm", "");
+      return "$time ${context.tr.translate("pm")}";
+    }
+    else {
+      if(slot?.timeStart !=null && slot!.timeStart!.isNotEmpty&&slot.timeStart!.contains("am"))
+      {
+        String time = "${slot.timeStart ?? ""} -> ${slot.timeEnd ?? ""}".replaceAll("pm", "").replaceAll("am", "");
+        return "$time ${context.tr.translate("am")}";
+      }
+      else {
+        String time = "${slot!.timeStart ?? ""} -> ${slot.timeEnd ?? ""}".replaceAll("pm","" ).replaceAll("am", "");
+        return "$time ${context.tr.translate("pm")}";
+      }
+    }
+
+  }
   Future<void> _pickDate(BuildContext context, List<DateTime> days) async {
     setState(() {
       bool selectedIsInList = days.any((date) =>

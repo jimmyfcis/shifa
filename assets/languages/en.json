@@ -1,6 +1,8 @@
 {
   "app_name": "Shifa Hospital",
   "home": "Home",
+  "am": "AM",
+  "pm": "PM",
   "clinics": "Clinics",
   "doctors": "Doctors",
   "settings": "App Settings",

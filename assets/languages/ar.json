@@ -6,6 +6,8 @@
   "doctor": "الدكتور",
   "specialty": "القسم",
   "skip": "تخطي",
+  "am": "صباحا",
+  "pm": "مساءً",
   "register_success": "تم التسجيل بنجاح",
   "view_details": "اعرض التفاصيل",
   "edit": "تعديل",
