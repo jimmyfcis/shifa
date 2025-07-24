@@ -22,7 +22,6 @@ import 'package:shifa/features/My%20Records/presentation/screens/my_records_scre
 import 'package:shifa/features/My%20Records/presentation/screens/my_visits_screen.dart';
 import 'package:shifa/features/Radiology/screens/radiology_screen.dart';
 import 'package:shifa/features/Rate%20Your%20Visit/screens/rate_your_visit_screen.dart';
-import 'package:shifa/features/Records%20Detail/screens/records_details_screen.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/new_vaccine_reminder.dart';
 import 'package:shifa/features/Vaccine%20Reminder/screens/vaccine_reminder_screen.dart';
 import 'package:shifa/features/departments/presentation/screens/department_details_screen.dart';
@@ -37,6 +36,7 @@ import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Booking/screens/second_booking_screen.dart';
 import '../../features/Home/presentation/screens/ambulance_screen.dart';
+import '../../features/Records Detail/presntation/screens/records_details_screen.dart';
 import '../../features/authentication/presentation/screens/change_password_screen.dart';
 import '../../features/queue/presentation/screens/first_queue_screen.dart';
 import '../../features/Home/presentation/screens/home_screen.dart';
@@ -199,9 +199,8 @@ class AppRouter {
         log(arguments.toString());
         return MaterialPageRoute(
             builder: (_) => RecordsDetailsScreen(
-                  radiologyReport: arguments['record'],
-                  title: arguments['title'],
-                  recordType: arguments['recordType'],
+              file: arguments['file'],
+                  isLab: arguments['isLab'],
                 ));
       case AppRoutes.doctorProfile:
         var arguments = settings.arguments as Map<String, dynamic>;

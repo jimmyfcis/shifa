@@ -37,6 +37,11 @@ import 'package:shifa/features/Radiology/data/repositories/radiology_repository_
 import 'package:shifa/features/Radiology/domain/repositories/radiology_repository.dart';
 import 'package:shifa/features/Radiology/domain/use_cases/get_radiologies_use_case.dart';
 import 'package:shifa/features/Radiology/presentation/radiology_cubit.dart';
+import 'package:shifa/features/Records%20Detail/data/data_source/file_remote_data_source.dart';
+import 'package:shifa/features/Records%20Detail/data/repository/file_repository_impl.dart';
+import 'package:shifa/features/Records%20Detail/domain/repository/file_repository.dart';
+import 'package:shifa/features/Records%20Detail/domain/use_cases/file_use_case.dart';
+import 'package:shifa/features/Records%20Detail/presntation/managers/file_cubit.dart';
 import 'package:shifa/features/authentication/domain/use_cases/change_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/forget_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
@@ -106,6 +111,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<DepartmentsRemoteDataSource>(
     () => DepartmentsRemoteDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<FileRemoteDataSource>(
+        () => FileRemoteDataSourceImpl(),
   );
   sl.registerLazySingleton<RecordsRemoteDataSource>(
     () => RecordsRemoteDataSourceImpl(),
@@ -231,6 +240,12 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerLazySingleton<FileRepository>(
+        () => FileRepositoryImpl(
+      remoteDataSource: sl<FileRemoteDataSource>(),
+    ),
+  );
+
   sl.registerLazySingleton<QueueRepository>(
     () => QueueRepositoryImpl(remoteDataSource: sl()),
   );
@@ -306,6 +321,10 @@ Future<void> init() async {
 
   sl.registerLazySingleton<GetNewsUseCase>(
         () => GetNewsUseCase(sl<NewsRepository>()),
+  );
+
+  sl.registerLazySingleton<GetFileUseCase>(
+        () => GetFileUseCase(repository: sl()),
   );
 
   sl.registerLazySingleton<GetOffersUseCase>(
@@ -393,5 +412,8 @@ Future<void> init() async {
   );
   sl.registerFactory<QueueCubit>(
     () => QueueCubit(getTicketsUseCase: sl()),
+  );
+      sl.registerFactory<FileCubit>(
+  () => FileCubit(getFileUseCase: sl()),
   );
 }

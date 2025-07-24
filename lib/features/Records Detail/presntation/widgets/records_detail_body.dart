@@ -3,18 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/svg/svg_assets.dart';
-import 'package:shifa/core/models/radiolog_model.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
-import 'package:shifa/core/utils/enums.dart';
 import 'package:shifa/core/widgtes/custom_button.dart';
-
 class RecordsDetailBody extends StatelessWidget {
-  final RecordType recordType;
-  final RecordsModel radiologyReport;
+  final String? file;
+  final bool isLab;
 
   const RecordsDetailBody(
-      {super.key, required this.radiologyReport, required this.recordType});
+      {super.key,  this.file,required this.isLab});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class RecordsDetailBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          radiologyReport.title,
+                          "",
                           style: TextStyles.nexaBold.copyWith(
                             fontSize: 14.sp,
                             color: AppTheme.primaryTextColor,
@@ -58,7 +56,7 @@ class RecordsDetailBody extends StatelessWidget {
                             borderRadius: BorderRadius.circular(13.r),
                           ),
                           child: Text(
-                            radiologyReport.status,
+                            "",
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 13.sp,
                               color:
@@ -86,7 +84,7 @@ class RecordsDetailBody extends StatelessWidget {
                 BoxShadow(
                   color: AppTheme.blackColor.withOpacity(0.1),
                   blurRadius: 12,
-                  offset: Offset(0, -1),
+                  offset: const Offset(0, -1),
                 )
               ],
             ),
@@ -115,9 +113,8 @@ class RecordsDetailBody extends StatelessWidget {
                     width: 10.w,
                   ),
                   Text(
-                    recordType == RecordType.radiology
-                        ? "Download Report"
-                        : "Download Results",
+                    isLab
+                        ? context.tr.translate("download_results"):context.tr.translate("download_report"),
                     style: TextStyles.nexaBold.copyWith(
                       fontSize: 16.sp,
                       color: AppTheme.whiteColor,
