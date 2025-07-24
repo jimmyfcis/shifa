@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/Blogs/data/models/blog_model.dart';
 import '../../../core/assets/images/image_assets.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
+
 class BlogDetailScreen extends StatelessWidget {
   final Blog blog;
   const BlogDetailScreen({
@@ -23,8 +23,7 @@ class BlogDetailScreen extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-    final dom.Document document = parse(isArabic?blog.descriptionAr??"":blog.descriptionEn??"");
-    final paragraph = document.querySelector('p')?.text ?? "";
+    final paragraph = Utils.extractTextFromHTML(isArabic?blog.descriptionAr??"":blog.descriptionEn??"");
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,

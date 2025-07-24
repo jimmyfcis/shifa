@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/features/news/data/models/news_model.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
+
 
 class NewsCard extends StatelessWidget {
   final NewsItem newsItem;
@@ -19,8 +19,8 @@ class NewsCard extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-    final dom.Document document = parse(isArabic ? newsItem.descriptionAr ?? "" : newsItem.descriptionEn ?? "");
-    final paragraph = document.querySelector('p')?.text ?? "";
+    final paragraph = Utils.extractTextFromHTML(isArabic?newsItem.descriptionAr??"":newsItem.descriptionEn??"");
+
 
     return Container(
       padding: const EdgeInsets.all(16.0),

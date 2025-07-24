@@ -5,12 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/news/data/models/news_model.dart';
 import '../../../core/assets/images/image_assets.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
 class NewsDetailScreen extends StatelessWidget {
   final NewsItem newsItem;
   const NewsDetailScreen({
@@ -23,8 +22,8 @@ class NewsDetailScreen extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-    final dom.Document document = parse(isArabic?newsItem.descriptionAr??"":newsItem.descriptionEn??"");
-    final paragraph = document.querySelector('p')?.text ?? "";
+    final paragraph = Utils.extractTextFromHTML(isArabic?newsItem.descriptionAr??"":newsItem.descriptionEn??"");
+
 
     return WaterMark(
       alignment: Alignment.bottomCenter,

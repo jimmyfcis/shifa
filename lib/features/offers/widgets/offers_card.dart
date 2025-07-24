@@ -5,9 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import '../data/models/offers_model.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
 class OffersCard extends StatelessWidget {
   final OfferItem offerItem;
 
@@ -18,8 +17,8 @@ class OffersCard extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-    final dom.Document document = parse(isArabic ? offerItem.descriptionAr ?? "" : offerItem.description ?? "");
-    final paragraph = document.querySelector('p')?.text ?? "";
+    final paragraph = Utils.extractTextFromHTML(isArabic?offerItem.descriptionAr??"":offerItem.description??"");
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       width: 327.w,

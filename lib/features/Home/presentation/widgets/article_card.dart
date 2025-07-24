@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:html/parser.dart' show parse;
-import 'package:html/dom.dart' as dom;
 import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/features/Blogs/data/models/blog_model.dart';
 
 class ArticleCard extends StatelessWidget {
@@ -19,8 +18,8 @@ class ArticleCard extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
-    final dom.Document document = parse(isArabic?blog.descriptionAr??"":blog.descriptionEn??"");
-    final paragraph = document.querySelector('p')?.text ?? "";
+    final paragraph = Utils.extractTextFromHTML(isArabic?blog.descriptionAr??"":blog.descriptionEn??"");
+
 
     return Container(
       padding: const EdgeInsets.all(16.0),

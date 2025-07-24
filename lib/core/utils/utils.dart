@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:shifa/core/network/api_endpoints.dart';
 import 'package:shifa/core/network/dio_client.dart';
@@ -24,5 +25,19 @@ class Utils {
     String? token = await FirebaseMessaging.instance.getToken();
     final Dio dio = DioClient().dio;
     await dio.post(ApiEndpoints.saveFCM, data: {"fcm_token": token});
+  }
+
+  static String extractTextFromHTML (String html){
+    RegExpMatch? match;
+    String paragraph='';
+    if(html.contains("youtube"))
+      {
+        final regex = RegExp(r'src="(https:\/\/www\.youtube\.com\/embed\/[a-zA-Z0-9_-]+)"');
+         match = regex.firstMatch(html);
+        paragraph=(match != null ? match.group(1)! : '').toString();
+      }
+      final document = parse(html);
+      return "${document.body?.text.trim() ?? ''}\n $paragraph";
+
   }
 }
