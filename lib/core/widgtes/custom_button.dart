@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   final String? title;
   final double? height;
   final double? borderRadius;
-  final VoidCallback? onpress;
+  final VoidCallback? onPress;
   final Widget? customWidget;
   final FontWeight fontWeight;
 
@@ -27,7 +27,7 @@ class CustomButton extends StatelessWidget {
     this.fontSize,
     this.borderRadius = 20,
     this.height,
-    this.onpress,
+    this.onPress,
     this.fontWeight = FontWeight.normal,
     this.customWidget,
   }) : super(key: key);
@@ -35,7 +35,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onpress ?? () {},
+      onTap: onPress ?? () {},
       child: Container(
         padding: const EdgeInsets.all(3),
         width: width,

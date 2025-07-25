@@ -43,12 +43,12 @@ class _LabRecordCardState extends State<LabRecordCard> {
             showCustomSnackBar(context, context.tr.translate("no_file"), isError: true, statusCode: state.statusCode);
           }
           if (state is FileLoaded) {
-            if (state.response.base64 != null && state.response.base64!.isNotEmpty) {
+            if (state.response.file?.base64 != null && state.response.file!.base64!.isNotEmpty) {
               Navigator.pushNamed(
                 context,
                 AppRoutes.recordsDetails,
                 arguments: {
-                  "file": state.response.base64 ?? "",
+                  "file": state.response.file!.base64 ?? "",
                   "isLab": true,
                 },
               );

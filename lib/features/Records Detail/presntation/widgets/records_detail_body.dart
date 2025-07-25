@@ -6,13 +6,14 @@ import 'package:shifa/core/assets/svg/svg_assets.dart';
 import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/core/widgtes/custom_button.dart';
+
 class RecordsDetailBody extends StatelessWidget {
   final String? file;
   final bool isLab;
 
-  const RecordsDetailBody(
-      {super.key,  this.file,required this.isLab});
+  const RecordsDetailBody({super.key, this.file, required this.isLab});
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +41,14 @@ class RecordsDetailBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "",
+                          Utils().getFileName(file??"")??"",
                           style: TextStyles.nexaBold.copyWith(
                             fontSize: 14.sp,
                             color: AppTheme.primaryTextColor,
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                           decoration: BoxDecoration(
                             color: themeProvider.currentTheme == ThemeEnum.shifa
                                 ? AppTheme.secondaryColorShifa
@@ -56,13 +56,12 @@ class RecordsDetailBody extends StatelessWidget {
                             borderRadius: BorderRadius.circular(13.r),
                           ),
                           child: Text(
-                            "",
+                            context.tr.translate("completed"),
                             style: TextStyles.nexaRegular.copyWith(
                               fontSize: 13.sp,
-                              color:
-                                  themeProvider.currentTheme == ThemeEnum.shifa
-                                      ? AppTheme.shifaPrimaryColor
-                                      : AppTheme.leksellPrimaryColor,
+                              color: themeProvider.currentTheme == ThemeEnum.shifa
+                                  ? AppTheme.shifaPrimaryColor
+                                  : AppTheme.leksellPrimaryColor,
                             ),
                           ),
                         )
@@ -90,6 +89,9 @@ class RecordsDetailBody extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
             child: CustomButton(
+              onPress: () async {
+                await Utils().openFileFromBase64(file ?? "");
+              },
               width: 1.sw,
               buttonColor: themeProvider.currentTheme == ThemeEnum.shifa
                   ? AppTheme.shifaPrimaryColor
@@ -113,8 +115,7 @@ class RecordsDetailBody extends StatelessWidget {
                     width: 10.w,
                   ),
                   Text(
-                    isLab
-                        ? context.tr.translate("download_results"):context.tr.translate("download_report"),
+                    isLab ? context.tr.translate("download_results") : context.tr.translate("download_report"),
                     style: TextStyles.nexaBold.copyWith(
                       fontSize: 16.sp,
                       color: AppTheme.whiteColor,
