@@ -30,6 +30,8 @@ class MyRecordsBody extends StatefulWidget {
 class _MyRecordsBodyState extends State<MyRecordsBody> {
   @override
   Widget build(BuildContext context) {
+    final locale = Localizations.localeOf(context);
+    final isArabic = locale.languageCode == 'ar';
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Expanded(
@@ -55,6 +57,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                       state.recordsResponseModel.patientHistory!.isEmpty &&
                       state.recordsResponseModel.pateintFindings!.isEmpty &&
                       state.recordsResponseModel.diagnosis!.isEmpty &&
+                      state.recordsResponseModel.patientVitalSigns!.isEmpty &&
                       state.recordsResponseModel.complaints!.isEmpty) {
                     return Padding(
                       padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
@@ -127,6 +130,27 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               themeProvider: themeProvider,
                               title: patientHistory.name ?? "",
                               date: patientHistory.date,
+                            ),
+                        ],
+                        if (state.recordsResponseModel.patientVitalSigns!.isNotEmpty) ...[
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          Text(
+                            context.tr.translate("patient_vital"),
+                            style: TextStyles.nexaBold.copyWith(
+                              fontSize: 16.sp,
+                              color: AppTheme.primaryTextColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          for (PatientVitalSign patientVitalSign in state.recordsResponseModel.patientVitalSigns ?? [])
+                            RecordSingleItem(
+                              themeProvider: themeProvider,
+                              title: "${isArabic?patientVitalSign.nameAr ?? "":patientVitalSign.nameEn ?? ""} ${patientVitalSign.details?.value!=null?"--- ${patientVitalSign.details?.value.toString()}":""} ",
+                              date: patientVitalSign.details?.date??"",
                             ),
                         ],
                         if (state.recordsResponseModel.pateintFindings!.isNotEmpty) ...[

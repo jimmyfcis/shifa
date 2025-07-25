@@ -211,6 +211,7 @@
   "specialty": "Specialty",
   "no_visits": "'No visits found'",
   "complaints": "Complaints",
+  "patient_vital": "Patient Vital Signs",
   "patient_history": "Patient History",
   "patient_findings": "Patient Findings",
   "reports": "Reports",

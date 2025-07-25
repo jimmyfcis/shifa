@@ -211,7 +211,7 @@ class PatientVitalSign {
 }
 
 class VitalDetail {
-  final dynamic value;
+  final int? value;
   final String? date;
 
   VitalDetail({
