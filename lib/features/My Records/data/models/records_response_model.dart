@@ -9,7 +9,7 @@ class RecordsResponseModel {
   final List<PatientVitalSign>? patientVitalSigns;
   final List<PatientFinding>? pateintFindings;
   final List<PatientHistory>? patientHistory;
-  final List<dynamic>? surgicalIntervention;
+  final List<SurgicalIntervention>? surgicalIntervention;
   final List<MedicalReport>? medicalReports;
 
   RecordsResponseModel({
@@ -35,7 +35,7 @@ class RecordsResponseModel {
       patientVitalSigns: (json['patientVitalSigns'] as List?)?.map((e) => PatientVitalSign.fromJson(e)).toList(),
       pateintFindings: (json['pateintFindings'] as List?)?.map((e) => PatientFinding.fromJson(e)).toList(),
       patientHistory: (json['patientHistory'] as List?)?.map((e) => PatientHistory.fromJson(e)).toList(),
-      surgicalIntervention: json['surgicalIntervention'],
+      surgicalIntervention: (json['surgicalIntervention'] as List?)?.map((e) => SurgicalIntervention.fromJson(e)).toList(),
       medicalReports: (json['medicalReports'] as List?)?.map((e) => MedicalReport.fromJson(e)).toList(),
     );
   }
@@ -312,5 +312,49 @@ class MedicalReport {
     'VisitStartdate': visitStartdate,
     'VisitEnddate': visitEnddate,
     'ReportName': reportName,
+  };
+}
+
+class SurgicalIntervention{
+  final String? nameAr;
+  final String? nameEn;
+  final String? dateAndTime;
+  final String? dayNameAr;
+  final String? dayNameEn;
+  final String? doctorNameAr;
+  final String? doctorNameEn;
+  final String? pdfReport;
+
+  SurgicalIntervention({
+    this.nameAr,
+    this.nameEn,
+    this.doctorNameEn,
+    this.dateAndTime,
+    this.dayNameAr,
+    this.dayNameEn,
+    this.doctorNameAr,
+    this.pdfReport,
+  });
+
+  factory SurgicalIntervention.fromJson(Map<String, dynamic> json) => SurgicalIntervention(
+    nameAr: json['nameAr'],
+    nameEn: json['nameEn'],
+    doctorNameEn: json['doctorNameEn'],
+    dateAndTime: json['dateAndTime'],
+    dayNameAr: json['dayNameAr'],
+    dayNameEn: json['dayNameEn'],
+    pdfReport: json['pdfReport'],
+    doctorNameAr: json['doctorNameAr'],
+  );
+
+  Map<String, dynamic> toJson() => {
+    'nameAr': nameAr,
+    'nameEn': nameEn,
+    'doctorNameEn': doctorNameEn,
+    'dateAndTime': dateAndTime,
+    'dayNameAr': dayNameAr,
+    'dayNameEn': dayNameEn,
+    'pdfReport': pdfReport,
+    'doctorNameAr': doctorNameAr,
   };
 }

@@ -6,7 +6,7 @@ class GetMyVisitsUseCase {
 
   GetMyVisitsUseCase(this.repository);
 
-  Future<VisitResponse> call() async {
-    return await repository.getMyVisits();
+  Future<VisitResponse> call({required String patientID}) async {
+    return await repository.getMyVisits(patientID: patientID);
   }
 } 

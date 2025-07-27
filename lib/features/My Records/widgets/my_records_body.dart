@@ -9,6 +9,7 @@ import 'package:shifa/features/My%20Records/presentation/managers/records/record
 import 'package:shifa/features/My%20Records/widgets/report_card.dart';
 import 'package:shifa/features/My%20Records/widgets/record_single_item.dart';
 import 'package:shifa/features/My%20Records/widgets/records_item.dart';
+import 'package:shifa/features/My%20Records/widgets/surgical_intervention_item.dart';
 
 import '../../../core/assets/svg/svg_assets.dart';
 import '../../../core/network/injection_container.dart';
@@ -58,6 +59,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                       state.recordsResponseModel.pateintFindings!.isEmpty &&
                       state.recordsResponseModel.diagnosis!.isEmpty &&
                       state.recordsResponseModel.patientVitalSigns!.isEmpty &&
+                      state.recordsResponseModel.surgicalIntervention!.isEmpty &&
                       state.recordsResponseModel.complaints!.isEmpty) {
                     return Padding(
                       padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
@@ -110,7 +112,6 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                               date: complaint.date,
                             ),
                         ],
-
                         if (state.recordsResponseModel.patientHistory!.isNotEmpty) ...[
                           SizedBox(
                             height: 12.h,
@@ -235,6 +236,29 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                           SizedBox(
                             height: 32.h,
                           ),
+                        ],
+                        if (state.recordsResponseModel.surgicalIntervention!.isNotEmpty) ...[
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          Text(
+                            context.tr.translate("surgical_intervention"),
+                            style: TextStyles.nexaBold.copyWith(
+                              fontSize: 16.sp,
+                              color: AppTheme.primaryTextColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          for (SurgicalIntervention surgicalIntervention in state.recordsResponseModel.surgicalIntervention ?? [])
+                            SurgicalInterventionItem(
+                              themeProvider: themeProvider,
+                              title: isArabic? surgicalIntervention.nameAr:surgicalIntervention.nameEn,
+                              date:surgicalIntervention.dateAndTime,
+                              day:isArabic?surgicalIntervention.dayNameAr:surgicalIntervention.dayNameEn,
+                              doctor:isArabic?surgicalIntervention.doctorNameAr:surgicalIntervention.doctorNameEn,
+                            ),
                         ],
                       ],
                     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shifa/core/localization/app_extensions.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
 import 'package:shifa/features/My%20Records/data/models/records_response_model.dart';
@@ -55,7 +56,7 @@ class RecordsItem extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              isArabic?"Category: ${labRecord?.categoryAr??radRecord?.categoryAr??""}":"Category: ${labRecord?.categoryEn??radRecord?.categoryEn??""}",
+              isArabic?"${context.tr.translate("category")}: ${labRecord?.categoryAr??radRecord?.categoryAr??""}":"Category: ${labRecord?.categoryEn??radRecord?.categoryEn??""}",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 14.sp,
                 color: AppTheme.primaryTextColor,
@@ -72,7 +73,7 @@ class RecordsItem extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              "Date: ${labRecord?.date??radRecord?.date??""}",
+              "${context.tr.translate("date")}: ${labRecord?.date??radRecord?.date??""}",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 14.sp,
                 color: AppTheme.primaryTextColor,
@@ -89,7 +90,7 @@ class RecordsItem extends StatelessWidget {
               height: 16.h,
             ),
             Text(
-              isArabic?"Status: ${labRecord?.serviceStatusAr??radRecord?.serviceStatusAr??""}":"Status: ${labRecord?.serviceStatusEn??radRecord?.serviceStatusEn??""}",
+              isArabic?"${context.tr.translate("status")}: ${labRecord?.serviceStatusAr??radRecord?.serviceStatusAr??""}":"Status: ${labRecord?.serviceStatusEn??radRecord?.serviceStatusEn??""}",
               style: TextStyles.nexaBold.copyWith(
                 fontSize: 14.sp,
                 color: AppTheme.primaryTextColor,

@@ -9,8 +9,8 @@ class VisitRepositoryImpl implements VisitRepository {
   VisitRepositoryImpl({required this.visitRemoteDataSource});
 
   @override
-  Future<VisitResponse> getMyVisits() async {
-    final response = await visitRemoteDataSource.getMyVisits();
+  Future<VisitResponse> getMyVisits({required String patientID}) async {
+    final response = await visitRemoteDataSource.getMyVisits(patientID: patientID);
     return response;
   }
 } 
