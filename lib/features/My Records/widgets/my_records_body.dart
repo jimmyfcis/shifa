@@ -254,6 +254,7 @@ class _MyRecordsBodyState extends State<MyRecordsBody> {
                           for (SurgicalIntervention surgicalIntervention in state.recordsResponseModel.surgicalIntervention ?? [])
                             SurgicalInterventionItem(
                               themeProvider: themeProvider,
+                              file: surgicalIntervention.pdfReport,
                               title: isArabic? surgicalIntervention.nameAr:surgicalIntervention.nameEn,
                               date:surgicalIntervention.dateAndTime,
                               day:isArabic?surgicalIntervention.dayNameAr:surgicalIntervention.dayNameEn,
