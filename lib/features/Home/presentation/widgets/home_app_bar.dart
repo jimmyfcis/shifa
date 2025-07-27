@@ -74,6 +74,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
               name: "Search",
               labelText: context.tr.translate("search_doctor"),
               hasName: false,
+              cursorColor: AppTheme.whiteColor,
               hintText: context.tr.translate("search_doctor"),
               fillColor: AppTheme.whiteColor.withOpacity(0.4),
               hintTextColor: AppTheme.whiteColor,

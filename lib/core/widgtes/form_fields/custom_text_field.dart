@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
   final bool? hasName;
   final VoidCallback? onTap;
   final Color? fillColor;
+  final Color? cursorColor;
   final Color? hintTextColor;
 
   const CustomTextField({
@@ -45,7 +46,7 @@ class CustomTextField extends StatelessWidget {
     this.fillColor,
     this.onTap,
     this.maxLines,
-    this.hintTextColor, this.controller,
+    this.hintTextColor, this.controller, this.cursorColor,
   }) : super(key: key);
 
   @override
@@ -109,7 +110,7 @@ class CustomTextField extends StatelessWidget {
               fontSize: 14.sp,
             ),
           ),
-          cursorColor: AppTheme.blackColor,
+          cursorColor: cursorColor??AppTheme.blackColor,
           // valueTransformer: (text) => num.tryParse(text),
           validator: FormBuilderValidators.compose(
             <String? Function(String?)>[
