@@ -112,7 +112,7 @@ class _MyProfileState extends State<MyProfile> {
                   if (userData?.birthdate != null && userData!.birthdate!.isNotEmpty)
                     MyProfileWidget(
                         title: context.tr.translate("date_of_birth"),
-                        subTitle: userData?.birthdate ?? "",
+                        subTitle: userData?.birthdate?.replaceAll("00:00:00", "") ?? "",
                         hasDivider: true),
                   SizedBox(
                     height: 16.h,

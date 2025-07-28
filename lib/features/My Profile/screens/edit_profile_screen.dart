@@ -125,7 +125,7 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                               EmailTextField(
                                 labelText: context.tr.translate('your_email'),
                                 name: 'email',
-                                controller: emailController,
+                                controller: emailController.text.isEmpty?null:emailController,
                                 isRequired: false,
                                 hintText: context.tr.translate('email_hint'),
                               ),
@@ -143,7 +143,7 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                                 isRequired: true,
                                 controller: dateController,
                                 initialValue: widget.user.birthdate != null && widget.user.birthdate!.isNotEmpty
-                                    ? DateTime.parse(widget.user.birthdate!)
+                                    ? DateTime.parse(widget.user.birthdate!.replaceAll(" 00:00:00", ""))
                                     : null,
                                 inputType: InputType.date,
                                 labelText: context.tr.translate('date_of_birth'),
@@ -233,7 +233,7 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                                   nationalId: formValues['id'] ?? '',
                                   email: formValues['email'] ?? '',
                                   phoneNumber: formValues['phone'] ?? '',
-                                  birthdate: birthdate,
+                                  birthdate:birthdate,
                                   gender: gender,
                                   idType: formValues['id_type'] ?? '',
                                 );

@@ -1,9 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:shifa/core/assets/images/image_assets.dart';
 import 'package:shifa/core/theme/styles.dart';
 import 'package:shifa/core/theme/theme.dart';
+import 'package:shifa/core/utils/utils.dart';
 import 'package:shifa/core/widgtes/common_app_bar_title.dart';
 import 'package:shifa/core/widgtes/watermark_widget.dart';
 import 'package:shifa/features/departments/data/models/department_model.dart';
@@ -21,6 +22,7 @@ class DepartmentDetailsScreen extends StatelessWidget {
     final locale = Localizations.localeOf(context);
     final isArabic = locale.languageCode == 'ar';
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+    final paragraph = Utils.extractTextFromHTML(isArabic?department.contentAr??"":department.contentEn??"");
     return WaterMark(
       alignment: Alignment.bottomCenter,
       hasBorderRadius: false,
@@ -30,15 +32,10 @@ class DepartmentDetailsScreen extends StatelessWidget {
       contentChild: Expanded(
         child: Stack(
           children: [
-            CachedNetworkImage(
-              imageUrl: "https://prelive.shifaegypt.com/front_assets/images/15.jpg",
+            Image.asset(
+              ImageAssets.department,
               width: 375.w,
               height: 320.h,
-              placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(
-                  color: themeProvider.currentThemeData!.primaryColor,
-                ), // Loading spinner
-              ),
               fit: BoxFit.cover,
             ),
             Positioned(
@@ -67,7 +64,7 @@ class DepartmentDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        isArabic ? department.contentAr ?? "" : department.contentEn ?? "",
+                        paragraph,
                         style: TextStyles.nexaRegular.copyWith(
                           color: AppTheme.secondaryTextColor,
                           fontSize: 14.sp,
