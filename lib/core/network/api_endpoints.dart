@@ -30,4 +30,5 @@ class ApiEndpoints {
   static const String saveFCM = '$baseUrl/save-fcm-token';
   static const String labFile = '$baseUrl/lab/file';
   static const String radFile = '$baseUrl/rad/file';
+  static const String ambulance = '$baseUrl/ambulance/request';
 }

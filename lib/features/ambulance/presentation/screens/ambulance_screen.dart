@@ -124,11 +124,11 @@ class _AmbulanceScreenState extends State<AmbulanceScreen> {
               margin: EdgeInsets.zero,
               shape: const ContinuousRectangleBorder(),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+                padding: EdgeInsets.only(right: 24.w, left: 24.w,top: 10.h,bottom: 40.h),
                 child: CustomGreenButton(
                   title: context.tr.translate('send_request'),
                   onPressed: () {
-                    Navigator.pop(context);
+                   // Navigator.pop(context);
                   },
                 ),
               ),

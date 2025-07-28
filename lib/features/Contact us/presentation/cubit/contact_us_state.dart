@@ -1,4 +1,4 @@
-import 'package:shifa/features/Contact%20us/data/models/contact_us_response.dart';
+import 'package:shifa/core/models/string_response.dart';
 
 abstract class ContactUsState {}
 
@@ -7,7 +7,7 @@ class ContactUsInitial extends ContactUsState {}
 class ContactUsLoading extends ContactUsState {}
 
 class ContactUsSuccess extends ContactUsState {
-  final ContactUsResponse response;
+  final StringResponse response;
 
   ContactUsSuccess(this.response);
 }

@@ -1,5 +1,5 @@
 import 'package:shifa/features/Contact%20us/data/models/contact_us_request.dart';
-import 'package:shifa/features/Contact%20us/data/models/contact_us_response.dart';
+import 'package:shifa/core/models/string_response.dart';
 import 'package:shifa/features/Contact%20us/domain/repositories/contact_us_repository.dart';
 
 class SendContactFormUseCase {
@@ -7,7 +7,7 @@ class SendContactFormUseCase {
 
   SendContactFormUseCase(this.repository);
 
-  Future<ContactUsResponse> call(ContactUsRequest request) async {
+  Future<StringResponse> call(ContactUsRequest request) async {
     return await repository.sendContactForm(request);
   }
 } 

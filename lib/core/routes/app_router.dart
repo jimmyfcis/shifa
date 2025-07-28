@@ -35,7 +35,7 @@ import 'package:shifa/features/splash/screens/language_splash_screen.dart';
 import 'package:shifa/features/splash/screens/splash_screen.dart';
 import '../../features/Care Reminder/screens/new_care_reminder_screen.dart';
 import '../../features/Booking/screens/second_booking_screen.dart';
-import '../../features/Home/presentation/screens/ambulance_screen.dart';
+import '../../features/ambulance/presentation/screens/ambulance_screen.dart';
 import '../../features/Records Detail/presntation/screens/records_details_screen.dart';
 import '../../features/authentication/presentation/screens/change_password_screen.dart';
 import '../../features/queue/presentation/screens/first_queue_screen.dart';
