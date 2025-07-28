@@ -42,6 +42,11 @@ import 'package:shifa/features/Records%20Detail/data/repository/file_repository_
 import 'package:shifa/features/Records%20Detail/domain/repository/file_repository.dart';
 import 'package:shifa/features/Records%20Detail/domain/use_cases/file_use_case.dart';
 import 'package:shifa/features/Records%20Detail/presntation/managers/file_cubit.dart';
+import 'package:shifa/features/ambulance/data/remote_data_source/ambulance_remote_data_source.dart';
+import 'package:shifa/features/ambulance/data/repositories/ambulance_repository_impl.dart';
+import 'package:shifa/features/ambulance/domain/repositories/ambulance_repository.dart';
+import 'package:shifa/features/ambulance/domain/use_cases/request_ambulance_use_case.dart';
+import 'package:shifa/features/ambulance/presentation/managers/ambulance_cubit.dart';
 import 'package:shifa/features/authentication/domain/use_cases/change_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/forget_password_use_case.dart';
 import 'package:shifa/features/authentication/domain/use_cases/register_use_case.dart';
@@ -113,6 +118,10 @@ Future<void> init() async {
     () => DepartmentsRemoteDataSourceImpl(),
   );
 
+  sl.registerLazySingleton<AmbulanceRemoteDataSource>(
+        () => AmbulanceRemoteDataSourceImpl(),
+  );
+
   sl.registerLazySingleton<FileRemoteDataSource>(
         () => FileRemoteDataSourceImpl(),
   );
@@ -167,6 +176,12 @@ Future<void> init() async {
   sl.registerLazySingleton<DoctorRepository>(
     () => DoctorRepositoryImpl(
       doctorRemoteDataSource: sl<DoctorRemoteDataSource>(),
+    ),
+  );
+
+  sl.registerLazySingleton<AmbulanceRepository>(
+        () => AmbulanceRepositoryImpl(
+      ambulanceRemoteDataSource: sl<AmbulanceRemoteDataSource>(),
     ),
   );
 
@@ -259,6 +274,10 @@ Future<void> init() async {
         () => SearchDoctorsUseCase(sl<DoctorRepository>()),
   );
 
+  sl.registerLazySingleton<RequestAmbulanceUseCase>(
+        () => RequestAmbulanceUseCase(sl<AmbulanceRepository>()),
+  );
+
   sl.registerLazySingleton<GetAllDepartments>(
     () => GetAllDepartments(sl<DepartmentsRepository>()),
   );
@@ -346,6 +365,10 @@ Future<void> init() async {
 
   sl.registerFactory<SearchDoctorCubit>(
         () => SearchDoctorCubit(searchDoctorsUseCase: sl<SearchDoctorsUseCase>()),
+  );
+
+  sl.registerFactory<AmbulanceCubit>(
+        () => AmbulanceCubit(requestAmbulanceUseCase: sl<RequestAmbulanceUseCase>()),
   );
 
   sl.registerFactory<DepartmentsCubit>(
