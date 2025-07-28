@@ -20,7 +20,7 @@ class BlogsList extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
     return BlocProvider(
-      create: (context) => sl<BlogsCubit>()..getBlogs(),
+      create: (context) => sl<BlogsCubit>()..getBlogs(isHome: false),
       child: BlocConsumer<BlogsCubit, BlogsState>(
         listener: (context, state) {
           if (state is BlogsFailure) {

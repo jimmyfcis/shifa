@@ -8,8 +8,8 @@ class BlogsRepositoryImpl implements BlogsRepository {
   BlogsRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<BlogsResponse> getBlogs() async {
-    final response = await remoteDataSource.getBlogs();
+  Future<BlogsResponse> getBlogs({required bool isHome}) async {
+    final response = await remoteDataSource.getBlogs(isHome:isHome);
     return response;
   }
 } 

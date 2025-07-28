@@ -8,10 +8,10 @@ class BlogsCubit extends Cubit<BlogsState> {
 
   BlogsCubit({required this.getBlogsUseCase}) : super(BlogsInitial());
 
-  Future<void> getBlogs() async {
+  Future<void> getBlogs({required bool isHome}) async {
     try {
       emit(BlogsLoading());
-      final response = await getBlogsUseCase();
+      final response = await getBlogsUseCase(isHome:isHome);
       emit(BlogsLoaded(response));
     } catch (error,stacktrace) {
       final failure = ErrorHandler.handle(error,stacktrace);

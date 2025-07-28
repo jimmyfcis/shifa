@@ -60,63 +60,69 @@ class DoctorItem extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 16.w),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 16.h,
+                Expanded(
+                  child: Text(
+                    isArabic ? doctor.nameAR ?? "" : doctor.name ?? "",
+                    maxLines: 2,
+                    style: TextStyles.nexaBold.copyWith(
+                      fontSize: 14.sp,
+                      color: AppTheme.primaryTextColor,
                     ),
-                    Text(
-                      isArabic ? doctor.nameAR ?? "" : doctor.name ?? "",
-                      style: TextStyles.nexaBold.copyWith(
-                        fontSize: 14.sp,
-                        color: AppTheme.primaryTextColor,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Text(
-                      isArabic ? doctor.specialist?.nameAr ?? "" : doctor.specialist?.nameEn ?? "",
-                      style: TextStyles.nexaRegular.copyWith(
-                        fontSize: 12.sp,
-                        color: AppTheme.secondaryTextColor,
-                      ),
-                    ),
-                    // const Spacer(),
-                    // Container(
-                    //   width: 45.w,
-                    //   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
-                    //   decoration: BoxDecoration(
-                    //     color: themeProvider.currentTheme == ThemeEnum.shifa
-                    //         ? AppTheme.billColor
-                    //         : AppTheme.secondaryColorLeksell,
-                    //     borderRadius: BorderRadius.circular(4.r),
-                    //   ),
-                    //   child: Row(
-                    //     children: [
-                    //       SvgPicture.asset(
-                    //         SVGAssets.star,
-                    //         color: themeProvider.currentTheme == ThemeEnum.shifa
-                    //             ? AppTheme.shifaPrimaryColor
-                    //             : AppTheme.leksellPrimaryColor,
-                    //       ),
-                    //       SizedBox(
-                    //         width: 2.w,
-                    //       ),
-                    //       Text(
-                    //         doctor.rate??"",
-                    //         style: TextStyles.nexaRegular.copyWith(
-                    //           fontSize: 12.sp,
-                    //           color: themeProvider.currentTheme == ThemeEnum.shifa
-                    //               ? AppTheme.shifaPrimaryColor
-                    //               : AppTheme.leksellPrimaryColor,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // )
-                  ],
-                )
+                  ),
+                ),
+                // Expanded(
+                //   child: Row(
+                //     children: [
+                //       SizedBox(
+                //         height: 16.h,
+                //       ),
+                //
+                //       // SizedBox(
+                //       //   height: 8.h,
+                //       // ),
+                //       // Text(
+                //       //   isArabic ? doctor.specialist?.nameAr ?? "" : doctor.specialist?.nameEn ?? "",
+                //       //   style: TextStyles.nexaRegular.copyWith(
+                //       //     fontSize: 12.sp,
+                //       //     color: AppTheme.secondaryTextColor,
+                //       //   ),
+                //       // ),
+                //       // const Spacer(),
+                //       // Container(
+                //       //   width: 45.w,
+                //       //   padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+                //       //   decoration: BoxDecoration(
+                //       //     color: themeProvider.currentTheme == ThemeEnum.shifa
+                //       //         ? AppTheme.billColor
+                //       //         : AppTheme.secondaryColorLeksell,
+                //       //     borderRadius: BorderRadius.circular(4.r),
+                //       //   ),
+                //       //   child: Row(
+                //       //     children: [
+                //       //       SvgPicture.asset(
+                //       //         SVGAssets.star,
+                //       //         color: themeProvider.currentTheme == ThemeEnum.shifa
+                //       //             ? AppTheme.shifaPrimaryColor
+                //       //             : AppTheme.leksellPrimaryColor,
+                //       //       ),
+                //       //       SizedBox(
+                //       //         width: 2.w,
+                //       //       ),
+                //       //       Text(
+                //       //         doctor.rate??"",
+                //       //         style: TextStyles.nexaRegular.copyWith(
+                //       //           fontSize: 12.sp,
+                //       //           color: themeProvider.currentTheme == ThemeEnum.shifa
+                //       //               ? AppTheme.shifaPrimaryColor
+                //       //               : AppTheme.leksellPrimaryColor,
+                //       //         ),
+                //       //       ),
+                //       //     ],
+                //       //   ),
+                //       // )
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ),

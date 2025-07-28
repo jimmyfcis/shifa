@@ -20,7 +20,7 @@ class HomeHealthArticle extends StatelessWidget {
     ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return BlocProvider(
-      create: (context) => sl<BlogsCubit>()..getBlogs(),
+      create: (context) => sl<BlogsCubit>()..getBlogs(isHome: true),
       child: BlocConsumer<BlogsCubit, BlogsState>(
         listener: (context, state) {
           if (state is BlogsFailure) {

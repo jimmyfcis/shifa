@@ -6,7 +6,7 @@ class GetBlogsUseCase {
 
   GetBlogsUseCase(this.repository);
 
-  Future<BlogsResponse> call() {
-    return repository.getBlogs();
+  Future<BlogsResponse> call({required bool isHome}) {
+    return repository.getBlogs(isHome:isHome);
   }
 } 

@@ -143,7 +143,7 @@ class _EditMyProfileScreenState extends State<EditMyProfileScreen> {
                                 isRequired: true,
                                 controller: dateController,
                                 initialValue: widget.user.birthdate != null && widget.user.birthdate!.isNotEmpty
-                                    ? DateTime.parse(widget.user.birthdate!.replaceAll(" 00:00:00", ""))
+                                    ? DateTime.parse(widget.user.birthdate!)
                                     : null,
                                 inputType: InputType.date,
                                 labelText: context.tr.translate('date_of_birth'),
